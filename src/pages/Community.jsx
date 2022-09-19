@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { Upper, Lower, Body } from "../components/Result/index";
 
-const Result = () => {
+const Community = () => {
   return (
     <WarperStyled>
-      <Upper />
-      <Body />
-      <Lower />
+      <div></div>
     </WarperStyled>
   );
 };
 
-export default Result;
+export default Community;
 
 const WarperStyled = styled.div`
   /* border: 1px solid gray; */
@@ -24,6 +21,4 @@ const WarperStyled = styled.div`
 
   margin: 5vw;
   padding: 2vh;
-
-  text-align: center;
 `;
