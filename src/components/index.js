@@ -1,3 +1,4 @@
 import Layout from "./Layout/Layout";
-
-export { Layout };
+import Modal from "./Modal/Modal";
+import MainLoginModal from "./Modal/MainLoginModal";
+export { Layout, Modal, MainLoginModal };
