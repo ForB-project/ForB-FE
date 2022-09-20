@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+//재사용 component 파일위치 정리필
 import { Upper, Lower, Body } from "../components/Result";
 
 const Result = () => {

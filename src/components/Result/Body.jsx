@@ -10,6 +10,7 @@ const Body = ({ children }) => {
 };
 
 export default Body;
+
 const BodyStyled = styled.div`
   /* border: 1px dashed red; */
 
@@ -18,8 +19,8 @@ const BodyStyled = styled.div`
 
   margin: auto;
   width: 50vw;
-  height: 40vh;
-  line-height: 37vh; //line heitgth = height > 세로정렬
+  height: 43vh;
+  line-height: 42vh; //line heitgth = height > 세로정렬
 `;
 const ResultStyled = styled.div`
   margin: 1%;
