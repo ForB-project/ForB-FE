@@ -1,18 +1,21 @@
 import styled from "styled-components";
 import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import LoginFunction from "./LoginFunction";
+import React from "react";
 const MainLoginModal = props => {
-  const GOOGLE_LOGIN_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${"794171343937-g70piel9elaem7vqkg74ro3acq7hibsc.apps.googleusercontent.com"}&redirect_uri=${"http://localhost:3000"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
+  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${"794171343937-g70piel9elaem7vqkg74ro3acq7hibsc.apps.googleusercontent.com"}&redirect_uri=${"http://localhost:3000"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
+  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${"53562695fcff6cb85f65204335426118"}&redirect_uri=${"http://localhost:3000"}&response_type=code`;
   function closeModal() {
     props.closeModal();
-  }
-  function LoginGoogle() {
-    window.location.href = GOOGLE_LOGIN_URL;
   }
   return (
     <>
       <ContainerStyled>
-        <button className="goolgeLogin" onClick={() => LoginGoogle()}>
+        <button
+          className="goolgeLogin"
+          onClick={() => LoginFunction(GoogleLoginURL)}
+        >
           <IconStlyed>
             <FcGoogle size="1.5rem" />
           </IconStlyed>
@@ -21,7 +24,7 @@ const MainLoginModal = props => {
 
         <button
           className="kakaoLogin"
-          onClick={() => window.open("https://www.kakao.com", "_black")}
+          onClick={() => LoginFunction(KakaoLoginURL)}
         >
           <IconStlyed>
             {" "}

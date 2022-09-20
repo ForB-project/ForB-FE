@@ -5,7 +5,6 @@ import Header from "./Header";
 const Layout = ({ children }) => {
   return (
     <LayOutStyled>
-      layout
       <Header />
       {children}
     </LayOutStyled>
