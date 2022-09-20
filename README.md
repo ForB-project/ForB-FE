@@ -1,5 +1,9 @@
 <h1>  ForB 🐣 </h1>
 
+Final project Team 6
+
+<br>
+
 <br>
 개발을 처음 배우려고 할 때, 누구나 하는 고민
 
@@ -54,5 +58,7 @@
 <br><br>
 
 ---
+
+Sparta Innovation Camp in Seoul
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
