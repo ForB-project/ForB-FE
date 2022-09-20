@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import quiz from "./modules/QuizSlice"
 
-export default configureStore({
-  reducer: {
-    devTools: process.env.NODE_ENV !== "production",
+const store = configureStore({
+  reducer: {quiz,
+    devTools: process.env.NODE_ENV !== "production"
   },
 });
+
+export default store;

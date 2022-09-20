@@ -1,10 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import Body from "../components/Community/Body";
+
+//재사용 component 파일위치 정리필
+import { Upper } from "../components/Result";
+import Lower from "../components/Community/Lower";
 
 const Community = () => {
   return (
     <WarperStyled>
-      <div></div>
+      <Upper>Community</Upper>
+      <Body />
+      <Lower />
     </WarperStyled>
   );
 };
