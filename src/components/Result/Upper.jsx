@@ -2,15 +2,16 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo_black from "../../image/logo_black.png";
+import hogwart_logo from "../../image/hogwart_logo.png";
 
-const Upper = () => {
+const Upper = ({ children }) => {
   const navigate = useNavigate();
 
   return (
     <UpperStyled>
       <UpperBoxstyled>
-        <LogoStyled src={logo_black} onClick={() => navigate("/")} />
-        <TitleleftStyled>Test Result</TitleleftStyled>
+        <LogoStyled src={hogwart_logo} onClick={() => navigate("/")} />
+        <TitleleftStyled>{children}</TitleleftStyled>
       </UpperBoxstyled>
     </UpperStyled>
   );
@@ -27,11 +28,11 @@ const UpperBoxstyled = styled.div`
   /* border: 1px dashed purple; */
 
   width: 85vw;
-  height: 3vh;
+  height: 5vh;
 `;
 const LogoStyled = styled.img`
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 65px;
   border: none;
   float: left;
 `;
@@ -40,8 +41,11 @@ const TitleleftStyled = styled.div`
 
   display: inline-block;
   color: #9e6c31;
-  font-size: 30px;
 
+  margin-top: 1vh;
+  margin-left: 1vw;
+
+  font-size: 30px;
+  text-align: right;
   line-height: 5vh;
-  margin-right: 65vw;
 `;

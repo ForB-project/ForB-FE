@@ -5,7 +5,6 @@ import Header from "./Header";
 const Layout = ({ children }) => {
   return (
     <LayOutStyled>
-      layout
       <Header />
       {children}
     </LayOutStyled>
@@ -15,7 +14,10 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const LayOutStyled = styled.div`
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+
+  background-color: #303134;
+
   width: 100vw;
   height: 100vh;
 `;
