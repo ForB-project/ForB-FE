@@ -23,6 +23,7 @@ const QuizBackLayout = styled.div`
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
+  background-size: cover;
   margin: auto;
   display: flex;
   flex-direction: column;
