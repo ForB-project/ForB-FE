@@ -36,8 +36,8 @@ api.interceptors.response.use(
   }
 );
 export const AccountAPI = {
-  login: data => api.post("/api/user/login", data),
-  singup: data => api.post(`/api/user/signup`, data),
+  goolgeLogin: code => api.get(`/login/oauth2/code/google?code=${code}`),
+  kakaoLogin: code => api.get(`/api/user/signup?code=${code}`),
   logout: () => api.get("/api/auth/user/logout"),
 };
 

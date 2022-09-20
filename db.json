@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "Id": 1,
+      "createdAt": "2022-09-08T09:04:11.050186",
+      "title": "HTML",
+      "content": ["1번하기", "2번하기"],
+      "commentCnt": 2,
+      "likeCnt": 5252
+    },
+    {
+      "Id": 2,
+      "createdAt": "2022-09-06T09:04:11.050186",
+      "title": "CSS",
+      "content": ["3번하기", "4번하기"],
+      "commentCnt": 4321,
+      "likeCnt": 111222333
+    },
+    {
+      "Id": 3,
+      "createdAt": "2022-09-10T01:04:11.050186",
+      "title": "REACT",
+      "content": ["5번하기", "6번하기"],
+      "commentCnt": 4124124,
+      "likeCnt": 1111
+    }
+  ],
+  "twit": []
+}

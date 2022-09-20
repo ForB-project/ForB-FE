@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Logo from "../static/ForB_1.png";
 import { Modal, MainLoginModal } from "../components";
-import { MainBackImg, FEvsBE } from "../static";
+import { MainBackImg, FEvsBE, mainFirst, main3, main2 } from "../static";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const Mainpage = () => {
   const [closeModal, setCloseModal] = useState(false);
   const [gameMode, setGameMode] = useState(false);
   const navigate = useNavigate();
+
+  const location = useLocation();
+  React.useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const authorizationCode = searchParams.get("code");
+    console.log(authorizationCode);
+  }, [location]);
   return (
     <WrapStyled>
       <ContainerStyled fullScreen={gameMode}>
@@ -28,7 +36,11 @@ const Mainpage = () => {
         <button>
           <span
             onClick={() => {
-              setGameMode(true);
+              if (!gameMode) {
+                setGameMode(true);
+              } else {
+                navigate("/roadmap");
+              }
             }}
           >
             Let's Start
@@ -88,19 +100,19 @@ const ContainerStyled = styled.div`
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */
-  background-image: url(${FEvsBE});
+  background-image: url(${MainBackImg});
   background-size: cover;
   transition: 0.5s;
   .Logo {
     position: absolute;
     border-radius: 500px;
-    top: 3%;
-    left: 3%;
+    top: 2%;
+    left: 2%;
     width: 100px;
     height: 100px;
   }
   .Introduce {
-    font-size: 2.5rem;
+    font-size: 4rem;
     color: transparent;
     font-weight: 700;
     background: linear-gradient(90deg, pink 0, orange 100%);
@@ -111,9 +123,11 @@ const ContainerStyled = styled.div`
   }
   .Desc {
     color: white;
-    font-size: 1.5rem;
-    margin: 20px auto 130px auto;
+    font-size: 1.8rem;
+    margin: 15px auto 130px auto;
     text-align: center;
+    filter: drop-shadow(-2px 0 0 black) drop-shadow(2px 0 0 black)
+      drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
   }
   button {
     font-family: "neodgm";
