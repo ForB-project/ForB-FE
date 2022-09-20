@@ -25,6 +25,8 @@ export default Lower;
 const LowerStyled = styled.div`
   /* border: 1px dashed blue; */
 
+  text-align: center;
+
   margin: 1vh;
   padding-top: 2vh;
 `;
@@ -34,7 +36,7 @@ const LeftButtonStyled = styled.div`
   border-radius: 10px;
   background-color: #9e6c31;
 
-  margin: 1%;
+  margin: 1vw;
   display: inline-block;
   width: 25vw;
 `;
@@ -59,7 +61,7 @@ const RightButtonStyled = styled.div`
   border-radius: 10px;
   background-color: #9e6c31;
 
-  margin: 1%;
+  margin: 1vw;
   display: inline-block;
   width: 25vw;
 `;

@@ -28,6 +28,4 @@ const WarperStyled = styled.div`
 
   margin: 5vw;
   padding: 2vh;
-
-  text-align: center;
 `;

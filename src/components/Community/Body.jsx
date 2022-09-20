@@ -37,4 +37,6 @@ const BodyStyled = styled.div`
   margin-top: 2vw;
   margin-left: 2vw;
   margin-right: 2vw;
+
+  text-align: center;
 `;

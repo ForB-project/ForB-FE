@@ -35,6 +35,8 @@ const LowerStyled = styled.div`
   /* margin-top: 1vw; */
   margin-left: 2vw;
   margin-right: 2vw;
+
+  text-align: center;
 `;
 
 const LeftButtonStyled = styled.div`
@@ -50,7 +52,7 @@ const LeftButtonStyled = styled.div`
 const RoadmapButton = styled.button`
   border: none;
   font-size: 20px;
-  height: 4vh;
+  height: 5vh;
   background: none;
 `;
 
@@ -75,6 +77,6 @@ const RightButtonStyled = styled.div`
 const CodingButton = styled.button`
   border: none;
   font-size: 20px;
-  height: 4vh;
+  height: 5vh;
   background: none;
 `;
