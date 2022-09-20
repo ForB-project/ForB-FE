@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { Body, Upper } from "../components/Result";
 
 const Community = () => {
   return (
     <WarperStyled>
-      <div></div>
+      <Upper>Community</Upper>
+      <Body />
     </WarperStyled>
   );
 };
@@ -21,4 +23,6 @@ const WarperStyled = styled.div`
 
   margin: 5vw;
   padding: 2vh;
+
+  text-align: center;
 `;

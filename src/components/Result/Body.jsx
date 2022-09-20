@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Body = () => {
+const Body = ({ children }) => {
   return (
     <BodyStyled>
-      <ResultStyled>
-        <FSpan>F</FSpan> / <BSpan> B</BSpan>
-      </ResultStyled>
+      <ResultStyled>{children}</ResultStyled>
     </BodyStyled>
   );
 };
@@ -28,11 +26,4 @@ const ResultStyled = styled.div`
 
   font-size: 70px;
   font-weight: 700;
-`;
-
-const FSpan = styled.span`
-  color: #3f428e;
-`;
-const BSpan = styled.span`
-  color: #892525;
 `;

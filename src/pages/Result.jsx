@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { Upper, Lower, Body } from "../components/Result/index";
+import { Upper, Lower, Body } from "../components/Result";
 
 const Result = () => {
   return (
     <WarperStyled>
-      <Upper />
-      <Body />
+      <Upper>Test Result</Upper>
+      <Body>
+        <FSpan>F</FSpan> / <BSpan> B</BSpan>
+      </Body>
       <Lower />
     </WarperStyled>
   );
@@ -26,4 +28,10 @@ const WarperStyled = styled.div`
   padding: 2vh;
 
   text-align: center;
+`;
+const FSpan = styled.span`
+  color: #3f428e;
+`;
+const BSpan = styled.span`
+  color: #892525;
 `;

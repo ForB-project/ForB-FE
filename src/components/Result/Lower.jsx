@@ -12,7 +12,9 @@ const Lower = () => {
       </LeftButtonStyled>
       <CenterButtonStyled> </CenterButtonStyled>
       <RightButtonStyled>
-        <CodingButton onClick={() => navigate("/")}>let's Coding</CodingButton>
+        <CodingButton onClick={() => navigate("/community")}>
+          let's Coding
+        </CodingButton>
       </RightButtonStyled>
     </LowerStyled>
   );

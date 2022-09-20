@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import logo_black from "../../image/logo_black.png";
 
-const Upper = () => {
+const Upper = ({ children }) => {
   const navigate = useNavigate();
 
   return (
     <UpperStyled>
       <UpperBoxstyled>
         <LogoStyled src={logo_black} onClick={() => navigate("/")} />
-        <TitleleftStyled>Test Result</TitleleftStyled>
+        <TitleleftStyled>{children}</TitleleftStyled>
       </UpperBoxstyled>
     </UpperStyled>
   );
