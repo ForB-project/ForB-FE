@@ -23,6 +23,7 @@ const UpperStyled = styled.div`
   /* border: 1px solid red; */
 
   height: 5vh;
+  font-family: "neodgm";
 `;
 const UpperBoxstyled = styled.div`
   /* border: 1px dashed purple; */

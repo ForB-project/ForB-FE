@@ -52,6 +52,8 @@ const LeftButtonStyled = styled.div`
 const RoadmapButton = styled.button`
   border: none;
   font-size: 20px;
+  font-family: "neodgm";
+
   height: 5vh;
   background: none;
 `;
@@ -61,6 +63,7 @@ const CenterButtonStyled = styled.div`
    */
   margin: 1%;
   display: inline-block;
+
   width: 5vw;
 `;
 
@@ -77,6 +80,8 @@ const RightButtonStyled = styled.div`
 const CodingButton = styled.button`
   border: none;
   font-size: 20px;
+  font-family: "neodgm";
+
   height: 5vh;
   background: none;
 `;

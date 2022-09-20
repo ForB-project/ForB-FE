@@ -30,6 +30,7 @@ const BodyStyled = styled.div`
   /* border: 1px dashed green; */
 
   color: white;
+  font-family: "neodgm";
 
   width: 80vw;
   height: 46vh;
