@@ -34,6 +34,7 @@ const WarperStyled = styled.div`
   padding: 2vh;
 
   color: #ffffff;
+  font-family: "neodgm";
 `;
 const FSpan = styled.span`
   color: #3f8e55;

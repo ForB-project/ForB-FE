@@ -43,6 +43,7 @@ const LeftButtonStyled = styled.div`
 const RoadmapButton = styled.button`
   border: none;
   font-size: 20px;
+  font-family: "neodgm";
   height: 5vh;
   background: none;
 `;
@@ -68,6 +69,8 @@ const RightButtonStyled = styled.div`
 const CodingButton = styled.button`
   border: none;
   font-size: 20px;
+  font-family: "neodgm";
+
   height: 5vh;
   background: none;
 `;
