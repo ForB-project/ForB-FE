@@ -29,7 +29,7 @@ const WarperStyled = styled.div`
   background-size: cover;
 
   width: 85%;
-  height: 800px;
+  height: 550px;
 
   margin: 5vw;
   padding: 1.5vh;
