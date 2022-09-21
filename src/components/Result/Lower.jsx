@@ -14,7 +14,7 @@ const Lower = () => {
       </LeftButtonStyled>
       <CenterButtonStyled> </CenterButtonStyled>
       <RightButtonStyled>
-        <CodingButton onClick={() => navigate("/testcode")}>
+        <CodingButton onClick={() => navigate("/community")}>
           let's Coding
         </CodingButton>
       </RightButtonStyled>
@@ -30,7 +30,7 @@ const LowerStyled = styled.div`
   text-align: center;
 
   margin: 1vh;
-  padding-top: 2vh;
+  padding-top: 5vh;
 `;
 const LeftButtonStyled = styled.div`
   /* border: 1px dashed purple; */

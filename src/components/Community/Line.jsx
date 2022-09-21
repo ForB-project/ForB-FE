@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const Line = ({ title, author, date }) => {
+const Line = ({ title, author, stack }) => {
   return (
     <LineStyled>
       <TitleStyled>{title}</TitleStyled>
       <AuthorStyled>{author}</AuthorStyled>
-      <DateStyled>{date}</DateStyled>
+      <DateStyled>{stack}</DateStyled>
     </LineStyled>
   );
 };
@@ -21,6 +21,8 @@ const LineStyled = styled.div`
   margin-bottom: 1vh;
   padding-left: 2vw;
   padding-right: 2vw;
+
+  line-height: 3vh;
 `;
 const TitleStyled = styled.div`
   /* border: 1px dashed yellow; */
@@ -29,7 +31,7 @@ const TitleStyled = styled.div`
   background-color: #9e6c31;
 
   width: 45vw;
-  height: 2vh;
+  height: 3vh;
 `;
 const AuthorStyled = styled.div`
   /* border: 1px dashed pink; */
@@ -39,7 +41,7 @@ const AuthorStyled = styled.div`
 
   width: 15vw;
   margin-left: 1vw;
-  height: 2vh;
+  height: 3vh;
 `;
 const DateStyled = styled.div`
   /* border: 1px dashed aqua; */
@@ -49,5 +51,5 @@ const DateStyled = styled.div`
 
   width: 15vw;
   margin-left: 1vw;
-  height: 2vh;
+  height: 3vh;
 `;

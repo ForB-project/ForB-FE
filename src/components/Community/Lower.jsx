@@ -16,7 +16,7 @@ const Lower = () => {
         </LeftButtonStyled>
         <CenterButtonStyled> </CenterButtonStyled>
         <RightButtonStyled>
-          <CodingButton onClick={() => navigate("/community")}>
+          <CodingButton onClick={() => navigate("/testcode")}>
             let's Coding
           </CodingButton>
         </RightButtonStyled>
@@ -30,27 +30,29 @@ export default Lower;
 const LowerStyled = styled.div`
   /* border: 1px dashed green; */
 
-  width: 80vw;
-  height: 6vh;
-  /* margin-top: 1vw; */
-  margin-left: 2vw;
-  margin-right: 2vw;
-
   text-align: center;
+
+  margin: 1vh;
+  padding-top: 5vh;
 `;
 
 const LeftButtonStyled = styled.div`
   /* border: 1px dashed purple; */
 
   border-radius: 10px;
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
 
-  margin: 1vh;
+  margin: 1vw;
   display: inline-block;
   width: 25vw;
 `;
 const RoadmapButton = styled.button`
   border: none;
+
+  color: white;
   font-size: 20px;
   font-family: "neodgm";
 
@@ -71,14 +73,19 @@ const RightButtonStyled = styled.div`
   /* border: 1px dashed green; */
 
   border-radius: 10px;
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
 
-  margin: 1%;
+  margin: 1vw;
   display: inline-block;
   width: 25vw;
 `;
 const CodingButton = styled.button`
   border: none;
+
+  color: white;
   font-size: 20px;
   font-family: "neodgm";
 

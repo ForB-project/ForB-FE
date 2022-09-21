@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { greathall_pixel } from "../image";
 import { GreateHall } from "../static";
 
 //재사용 component 파일위치 정리필
