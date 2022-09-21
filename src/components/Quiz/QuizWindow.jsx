@@ -48,13 +48,13 @@ const moving = keyframes`
   margin-top: 0px;
 }
   25%{
-     margin-top: -5px;
+     margin-top: -3px;
   }
   50%{
    margin-top: 0px;
   }
   75%{
-    margin-top: 5px;
+    margin-top: 3px;
   }
   100%{
     margin-top: 0px;
@@ -111,6 +111,6 @@ const QuizButton = styled.button`
     height: 310px;
     opacity: 1;
     color: white;
-    animation: ${moving} 4s linear infinite;
+    animation: ${moving} 2s linear infinite;
   }
 `;
