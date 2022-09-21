@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import Logo from "../static/ForB_1.png";
 import { Modal, MainLoginModal } from "../components";
-import { MainBackImg, FEvsBE, mainFirst, main3, main2 } from "../static";
+import { MainBackImg, FEvsBE, mainFirst, main3, main2, Logo } from "../static";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+
 const Mainpage = () => {
   const [closeModal, setCloseModal] = useState(false);
   const [gameMode, setGameMode] = useState(false);
   const navigate = useNavigate();
 
-  const location = useLocation();
-  React.useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const authorizationCode = searchParams.get("code");
-    console.log(authorizationCode);
-  }, [location]);
   return (
     <WrapStyled>
       <ContainerStyled fullScreen={gameMode}>
@@ -100,7 +93,7 @@ const ContainerStyled = styled.div`
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */
-  background-image: url(${MainBackImg});
+  background-image: url(${mainFirst});
   background-size: cover;
   transition: 0.5s;
   .Logo {

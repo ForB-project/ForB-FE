@@ -1,10 +1,10 @@
 import axios from "axios";
-import { getRefreshToken, getAccessToken } from "./cookie";
-const BASE_URL = "";
+import { getRefreshToken, getAccessToken } from "./Cookie";
+const BASE_URL = "http://54.180.89.177";
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Comment-Type": "multipart/form-data",
+    "Comment-Type": "application/json",
   },
   withCredentials: true,
 });
@@ -37,7 +37,7 @@ api.interceptors.response.use(
 );
 export const AccountAPI = {
   goolgeLogin: code => api.get(`/login/oauth2/code/google?code=${code}`),
-  kakaoLogin: code => api.get(`/api/user/signup?code=${code}`),
+  kakaoLogin: () => api.get(`/user/kakao/callback`),
   logout: () => api.get("/api/auth/user/logout"),
 };
 

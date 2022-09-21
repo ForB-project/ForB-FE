@@ -4,8 +4,8 @@ import { RiKakaoTalkFill } from "react-icons/ri";
 import LoginFunction from "./LoginFunction";
 import React from "react";
 const MainLoginModal = props => {
-  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${"794171343937-g70piel9elaem7vqkg74ro3acq7hibsc.apps.googleusercontent.com"}&redirect_uri=${"http://localhost:3000"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
-  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${"53562695fcff6cb85f65204335426118"}&redirect_uri=${"http://localhost:3000"}&response_type=code`;
+  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${"1023463463380-doq31dj1a7l9mmp8e3qm7tp62etlrq4g.apps.googleusercontent.com"}&redirect_uri=${"http://localhost:3000/oauth/google"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`;
+  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${"1292d3ba37e3caecf0ce708dccf32bb2"}&redirect_uri=${"http://localhost:3000/oauth/callback/kakao"}&response_type=code`;
   function closeModal() {
     props.closeModal();
   }
