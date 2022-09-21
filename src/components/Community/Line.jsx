@@ -23,6 +23,12 @@ const LineStyled = styled.div`
   padding-right: 2vw;
 
   line-height: 3vh;
+
+  &:hover {
+    font-size: 21px;
+    color: white;
+    opacity: 1;
+  }
 `;
 const TitleStyled = styled.div`
   /* border: 1px dashed yellow; */
