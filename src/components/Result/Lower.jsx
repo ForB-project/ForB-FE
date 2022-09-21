@@ -15,7 +15,7 @@ const Lower = () => {
       <CenterButtonStyled> </CenterButtonStyled>
       <RightButtonStyled>
         <CodingButton onClick={() => navigate("/community")}>
-          코딩 테스트해보기
+          코딩 테스트해보기(게시판)
         </CodingButton>
       </RightButtonStyled>
     </LowerStyled>
