@@ -32,6 +32,9 @@ const TitleStyled = styled.div`
 
   width: 45vw;
   height: 3vh;
+
+  padding-left: 1vw;
+  text-align: left;
 `;
 const AuthorStyled = styled.div`
   /* border: 1px dashed pink; */

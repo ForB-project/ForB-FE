@@ -6,11 +6,27 @@ const Body = ({ title, author, stack }) => {
   return (
     <>
       <BodyStyled>
-        <Line title={`제목1`} author={"작성자1"} stack={"frontend"} />
-        <Line title={`제목2`} author={"작성자2"} stack={"backend"} />
-        <Line title={`제목3`} author={"작성자3"} stack={"backend"} />
-        <Line title={`제목4`} author={"작성자4"} stack={"frontend"} />
-        <Line title={`제목5`} author={"작성자5"} stack={"backend"} />
+        <Line title={`이거모에여`} author={"코린이"} stack={"frontend"} />
+        <Line
+          title={`제 코드 좀 봐주세요`}
+          author={"응애개발자"}
+          stack={"backend"}
+        />
+        <Line
+          title={`도대체 이게 뭐죠`}
+          author={"이거모에용"}
+          stack={"backend"}
+        />
+        <Line
+          title={`React 이거 맞아요? 진짜요?`}
+          author={"개발자(진)"}
+          stack={"frontend"}
+        />
+        <Line
+          title={`서버 배포하는데 이거 맞습니까`}
+          author={"백조아"}
+          stack={"backend"}
+        />
         <Line />
         <Line />
         <Line />
