@@ -49,5 +49,5 @@ const TitleleftStyled = styled.div`
 
   font-size: 30px;
   text-align: right;
-  line-height: 5vh;
+  line-height: 4vh;
 `;

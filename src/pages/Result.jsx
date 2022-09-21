@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { GreateHall } from "../static";
+import { greathall_pixel } from "../image";
 
 //재사용 component 파일위치 정리필
 import { Upper, Lower, Body } from "../components/Result";
@@ -8,7 +9,7 @@ import { Upper, Lower, Body } from "../components/Result";
 const Result = () => {
   return (
     <WarperStyled>
-      <Upper>Test Result</Upper>
+      <Upper>테스트결과</Upper>
       <Body>
         <FSpan>F</FSpan> | <BSpan> B</BSpan>
       </Body>
@@ -24,7 +25,7 @@ const WarperStyled = styled.div`
   border: 20px solid black;
   border-radius: 30px;
 
-  background-image: url(${GreateHall});
+  background-image: url(${greathall_pixel});
   background-size: cover;
 
   width: 85%;

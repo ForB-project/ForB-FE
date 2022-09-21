@@ -45,6 +45,7 @@ const BodyStyled = styled.div`
 
   border-radius: 50px;
   background-color: black;
+  opacity: 0.95;
   transition: 0.5s;
 
   color: white;

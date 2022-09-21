@@ -11,13 +11,13 @@ const Lower = () => {
       <LowerStyled>
         <LeftButtonStyled>
           <RoadmapButton onClick={() => navigate("/result")}>
-            Result
+            결과창 다시보기
           </RoadmapButton>
         </LeftButtonStyled>
         <CenterButtonStyled> </CenterButtonStyled>
         <RightButtonStyled>
           <CodingButton onClick={() => navigate("/testcode")}>
-            let's Coding
+            코딩 테스트해보기
           </CodingButton>
         </RightButtonStyled>
       </LowerStyled>
@@ -52,12 +52,20 @@ const LeftButtonStyled = styled.div`
 const RoadmapButton = styled.button`
   border: none;
 
-  color: white;
+  color: gray;
   font-size: 20px;
   font-family: "neodgm";
 
+  width: 100%;
   height: 5vh;
   background: none;
+
+  cursor: pointer;
+  &:hover {
+    font-size: 21px;
+    color: white;
+    opacity: 1;
+  }
 `;
 
 const CenterButtonStyled = styled.div`
@@ -85,10 +93,18 @@ const RightButtonStyled = styled.div`
 const CodingButton = styled.button`
   border: none;
 
-  color: white;
+  color: gray;
   font-size: 20px;
   font-family: "neodgm";
 
+  width: 100%;
   height: 5vh;
   background: none;
+
+  cursor: pointer;
+  &:hover {
+    font-size: 21px;
+    color: white;
+    opacity: 1;
+  }
 `;
