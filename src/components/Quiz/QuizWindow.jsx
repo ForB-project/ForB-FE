@@ -1,43 +1,65 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const QuizWindow = () => {
   const [quizId, setQuizId] = useState(0);
-  const [forbCount, setForbCount] = useState(0); 
+  const [forbCount, setForbCount] = useState(0);
   const list = useSelector((state) => state.quiz.quiz);
   const navigate = useNavigate();
 
   const forResult = (answer) => {
-    setQuizId(quizId + 1)
-    setForbCount(answer)
+    setQuizId(quizId + 1);
+    setForbCount(answer);
   };
 
   return (
-      <QuizWindowLayout>
-        <QuizContent>{list[quizId].quizTitle}</QuizContent>
-        <QuizSelect>
-          <QuizButton
-            onClick={() =>
-              quizId == 2 ? setTimeout(()=> navigate("/result"),2000): forResult(forbCount + 1)
-            }
-          >
-            {list[quizId].answerFront}
-          </QuizButton>
-          <QuizButton
-            onClick={() =>
-              quizId == 2 ? setTimeout(()=> navigate("/result"),2000) : forResult(forbCount - 1)
-            }
-          >
-            {list[quizId].answerBack}
-          </QuizButton>
-        </QuizSelect>
-      </QuizWindowLayout>
+    <QuizWindowLayout>
+      <QuizContent>{list[quizId].quizTitle}</QuizContent>
+      <QuizSelect>
+        <QuizButton
+          onClick={() =>
+            quizId == 2
+              ? setTimeout(() => navigate("/result"), 2000)
+              : forResult(forbCount + 1)
+          }
+        >
+          {list[quizId].answerFront}
+        </QuizButton>
+        <QuizButton
+          onClick={() =>
+            quizId == 2
+              ? setTimeout(() => navigate("/result"), 2000)
+              : forResult(forbCount - 1)
+          }
+        >
+          {list[quizId].answerBack}
+        </QuizButton>
+      </QuizSelect>
+    </QuizWindowLayout>
   );
 };
 
 export default QuizWindow;
+
+const moving = keyframes`
+0%{
+  margin-top: 0px;
+}
+  25%{
+     margin-top: -5px;
+  }
+  50%{
+   margin-top: 0px;
+  }
+  75%{
+    margin-top: 5px;
+  }
+  100%{
+    margin-top: 0px;
+  }
+`;
 
 const QuizWindowLayout = styled.div`
   height: 500px;
@@ -89,5 +111,6 @@ const QuizButton = styled.button`
     height: 310px;
     opacity: 1;
     color: white;
+    animation: ${moving} 4s linear infinite;
   }
 `;

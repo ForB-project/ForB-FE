@@ -6,7 +6,7 @@ import RoadMap from "./pages/RoadMapPage";
 import Result from "./pages/Result";
 import Community from "./pages/Community";
 import OAuthpage from "./pages/OAuthpage";
-import QuizPage from "./pages/QuziPage";
+import QuizPage from "./pages/QuizPage";
 import TestCodePage from "./pages/TestCodePage"
 
 
