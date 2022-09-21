@@ -24,6 +24,8 @@ const LineStyled = styled.div`
 
   line-height: 3vh;
 
+  opacity: 0.9;
+
   cursor: pointer;
   &:hover {
     font-size: 21px;
@@ -36,7 +38,6 @@ const TitleStyled = styled.div`
 
   border-radius: 5px;
   background-color: #4e4e4e;
-  opacity: 0.8;
 
   width: 45vw;
   height: 3vh;
@@ -49,7 +50,6 @@ const AuthorStyled = styled.div`
 
   border-radius: 5px;
   background-color: #4e4e4e;
-  opacity: 0.8;
 
   width: 15vw;
   margin-left: 1vw;
@@ -60,7 +60,6 @@ const DateStyled = styled.div`
 
   border-radius: 5px;
   background-color: #4e4e4e;
-  opacity: 0.8;
 
   width: 15vw;
   margin-left: 1vw;
