@@ -8,12 +8,14 @@ const Lower = () => {
   return (
     <LowerStyled>
       <LeftButtonStyled>
-        <RoadmapButton onClick={() => navigate("/")}>Road map</RoadmapButton>
+        <RoadmapButton onClick={() => navigate("/quiz")}>
+          로드맵 보기(퀴즈)
+        </RoadmapButton>
       </LeftButtonStyled>
       <CenterButtonStyled> </CenterButtonStyled>
       <RightButtonStyled>
         <CodingButton onClick={() => navigate("/community")}>
-          let's Coding <Span>(community page)</Span>
+          코딩 테스트해보기(게시판)
         </CodingButton>
       </RightButtonStyled>
     </LowerStyled>
@@ -28,13 +30,16 @@ const LowerStyled = styled.div`
   text-align: center;
 
   margin: 1vh;
-  padding-top: 2vh;
+  padding-top: 5vh;
 `;
 const LeftButtonStyled = styled.div`
   /* border: 1px dashed purple; */
 
   border-radius: 10px;
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
 
   margin: 1vw;
   display: inline-block;
@@ -42,10 +47,21 @@ const LeftButtonStyled = styled.div`
 `;
 const RoadmapButton = styled.button`
   border: none;
+
+  color: gray;
   font-size: 20px;
   font-family: "neodgm";
+
+  width: 100%;
   height: 5vh;
   background: none;
+
+  cursor: pointer;
+  &:hover {
+    font-size: 21px;
+    color: white;
+    opacity: 1;
+  }
 `;
 
 const CenterButtonStyled = styled.div`
@@ -60,7 +76,10 @@ const RightButtonStyled = styled.div`
   /* border: 1px dashed green; */
 
   border-radius: 10px;
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
 
   margin: 1vw;
   display: inline-block;
@@ -68,13 +87,19 @@ const RightButtonStyled = styled.div`
 `;
 const CodingButton = styled.button`
   border: none;
+
+  color: gray;
   font-size: 20px;
   font-family: "neodgm";
 
+  width: 100%;
   height: 5vh;
   background: none;
-`;
 
-const Span = styled.span`
-  font-size: 5px;
+  cursor: pointer;
+  &:hover {
+    font-size: 21px;
+    color: white;
+    opacity: 1;
+  }
 `;

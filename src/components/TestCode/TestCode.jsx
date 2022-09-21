@@ -1,21 +1,26 @@
-import React from "react";
+import React,{useState} from "react";
 import styled from "styled-components";
-import { GreateHall } from "../../static/index";
-import Logo from "../../image/ForB_pixel_noback.png";
+
+import { useSelector } from "react-redux";
+import { GreateHall } from "../../static";
+
+import TestCodeView from "./TestCodeView"
+import TestCodeHeader from "./TestCodeHeader";
+
 const TestCode = () => {
+  const [codePrac, setCodePrac] = useState(null);
+  const codeList = useSelector((state)=>state.testCode.testCode);
+ 
+  console.log(codePrac);
   return (
     <CodeBackLayout>
-      <CodeHeader>
-        <img className="Logo" src={Logo} />
-      </CodeHeader>
+      <TestCodeHeader/>
       <CodeWindow>
         <CodeInputLayout>
-          <CodeInput>코드 예제</CodeInput>
-          <CodeInput>코드 연습</CodeInput>
+          <CodeExample>{codeList[0].answerFront}</CodeExample>
+          <CodePractice onChange={(e)=>setCodePrac(e.target.value) }/>
         </CodeInputLayout>
-        <CodeViewLayout>
-          <CodeView>코드 출력창</CodeView>
-        </CodeViewLayout>
+            <TestCodeView codePrac={codePrac}/>
       </CodeWindow>
     </CodeBackLayout>
   );
@@ -24,29 +29,20 @@ const TestCode = () => {
 export default TestCode;
 
 const CodeBackLayout = styled.div`
-  width: 85%;
-  height: 800px;
-  border: 20px solid black;
-  border-radius: 30px;
-  background-image: url(${GreateHall});
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: -0;
+
+width: 85%;
+height: 800px;
+border: 20px solid black;
+border-radius: 30px;
+background-image: url(${GreateHall});
+margin: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: -0;
 `;
 
-const CodeHeader = styled.div`
-  width: 100%;
-  height: 100px;
-  margin: 30px;
-  .Logo {
-    width: 100px;
-    height: 100px;
-    margin-left: 50px;
-    margin-bottom: -50px;
-  }
-`;
 
 const CodeWindow = styled.div`
   width: 1100px;
@@ -57,18 +53,18 @@ const CodeWindow = styled.div`
   font-family: "neodgm", monospace;
   font-style: normal;
   font-size: 20px;
-  color: gray;
+  color: white;
 `;
 
 const CodeInputLayout = styled.div`
-  width: 510px;
+  width: 600px;
   height: 645px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const CodeInput = styled.div`
+const CodeExample = styled.div`
   width: 500px;
   height: 280px;
   border: 6px dashed black;
@@ -76,24 +72,19 @@ const CodeInput = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  white-space: pre-wrap;
 `;
 
-const CodeViewLayout = styled.div`
-  width: 550px;
-  height: 700px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-`;
 
-const CodeView = styled.div`
-  width: 520px;
-  height: 600px;
-  border: 8px dashed black;
+const CodePractice = styled.textarea`
+width: 500px;
+  height: 280px;
+  border: 6px dashed black;
   background-color: #10141b;
   margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  resize: none;
 `;
+
