@@ -1,26 +1,26 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
 import { GreateHall } from "../../static";
 
-import TestCodeView from "./TestCodeView"
+import TestCodeView from "./TestCodeView";
 import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
   const [codePrac, setCodePrac] = useState(null);
-  const codeList = useSelector((state)=>state.testCode.testCode);
- 
+  const codeList = useSelector((state) => state.testCode.testCode);
+
   console.log(codePrac);
   return (
     <CodeBackLayout>
-      <TestCodeHeader/>
+      <TestCodeHeader />
       <CodeWindow>
         <CodeInputLayout>
           <CodeExample>{codeList[0].answerFront}</CodeExample>
-          <CodePractice onChange={(e)=>setCodePrac(e.target.value) }/>
+          <CodePractice onChange={(e) => setCodePrac(e.target.value)} />
         </CodeInputLayout>
-            <TestCodeView codePrac={codePrac}/>
+        <TestCodeView codePrac={codePrac} />
       </CodeWindow>
     </CodeBackLayout>
   );
@@ -29,20 +29,19 @@ const TestCode = () => {
 export default TestCode;
 
 const CodeBackLayout = styled.div`
-
-width: 85%;
-height: 800px;
-border: 20px solid black;
-border-radius: 30px;
-background-image: url(${GreateHall});
-margin: auto;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-z-index: -0;
+  width: 85%;
+  height: 800px;
+  border: 20px solid black;
+  border-radius: 30px;
+  background-image: url(${GreateHall});
+  background-size: cover;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -0;
 `;
-
 
 const CodeWindow = styled.div`
   width: 1100px;
@@ -75,9 +74,8 @@ const CodeExample = styled.div`
   white-space: pre-wrap;
 `;
 
-
 const CodePractice = styled.textarea`
-width: 500px;
+  width: 500px;
   height: 280px;
   border: 6px dashed black;
   background-color: #10141b;
@@ -87,4 +85,3 @@ width: 500px;
   color: white;
   resize: none;
 `;
-
