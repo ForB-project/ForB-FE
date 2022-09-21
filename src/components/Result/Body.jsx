@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { greathall_pixel } from "../../image";
 
 const Body = ({ children }) => {
   return (
@@ -13,25 +12,24 @@ const Body = ({ children }) => {
 export default Body;
 
 const BodyStyled = styled.div`
-  /* border: 1px dashed red; */
+  border: 1px dashed black;
 
-  border-radius: 20px;
-  /* background-color: #9e6c31; */
-  /* background-color: black; */
-  background-image: url(${greathall_pixel});
-  background-size: cover;
+  border-radius: 50px;
+  background-color: black;
+  opacity: 0.95;
   transition: 0.5s;
 
   margin: auto;
   width: 50vw;
-  height: 43vh;
+  height: 50vh;
+  padding-top: 1vh;
 
   text-align: center;
-  line-height: 42vh; //line heitgth = height > 세로정렬
+  line-height: 50vh; //line heitgth = height > 세로정렬
 `;
 const ResultStyled = styled.div`
   margin: 1%;
 
-  font-size: 70px;
+  font-size: 100px;
   font-weight: 700;
 `;

@@ -2,17 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import Line from "./Line";
 
-const Body = ({ title, author, date }) => {
+const Body = ({ title, author, stack }) => {
   return (
     <>
       <BodyStyled>
-        <Line title={`제목1`} author={"작성자1"} date={""} />
-        <Line title={`제목2`} author={"작성자2"} date={""} />
-        <Line title={`제목3`} author={"작성자3"} date={""} />
-        <Line title={`제목4`} author={"작성자4"} date={""} />
-        <Line title={`제목5`} author={"작성자5"} date={""} />
-        <Line />
-        <Line />
+        <Line title={`이거모에여`} author={"코린이"} stack={"frontend"} />
+        <Line
+          title={`제 코드 좀 봐주세요`}
+          author={"응애개발자"}
+          stack={"backend"}
+        />
+        <Line
+          title={`도대체 이게 뭐죠`}
+          author={"이거모에용"}
+          stack={"backend"}
+        />
+        <Line
+          title={`React 이거 맞아요? 진짜요?`}
+          author={"개발자(진)"}
+          stack={"frontend"}
+        />
+        <Line
+          title={`서버 배포하는데 이거 맞습니까`}
+          author={"백조아"}
+          stack={"backend"}
+        />
         <Line />
         <Line />
         <Line />
@@ -27,16 +41,21 @@ const Body = ({ title, author, date }) => {
 export default Body;
 
 const BodyStyled = styled.div`
-  /* border: 1px dashed green; */
+  border: 1px dashed black;
+
+  border-radius: 50px;
+  background-color: black;
+  opacity: 0.95;
+  transition: 0.5s;
 
   color: white;
+  font-size: 20px;
+  font-family: "neodgm";
 
-  width: 80vw;
-  height: 46vh;
-
-  margin-top: 2vw;
-  margin-left: 2vw;
-  margin-right: 2vw;
+  margin: auto;
+  width: 60vw;
+  height: 50vh;
+  padding-top: 1vh;
 
   text-align: center;
 `;
