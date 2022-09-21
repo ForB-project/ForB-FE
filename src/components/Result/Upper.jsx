@@ -41,7 +41,8 @@ const TitleleftStyled = styled.div`
   /* border: 1px dashed blue; */
 
   display: inline-block;
-  color: #9e6c31;
+  color: white;
+  /* color: #9e6c31; */
 
   margin-top: 1vh;
   margin-left: 1vw;

@@ -15,11 +15,11 @@ export default Body;
 const BodyStyled = styled.div`
   /* border: 1px dashed red; */
 
-  border-radius: 20px;
+  border-radius: 50px;
   /* background-color: #9e6c31; */
-  /* background-color: black; */
-  background-image: url(${greathall_pixel});
-  background-size: cover;
+  background-color: black;
+  /* background-image: url(${greathall_pixel}); */
+  /* background-size: cover; */
   transition: 0.5s;
 
   margin: auto;

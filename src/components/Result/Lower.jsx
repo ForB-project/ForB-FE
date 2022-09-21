@@ -8,12 +8,14 @@ const Lower = () => {
   return (
     <LowerStyled>
       <LeftButtonStyled>
-        <RoadmapButton onClick={() => navigate("/")}>Road map</RoadmapButton>
+        <RoadmapButton onClick={() => navigate("/quiz")}>
+          Road map (quiz)
+        </RoadmapButton>
       </LeftButtonStyled>
       <CenterButtonStyled> </CenterButtonStyled>
       <RightButtonStyled>
-        <CodingButton onClick={() => navigate("/community")}>
-          let's Coding <Span>(community page)</Span>
+        <CodingButton onClick={() => navigate("/testcode")}>
+          let's Coding
         </CodingButton>
       </RightButtonStyled>
     </LowerStyled>
@@ -34,7 +36,10 @@ const LeftButtonStyled = styled.div`
   /* border: 1px dashed purple; */
 
   border-radius: 10px;
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
 
   margin: 1vw;
   display: inline-block;
@@ -42,8 +47,11 @@ const LeftButtonStyled = styled.div`
 `;
 const RoadmapButton = styled.button`
   border: none;
+
+  color: white;
   font-size: 20px;
   font-family: "neodgm";
+
   height: 5vh;
   background: none;
 `;
@@ -60,7 +68,10 @@ const RightButtonStyled = styled.div`
   /* border: 1px dashed green; */
 
   border-radius: 10px;
-  background-color: #9e6c31;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
 
   margin: 1vw;
   display: inline-block;
@@ -68,13 +79,11 @@ const RightButtonStyled = styled.div`
 `;
 const CodingButton = styled.button`
   border: none;
+
+  color: white;
   font-size: 20px;
   font-family: "neodgm";
 
   height: 5vh;
   background: none;
-`;
-
-const Span = styled.span`
-  font-size: 5px;
 `;
