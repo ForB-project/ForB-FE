@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
-const OAuthpage = () => {
+import { AccountAPI } from "../shared/api";
+const OAuthKakao = () => {
   //   const [closeModal, setCloseModal] = useState(false);
-
+  const getToken = async () => {
+    const res = await AccountAPI.kakaoLogin();
+    console.log(res);
+  };
   const location = useLocation();
   React.useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const authorizationCode = searchParams.get("code");
-    console.log(authorizationCode);
+    getToken(authorizationCode);
+    const parsed = location.search.split(/(\w+=[\w.-]+)/g);
   }, [location]);
   return (
     <WrapStyled>
-      <ContainerStyled>로그인 중입니다.</ContainerStyled>
+      <ContainerStyled>카카오로그인 중입니다.</ContainerStyled>
     </WrapStyled>
   );
 };
 
-export default OAuthpage;
+export default OAuthKakao;
 
 const WrapStyled = styled.div`
   display: flex;

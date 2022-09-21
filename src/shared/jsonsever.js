@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:5001";
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Comment-Type": "multipart/form-data",
+    "Comment-Type": "application/json",
   },
   withCredentials: true,
 });
@@ -41,10 +41,10 @@ export const ProflieAPI = {
   modify: data => api.put("/api/auth/user/profile", data),
 };
 
-export const TwitAPI = {
+export const StackAPI = {
   addtwit: data => api.post(`/api/auth/twit`, data),
-  gettwit: () => api.get(`/api/twit`),
-  getonetwit: id => api.get(`/api/twit/${id}`),
+  gettwit: () => api.get(`/data`),
+  getcontent: () => api.get(`/content`),
   deletetwit: id => api.delete(`/api/auth/twit/${id}`),
 };
 

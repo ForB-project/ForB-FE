@@ -1,5 +1,6 @@
 import React,{useState} from "react";
 import styled from "styled-components";
+
 import { useSelector } from "react-redux";
 import { GreateHall } from "../../static";
 
@@ -28,6 +29,7 @@ const TestCode = () => {
 export default TestCode;
 
 const CodeBackLayout = styled.div`
+
 width: 85%;
 height: 800px;
 border: 20px solid black;
@@ -40,6 +42,7 @@ align-items: center;
 justify-content: center;
 z-index: -0;
 `;
+
 
 const CodeWindow = styled.div`
   width: 1100px;
@@ -72,6 +75,7 @@ const CodeExample = styled.div`
   white-space: pre-wrap;
 `;
 
+
 const CodePractice = styled.textarea`
 width: 500px;
   height: 280px;
@@ -83,3 +87,4 @@ width: 500px;
   color: white;
   resize: none;
 `;
+

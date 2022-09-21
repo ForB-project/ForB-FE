@@ -11,5 +11,10 @@ const HeaderSyled = styled.div`
   /* border: 1px dashed blue; */
   /* margin: 1px; */
 
-  background-color: #303134;
+
+  /* background-color: #303134;
+  height: 1vh; */
+
+ / background-color: #303134;/
+
 `;
