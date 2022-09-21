@@ -2,9 +2,9 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { GreateHall } from "../../static";
-import Logo from "../../image/ForB_pixel_noback.png"
 
 import TestCodeView from "./TestCodeView"
+import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
   const [codePrac, setCodePrac] = useState(null);
@@ -13,9 +13,7 @@ const TestCode = () => {
   console.log(codePrac);
   return (
     <CodeBackLayout>
-      <CodeHeader>
-        <img className="Logo" src={Logo} />
-      </CodeHeader>
+      <TestCodeHeader/>
       <CodeWindow>
         <CodeInputLayout>
           <CodeExample>{codeList[0].answerFront}</CodeExample>
@@ -39,18 +37,8 @@ margin: auto;
 display: flex;
 flex-direction: column;
 align-items: center;
+justify-content: center;
 z-index: -0;
-`;
-
-const CodeHeader = styled.div`
-width:100%;
-height:100px;
-margin:30px;
-.Logo{
-    width:100px;
-    margin-left:50px;
-    margin-bottom:-50px;
-  }
 `;
 
 const CodeWindow = styled.div`
