@@ -11,7 +11,7 @@ import Lower from "../components/Community/Lower";
 const Community = () => {
   return (
     <WarperStyled>
-      <Upper>Community</Upper>
+      <Upper>게시판</Upper>
       <Body />
       <Lower />
     </WarperStyled>
