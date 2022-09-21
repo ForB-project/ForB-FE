@@ -3,7 +3,7 @@ import Result from "./Result";
 import Community from "./Community";
 import OAuthGoogle from "./OAuthGoogle";
 import OAuthKakao from "./OAuthKakao";
-import QuizPage from "./QuziPage";
+import QuizPage from "./QuizPage";
 import TestCodePage from "./TestCodePage";
 import Mainpage from "./Mainpage";
 export {
