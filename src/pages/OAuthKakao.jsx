@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AccountAPI } from "../shared/api";
+import { setAccessToken, setRefreshToken, setUserName } from "../shared/Cookie";
 const OAuthKakao = () => {
-  //   const [closeModal, setCloseModal] = useState(false);
-  const getToken = async () => {
-    const res = await AccountAPI.kakaoLogin();
+  let code = new URL(window.location.href).searchParams.get("code");
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    const res = await AccountAPI.kakaoLogin(code);
     console.log(res);
+    setAccessToken(res.headers["authorization"]);
+    setRefreshToken(res.headers["refresh-token"]);
+    setUserName(res.data.data.nickname);
+    navigate("/");
   };
-  const location = useLocation();
   React.useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const authorizationCode = searchParams.get("code");
-    getToken(authorizationCode);
-    const parsed = location.search.split(/(\w+=[\w.-]+)/g);
-  }, [location]);
+    handleSubmit();
+  }, []);
+
   return (
     <WrapStyled>
       <ContainerStyled>카카오로그인 중입니다.</ContainerStyled>
@@ -27,20 +30,23 @@ export default OAuthKakao;
 const WrapStyled = styled.div`
   display: flex;
 
-  background-color: #9b6343; // rgb(32, 8, 64, 1);
+  background-color: black; // rgb(32, 8, 64, 1);
   width: 100%;
   height: 100%;
   z-index: -5;
 `;
 const ContainerStyled = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   border: 20px solid black;
   flex-direction: column;
-  width: 90%;
-  height: 90%;
+  width: 95%;
+  height: 95%;
   margin: auto;
   border-radius: 20px;
+  font-size: 6rem;
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */
