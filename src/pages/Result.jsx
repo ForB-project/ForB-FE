@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { PageTitle } from "../elem/index";
 import { LowerResult, BodyResult } from "../components/Result/index";
+import { GreateHall } from "../static/index";
 import { greathall_pixel } from "../static/index";
 
 const Result = () => {
@@ -23,7 +24,7 @@ const WarperStyled = styled.div`
   border: 20px solid black;
   border-radius: 30px;
 
-  background-image: url(${greathall_pixel});
+  background-image: url(${GreateHall});
   background-size: cover;
 
   width: 85vw;
