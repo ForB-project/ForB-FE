@@ -36,8 +36,8 @@ api.interceptors.response.use(
   // }
 );
 export const AccountAPI = {
-  goolgeLogin: code => api.get(`/login/oauth2/code/google?code=${code}`),
-  kakaoLogin: code => api.get(`/api/oauth2/kakao?code=${code}`),
+  goolgeLogin: code => api.get(`/api/member/login/google?code=${code}`),
+  kakaoLogin: code => api.get(`/api/member/login/kakao?code=${code}`),
   logout: () => api.post("/api/auth/member/logout"),
 };
 

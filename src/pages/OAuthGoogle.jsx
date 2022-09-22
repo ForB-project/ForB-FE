@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AccountAPI } from "../shared/api";
 const OAuthGoogle = () => {
-  //   const [closeModal, setCloseModal] = useState(false);
-
-  const getToken = async code => {
+  let code = new URL(window.location.href).searchParams.get("code");
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
     const res = await AccountAPI.goolgeLogin(code);
     console.log(res);
+    // setAccessToken(res.headers["authorization"]);
+    // setRefreshToken(res.headers["refresh-token"]);
+    // setUserName(res.data.data.nickname);
+    // navigate("/");
   };
-
-  const location = useLocation();
   React.useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const authorizationCode = searchParams.get("code");
-    getToken(authorizationCode);
-  }, [location]);
+    handleSubmit();
+  }, []);
+
   return (
     <WrapStyled>
-      <ContainerStyled>구글로그인 중입니다.</ContainerStyled>
+      <ContainerStyled>카카오로그인 중입니다.</ContainerStyled>
     </WrapStyled>
   );
 };
