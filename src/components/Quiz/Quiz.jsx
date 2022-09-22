@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { GreateHall } from "../../static/index";
 import QuizWindow from "./QuizWindow";
-import { Logo } from "../../static/index";
+import { hogwart_logo } from "../../static/index";
 
 const Quiz = () => {
   return (
     <QuizBackLayout>
       <QuizWindowHeader>
-        <img className="Logo" src={Logo} />
+        <img className="Logo" src={hogwart_logo} />
       </QuizWindowHeader>
       <QuizWindow />
     </QuizBackLayout>

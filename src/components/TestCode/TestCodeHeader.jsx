@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Logo } from "../../static";
+import { hogwart_logo } from "../../static";
 
 const TestCodeHeader = () => {
   return (
     <CodeHeader>
-      <img className="Logo" src={Logo} />
+      <img className="Logo" src={hogwart_logo} />
       <CodeButtonLayout></CodeButtonLayout>
     </CodeHeader>
   );
