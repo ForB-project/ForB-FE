@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import styled from "styled-components";
-import { RoadmapStack, RoadmapCategory, RoadmapContent } from "../components";
+import {
+  RoadmapStack,
+  RoadmapCategory,
+  RoadmapContent,
+  Header,
+} from "../components";
 import { StackAPI } from "../shared/jsonsever";
 import { GreateHall } from "../static";
+
 const RoadMap = () => {
   //   const [closeModal, setCloseModal] = useState(false);
   const [choseStack, setChoseStack] = useState(1);
@@ -30,6 +36,7 @@ const RoadMap = () => {
 
   return (
     <WrapStyled>
+      <Header />
       <ContainerStyled>
         <div className="header">
           {datalist.map(x => {

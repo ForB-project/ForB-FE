@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Modal, MainLoginModal } from "../components";
+import { Modal, MainLoginModal, LogoutButton, Header } from "../components";
 import { MainBackImg, FEvsBE, mainFirst, main3, main2, Logo } from "../static";
 import { useNavigate } from "react-router-dom";
+import { getRefreshToken, getUserName } from "../shared/Cookie";
 
 const Mainpage = () => {
   const [closeModal, setCloseModal] = useState(false);
@@ -11,6 +12,7 @@ const Mainpage = () => {
 
   return (
     <WrapStyled>
+      <Header />
       <ContainerStyled fullScreen={gameMode}>
         <img
           className="Logo"
@@ -32,7 +34,7 @@ const Mainpage = () => {
               if (!gameMode) {
                 setGameMode(true);
               } else {
-                navigate("/roadmap");
+                navigate("/quiz");
               }
             }}
           >
@@ -50,6 +52,7 @@ const Mainpage = () => {
             </span>
           </button>
         )}
+        {getRefreshToken() && <LogoutButton></LogoutButton>}
       </ContainerStyled>
       {closeModal && (
         <Modal closeModal={() => setCloseModal(!closeModal)}>
@@ -75,21 +78,21 @@ const ContainerStyled = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-
+  box-sizing: border-box;
   ${props =>
     props.fullScreen === true
       ? css`
           width: 100%;
           height: 100%;
-          border: none;
+          border: 20px solid black;
         `
       : css`
           border: 20px solid black;
-          width: 90%;
-          height: 85%;
+          width: 100%;
+          height: 100%;
         `}
   margin: auto;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */

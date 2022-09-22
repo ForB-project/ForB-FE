@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getRefreshToken, getAccessToken } from "./Cookie";
-const BASE_URL = "http://54.180.89.177";
+const BASE_URL = "http://3.38.209.226";
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -9,18 +9,18 @@ export const api = axios.create({
   withCredentials: true,
 });
 
-axios.interceptors.request.use(
-  function (config) {
+api.interceptors.request.use(
+  config => {
     const refreshToken = getRefreshToken();
     const accessToken = getAccessToken();
     config.headers["Authorization"] = `${accessToken}`;
     config.headers["Refresh-Token"] = `${refreshToken}`;
     return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
   }
+  // function (error) {
+  //   // Do something with request error
+  //   return Promise.reject(error);
+  // }
 );
 
 api.interceptors.response.use(
@@ -28,17 +28,17 @@ api.interceptors.response.use(
     // 응답 데이터를 가공
 
     return response;
-  },
-  function (error) {
-    // 오류 응답을 처리
-
-    return Promise.reject(error);
   }
+  // function (error) {
+  //   // 오류 응답을 처리
+
+  //   return Promise.reject(error);
+  // }
 );
 export const AccountAPI = {
   goolgeLogin: code => api.get(`/login/oauth2/code/google?code=${code}`),
-  kakaoLogin: () => api.get(`/user/kakao/callback`),
-  logout: () => api.get("/api/auth/user/logout"),
+  kakaoLogin: code => api.get(`/api/oauth2/kakao?code=${code}`),
+  logout: () => api.post("/api/auth/member/logout"),
 };
 
 export const ProflieAPI = {

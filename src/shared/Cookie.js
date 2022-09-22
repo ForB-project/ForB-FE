@@ -12,6 +12,16 @@ export const setAccessToken = accessToken => {
   });
 };
 
+export const setUserName = name => {
+  // const today = new Date();
+  // const expireDate = today.setHours(today.getHours() + 2);
+  return cookies.set("username", name, {
+    sameSite: "strict",
+    path: "/",
+    // expires: new Date(expireDate),
+  });
+};
+
 export const setRefreshToken = refreshToken => {
   // const today = new Date();
   // const expireDate = today.setDate(today.getDate() + 7);
@@ -26,12 +36,21 @@ export const setRefreshToken = refreshToken => {
 export const getAccessToken = () => {
   return cookies.get("access_token");
 };
-export const removeAccessToken = () => {
-  return cookies.remove("access_token");
+
+export const getUserName = () => {
+  return cookies.get("username");
 };
 
 export const getRefreshToken = () => {
   return cookies.get("refresh_token");
+};
+
+export const removeAccessToken = () => {
+  return cookies.remove("access_token");
+};
+
+export const removeUserName = () => {
+  return cookies.remove("username");
 };
 
 export const removeRefreshToken = () => {
