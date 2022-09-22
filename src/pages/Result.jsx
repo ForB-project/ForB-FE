@@ -1,18 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { Lower, Body } from "../components/Result";
 import { PageTitle } from "../elem/index";
-
+import { LowerResult, BodyResult } from "../components/Result/index";
 import { greathall_pixel } from "../static/index";
 
 const Result = () => {
   return (
     <WarperStyled>
       <PageTitle>테스트결과</PageTitle>
-      <Body>
+      <BodyResult>
         <FSpan>F</FSpan> | <BSpan> B</BSpan>
-      </Body>
-      <Lower />
+      </BodyResult>
+      <LowerResult />
     </WarperStyled>
   );
 };

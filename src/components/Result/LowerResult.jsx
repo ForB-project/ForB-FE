@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-const Lower = () => {
+const LowerResult = () => {
   const navigate = useNavigate();
 
   return (
@@ -22,7 +22,7 @@ const Lower = () => {
   );
 };
 
-export default Lower;
+export default LowerResult;
 
 const LowerStyled = styled.div`
   /* border: 1px dashed blue; */

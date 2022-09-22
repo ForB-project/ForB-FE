@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { BodyCommunity, LowerCommunity } from "../components/Community/index";
 import { PageTitle } from "../elem/index";
-
+import { BodyCommunity, LowerCommunity } from "../components/Community/index";
 import { greathall_pixel } from "../static/index";
 
 //재사용 component 파일위치 정리필

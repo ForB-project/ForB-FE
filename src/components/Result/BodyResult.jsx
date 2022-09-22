@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Body = ({ children }) => {
+const BodyResult = ({ children }) => {
   return (
     <BodyStyled>
       <ResultStyled>{children}</ResultStyled>
@@ -9,7 +9,7 @@ const Body = ({ children }) => {
   );
 };
 
-export default Body;
+export default BodyResult;
 
 const BodyStyled = styled.div`
   border: 1px dashed black;
