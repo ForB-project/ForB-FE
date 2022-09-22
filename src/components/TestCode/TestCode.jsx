@@ -8,7 +8,6 @@ import TestCodeView from "./TestCodeView";
 import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
-=
   const codeList = useSelector((state) => state.testCode.testCode);
   const [codeNumber, setCodeNumber] = useState(0);
   const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
@@ -18,12 +17,11 @@ const TestCode = () => {
     setCodeNumber(codeId);
     setCodePrac("코드를 입력해볼까요?");
   };
-=
+
   console.log(codePrac);
-  
+
   return (
     <CodeBackLayout>
-=
       <TestCodeHeader
         codeNumber={codeNumber}
         plusNum={plusNum}

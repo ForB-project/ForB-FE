@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import Logo from "../../image/ForB_pixel_noback.png";
+import { hogwart_logo } from "../../static/index";
 import { addComment } from "../../redux/modules/TestCodeSlice";
+
 const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
   console.log(codeList);
   return (
     <CodeHeader>
-      <img className="Logo" src={Logo} />
+      <img className="Logo" src={hogwart_logo} />
       <CodeButtonLayout>
         {codeNumber ? (
           <CodeButton onClick={minusClick}>이전</CodeButton>
@@ -35,7 +36,11 @@ const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
           <InvisibleButton />
         )}
         {codeNumber === codeList - 1 ? (
-          <MoveRoadmap onClick={()=> setTimeout(()=>navigate('/roadmap'),500)}>로드맵으로 가기</MoveRoadmap>
+          <MoveRoadmap
+            onClick={() => setTimeout(() => navigate("/roadmap"), 500)}
+          >
+            로드맵으로 가기
+          </MoveRoadmap>
         ) : (
           <CodeButton onClick={plusClick}>다음</CodeButton>
         )}
