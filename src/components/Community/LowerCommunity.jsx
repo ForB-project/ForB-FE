@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 //재사용 component rename필
-const Lower = () => {
+const LowerCommunity = () => {
   const navigate = useNavigate();
 
   return (
@@ -25,7 +25,7 @@ const Lower = () => {
   );
 };
 
-export default Lower;
+export default LowerCommunity;
 
 const LowerStyled = styled.div`
   /* border: 1px dashed green; */

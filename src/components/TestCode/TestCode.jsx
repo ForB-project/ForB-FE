@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
-import { GreateHall } from "../../static";
+import { GreateHall } from "../../static/index";
 
 import TestCodeView from "./TestCodeView";
 import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
+=
   const codeList = useSelector((state) => state.testCode.testCode);
   const [codeNumber, setCodeNumber] = useState(0);
   const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
@@ -17,11 +18,12 @@ const TestCode = () => {
     setCodeNumber(codeId);
     setCodePrac("코드를 입력해볼까요?");
   };
-
+=
   console.log(codePrac);
   
   return (
     <CodeBackLayout>
+=
       <TestCodeHeader
         codeNumber={codeNumber}
         plusNum={plusNum}
@@ -49,6 +51,7 @@ const CodeBackLayout = styled.div`
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
+  background-size: cover;
   margin: auto;
   display: flex;
   flex-direction: column;
