@@ -137,4 +137,5 @@ const MenuStyled = styled.div`
     justify-content: center;
     align-items: center;
   }
+
 `;

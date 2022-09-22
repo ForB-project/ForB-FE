@@ -1,44 +1,48 @@
 import React from "react";
 import styled from "styled-components";
-import Line from "./Line";
+import { ContentCommunity } from "./index";
 
-const Body = ({ title, author, stack }) => {
+const BodyCommunity = ({ title, author, stack }) => {
   return (
     <>
       <BodyStyled>
-        <Line title={`이거모에여`} author={"코린이"} stack={"frontend"} />
-        <Line
+        <ContentCommunity
+          title={`이거모에여`}
+          author={"코린이"}
+          stack={"frontend"}
+        />
+        <ContentCommunity
           title={`제 코드 좀 봐주세요`}
           author={"응애개발자"}
           stack={"backend"}
         />
-        <Line
+        <ContentCommunity
           title={`도대체 이게 뭐죠`}
           author={"이거모에용"}
           stack={"backend"}
         />
-        <Line
+        <ContentCommunity
           title={`React 이거 맞아요? 진짜요?`}
           author={"개발자(진)"}
           stack={"frontend"}
         />
-        <Line
+        <ContentCommunity
           title={`서버 배포하는데 이거 맞습니까`}
           author={"백조아"}
           stack={"backend"}
         />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
-        <Line />
+        <ContentCommunity />
+        <ContentCommunity />
+        <ContentCommunity />
+        <ContentCommunity />
+        <ContentCommunity />
         <div> 1 2 3 4 5 6 </div>
       </BodyStyled>
     </>
   );
 };
 
-export default Body;
+export default BodyCommunity;
 
 const BodyStyled = styled.div`
   border: 1px dashed black;

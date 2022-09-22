@@ -8,8 +8,6 @@ const Layout = ({ children }) => {
 export default Layout;
 
 const LayOutStyled = styled.div`
-  /* background-color: #9e6c31; */
-
   background-color: #10141b;
   position: relative;
   width: 100vw;

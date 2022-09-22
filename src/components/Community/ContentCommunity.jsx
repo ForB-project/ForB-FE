@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Line = ({ title, author, stack }) => {
+const ContentCommunity = ({ title, author, stack }) => {
   return (
     <LineStyled>
       <TitleStyled>{title}</TitleStyled>
@@ -11,7 +11,7 @@ const Line = ({ title, author, stack }) => {
   );
 };
 
-export default Line;
+export default ContentCommunity;
 
 const LineStyled = styled.div`
   /* border: 1px dashed purple; */
@@ -37,7 +37,7 @@ const TitleStyled = styled.div`
   /* border: 1px dashed yellow; */
 
   border-radius: 5px;
-  background-color: #4e4e4e;
+  background-color: #10141b;
 
   width: 45vw;
   height: 3vh;
@@ -49,7 +49,7 @@ const AuthorStyled = styled.div`
   /* border: 1px dashed pink; */
 
   border-radius: 5px;
-  background-color: #4e4e4e;
+  background-color: #10141b;
 
   width: 15vw;
   margin-left: 1vw;
@@ -59,7 +59,7 @@ const DateStyled = styled.div`
   /* border: 1px dashed aqua; */
 
   border-radius: 5px;
-  background-color: #4e4e4e;
+  background-color: #10141b;
 
   width: 15vw;
   margin-left: 1vw;

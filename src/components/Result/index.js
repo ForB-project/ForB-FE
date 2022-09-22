@@ -1,5 +1,4 @@
-import Upper from "./Upper";
-import Lower from "./Lower";
-import Body from "./Body";
+import BodyResult from "./BodyResult";
+import LowerResult from "./LowerResult";
 
-export { Upper, Lower, Body };
+export { LowerResult, BodyResult };

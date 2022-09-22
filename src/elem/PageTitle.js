@@ -1,10 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import logo_black from "../../image/logo_black.png";
-import hogwart_logo from "../../image/hogwart_logo.png";
+import { useNavigate } from "react-router-dom";
+import { hogwart_logo } from "../static/index";
 
-const Upper = ({ children }) => {
+const PageTitle = ({ children }) => {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +16,7 @@ const Upper = ({ children }) => {
   );
 };
 
-export default Upper;
+export default PageTitle;
 
 const UpperStyled = styled.div`
   /* border: 1px solid red; */
