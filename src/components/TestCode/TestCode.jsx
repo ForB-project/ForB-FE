@@ -12,14 +12,14 @@ const TestCode = () => {
   const [codePrac, setCodePrac] = useState(null);
   const codeList = useSelector((state)=>state.testCode.testCode);
 
-  const plusNum = (codeNumber) => { 
-    setCodeNumber(codeNumber);
+  const plusNum = (x) => { 
+    setCodeNumber(x);
   };
  
-  console.log(codeNumber);
+  console.log(codeList);
   return (
     <CodeBackLayout>
-      <TestCodeHeader codeNumber={codeNumber} plusNum={plusNum}/>
+      <TestCodeHeader codeNumber={codeNumber} plusNum={plusNum} codeList={codeList.length}/>
       <CodeWindow>
         <CodeInputLayout>
           <CodeExample>{codeList[codeNumber].answerFront}</CodeExample>

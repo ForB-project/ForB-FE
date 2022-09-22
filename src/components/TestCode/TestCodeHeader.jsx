@@ -2,10 +2,14 @@ import React,{useState} from "react";
 import styled,{keyframes} from "styled-components";
 import Logo from "../../image/ForB_pixel_noback.png"
 
-const TestCodeHeader = ({codeNumber,plusNum}) => {
+const TestCodeHeader = ({codeNumber,plusNum,codeList}) => {
 
   const plusClick = () =>{
-    plusNum(codeNumber+1);
+    if(codeNumber==codeList-1){
+      return null;
+    }else{
+      plusNum(codeNumber+1);
+    }
   };
   const minusClick = () =>{
 if(codeNumber==0){
@@ -16,13 +20,13 @@ if(codeNumber==0){
 
   };
 
-  console.log(codeNumber);
+  console.log(codeList);
   return (
     <CodeHeader>
       <img className="Logo" src={Logo} />
       <CodeButtonLayout>
-        <CodeButton minusClick={minusClick}>이전</CodeButton>
-        <CodeButton plusClick={plusClick}>다음</CodeButton>
+        <CodeButton  onClick={minusClick}>이전</CodeButton>
+        <CodeButton onClick={plusClick}>다음</CodeButton>
       </CodeButtonLayout>
     </CodeHeader>
   );
