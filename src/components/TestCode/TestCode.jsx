@@ -8,17 +8,34 @@ import TestCodeView from "./TestCodeView";
 import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
-  const [codePrac, setCodePrac] = useState(null);
+=
   const codeList = useSelector((state) => state.testCode.testCode);
+  const [codeNumber, setCodeNumber] = useState(0);
+  const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
+  const [savePracCode, setSavePracCode] = useState(codeList);
 
+  const plusNum = (codeId) => {
+    setCodeNumber(codeId);
+    setCodePrac("코드를 입력해볼까요?");
+  };
+=
   console.log(codePrac);
+  
   return (
     <CodeBackLayout>
-      <TestCodeHeader />
+=
+      <TestCodeHeader
+        codeNumber={codeNumber}
+        plusNum={plusNum}
+        codeList={codeList.length}
+      />
       <CodeWindow>
         <CodeInputLayout>
-          <CodeExample>{codeList[0].answerFront}</CodeExample>
-          <CodePractice onChange={(e) => setCodePrac(e.target.value)} />
+          <CodeExample>{codeList[codeNumber].exampleCode}</CodeExample>
+          <CodePractice
+            value={codePrac}
+            onChange={(e) => setCodePrac(e.target.value)}
+          />
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
