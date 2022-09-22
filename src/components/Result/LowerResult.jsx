@@ -8,15 +8,15 @@ const LowerResult = () => {
   return (
     <LowerStyled>
       <LeftButtonStyled>
-        <RoadmapButton onClick={() => navigate("/quiz")}>
-          로드맵 보기(퀴즈)
-        </RoadmapButton>
-      </LeftButtonStyled>
-      <CenterButtonStyled> </CenterButtonStyled>
-      <RightButtonStyled>
         <CodingButton onClick={() => navigate("/community")}>
           코딩 테스트해보기(게시판)
         </CodingButton>
+      </LeftButtonStyled>
+      <CenterButtonStyled> </CenterButtonStyled>
+      <RightButtonStyled>
+        <RoadmapButton onClick={() => navigate("/roadmap")}>
+          로드맵 보기
+        </RoadmapButton>
       </RightButtonStyled>
     </LowerStyled>
   );
@@ -45,7 +45,27 @@ const LeftButtonStyled = styled.div`
   display: inline-block;
   width: 25vw;
 `;
-const RoadmapButton = styled.button`
+const CenterButtonStyled = styled.div`
+  /* border: 1px dashed red;
+   */
+  margin: 1%;
+  display: inline-block;
+  width: 5vw;
+`;
+const RightButtonStyled = styled.div`
+  /* border: 1px dashed green; */
+
+  border-radius: 10px;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
+
+  margin: 1vw;
+  display: inline-block;
+  width: 25vw;
+`;
+const CodingButton = styled.button`
   border: none;
 
   color: gray;
@@ -63,29 +83,7 @@ const RoadmapButton = styled.button`
     opacity: 1;
   }
 `;
-
-const CenterButtonStyled = styled.div`
-  /* border: 1px dashed red;
-   */
-  margin: 1%;
-  display: inline-block;
-  width: 5vw;
-`;
-
-const RightButtonStyled = styled.div`
-  /* border: 1px dashed green; */
-
-  border-radius: 10px;
-  /* background-color: #9e6c31; */
-  border: 8px dashed black;
-  background-color: #10141b;
-  opacity: 0.8;
-
-  margin: 1vw;
-  display: inline-block;
-  width: 25vw;
-`;
-const CodingButton = styled.button`
+const RoadmapButton = styled.button`
   border: none;
 
   color: gray;

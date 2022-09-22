@@ -1,5 +1,5 @@
 import BodyCommunity from "./BodyCommunity";
 import LowerCommunity from "./LowerCommunity";
-import Line from "./Line";
+import ContentCommunity from "./ContentCommunity";
 
-export { BodyCommunity, LowerCommunity, Line };
+export { BodyCommunity, LowerCommunity, ContentCommunity };
