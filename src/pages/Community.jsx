@@ -28,8 +28,8 @@ const WarperStyled = styled.div`
   background-image: url(${greathall_pixel});
   background-size: cover;
 
-  width: 85%;
-  height: 550px;
+  width: 85vw;
+  height: 75vh;
 
   margin: 5vw;
   padding: 1.5vh;
