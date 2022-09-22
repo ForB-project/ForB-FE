@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { GreateHall } from "../static";
-import { greathall_pixel } from "../image";
+import { Lower, Body } from "../components/Result";
+import { PageTitle } from "../elem/index";
 
-//재사용 component 파일위치 정리필
-import { Upper, Lower, Body } from "../components/Result";
+import { greathall_pixel } from "../static/index";
 
 const Result = () => {
   return (
     <WarperStyled>
-      <Upper>테스트결과</Upper>
+      <PageTitle>테스트결과</PageTitle>
       <Body>
         <FSpan>F</FSpan> | <BSpan> B</BSpan>
       </Body>

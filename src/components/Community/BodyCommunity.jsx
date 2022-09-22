@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Line from "./Line";
+import { Line } from "./index";
 
-const Body = ({ title, author, stack }) => {
+const BodyCommunity = ({ title, author, stack }) => {
   return (
     <>
       <BodyStyled>
@@ -38,7 +38,7 @@ const Body = ({ title, author, stack }) => {
   );
 };
 
-export default Body;
+export default BodyCommunity;
 
 const BodyStyled = styled.div`
   border: 1px dashed black;

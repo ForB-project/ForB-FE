@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
-import { GreateHall } from "../../static";
+import { GreateHall } from "../../static/index";
 
 import TestCodeView from "./TestCodeView";
 import TestCodeHeader from "./TestCodeHeader";
