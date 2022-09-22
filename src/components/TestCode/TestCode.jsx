@@ -8,16 +8,21 @@ import TestCodeView from "./TestCodeView"
 import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
+  const [codeNumber,setCodeNumber]=useState(0);
   const [codePrac, setCodePrac] = useState(null);
   const codeList = useSelector((state)=>state.testCode.testCode);
+
+  const plusNum = (codeNumber) => { 
+    setCodeNumber(codeNumber);
+  };
  
-  console.log(codePrac);
+  console.log(codeNumber);
   return (
     <CodeBackLayout>
-      <TestCodeHeader/>
+      <TestCodeHeader codeNumber={codeNumber} plusNum={plusNum}/>
       <CodeWindow>
         <CodeInputLayout>
-          <CodeExample>{codeList[0].answerFront}</CodeExample>
+          <CodeExample>{codeList[codeNumber].answerFront}</CodeExample>
           <CodePractice onChange={(e)=>setCodePrac(e.target.value) }/>
         </CodeInputLayout>
             <TestCodeView codePrac={codePrac}/>
