@@ -1,31 +1,41 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
 import { GreateHall } from "../../static";
 
-import TestCodeView from "./TestCodeView"
+import TestCodeView from "./TestCodeView";
 import TestCodeHeader from "./TestCodeHeader";
 
 const TestCode = () => {
-  const [codeNumber,setCodeNumber]=useState(0);
-  const [codePrac, setCodePrac] = useState(null);
-  const codeList = useSelector((state)=>state.testCode.testCode);
+  const codeList = useSelector((state) => state.testCode.testCode);
+  const [codeNumber, setCodeNumber] = useState(0);
+  const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
+  const [savePracCode, setSavePracCode] = useState(codeList);
 
-  const plusNum = (x) => { 
-    setCodeNumber(x);
+  const plusNum = (codeId) => {
+    setCodeNumber(codeId);
+    setCodePrac("코드를 입력해볼까요?");
   };
- 
-  console.log(codeList);
+
+  console.log(codePrac);
+  
   return (
     <CodeBackLayout>
-      <TestCodeHeader codeNumber={codeNumber} plusNum={plusNum} codeList={codeList.length}/>
+      <TestCodeHeader
+        codeNumber={codeNumber}
+        plusNum={plusNum}
+        codeList={codeList.length}
+      />
       <CodeWindow>
         <CodeInputLayout>
-          <CodeExample>{codeList[codeNumber].answerFront}</CodeExample>
-          <CodePractice onChange={(e)=>setCodePrac(e.target.value) }/>
+          <CodeExample>{codeList[codeNumber].exampleCode}</CodeExample>
+          <CodePractice
+            value={codePrac}
+            onChange={(e) => setCodePrac(e.target.value)}
+          />
         </CodeInputLayout>
-            <TestCodeView codePrac={codePrac}/>
+        <TestCodeView codePrac={codePrac} />
       </CodeWindow>
     </CodeBackLayout>
   );
@@ -34,20 +44,18 @@ const TestCode = () => {
 export default TestCode;
 
 const CodeBackLayout = styled.div`
-
-width: 85%;
-height: 800px;
-border: 20px solid black;
-border-radius: 30px;
-background-image: url(${GreateHall});
-margin: auto;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-z-index: -0;
+  width: 85%;
+  height: 800px;
+  border: 20px solid black;
+  border-radius: 30px;
+  background-image: url(${GreateHall});
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -0;
 `;
-
 
 const CodeWindow = styled.div`
   width: 1100px;
@@ -80,9 +88,8 @@ const CodeExample = styled.div`
   white-space: pre-wrap;
 `;
 
-
 const CodePractice = styled.textarea`
-width: 500px;
+  width: 500px;
   height: 280px;
   border: 6px dashed black;
   background-color: #10141b;
@@ -92,4 +99,3 @@ width: 500px;
   color: white;
   resize: none;
 `;
-
