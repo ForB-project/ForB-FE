@@ -1,26 +1,20 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { Modal, MainLoginModal, LogoutButton, Header } from "../components";
-import { MainBackImg, FEvsBE, mainFirst, main3, main2, Logo } from "../static";
+import { Mainimg, FEvsBE, mainFirst, Logo } from "../static";
 import { useNavigate } from "react-router-dom";
-import { getRefreshToken, getUserName } from "../shared/Cookie";
+import { getRefreshToken } from "../shared/storage";
 
 const Mainpage = () => {
   const [closeModal, setCloseModal] = useState(false);
-  const [gameMode, setGameMode] = useState(false);
+  const [isLogin, setIsLogin] = useState(getRefreshToken());
   const navigate = useNavigate();
 
   return (
     <WrapStyled>
       <Header />
-      <ContainerStyled fullScreen={gameMode}>
-        <img
-          className="Logo"
-          src={Logo}
-          onClick={() => {
-            setGameMode(false);
-          }}
-        />
+      <ContainerStyled>
+        <img className="Logo" src={Logo} />
         <p className="Introduce"> 프론트냐 백이냐 </p>
         <p className="Desc">
           개발을 시작하기전에 간단하게
@@ -31,17 +25,18 @@ const Mainpage = () => {
         <button>
           <span
             onClick={() => {
-              if (!gameMode) {
-                setGameMode(true);
-              } else {
-                navigate("/quiz");
-              }
+              navigate("/quiz");
             }}
           >
             Let's Start
           </span>
         </button>
-        {!gameMode && (
+
+        {isLogin ? (
+          <button>
+            <span>Login 완료!</span>
+          </button>
+        ) : (
           <button>
             <span
               onClick={() => {
@@ -52,7 +47,8 @@ const Mainpage = () => {
             </span>
           </button>
         )}
-        {getRefreshToken() && <LogoutButton></LogoutButton>}
+
+        {isLogin && <LogoutButton></LogoutButton>}
       </ContainerStyled>
       {closeModal && (
         <Modal closeModal={() => setCloseModal(!closeModal)}>
@@ -79,24 +75,17 @@ const ContainerStyled = styled.div`
   position: relative;
   flex-direction: column;
   box-sizing: border-box;
-  ${props =>
-    props.fullScreen === true
-      ? css`
-          width: 100%;
-          height: 100%;
-          border: 20px solid black;
-        `
-      : css`
-          border: 20px solid black;
-          width: 100%;
-          height: 100%;
-        `}
+
+  border: 20px solid black;
+  width: 100%;
+  height: 100%;
+
   margin: auto;
   /* border-radius: 20px; */
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */
-  background-image: url(${mainFirst});
+  background-image: url(${Mainimg});
   background-size: cover;
   transition: 0.5s;
   .Logo {

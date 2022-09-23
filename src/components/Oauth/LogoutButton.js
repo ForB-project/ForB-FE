@@ -3,28 +3,29 @@ import {
   removeAccessToken,
   removeRefreshToken,
   removeUserName,
-} from "../../shared/Cookie";
+} from "../../shared/storage";
 import { AccountAPI } from "../../shared/api";
+
+const removeStorage = () => {
+  removeAccessToken();
+  removeRefreshToken();
+  removeUserName();
+};
+
 const LogoutButton = props => {
   const logout = async () => {
-    await AccountAPI.logout();
+    await AccountAPI.logout().then(res => {
+      console.log(res);
+      removeStorage();
+      window.location.reload();
+    });
   };
+
   return (
-    <LogoutButtonStlyed
-      onClick={() => {
-        logout();
-        removeAccessToken();
-        removeRefreshToken();
-        removeUserName();
-      }}
-    >
+    <LogoutButtonStlyed>
       <span
         onClick={() => {
           logout();
-          removeAccessToken();
-          removeRefreshToken();
-          removeUserName();
-          window.location.reload();
         }}
       >
         Logout

@@ -9,8 +9,10 @@ import {
 } from "../components";
 import { StackAPI } from "../shared/jsonsever";
 import { GreateHall } from "../static";
+import { useNavigate } from "react-router-dom";
 
 const RoadMap = () => {
+  const navigate = useNavigate();
   //   const [closeModal, setCloseModal] = useState(false);
   const [choseStack, setChoseStack] = useState(1);
   const [choseCategory, setChoseCategory] = useState(1);
@@ -26,9 +28,11 @@ const RoadMap = () => {
   const contents = contentlist.data?.data;
   const choesdContent = contents?.find(x => x.id === choseCategory);
 
-  // useEffect(() => {
-  //   getStack();
-  // }, []);
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/first");
+    }
+  }, []);
   if (Stacklist.isLoading) return;
   const StackOne = datalist.find(x => x.id == choseStack);
   const CategoryList = StackOne?.categorylist;

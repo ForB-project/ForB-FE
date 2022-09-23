@@ -13,8 +13,6 @@ import {
   TestCodePage,
 } from "./pages";
 
-
-
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -25,7 +23,7 @@ function App() {
           <Route path="/roadmap" element={<RoadMap />} />
           <Route path="/result" element={<Result />} />
           <Route path="/community" element={<Community />} />
-          <Route path="/oauth/google" element={<OAuthGoogle />} />
+          <Route path="/login/oauth2/code/google" element={<OAuthGoogle />} />
           <Route path="/oauth/callback/kakao" element={<OAuthKakao />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/testcode" element={<TestCodePage />} />

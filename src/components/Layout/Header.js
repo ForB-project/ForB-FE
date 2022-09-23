@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { getRefreshToken, getUserName } from "../../shared/Cookie";
+import { getRefreshToken, getUserName } from "../../shared/storage";
 import { NavLink } from "react-router-dom";
 const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -38,7 +38,7 @@ const Header = () => {
               <span className="username">{getUserName()}</span>님 환영합니다
             </p>
             <p>
-              <NavLink end to="/" activeClassName="active">
+              <NavLink end to="/" activeclassname="active">
                 홈
               </NavLink>
             </p>
@@ -137,5 +137,4 @@ const MenuStyled = styled.div`
     justify-content: center;
     align-items: center;
   }
-
 `;

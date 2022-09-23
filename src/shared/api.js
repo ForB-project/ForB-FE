@@ -1,10 +1,10 @@
 import axios from "axios";
-import { getRefreshToken, getAccessToken } from "./Cookie";
+import { getRefreshToken, getAccessToken } from "./storage";
 const BASE_URL = "http://3.38.209.226";
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Comment-Type": "application/json",
+    "Content-Type": "application/json",
   },
   withCredentials: true,
 });
@@ -12,8 +12,10 @@ export const api = axios.create({
 api.interceptors.request.use(
   config => {
     const refreshToken = getRefreshToken();
-    const accessToken = getAccessToken();
-    config.headers["Authorization"] = `${accessToken}`;
+    const preaccessToken = getAccessToken();
+    const accessToken = preaccessToken?.split(" ")[1];
+
+    config.headers["Authorization"] = `Bearer ${accessToken}`;
     config.headers["Refresh-Token"] = `${refreshToken}`;
     return config;
   }
@@ -36,7 +38,7 @@ api.interceptors.response.use(
   // }
 );
 export const AccountAPI = {
-  goolgeLogin: code => api.get(`/api/member/login/google?code=${code}`),
+  goolgeLogin: code => api.get(`/login/oauth2/code/google?code=${code}`),
   kakaoLogin: code => api.get(`/api/member/login/kakao?code=${code}`),
   logout: () => api.post("/api/auth/member/logout"),
 };
