@@ -3,7 +3,6 @@ import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import LoginFunction from "./LoginFunction";
 import React from "react";
-import GoolgeLogin from "react-google-login";
 const MainLoginModal = props => {
   const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${"1023463463380-doq31dj1a7l9mmp8e3qm7tp62etlrq4g.apps.googleusercontent.com"}&redirect_uri=${"http://localhost:3000/login/oauth2/code/google"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid`;
   const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${"1292d3ba37e3caecf0ce708dccf32bb2"}&redirect_uri=${"http://localhost:3000/oauth/callback/kakao"}&response_type=code`;
