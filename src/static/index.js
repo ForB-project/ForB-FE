@@ -7,8 +7,9 @@ import main2 from "./image/madeby2.png";
 import main3 from "./image/madeby3.png";
 import GreateHall from "./image/PixelGreateHall.png";
 import greathall_pixel from "./image/greathall_pixel.png";
-
+import Mainimg from "./image/Mainimg.png";
 export {
+  Mainimg,
   Logo,
   hogwart_logo,
   MainBackImg,

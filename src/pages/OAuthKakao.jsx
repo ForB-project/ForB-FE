@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { AccountAPI } from "../shared/api";
-import { setAccessToken, setRefreshToken, setUserName } from "../shared/Cookie";
+import {
+  setRefreshToken,
+  setAccessToken,
+  setUserName,
+} from "../shared/storage";
 const OAuthKakao = () => {
   let code = new URL(window.location.href).searchParams.get("code");
   const navigate = useNavigate();
   const handleSubmit = async () => {
     const res = await AccountAPI.kakaoLogin(code);
-    console.log(res);
     setAccessToken(res.headers["authorization"]);
     setRefreshToken(res.headers["refresh-token"]);
     setUserName(res.data.data.nickname);
