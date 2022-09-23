@@ -27,7 +27,7 @@ const QuizWindow = () => {
         >
           {list[quizId].answerFront}
         </QuizButton>
-        <QuizButton
+        <QuizButton className="leftButton"
           onClick={() =>
             quizId == 2
               ? setTimeout(() => navigate("/result"), 2000)
@@ -62,53 +62,53 @@ const moving = keyframes`
 `;
 
 const QuizWindowLayout = styled.div`
-  height: 500px;
+  max-height: 500px;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: 25px;
+  font-size: calc(0.45em + 1vw);
   color: white;
 `;
 
 const QuizContent = styled.div`
-  height: 100px;
+  max-width: 60vw;
+  height: 10vh;
   background-color: #10141b;
   border-radius: 50px;
   margin: auto;
   display: flex;
+  padding:0px 5px;
   justify-content: center;
   align-items: center;
-  padding: 0 15px;
   box-shadow: 1px 1px 1px #2c2c2c;
 `;
 
 const QuizSelect = styled.div`
-  width: 700px;
-  height: 150px;
+  width: 50vw;
+  height: 35vh;
   display: flex;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 2rem;
 `;
 
 const QuizButton = styled.button`
-  width: 230px;
-  height: 300px;
+  width: 22vh;
+  max-height: 34vh;
+  height: calc(25em + 3vw);
   margin: auto;
   background-color: #10141b;
-  border: 8px dashed black;
+  border: 9px dashed black;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: 20px;
+  font-size: calc(0.7em + 0.2vw);
   color: gray;
   cursor: pointer;
   opacity: 0.8;
   transition: 0.1s;
   &:hover {
-    width: 235px;
-    height: 310px;
     opacity: 1;
     color: white;
     animation: ${moving} 2s linear infinite;

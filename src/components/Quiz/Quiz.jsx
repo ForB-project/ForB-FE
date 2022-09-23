@@ -18,8 +18,8 @@ const Quiz = () => {
 export default Quiz;
 
 const QuizBackLayout = styled.div`
-  width: 85%;
-  height: 800px;
+  width: 85vw;
+  height: 90vh;
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
@@ -32,12 +32,11 @@ const QuizBackLayout = styled.div`
 `;
 
 const QuizWindowHeader = styled.div`
-  width: 100%;
-  height: 100px;
-  margin: 30px;
+  width: 75vw;
+  height: 10vh;
+  margin: 2rem 0.5rem 3rem;
   .Logo {
-    width: 100px;
-    height: 100px;
-    margin-left: 50px;
+    max-width: 9vw;
+    max-height: 11vh;
   }
 `;

@@ -12,17 +12,18 @@ const TestCodeView = ({codePrac}) => {
 export default TestCodeView;
 
 const CodeViewLayout = styled.div`
-  width: 450px;
-  height: 700px;
+  width: 45vw;
+  height: 66.3vh;
+  min-height: 300px;
   margin: auto;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-left: -5px;
 `;
 
 const CodeView = styled.div`
-  width: 420px;
-  height: 600px;
+  width: 28vw;
+  height: 62.7vh;
   border: 8px dashed black;
   background-color: #10141b;
   display: flex;

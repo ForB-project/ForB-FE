@@ -36,11 +36,11 @@ const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
           <InvisibleButton />
         )}
         {codeNumber === codeList - 1 ? (
-          <MoveRoadmap
+          <MoveRoadmapButton
             onClick={() => setTimeout(() => navigate("/roadmap"), 500)}
           >
             로드맵으로 가기
-          </MoveRoadmap>
+          </MoveRoadmapButton>
         ) : (
           <CodeButton onClick={plusClick}>다음</CodeButton>
         )}
@@ -52,54 +52,53 @@ export default TestCodeHeader;
 
 const moving = keyframes`
 0%{
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
   25%{
-     margin-bottom: 13px;
+     margin-bottom: 19px;
   }
   50%{
-   margin-bottom: 10px;
+   margin-bottom: 16px;
   }
   75%{
-    margin-bottom: 7px;
+    margin-bottom: 13px;
   }
   100%{
-    margin-bottom: 10px;
+    margin-bottom: 16px;
   }
 `;
 
 const CodeHeader = styled.div`
-  width: 100%;
-  height: 100px;
-  margin: 30px;
+  width: 80vw;
+  height: 11vh;
+  margin-bottom: -0.8vh;
   display: flex;
   justify-content: center;
   .Logo {
-    width: 100px;
-    margin-left: 50px;
-    margin-bottom: -50px;
+    max-width: 10vh;
+    max-height: 11vw;
   }
 `;
 
 const CodeButtonLayout = styled.div`
-  width: 330px;
-  height: 60px;
+  width: 24vw;
+  height: 8vh;
   margin: auto;
-  margin-right: 38px;
-  margin-bottom: -45px;
+  margin-right: 9.5vw;
   display: flex;
+  justify-content: end;
 `;
 
 const CodeButton = styled.button`
-  width: 130px;
-  height: 40px;
-  margin: auto;
+  width: 8rem;
+  height: 4.5vh;
+  margin: auto 0px auto 1vw;
   cursor: pointer;
   background-color: #10141b;
   border: 4px dashed black;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: 20px;
+  font-size: calc(0.3em + 0.8vw);
   color: white;
   opacity: 0.8;
   transition: 0.1s;
@@ -109,18 +108,16 @@ const CodeButton = styled.button`
   }
 `;
 
-const MoveRoadmap = styled.button`
-  width: 180px;
-  height: 40px;
-  margin: auto;
-  margin-left: 20px;
-  margin-right: 10px;
+const MoveRoadmapButton = styled.button`
+  width: 12rem;
+  height: 4.5vh;
+  margin: auto 0px auto 1vw;
   cursor: pointer;
   background-color: #10141b;
   border: 4px dashed black;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: 20px;
+  font-size: calc(0.3em + 0.8vw);
   color: white;
   opacity: 0.8;
   transition: 0.1s;
@@ -131,8 +128,8 @@ const MoveRoadmap = styled.button`
 `;
 
 const InvisibleButton = styled.button`
-  width: 130px;
-  height: 40px;
+  width: 8rem;
+  height: 4.5vh;
   margin: auto;
   opacity: 0;
 `;

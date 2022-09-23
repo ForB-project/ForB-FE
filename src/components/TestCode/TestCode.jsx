@@ -45,7 +45,7 @@ export default TestCode;
 
 const CodeBackLayout = styled.div`
   width: 85%;
-  height: 800px;
+  height: 90vh;
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
@@ -59,28 +59,31 @@ const CodeBackLayout = styled.div`
 `;
 
 const CodeWindow = styled.div`
-  width: 1100px;
-  height: 700px;
+  width: 65vw;
+  height: 68vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: 20px;
+  font-size: calc(0.1em + 1.1vw);
   color: white;
 `;
 
 const CodeInputLayout = styled.div`
-  width: 600px;
-  height: 645px;
+  width: 45vw;
+  height: 66vh;
+  min-height: 300px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const CodeExample = styled.div`
-  width: 500px;
-  height: 280px;
+  width: 28vw;
+  height: 30vh;
+  min-height: 140px;
   border: 6px dashed black;
   background-color: #10141b;
   margin: auto;
@@ -90,8 +93,9 @@ const CodeExample = styled.div`
 `;
 
 const CodePractice = styled.textarea`
-  width: 500px;
-  height: 280px;
+  width: 28vw;
+  height: 30vh;
+  min-height: 140px;
   border: 6px dashed black;
   background-color: #10141b;
   margin: auto;
