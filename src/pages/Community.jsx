@@ -9,15 +9,22 @@ import { greathall_pixel } from "../static/index";
 
 const Community = () => {
   return (
-    <WarperStyled>
-      <PageTitle>게시판</PageTitle>
-      <BodyCommunity />
-      <LowerCommunity />
-    </WarperStyled>
+    <AllWrapStyled>
+      <WarperStyled>
+        <PageTitle>게시판</PageTitle>
+        <BodyCommunity />
+        <LowerCommunity />
+      </WarperStyled>
+    </AllWrapStyled>
   );
 };
 
 export default Community;
+
+const AllWrapStyled = styled.div`
+  background-color: #10141b;
+  display: flex;
+`;
 
 const WarperStyled = styled.div`
   /* border: 1px solid gray; */

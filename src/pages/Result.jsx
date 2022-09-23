@@ -7,17 +7,24 @@ import { greathall_pixel } from "../static/index";
 
 const Result = () => {
   return (
-    <WarperStyled>
-      <PageTitle>테스트결과</PageTitle>
-      <BodyResult>
-        <FSpan>F</FSpan> | <BSpan> B</BSpan>
-      </BodyResult>
-      <LowerResult />
-    </WarperStyled>
+    <AllWrapStyled>
+      <WarperStyled>
+        <PageTitle>테스트결과</PageTitle>
+        <BodyResult>
+          <FSpan>F</FSpan> | <BSpan> B</BSpan>
+        </BodyResult>
+        <LowerResult />
+      </WarperStyled>
+    </AllWrapStyled>
   );
 };
 
 export default Result;
+
+const AllWrapStyled = styled.div`
+  background-color: #10141b;
+  display: flex;
+`;
 
 const WarperStyled = styled.div`
   /* border: 1px solid gray; */
