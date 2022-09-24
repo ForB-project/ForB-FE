@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {LeftOutlined,RightOutlined} from "@ant-design/icons";
 
 const PageNation = ({movePage}) => {
 
@@ -19,6 +18,7 @@ const PageNationLayout = styled.div`
   height: 30px;
   margin: auto;
   margin-top: -0.1vh;
+  margin-bottom: -2vh;
   border: 2px dashed black;
   border-radius: 10px;
   display: flex;

@@ -92,7 +92,7 @@ const CodeExample = styled.div`
   background-color: #10141b;
   margin: auto;
   display: flex;
-  align-items: center;
+  padding-top: 10px;
   white-space: pre-wrap;
 `;
 
