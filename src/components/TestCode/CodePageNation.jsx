@@ -2,16 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import {LeftOutlined,RightOutlined} from "@ant-design/icons";
 
-const PageNation = () => {
+const PageNation = ({movePage}) => {
 
   return (
     <PageNationLayout>
-      
-      {/* <LeftOutlined className="LeftButton" /> */}
-      <PageNationNum>1</PageNationNum>
-      <PageNationNum>2</PageNationNum>
-      <PageNationNum>3</PageNationNum>
-      {/* <RightOutlined className="RightButton" /> */}
+      <PageNationNum onClick={()=>movePage(0)}>1</PageNationNum>
+      <PageNationNum onClick={()=>movePage(1)}>2</PageNationNum>
+      <PageNationNum onClick={()=>movePage(2)}>3</PageNationNum>
     </PageNationLayout>
   );
 };
@@ -29,7 +26,7 @@ const PageNationLayout = styled.div`
   justify-content: center;
   background-color: #10141b;
   
-  cursor: pointer;
+  
 
 `;
 
@@ -43,8 +40,9 @@ font-family: "neodgm", monospace;
   font-style: normal;
   font-size: calc(0.1em + 1.2vw);
   font-weight: 500;
-  opacity: 0.7;
+  opacity: 0.6;
   color: white;
+  cursor: pointer;
 &:hover{
     opacity: 1;
   }

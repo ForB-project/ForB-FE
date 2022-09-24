@@ -17,7 +17,11 @@ const TestCode = () => {
     setCodePrac("코드를 입력해볼까요?");
   };
 
-  console.log(codePrac);
+  const movePage = (codeId) =>{
+    setCodeNumber(codeId);
+  };
+
+  console.log(codeNumber);
 
   return (
     <CodeBackLayout>
@@ -36,7 +40,7 @@ const TestCode = () => {
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
-      <PageNation />
+      <PageNation codeNumber={codeNumber} movePage={movePage}/>
     </CodeBackLayout>
   );
 };
