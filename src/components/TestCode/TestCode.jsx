@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 
-import TestCodeView from "./TestCodeView";
-import TestCodeHeader from "./TestCodeHeader";
+import { TestCodeView, TestCodeHeader, PageNation } from "../index";
 
 const TestCode = () => {
   const codeList = useSelector((state) => state.testCode.testCode);
@@ -37,6 +36,7 @@ const TestCode = () => {
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
+      <PageNation />
     </CodeBackLayout>
   );
 };
