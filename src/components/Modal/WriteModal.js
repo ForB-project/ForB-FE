@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const WriteModal = () => {
-  const closeModal = ({ setModalOpen }) => {
+//close동작 props넘기는 방법 물어볼 것
+const WriteModal = (setModalOpen) => {
+  const closeModal = () => {
     setModalOpen(false);
   };
   return (
     <WriteModalStyled>
-      <button onClick={{ closeModal }}>
-        <span className="close">X</span>
+      <button className="closebutton" onClick={closeModal}>
+        <p className="close">X</p>
       </button>
       <div>WriteModal</div>
     </WriteModalStyled>
@@ -22,9 +23,9 @@ const WriteModalStyled = styled.div`
   top: 30%;
   left: 30%;
 
-  border: 4px dashed black;
+  border: 4px solid black;
   border-radius: 20px;
-  background-color: #10141b;
+  background-color: #888888;
 
   width: 40vw;
   height: 40vh;
@@ -33,10 +34,18 @@ const WriteModalStyled = styled.div`
   color: white;
   font-size: 2rem;
 
+  .closebutton {
+    border: none;
+    background: none;
+  }
   .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 1px;
+    right: 20px;
     color: white;
+    font-size: 2rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;

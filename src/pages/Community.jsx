@@ -4,7 +4,6 @@ import Header from "../components/Layout/Header";
 import { PageTitle } from "../elem/index";
 import { BodyCommunity, LowerCommunity } from "../components/Community/index";
 import { GreateHall } from "../static/index";
-import { greathall_pixel } from "../static/index";
 
 //재사용 component 파일위치 정리필
 

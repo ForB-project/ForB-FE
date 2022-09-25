@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import WriteModal from "../Modal/WriteModal";
 
-//재사용 component rename필
+//close동작 props받기
 const LowerCommunity = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+
   const showModal = () => {
     setModalOpen(true);
   };
