@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import WriteModal from "../Modal/WriteModal";
 
@@ -44,37 +44,37 @@ const LowerStyled = styled.div`
   padding-top: 2vh;
 `;
 
-const LeftBoxStyled = styled.div`
-  /* border: 1px dashed purple; */
+// const LeftBoxStyled = styled.div`
+//   /* border: 1px dashed purple; */
 
-  border-radius: 10px;
-  /* background-color: #9e6c31; */
-  border: 8px dashed black;
-  background-color: #10141b;
-  opacity: 0.8;
+//   border-radius: 10px;
+//   /* background-color: #9e6c31; */
+//   border: 8px dashed black;
+//   background-color: #10141b;
+//   opacity: 0.8;
 
-  margin: 1vw;
-  display: inline-block;
-  width: 20vw;
-`;
-const RoadmapButton = styled.button`
-  border: none;
+//   margin: 1vw;
+//   display: inline-block;
+//   width: 20vw;
+// `;
+// const RoadmapButton = styled.button`
+//   border: none;
 
-  color: gray;
-  font-size: 20px;
-  font-family: "neodgm";
+//   color: gray;
+//   font-size: 20px;
+//   font-family: "neodgm";
 
-  width: 100%;
-  height: 5vh;
-  background: none;
+//   width: 100%;
+//   height: 5vh;
+//   background: none;
 
-  cursor: pointer;
-  &:hover {
-    font-size: 21px;
-    color: white;
-    opacity: 1;
-  }
-`;
+//   cursor: pointer;
+//   &:hover {
+//     font-size: 21px;
+//     color: white;
+//     opacity: 1;
+//   }
+// `;
 
 const CenterBoxStyled = styled.div`
   /* border: 1px dashed purple; */
@@ -107,34 +107,34 @@ const WriteButton = styled.button`
     opacity: 1;
   }
 `;
-const RightBoxStyled = styled.div`
-  /* border: 1px dashed green; */
+// const RightBoxStyled = styled.div`
+//   /* border: 1px dashed green; */
 
-  border-radius: 10px;
-  /* background-color: #9e6c31; */
-  border: 8px dashed black;
-  background-color: #10141b;
-  opacity: 0.8;
+//   border-radius: 10px;
+//   /* background-color: #9e6c31; */
+//   border: 8px dashed black;
+//   background-color: #10141b;
+//   opacity: 0.8;
 
-  margin: 1vw;
-  display: inline-block;
-  width: 20vw;
-`;
-const CodingButton = styled.button`
-  border: none;
+//   margin: 1vw;
+//   display: inline-block;
+//   width: 20vw;
+// `;
+// const CodingButton = styled.button`
+//   border: none;
 
-  color: gray;
-  font-size: 20px;
-  font-family: "neodgm";
+//   color: gray;
+//   font-size: 20px;
+//   font-family: "neodgm";
 
-  width: 100%;
-  height: 5vh;
-  background: none;
+//   width: 100%;
+//   height: 5vh;
+//   background: none;
 
-  cursor: pointer;
-  &:hover {
-    font-size: 21px;
-    color: white;
-    opacity: 1;
-  }
-`;
+//   cursor: pointer;
+//   &:hover {
+//     font-size: 21px;
+//     color: white;
+//     opacity: 1;
+//   }
+// `;

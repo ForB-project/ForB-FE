@@ -11,7 +11,18 @@ const WriteModal = (setModalOpen) => {
       <button className="closebutton" onClick={closeModal}>
         <p className="close">X</p>
       </button>
-      <div>WriteModal</div>
+      <div>
+        <TitleBoxStyled>
+          <TitleInput placeholder="제목" />
+          <label></label>
+        </TitleBoxStyled>
+        <ContentBoxStyled>
+          <ContentInput placeholder="내용" />
+        </ContentBoxStyled>
+        <WriteButtonBoxStyled>
+          <WriteButton>글쓰기</WriteButton>
+        </WriteButtonBoxStyled>
+      </div>
     </WriteModalStyled>
   );
 };
@@ -23,7 +34,7 @@ const WriteModalStyled = styled.div`
   top: 30%;
   left: 30%;
 
-  border: 4px solid black;
+  /* border: 4px solid black; */
   border-radius: 20px;
   background-color: #888888;
 
@@ -33,6 +44,7 @@ const WriteModalStyled = styled.div`
 
   color: white;
   font-size: 2rem;
+  font-family: "neodgm";
 
   .closebutton {
     border: none;
@@ -42,10 +54,59 @@ const WriteModalStyled = styled.div`
     position: absolute;
     top: 1px;
     right: 20px;
-    color: white;
+    color: black;
     font-size: 2rem;
     &:hover {
       cursor: pointer;
     }
+  }
+`;
+const TitleBoxStyled = styled.div``;
+const TitleInput = styled.input`
+  border: 4px solid black;
+  border-radius: 10px;
+
+  padding: 1vw;
+  width: 20vw;
+
+  font-size: 2rem;
+`;
+const ContentInput = styled.input`
+  border: 4px solid black;
+  border-radius: 20px;
+
+  margin-top: 1vh;
+  padding: 1vw;
+
+  width: 30vw;
+  height: 18vh;
+
+  font-size: 2rem;
+`;
+const ContentBoxStyled = styled.div``;
+const WriteButtonBoxStyled = styled.div`
+  border-radius: 10px;
+  border: 4px solid black;
+  background-color: #10141b;
+
+  margin: 1vw;
+  display: inline-block;
+  width: 10vw;
+`;
+const WriteButton = styled.button`
+  border: none;
+
+  color: gray;
+  font-size: 2rem;
+  font-family: "neodgm";
+
+  width: 100%;
+  height: 5vh;
+  background: none;
+
+  cursor: pointer;
+  &:hover {
+    font-size: 2.2rem;
+    color: white;
   }
 `;
