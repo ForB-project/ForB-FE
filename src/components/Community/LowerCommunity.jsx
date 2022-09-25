@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import WriteModal from "../Modal/WriteModal";
 
 //재사용 component rename필
 const LowerCommunity = () => {
   const navigate = useNavigate();
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const showModal = () => {
+    setModalOpen(true);
+  };
   return (
     <>
       <LowerStyled>
@@ -15,7 +19,8 @@ const LowerCommunity = () => {
           </RoadmapButton>
         </LeftBoxStyled> */}
         <CenterBoxStyled>
-          <WriteButton>write</WriteButton>
+          <WriteButton onClick={showModal}>write</WriteButton>
+          {modalOpen && <WriteModal setModalOpen={setModalOpen} />}
         </CenterBoxStyled>
         {/* <RightBoxStyled>
           <CodingButton onClick={() => navigate("/testcode")}>
@@ -87,7 +92,7 @@ const WriteButton = styled.button`
   border: none;
 
   color: gray;
-  font-size: 20px;
+  font-size: 2rem;
   font-family: "neodgm";
 
   width: 100%;
@@ -96,7 +101,7 @@ const WriteButton = styled.button`
 
   cursor: pointer;
   &:hover {
-    font-size: 21px;
+    font-size: 2.5rem;
     color: white;
     opacity: 1;
   }

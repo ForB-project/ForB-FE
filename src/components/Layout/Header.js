@@ -96,9 +96,9 @@ const MenuStyled = styled.div`
   width: 20%;
   height: 100%;
 
-  border: 4px dashed black;
-  background-color: #10141b;
-  color: white;
+  border: 4px solid black;
+  background-color: white;
+  color: black;
 
   z-index: 20;
   transition: 0.5s;
@@ -131,7 +131,7 @@ const MenuStyled = styled.div`
   a {
     font-size: 2rem;
     text-decoration: none;
-    color: white;
+    color: black;
 
     &.active {
       font-size: 3rem;

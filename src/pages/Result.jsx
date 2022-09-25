@@ -11,9 +11,9 @@ const Result = () => {
       <WarperStyled>
         <PageTitle>테스트결과</PageTitle>
         <BodyResult>
-          <FSpan>F</FSpan>
-          <OrSpan> |</OrSpan>
-          <BSpan> B</BSpan>
+          <FSpan> F </FSpan>
+          <OrSpan> | </OrSpan>
+          <BSpan> B </BSpan>
         </BodyResult>
         <LowerResult />
       </WarperStyled>
@@ -43,8 +43,7 @@ const WarperStyled = styled.div`
 
   padding: 1.5vh;
 
-  color: black
-  font-family: "neodgm";
+  color: black font-family "neodgm";
 `;
 const FSpan = styled.span`
   color: #3f8e55;
