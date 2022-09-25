@@ -64,7 +64,7 @@ export default Mainpage;
 const WrapStyled = styled.div`
   display: flex;
   /* position: relative; */
-  background-color: #9b6343; // rgb(32, 8, 64, 1);
+  background-color: #10141b; // rgb(32, 8, 64, 1);
   width: 100%;
   height: 100%;
   z-index: -5;
@@ -77,6 +77,7 @@ const ContainerStyled = styled.div`
   box-sizing: border-box;
 
   border: 20px solid black;
+
   width: 100%;
   height: 100%;
 

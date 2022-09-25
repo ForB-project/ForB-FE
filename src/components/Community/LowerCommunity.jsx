@@ -9,17 +9,19 @@ const LowerCommunity = () => {
   return (
     <>
       <LowerStyled>
-        <LeftButtonStyled>
+        {/* <LeftBoxStyled>
           <RoadmapButton onClick={() => navigate("/result")}>
             결과창 다시보기
           </RoadmapButton>
-        </LeftButtonStyled>
-        <CenterButtonStyled> </CenterButtonStyled>
-        <RightButtonStyled>
+        </LeftBoxStyled> */}
+        <CenterBoxStyled>
+          <WriteButton>write</WriteButton>
+        </CenterBoxStyled>
+        {/* <RightBoxStyled>
           <CodingButton onClick={() => navigate("/testcode")}>
             코딩 테스트해보기
           </CodingButton>
-        </RightButtonStyled>
+        </RightBoxStyled> */}
       </LowerStyled>
     </>
   );
@@ -36,7 +38,7 @@ const LowerStyled = styled.div`
   padding-top: 5vh;
 `;
 
-const LeftButtonStyled = styled.div`
+const LeftBoxStyled = styled.div`
   /* border: 1px dashed purple; */
 
   border-radius: 10px;
@@ -47,7 +49,7 @@ const LeftButtonStyled = styled.div`
 
   margin: 1vw;
   display: inline-block;
-  width: 25vw;
+  width: 20vw;
 `;
 const RoadmapButton = styled.button`
   border: none;
@@ -68,16 +70,38 @@ const RoadmapButton = styled.button`
   }
 `;
 
-const CenterButtonStyled = styled.div`
-  /* border: 1px dashed red;
-   */
-  margin: 1%;
+const CenterBoxStyled = styled.div`
+  /* border: 1px dashed purple; */
+
+  border-radius: 10px;
+  /* background-color: #9e6c31; */
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.8;
+
+  margin: 1vw;
   display: inline-block;
-
-  width: 5vw;
+  width: 20vw;
 `;
+const WriteButton = styled.button`
+  border: none;
 
-const RightButtonStyled = styled.div`
+  color: gray;
+  font-size: 20px;
+  font-family: "neodgm";
+
+  width: 100%;
+  height: 5vh;
+  background: none;
+
+  cursor: pointer;
+  &:hover {
+    font-size: 21px;
+    color: white;
+    opacity: 1;
+  }
+`;
+const RightBoxStyled = styled.div`
   /* border: 1px dashed green; */
 
   border-radius: 10px;
@@ -88,7 +112,7 @@ const RightButtonStyled = styled.div`
 
   margin: 1vw;
   display: inline-block;
-  width: 25vw;
+  width: 20vw;
 `;
 const CodingButton = styled.button`
   border: none;

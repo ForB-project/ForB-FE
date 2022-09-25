@@ -91,7 +91,7 @@ const MenuStyled = styled.div`
   background-color: white;
   z-index: 20;
   transition: 0.5s;
-  ${props =>
+  ${(props) =>
     props.menuActive === true
       ? css`
           right: 0%;

@@ -57,8 +57,8 @@ const BodyStyled = styled.div`
   font-family: "neodgm";
 
   margin: auto;
-  width: 60vw;
-  height: 50vh;
+  width: 70vw;
+  height: 70vh;
   padding-top: 1vh;
 
   text-align: center;
