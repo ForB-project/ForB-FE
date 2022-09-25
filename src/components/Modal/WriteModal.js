@@ -31,15 +31,15 @@ export default WriteModal;
 
 const WriteModalStyled = styled.div`
   position: absolute;
-  top: 30%;
-  left: 30%;
+  top: 20%;
+  left: 20%;
 
   /* border: 4px solid black; */
   border-radius: 20px;
   background-color: #888888;
 
-  width: 40vw;
-  height: 40vh;
+  width: 60vw;
+  height: 50vh;
   padding-top: 1vh;
 
   color: white;
@@ -63,41 +63,46 @@ const WriteModalStyled = styled.div`
 `;
 const TitleBoxStyled = styled.div``;
 const TitleInput = styled.input`
-  border: 4px solid black;
+  /* border: 4px solid black; */
+  border: none;
   border-radius: 10px;
 
+  margin-top: 1vh;
   padding: 1vw;
-  width: 20vw;
+  width: 30vw;
 
   font-size: 2rem;
 `;
 const ContentInput = styled.input`
-  border: 4px solid black;
+  /* border: 4px solid black; */
+  border: none;
   border-radius: 20px;
 
   margin-top: 1vh;
   padding: 1vw;
 
-  width: 30vw;
-  height: 18vh;
+  width: 50vw;
+  height: 30vh;
 
   font-size: 2rem;
 `;
 const ContentBoxStyled = styled.div``;
 const WriteButtonBoxStyled = styled.div`
   border-radius: 10px;
-  border: 4px solid black;
+  /* border: 4px solid black; */
+  border: none;
   background-color: #10141b;
+  /* float: right; */
 
   margin: 1vw;
   display: inline-block;
-  width: 10vw;
+  width: 7vw;
 `;
 const WriteButton = styled.button`
   border: none;
 
   color: gray;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "neodgm";
 
   width: 100%;
