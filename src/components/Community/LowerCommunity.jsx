@@ -35,7 +35,7 @@ const LowerStyled = styled.div`
   text-align: center;
 
   margin: 1vh;
-  padding-top: 5vh;
+  padding-top: 2vh;
 `;
 
 const LeftBoxStyled = styled.div`

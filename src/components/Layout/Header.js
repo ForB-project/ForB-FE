@@ -75,20 +75,31 @@ const HeaderSyled = styled.div`
   /* width: 50px;
   height: 50px; */
   padding: 10px;
-  background-color: white;
+
+  border: 4px dashed black;
+  border-radius: 10px;
+  background-color: #10141b;
+  opacity: 0.8;
+
   z-index: 10;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 400;
   font-family: "neodgm";
+  color: white;
 `;
 
 const MenuStyled = styled.div`
   font-family: "neodgm";
   position: fixed;
   top: 0%;
+  padding-top: 4vh;
   width: 20%;
   height: 100%;
-  background-color: white;
+
+  border: 4px dashed black;
+  background-color: #10141b;
+  color: white;
+
   z-index: 20;
   transition: 0.5s;
   ${(props) =>
@@ -118,18 +129,19 @@ const MenuStyled = styled.div`
     align-items: center;
   }
   a {
-    font-size: 1rem;
+    font-size: 2rem;
     text-decoration: none;
-    color: black;
+    color: white;
+
     &.active {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 3rem;
+      font-weight: 400;
     }
   }
   .username {
     position: sticky;
-    font-weight: 600;
-    font-size: 1.3rem;
+    font-weight: 100;
+    font-size: 2rem;
   }
   .needlogin {
     display: flex;
