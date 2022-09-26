@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-//close동작 props넘기는 방법 물어볼 것
 const WriteModal = ({ setModalOpen }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const titleHandler = (e) => {
+    setTitle(e.target.value); // 제목 입력 받기
+    console.log(title);
+  };
+  const contentHandler = (e) => {
+    setContent(e.target.value); // 내용 입력 받기
+    console.log(content);
+  };
+
   return (
     <WriteModalStyled>
       <button className="closebutton" onClick={closeModal}>
@@ -13,11 +25,17 @@ const WriteModal = ({ setModalOpen }) => {
       </button>
       <div>
         <TitleBoxStyled>
-          <TitleInput placeholder="제목" />
+          <TitleInput
+            onChange={titleHandler}
+            placeholder="제목을 작성해주세요"
+          />
           <label></label>
         </TitleBoxStyled>
         <ContentBoxStyled>
-          <ContentInput placeholder="내용" />
+          <ContentInput
+            onChange={contentHandler}
+            placeholder="내용을 작성해주세요"
+          />
         </ContentBoxStyled>
         <WriteButtonBoxStyled>
           <WriteButton>글쓰기</WriteButton>
@@ -74,7 +92,7 @@ const TitleInput = styled.input`
   font-size: 2rem;
   font-family: "neodgm";
 `;
-const ContentInput = styled.input`
+const ContentInput = styled.textarea`
   /* border: 4px solid black; */
   border: none;
   border-radius: 20px;
@@ -99,7 +117,7 @@ const WriteButtonBoxStyled = styled.div`
 
   margin: 1vw;
   display: inline-block;
-  width: 7vw;
+  width: 9vw;
 `;
 const WriteButton = styled.button`
   border: none;
