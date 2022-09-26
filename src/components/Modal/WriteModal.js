@@ -1,21 +1,31 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const WriteModal = ({ setModalOpen }) => {
+  // modal 닫기 설정
   const closeModal = () => {
     setModalOpen(false);
   };
 
+  // 제목 입력 받기
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-
   const titleHandler = (e) => {
-    setTitle(e.target.value); // 제목 입력 받기
-    console.log(title);
+    setTitle(e.target.value);
+    console.log("title =", title);
   };
+
+  // 내용 입력 받기
+  const [content, setContent] = useState("");
   const contentHandler = (e) => {
-    setContent(e.target.value); // 내용 입력 받기
-    console.log(content);
+    setContent(e.target.value);
+    console.log("content =", content);
+  };
+
+  // post 요청
+  const dispatch = useDispatch();
+  const writeClickHandler = () => {
+    dispatch();
   };
 
   return (
@@ -37,7 +47,7 @@ const WriteModal = ({ setModalOpen }) => {
             placeholder="내용을 작성해주세요"
           />
         </ContentBoxStyled>
-        <WriteButtonBoxStyled>
+        <WriteButtonBoxStyled onClick={writeClickHandler}>
           <WriteButton>글쓰기</WriteButton>
         </WriteButtonBoxStyled>
       </div>

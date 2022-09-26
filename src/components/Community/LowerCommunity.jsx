@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import WriteModal from "../Modal/WriteModal";
 
-//close동작 props받기
 const LowerCommunity = () => {
-  // const navigate = useNavigate();
+  // 글쓰기 modal창
   const [modalOpen, setModalOpen] = useState(false);
-
   const showModal = () => {
     setModalOpen(true);
   };
@@ -26,18 +23,13 @@ const LowerCommunity = () => {
 export default LowerCommunity;
 
 const LowerStyled = styled.div`
-  /* border: 1px dashed green; */
-
   text-align: center;
 
   margin: 1vh;
   padding-top: 2vh;
 `;
 const CenterBoxStyled = styled.div`
-  /* border: 1px dashed purple; */
-
   border-radius: 10px;
-  /* background-color: #9e6c31; */
   border: 8px dashed black;
   background-color: #10141b;
   opacity: 0.95;
