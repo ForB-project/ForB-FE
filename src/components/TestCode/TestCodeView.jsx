@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const TestCodeView = ({codePrac}) => {
-
+const TestCodeView = ({ codePrac }) => {
   return (
     <CodeViewLayout>
-      <CodeView dangerouslySetInnerHTML={{__html:codePrac}}></CodeView>
+      {codePrac === "" ? (
+        <CodeView>코드를 입력해볼까요?</CodeView>
+      ) : (
+        <CodeView dangerouslySetInnerHTML={{ __html: codePrac }} />
+      )}
     </CodeViewLayout>
   );
 };

@@ -25,7 +25,7 @@ const QuizWindow = () => {
       <QuizSelect>
         <QuizButton
           onClick={() =>
-            quizId == 2
+            quizId == 8
               ? setTimeout(() => moveResult(forbCount + 1), 2000)
               : setTimeout(() => forResult(forbCount + 1), 2000) 
           }
@@ -34,7 +34,7 @@ const QuizWindow = () => {
         </QuizButton>
         <QuizButton className="leftButton"
           onClick={() =>
-            quizId == 2
+            quizId == 8
               ? setTimeout(() => moveResult(forbCount -1), 2000)
               : setTimeout(() => forResult(forbCount - 1), 2000) 
           }
@@ -94,6 +94,7 @@ const QuizContent = styled.div`
   padding:0px 5px;
   justify-content: center;
   align-items: center;
+  white-space: pre-wrap;
   box-shadow: 1px 5px 5px 1px black;
 `;
 

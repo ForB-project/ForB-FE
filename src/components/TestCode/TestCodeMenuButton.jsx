@@ -69,34 +69,17 @@ const MenuButton = () => {
 };
 
 export default MenuButton;
-const moving = keyframes`
-0%{
-  margin-bottom: 16px;
-}
-  25%{
-     margin-bottom: 19px;
-  }
-  50%{
-   margin-bottom: 16px;
-  }
-  75%{
-    margin-bottom: 13px;
-  }
-  100%{
-    margin-bottom: 16px;
-  }
-`;
 
 const HeaderSyled = styled.div`
-  position: fixed;
+  position: fixed; 
   right: 19.3%;
   top: 15%;
+    border: 4px dashed black;
+  border-radius: 8px;
+  background-color: #10141b;
   /* width: 50px;
   height: 50px; */
   padding: 6px 12px;
-  border: 4px dashed black;
-  border-radius: 8px;
-  background-color: #10141b;
   color: white;
   z-index: 10;
   font-size: 1.5rem;
@@ -105,8 +88,8 @@ const HeaderSyled = styled.div`
   opacity: 0.8;
   transition: 0.1s;
   &:hover {
-    animation: ${moving} 2s linear infinite;
-    opacity: 1;
+    opacity: 1; 
+   
   }
 `;
 

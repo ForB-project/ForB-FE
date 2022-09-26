@@ -9,15 +9,33 @@ const initialState = {
       },
     {
       id: 1,
-      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n<div>\n <ol>\n  <li>ol태그는 정렬된 목록을 번호로 나타내줍니다!\n  </li>\n  <li>li 태그는 목록의 항목을 나타냅니다! </li>\n  <li>신기하지 않나요?</li> \n </ol> \n</div>',
+      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n<div \n  style="width:200px; \n  height:200px; \n  border:1px solid red; \n  background-color:black;">\n\n 이건 inline style이라는 거에요!\n 궁금하다면 직접 공부해볼까요? \n\n</div>',
+      answerCode: "코드를 입력해볼까요?",
+    }],
+    frontCode:[
+      {
+      id: 0,
+      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java Script 문제1',
       answerCode: "코드를 입력해볼까요?",
     },
     {
-      id: 2,
-      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n<div \n  style="width:200px; \n  height:200px; \n  border:1px solid red; \n  background-color:black;">\n\n 이건 inline style이라는 거에요!\n 궁금하다면 직접 공부해볼까요? \n\n</div>',
+      id: 1,
+      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java Script 문제2',
       answerCode: "코드를 입력해볼까요?",
     }
-  ],
+    ],
+    backCode:[
+    {
+      id: 0,
+      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java 문제1',
+      answerCode: "코드를 입력해볼까요?",
+    },
+    {
+      id: 1,
+      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java 문제2',
+      answerCode: "코드를 입력해볼까요?",
+    }
+  ]
 };
 
 // export const __getLectureList = createAsyncThunk(
