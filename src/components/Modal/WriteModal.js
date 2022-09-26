@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 //close동작 props넘기는 방법 물어볼 것
-const WriteModal = (setModalOpen) => {
+const WriteModal = ({ setModalOpen }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -61,9 +61,7 @@ const WriteModalStyled = styled.div`
     }
   }
 `;
-const TitleBoxStyled = styled.div`
-  opacity: 1;
-`;
+const TitleBoxStyled = styled.div``;
 const TitleInput = styled.input`
   /* border: 4px solid black; */
   border: none;
@@ -91,6 +89,7 @@ const ContentInput = styled.input`
   font-family: "neodgm";
 `;
 const ContentBoxStyled = styled.div``;
+
 const WriteButtonBoxStyled = styled.div`
   border-radius: 10px;
   /* border: 4px solid black; */
@@ -115,7 +114,7 @@ const WriteButton = styled.button`
 
   cursor: pointer;
   &:hover {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: white;
   }
 `;

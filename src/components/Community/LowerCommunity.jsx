@@ -20,7 +20,7 @@ const LowerCommunity = () => {
           </RoadmapButton>
         </LeftBoxStyled> */}
         <CenterBoxStyled>
-          <WriteButton onClick={showModal}>write</WriteButton>
+          <WriteButton onClick={showModal}>글쓰기</WriteButton>
           {modalOpen && <WriteModal setModalOpen={setModalOpen} />}
         </CenterBoxStyled>
         {/* <RightBoxStyled>
