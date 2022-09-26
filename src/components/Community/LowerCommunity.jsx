@@ -83,11 +83,13 @@ const CenterBoxStyled = styled.div`
   /* background-color: #9e6c31; */
   border: 8px dashed black;
   background-color: #10141b;
-  opacity: 0.8;
+  opacity: 0.95;
 
   margin: 1vw;
   display: inline-block;
   width: 20vw;
+
+  font-family: "neodgm";
 `;
 const WriteButton = styled.button`
   border: none;

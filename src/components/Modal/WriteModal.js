@@ -33,6 +33,7 @@ const WriteModalStyled = styled.div`
   position: absolute;
   top: 20%;
   left: 20%;
+  font-family: "neodgm";
 
   /* border: 4px solid black; */
   border-radius: 20px;
@@ -44,7 +45,6 @@ const WriteModalStyled = styled.div`
 
   color: white;
   font-size: 2rem;
-  font-family: "neodgm";
 
   .closebutton {
     border: none;
@@ -61,7 +61,9 @@ const WriteModalStyled = styled.div`
     }
   }
 `;
-const TitleBoxStyled = styled.div``;
+const TitleBoxStyled = styled.div`
+  opacity: 1;
+`;
 const TitleInput = styled.input`
   /* border: 4px solid black; */
   border: none;
@@ -72,6 +74,7 @@ const TitleInput = styled.input`
   width: 30vw;
 
   font-size: 2rem;
+  font-family: "neodgm";
 `;
 const ContentInput = styled.input`
   /* border: 4px solid black; */
@@ -85,6 +88,7 @@ const ContentInput = styled.input`
   height: 30vh;
 
   font-size: 2rem;
+  font-family: "neodgm";
 `;
 const ContentBoxStyled = styled.div``;
 const WriteButtonBoxStyled = styled.div`
