@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import styled, { keyframes } from "styled-components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -94,7 +94,7 @@ const QuizContent = styled.div`
   padding:0px 5px;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 1px #2c2c2c;
+  box-shadow: 1px 5px 5px 1px black;
 `;
 
 const QuizSelect = styled.div`
@@ -111,7 +111,7 @@ const QuizButton = styled.button`
   height: calc(25em + 3vw);
   margin: auto;
   background-color: #10141b;
-  border: 9px dashed black;
+  border: 10px dashed black;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -129,6 +129,6 @@ const QuizButton = styled.button`
     animation: ${moving} 2s linear infinite;
   }
   &:focus{
-    animation: ${disappear} 2s;
+    animation: ${disappear} 2.1s;
   }
 `;

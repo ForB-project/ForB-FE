@@ -23,7 +23,7 @@ const CodeViewLayout = styled.div`
 
 const CodeView = styled.div`
   width: 28vw;
-  height: 62.7vh;
+  height: 63.4vh;
   border: 8px dashed black;
   background-color: #10141b;
   display: flex;
