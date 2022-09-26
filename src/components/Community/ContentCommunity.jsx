@@ -18,7 +18,7 @@ const LineStyled = styled.div`
   display: flex;
 
   margin-top: 1.5vh;
-  margin-bottom: 1vh;
+  margin-bottom: 1.6vh;
   padding-left: 2vw;
   padding-right: 2vw;
 

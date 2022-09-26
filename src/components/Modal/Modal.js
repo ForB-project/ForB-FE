@@ -20,7 +20,7 @@ function Modal(props) {
 
   return (
     <ModalStyled onClick={closeModal}>
-      <div className="modalBody" onClick={e => e.stopPropagation()}>
+      <div className="modalBody" onClick={(e) => e.stopPropagation()}>
         {props.children}
       </div>
     </ModalStyled>

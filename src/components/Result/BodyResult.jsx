@@ -19,13 +19,14 @@ const BodyStyled = styled.div`
   opacity: 0.95;
   transition: 0.5s;
 
-  margin: auto;
-  width: 50vw;
-  height: 50vh;
-  padding-top: 1vh;
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70vw;
+  height: 70vh;
 
   text-align: center;
-  line-height: 50vh; //line heitgth = height > 세로정렬
+  line-height: 70vh; //line heitgth = height > 세로정렬
 `;
 const ResultStyled = styled.div`
   margin: 1%;

@@ -11,7 +11,9 @@ const Result = () => {
       <WarperStyled>
         <PageTitle>테스트결과</PageTitle>
         <BodyResult>
-          <FSpan>F</FSpan> | <BSpan> B</BSpan>
+          <FSpan> F </FSpan>
+          <OrSpan> | </OrSpan>
+          <BSpan> B </BSpan>
         </BodyResult>
         <LowerResult />
       </WarperStyled>
@@ -34,19 +36,22 @@ const WarperStyled = styled.div`
   background-image: url(${GreateHall});
   background-size: cover;
 
-  width: 85vw;
-  height: 75vh;
+  width: 100vw;
+  height: 92.7vh;
 
-  margin: 5vw;
+  /* margin: 5vw; */
+
   padding: 1.5vh;
 
-  color: #ffffff;
-  font-family: "neodgm";
+  color: black font-family "neodgm";
 `;
 const FSpan = styled.span`
   color: #3f8e55;
   /* color: #3f428e; */
   /* color: #ffffff; */
+`;
+const OrSpan = styled.span`
+  color: white;
 `;
 const BSpan = styled.span`
   color: #892525;
