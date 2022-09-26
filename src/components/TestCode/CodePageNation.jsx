@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const PageNation = ({movePage,frontPage,backPage}) => {
+const PageNation = ({movePage,frontPage,backPage,htmlPage}) => {
 
   return (
 <PageNationLayout>
@@ -9,6 +9,7 @@ const PageNation = ({movePage,frontPage,backPage}) => {
       <PageNationNum onClick={()=>movePage(0)}>1</PageNationNum>
       <PageNationNum onClick={()=>movePage(1)}>2</PageNationNum>
     </PageNationNumLayout>
+    <FrontBackButton onClick={()=>htmlPage()}>HTML</FrontBackButton>
     <FrontBackButton onClick={()=>frontPage()}>Front</FrontBackButton>
     <FrontBackButton onClick={()=>backPage()}>Back</FrontBackButton>
     </PageNationLayout>
@@ -28,7 +29,7 @@ const PageNationNumLayout = styled.div`
   min-width: 42px;
   height: 2vw;
   min-height: 22px;
-  margin:-0.1vh 16.6vw -2vh auto ;
+  margin:-0.1vh 11vw -2vh auto ;
   border: 2px dashed black;
   border-radius: 10px;
   display: flex;

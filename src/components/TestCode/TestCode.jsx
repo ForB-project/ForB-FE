@@ -17,13 +17,19 @@ const TestCode = () => {
   const movePage = (codeId) => {
     setCodeNumber(codeId);
   };
+  const htmlPage = () => {
+    setChangeExampleCode(testCodeList)
+    setCodeNumber(0);
+  };
 
   const frontPage = () =>{
     setChangeExampleCode(frontCodeList)
+    setCodeNumber(0);
   };
 
   const backPage = () =>{
     setChangeExampleCode(backCodeList)
+    setCodeNumber(0);
   };
 
   return (
@@ -42,7 +48,7 @@ const TestCode = () => {
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
-      <PageNation movePage={movePage} frontPage={frontPage} backPage={backPage} />
+      <PageNation movePage={movePage} htmlPage={htmlPage} frontPage={frontPage} backPage={backPage} />
     </CodeBackLayout>
   );
 };
