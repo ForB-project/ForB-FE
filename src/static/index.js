@@ -8,6 +8,7 @@ import main3 from "./image/madeby3.png";
 import GreateHall from "./image/PixelGreateHall.png";
 import greathall_pixel from "./image/greathall_pixel.png";
 import Mainimg from "./image/Mainimg.png";
+import r_p from "./image/r_p.png";
 export {
   Mainimg,
   Logo,
@@ -19,4 +20,5 @@ export {
   mainFirst,
   GreateHall,
   greathall_pixel,
+  r_p,
 };

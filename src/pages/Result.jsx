@@ -10,11 +10,7 @@ const Result = () => {
     <AllWrapStyled>
       <WarperStyled>
         <PageTitle>테스트결과</PageTitle>
-        <BodyResult>
-          <FSpan> F </FSpan>
-          <OrSpan> | </OrSpan>
-          <BSpan> B </BSpan>
-        </BodyResult>
+        <BodyResult />
         <LowerResult />
       </WarperStyled>
     </AllWrapStyled>
@@ -45,15 +41,15 @@ const WarperStyled = styled.div`
 
   color: black font-family "neodgm";
 `;
-const FSpan = styled.span`
-  color: #3f8e55;
-  /* color: #3f428e; */
-  /* color: #ffffff; */
-`;
-const OrSpan = styled.span`
-  color: white;
-`;
-const BSpan = styled.span`
-  color: #892525;
-  /* color: #ffffff; */
-`;
+// const FSpan = styled.span`
+//   color: #3f8e55;
+//   /* color: #3f428e; */
+//   /* color: #ffffff; */
+// `;
+// const OrSpan = styled.span`
+//   color: white;
+// `;
+// const BSpan = styled.span`
+//   color: #892525;
+//   /* color: #ffffff; */
+// `;
