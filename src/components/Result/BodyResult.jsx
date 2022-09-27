@@ -21,25 +21,26 @@ const BodyResult = () => {
           <Emblem>
             <img src={r_p} alt="crest" />
           </Emblem>
-          <Titlestyled>레반클로</Titlestyled>
+          <Titlestyled>레번클로</Titlestyled>
         </Topstyled>
         <Bodystyled>
-          <div>'가장 독창적인 로직을 작성하는 개발자를 양성하는 곳'</div>
+          <div>'가장 독창적이고 효율적인 로직을 작성하는 개발자'</div>
+          <P1>.</P1>
           <p></p>
           <div>
-            우리는 가장 지능적이고 지혜로우며 독창적인 면모를 지닌 개발자를
-            양성하는게 목표지.
+            자네는 상당히 지능적이고, 독창적인 면모를 지닌 개발자의 특성을
+            지니고 있어.
+            <P1>.</P1>
+            <p>보통사람은 생각하지 못하는, 더 효율적인 방법을 고민하는</p>
             <p>
-              당장 문제를 해결하는 것 보다는 시간을 들여 꼼꼼하게 문제를
-              해결하는 자네의 모습을 보니
+              자네의 모습을 보니 우리의 이념에 딱 들어 맞는 인재임이 틀림없군.
             </p>
-            <p>우리의 이념에 딱 들어 맞는 인재임에 틀림이 없네.</p>
-            <p>.</p>
-            <p>
-              다소 괴짜스럽거나 엉뚱한 모습이 있어도 별 문제가 되지는 않으니
-              걱정말게.
-            </p>
-            <span>자네는 훌륭한 백엔드 개발자가 될 수 있을테니까.</span>
+            <p>다소 괴짜스럽고 엉뚱한 해결방법을 생각해냈다고? </p>
+            <p> 효율적으로 기능한다면 전혀 문제가 없으니 걱정말게.</p>
+            <P1>.</P1>
+            <span>
+              자네는 훌륭한 백엔드 개발자가 될 수 있을꺼야. 내가 보증하지!
+            </span>
           </div>
         </Bodystyled>
         <Footerstyled>
@@ -81,8 +82,8 @@ const Topstyled = styled.div`
   /* border: 1px dashed black; */
 
   margin: 1vh;
-  height: 20vh;
-  line-height: 20vh;
+  height: 17vh;
+  line-height: 17vh;
 
   font-size: 7rem;
 `;
@@ -94,33 +95,33 @@ const Emblem = styled.div`
   margin-left: 2vw;
 
   width: 12vw;
-  height: 20vh;
+  height: 17vh;
 `;
 const Titlestyled = styled.div`
   /* border: 1px dashed blue; */
 
-  /* display: inline-block; */
-  padding-right: 18vh;
-
-  /* width: 20vw; */
-  height: 20vh;
+  padding-right: 27vh;
 `;
 
 const Bodystyled = styled.div`
   /* border: 1px dashed red; */
-  margin: 1vh;
-  padding: 1vh;
 
-  height: 35vh;
+  margin-left: 17vw;
+  padding: 1vh;
+  height: 40vh;
 
   font-size: 3rem;
+  text-align: left;
 `;
+const P1 = styled.div`
+  color: black;
+`;
+
 const Footerstyled = styled.div`
   /* border: 1px dashed purple; */
+
   display: inline-block;
-
-  margin: 1vh;
-
+  /* margin: 1vh; */
   height: 5vh;
 
   font-size: 3rem;

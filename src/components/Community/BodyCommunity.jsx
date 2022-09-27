@@ -50,7 +50,7 @@ const BodyCommunity = ({ title, author, stack }) => {
 export default BodyCommunity;
 
 const BodyStyled = styled.div`
-  border: 1px dashed black;
+  /* border: 1px dashed black; */
 
   border-radius: 50px;
   background-color: black;
@@ -58,7 +58,7 @@ const BodyStyled = styled.div`
   transition: 0.5s;
 
   color: white;
-  font-size: 20px;
+  font-size: 2.5rem;
   font-family: "neodgm";
 
   margin: auto;
