@@ -28,7 +28,7 @@ const LineStyled = styled.div`
 
   cursor: pointer;
   &:hover {
-    font-size: 21px;
+    font-size: 2.7rem;
     color: white;
     opacity: 1;
   }
