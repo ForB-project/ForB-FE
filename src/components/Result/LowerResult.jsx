@@ -1,24 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Header from "../Layout/Header";
 
 const LowerResult = () => {
   const navigate = useNavigate();
 
   return (
-    <LowerStyled>
-      <LeftButtonStyled>
-        <CodingButton onClick={() => navigate("/community")}>
-          코딩 테스트해보기(게시판)
-        </CodingButton>
-      </LeftButtonStyled>
-      <CenterButtonStyled> </CenterButtonStyled>
-      <RightButtonStyled>
-        <RoadmapButton onClick={() => navigate("/roadmap")}>
-          로드맵 보기
-        </RoadmapButton>
-      </RightButtonStyled>
-    </LowerStyled>
+    <>
+      <Header />
+      <LowerStyled>
+        <LeftButtonStyled>
+          <CodingButton onClick={() => navigate("/community")}>
+            코딩 테스트해보기(게시판)
+          </CodingButton>
+        </LeftButtonStyled>
+        <CenterButtonStyled> </CenterButtonStyled>
+        <RightButtonStyled>
+          <RoadmapButton onClick={() => navigate("/roadmap")}>
+            로드맵 보기
+          </RoadmapButton>
+        </RightButtonStyled>
+      </LowerStyled>
+    </>
   );
 };
 
@@ -30,7 +34,7 @@ const LowerStyled = styled.div`
   text-align: center;
 
   margin: 1vh;
-  padding-top: 5vh;
+  padding-top: 2vh;
 `;
 const LeftButtonStyled = styled.div`
   /* border: 1px dashed purple; */

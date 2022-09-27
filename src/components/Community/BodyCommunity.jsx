@@ -36,7 +36,12 @@ const BodyCommunity = ({ title, author, stack }) => {
         <ContentCommunity />
         <ContentCommunity />
         <ContentCommunity />
-        <div> 1 2 3 4 5 6 </div>
+        <ContentCommunity />
+        <ContentCommunity />
+        <ContentCommunity />
+        <ContentCommunity />
+
+        <div> 1 2 3 4 5 </div>
       </BodyStyled>
     </>
   );
@@ -57,8 +62,8 @@ const BodyStyled = styled.div`
   font-family: "neodgm";
 
   margin: auto;
-  width: 60vw;
-  height: 50vh;
+  width: 70vw;
+  height: 70vh;
   padding-top: 1vh;
 
   text-align: center;

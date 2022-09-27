@@ -13,6 +13,11 @@ const QuizWindow = () => {
     setQuizId(quizId + 1);
     setForbCount(answer);
   };
+  
+  const moveResult = (answer) => {
+    navigate("/result")
+    setForbCount(answer);
+  }
 
   return (
     <QuizWindowLayout>
@@ -21,8 +26,8 @@ const QuizWindow = () => {
         <QuizButton
           onClick={() =>
             quizId == 2
-              ? setTimeout(() => navigate("/result"), 2000)
-              : forResult(forbCount + 1)
+              ? setTimeout(() => moveResult(forbCount + 1), 2000)
+              : setTimeout(() => forResult(forbCount + 1), 2000) 
           }
         >
           {list[quizId].answerFront}
@@ -30,8 +35,8 @@ const QuizWindow = () => {
         <QuizButton className="leftButton"
           onClick={() =>
             quizId == 2
-              ? setTimeout(() => navigate("/result"), 2000)
-              : forResult(forbCount - 1)
+              ? setTimeout(() => moveResult(forbCount -1), 2000)
+              : setTimeout(() => forResult(forbCount - 1), 2000) 
           }
         >
           {list[quizId].answerBack}
@@ -58,6 +63,16 @@ const moving = keyframes`
   }
   100%{
     margin-top: 0px;
+  }
+`;
+
+const disappear = keyframes`
+0%{
+  opacity: 1;
+}
+
+  100%{
+    opacity: 0;
   }
 `;
 
@@ -112,5 +127,8 @@ const QuizButton = styled.button`
     opacity: 1;
     color: white;
     animation: ${moving} 2s linear infinite;
+  }
+  &:focus{
+    animation: ${disappear} 2s;
   }
 `;

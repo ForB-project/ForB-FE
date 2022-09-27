@@ -25,7 +25,6 @@ const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
     }
   };
 
-  console.log(codeList);
   return (
     <CodeHeader>
       <img className="Logo" src={hogwart_logo} />

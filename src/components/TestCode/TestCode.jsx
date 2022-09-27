@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 
-import TestCodeView from "./TestCodeView";
-import TestCodeHeader from "./TestCodeHeader";
+import { TestCodeView, TestCodeHeader, PageNation } from "../index";
 
 const TestCode = () => {
   const codeList = useSelector((state) => state.testCode.testCode);
@@ -18,7 +17,11 @@ const TestCode = () => {
     setCodePrac("코드를 입력해볼까요?");
   };
 
-  console.log(codePrac);
+  const movePage = (codeId) =>{
+    setCodeNumber(codeId);
+  };
+
+  console.log(codeNumber);
 
   return (
     <CodeBackLayout>
@@ -37,6 +40,7 @@ const TestCode = () => {
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
+      <PageNation codeNumber={codeNumber} movePage={movePage}/>
     </CodeBackLayout>
   );
 };
@@ -88,7 +92,7 @@ const CodeExample = styled.div`
   background-color: #10141b;
   margin: auto;
   display: flex;
-  align-items: center;
+  padding-top: 10px;
   white-space: pre-wrap;
 `;
 
