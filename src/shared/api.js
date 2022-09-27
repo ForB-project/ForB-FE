@@ -43,10 +43,10 @@ export const AccountAPI = {
   logout: () => api.post("/api/auth/member/logout"),
 };
 
-export const ProflieAPI = {
-  myprofile: () => api.get("/api/auth/user/profile"),
-  otherprofile: id => api.get(`/api/auth/user/profile/${id}`),
-  modify: data => api.put("/api/auth/user/profile", data),
+export const RoadmapAPI = {
+  getStack: () => api.get("/api/roadmap/title"),
+  getCategory: titleId => api.get(`/api/roadmap/category/${titleId}`),
+  getContent: data => api.get(`/api/roadmap/${data.title}/${data.id}`),
 };
 
 export const TwitAPI = {

@@ -2,10 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { mainFirst } from "../../static";
 const RoadmapContent = props => {
+  console.log(props);
   return (
     <ContentStyled>
       <ContentImgStyled />
-      <StackStyled>{props.data.content}</StackStyled>
+
+      <StackStyled>
+        <span className="ContentTitle">{props.data.title}</span>
+        <p className="ContentDesc">{props.data.desc}</p>
+      </StackStyled>
     </ContentStyled>
   );
 };
@@ -14,7 +19,7 @@ export default RoadmapContent;
 const ContentStyled = styled.div`
   display: grid;
   width: 70%;
-  height: 15%;
+  height: 20%;
   grid-template-columns: 25% 75%;
   border: 1px solid white;
   border-radius: 10px;
@@ -30,6 +35,15 @@ const ContentImgStyled = styled.div`
 const StackStyled = styled.div`
   grid-column-start: 2;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  .ContentTitle {
+    padding-top: 5px;
+    font-size: 1.3rem;
+  }
+  .ContentDesc {
+    font-size: 1rem;
+    word-break: normal;
+  }
 `;

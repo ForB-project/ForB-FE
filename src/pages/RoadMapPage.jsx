@@ -7,7 +7,7 @@ import {
   RoadmapContent,
   Header,
 } from "../components";
-import { StackAPI } from "../shared/jsonsever";
+import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
 import { useNavigate } from "react-router-dom";
 
@@ -15,35 +15,61 @@ const RoadMap = () => {
   const navigate = useNavigate();
   //   const [closeModal, setCloseModal] = useState(false);
   const [choseStack, setChoseStack] = useState(1);
-  const [choseCategory, setChoseCategory] = useState(1);
-  const getStack = async () => {
-    return await StackAPI.gettwit();
-  };
-  const getContent = async () => {
-    return await StackAPI.getcontent();
-  };
-  const Stacklist = useQuery("Stacklist", getStack);
-  const contentlist = useQuery("contentlist", () => getContent());
-  const datalist = Stacklist.data?.data;
-  const contents = contentlist.data?.data;
-  const choesdContent = contents?.find(x => x.id === choseCategory);
+  const [choseCategory, setChoseCategory] = useState({ id: 1, title: "html" });
 
+  //Stack 불러오는 부분
+  const getStack = async () => {
+    return await RoadmapAPI.getStack();
+  };
+  const Stacklist = useQuery("Stacklist", getStack, { keepPreviousData: true });
+  const FrontStack = Stacklist.data?.data.data[0]["frontList"];
+  const BackStack = Stacklist.data?.data.data[0]["backList"];
+  const [CurrentStack, setCurrentStack] = useState(false);
+  // console.log(currentStack);
+  //StackId 이용해서 category불러오는 부분
+  const getCategory = async StackId => {
+    return await RoadmapAPI.getCategory(StackId);
+  };
+  const categoryList = useQuery(
+    ["categoryList", choseStack],
+    () => getCategory(choseStack),
+    { keepPreviousData: true }
+  );
+  const CurrentCategory = categoryList.data?.data.data;
+
+  //Content 불러오는 부분
+  const getContent = async data => {
+    return await RoadmapAPI.getContent(data);
+  };
+  const contentlistdata = useQuery(["contentList", choseCategory.id], () =>
+    getContent(choseCategory)
+  );
+  const ContentList = contentlistdata.data?.data.data[0];
+
+  //로그인 안돼있으면 홈페이지로
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
-      navigate("/first");
+      navigate("/");
     }
   }, []);
-  if (Stacklist.isLoading) return;
-  const StackOne = datalist.find(x => x.id == choseStack);
-  const CategoryList = StackOne?.categorylist;
-  console.log(CategoryList);
 
+  if (Stacklist.isLoading) return;
+  if (categoryList.isLoading) return;
+  if (contentlistdata.isLoading) return;
   return (
     <WrapStyled>
       <Header />
       <ContainerStyled>
+        <button
+          className="ForB"
+          onClick={() => {
+            setCurrentStack(!CurrentStack);
+          }}
+        >
+          {CurrentStack ? "FE 로드맵" : "BE 로드맵"}
+        </button>
         <div className="header">
-          {datalist.map(x => {
+          {(CurrentStack ? BackStack : FrontStack)?.map(x => {
             return (
               <React.Fragment key={x.id}>
                 <RoadmapStack data={x} setChoseStack={setChoseStack} />
@@ -51,24 +77,28 @@ const RoadMap = () => {
               </React.Fragment>
             );
           })}
-          <div>다음 배울꺼는?</div>
+          <div>다음 배울 거는?</div>
         </div>
         <div className="hr">hr</div>
         <BodyStyled>
           <div className="category">
-            {CategoryList?.map(x => {
+            {CurrentCategory?.map(x => {
               return (
-                <RoadmapCategory
-                  key={x.id}
-                  data={x}
-                  setChoseCategory={setChoseCategory}
-                />
+                <React.Fragment key={x.id}>
+                  <RoadmapCategory
+                    data={x}
+                    setChoseCategory={setChoseCategory}
+                  />
+                </React.Fragment>
               );
             })}
           </div>
           <div className="body">
-            {choesdContent?.contentlist.map((x, idx) => {
-              return <RoadmapContent key={idx} data={x} />;
+            <TitleCategoryStyled>
+              {ContentList?.title} {">"} {ContentList?.category}
+            </TitleCategoryStyled>
+            {ContentList?.contentList.map((x, idx) => {
+              return <RoadmapContent key={x.id} data={x} />;
             })}
           </div>
         </BodyStyled>
@@ -115,6 +145,12 @@ const ContainerStyled = styled.div`
     border: 1px solid white;
     height: 5%;
   }
+  .ForB {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    border: none;
+  }
 `;
 const BodyStyled = styled.div`
   display: grid;
@@ -131,11 +167,22 @@ const BodyStyled = styled.div`
     border: 1px solid white;
   }
   .body {
+    position: relative;
     grid-column-start: 2;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     border: 1px solid white;
+    padding-top: 30px;
   }
+`;
+
+const TitleCategoryStyled = styled.span`
+  position: absolute;
+  display: block;
+  top: 10px;
+  left: 10px;
+  width: 100%;
+  font-size: 1.2rem;
 `;

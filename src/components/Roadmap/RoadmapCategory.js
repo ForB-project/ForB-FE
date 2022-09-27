@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { RoadmapAPI } from "../../shared/api";
+import { useQuery } from "react-query";
 const RoadmapCategory = props => {
   return (
     <StackStyled
       onClick={() => {
-        props.setChoseCategory(props.data.contentid);
+        props.setChoseCategory({
+          id: props.data.id,
+          title: props.data.title.toLowerCase(),
+        });
       }}
     >
       {props.data.category}
