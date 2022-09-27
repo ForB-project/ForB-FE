@@ -72,3 +72,40 @@ export const Date = styled.div`
   margin-left: 1vw;
   height: 3vh;
 `;
+
+export const Lower = styled.div`
+  text-align: center;
+
+  margin: 1vh;
+  padding-top: 2vh;
+`;
+export const Center = styled.div`
+  border-radius: 10px;
+  border: 8px dashed black;
+  background-color: #10141b;
+  opacity: 0.95;
+
+  margin: 1vw;
+  display: inline-block;
+  width: 20vw;
+
+  font-family: "neodgm";
+`;
+export const WriteButton = styled.button`
+  border: none;
+
+  color: gray;
+  font-size: 2rem;
+  font-family: "neodgm";
+
+  width: 100%;
+  height: 5vh;
+  background: none;
+
+  cursor: pointer;
+  &:hover {
+    font-size: 2.5rem;
+    color: white;
+    opacity: 1;
+  }
+`;
