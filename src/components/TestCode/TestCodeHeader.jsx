@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { hogwart_logo } from "../../static/index";
 import { addComment } from "../../redux/modules/TestCodeSlice";
+import {MenuButton} from "../index"
 
 const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
 
   return (
     <CodeHeader>
-      <img className="Logo" src={hogwart_logo} />
+      <img className="Logo" src={hogwart_logo} onClick={()=>navigate('/')} />
       <CodeButtonLayout>
-        {codeNumber ? (
+        {/* {codeNumber ? (
           <CodeButton onClick={minusClick}>이전</CodeButton>
         ) : (
           <InvisibleButton />
@@ -42,7 +43,8 @@ const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
           </MoveRoadmapButton>
         ) : (
           <CodeButton onClick={plusClick}>다음</CodeButton>
-        )}
+        )} */}
+        <MenuButton/>
       </CodeButtonLayout>
     </CodeHeader>
   );
@@ -76,6 +78,7 @@ const CodeHeader = styled.div`
   .Logo {
     max-width: 10vh;
     max-height: 11vw;
+    cursor: pointer;
   }
 `;
 

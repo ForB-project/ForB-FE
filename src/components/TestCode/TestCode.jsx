@@ -7,40 +7,48 @@ import { GreateHall } from "../../static/index";
 import { TestCodeView, TestCodeHeader, PageNation } from "../index";
 
 const TestCode = () => {
-  const codeList = useSelector((state) => state.testCode.testCode);
+  const testCodeList = useSelector((state) => state.testCode.testCode);
+  const frontCodeList = useSelector((state) => state.testCode.frontCode);
+  const backCodeList = useSelector((state) => state.testCode.backCode);
   const [codeNumber, setCodeNumber] = useState(0);
   const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
-  const [savePracCode, setSavePracCode] = useState(codeList);
+  const [changeExampleCode, setChangeExampleCode] = useState(testCodeList);
 
-  const plusNum = (codeId) => {
-    setCodeNumber(codeId);
-    setCodePrac("코드를 입력해볼까요?");
-  };
-
-  const movePage = (codeId) =>{
+  const movePage = (codeId) => {
     setCodeNumber(codeId);
   };
+  const htmlPage = () => {
+    setChangeExampleCode(testCodeList)
+    setCodeNumber(0);
+  };
 
-  console.log(codeNumber);
+  const frontPage = () =>{
+    setChangeExampleCode(frontCodeList)
+    setCodeNumber(0);
+  };
+
+  const backPage = () =>{
+    setChangeExampleCode(backCodeList)
+    setCodeNumber(0);
+  };
 
   return (
     <CodeBackLayout>
       <TestCodeHeader
         codeNumber={codeNumber}
-        plusNum={plusNum}
-        codeList={codeList.length}
+        codeList={changeExampleCode.length}
       />
       <CodeWindow>
         <CodeInputLayout>
-          <CodeExample>{codeList[codeNumber].exampleCode}</CodeExample>
+          <CodeExample>{changeExampleCode[codeNumber].exampleCode}</CodeExample>
           <CodePractice
-            value={codePrac}
+            placeholder="코드를 입력해볼까요?"
             onChange={(e) => setCodePrac(e.target.value)}
           />
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
-      <PageNation codeNumber={codeNumber} movePage={movePage}/>
+      <PageNation movePage={movePage} htmlPage={htmlPage} frontPage={frontPage} backPage={backPage} />
     </CodeBackLayout>
   );
 };
