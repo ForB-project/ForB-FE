@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import api from "../../shared/api";
 
 const initialState = {
   quiz: [
@@ -41,49 +43,77 @@ const initialState = {
     {
       id: 6,
       quizTitle:"                 곧 다가온 마법시험..\n멍하니 허공을 응시하는 당신. 어떤생각을 하고 있을까?",
-      answerFront: "용 1000마리를 혼자서 물리치는 상상.",
-      answerBack: "마법시험을 잘 통과해서 진급하는 상상.",
+      answerFront: "용 1000마리를 혼자서 물리치는 상상.\n front",
+      answerBack: "마법시험을 잘 통과해서 진급하는 상상.\n front",
       forbCount: 0
     },
     {
       id: 7,
       quizTitle: "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야하는데, ",
-      answerFront: "성능이 다소 의심스럽지만 멋진 보석이 박힌 지팡이.",
-      answerBack: "투박하지만 날이 잘 서있는 도끼.",
+      answerFront: "성능이 다소 의심스럽지만 멋진 보석이 박힌 지팡이.\n front",
+      answerBack: "투박하지만 날이 잘 서있는 도끼.\n front",
       forbCount: 0
     },
     {
       id: 8,
       quizTitle: "화려한 마법을 쓰자 사람들의 이목이 집중되었다.",
-      answerFront: "이 상황을 즐긴다.",
-      answerBack: "관심은 좋지만 숨고싶어진다.",
+      answerFront: "이 상황을 즐긴다.\n front",
+      answerBack: "관심은 좋지만 숨고싶어진다.\n front",
       forbCount: 0
     },
     {
       id: 9,
-      quizTitle: "연금술을 이용해 펜을 날아다니는 빗자루로 바꾸는 수업,\n     빗자루가 잘 날긴하지만 펜뚜껑이 달린채다.",
-      answerFront: "뚜껑을 없애자.",
-      answerBack: "기능에는 문제가 없으니 제출하자.",
+      quizTitle: "Back1",
+      answerFront: "슬리데린",
+      answerBack: "레번클로",
       forbCount: 0
     },
-
+    {
+      id: 10,
+      quizTitle: "Back2",
+      answerFront: "슬리데린",
+      answerBack: "레번클로",
+      forbCount: 0
+    },
+    {
+      id: 11,
+      quizTitle: "Back3",
+      answerFront: "슬리데린",
+      answerBack: "레번클로",
+      forbCount: 0
+    },
   ],
+  result:[]
 };
 
-// export const __getLectureList = createAsyncThunk(
-//   "GET_LECTURE_LIST",
-//   async (payload, thunkAPI) => {
-//     const { data } = await api.get(`api/lecture`);
-//     return thunkAPI.fulfillWithValue(data);
-//   }
-// );
+export const __quizResult = createAsyncThunk(
+  "QUIZRESULT",
+  async (payload, thunkAPI) => {
+    const result = {"type":payload[0],"answer":payload[1]}
+    console.log(result);
+    const { data } = await axios.post(`http://3.38.209.226/api/test/result`,result);
+    return thunkAPI.fulfillWithValue(data);
+  }
+);
+
+export const __getResult = createAsyncThunk(
+  "GETRESULT",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    const { data } = await axios.get(`http://3.38.209.226/api/test/result`);
+    return thunkAPI.fulfillWithValue(data);
+  }
+);
 
 export const QuizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {
   },
-  extraReducers: {},
+  extraReducers: {[__getResult.fulfilled]: (state, action) => {
+    state.result = action.payload;
+  }
+},
 });
 export const {getQuizList} = QuizSlice.actions;
 export default QuizSlice.reducer;
