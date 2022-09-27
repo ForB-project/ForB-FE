@@ -1,45 +1,86 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { __quizResult } from "../../redux/modules/QuizSlice";
 
 const QuizWindow = () => {
   const [quizId, setQuizId] = useState(0);
   const [forbCount, setForbCount] = useState(0);
+  const [result, setResult] = useState([]);
   const list = useSelector((state) => state.quiz.quiz);
-  const navigate = useNavigate();
 
-  const forResult = (answer) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const forFrontBack = (answer) => {
     setQuizId(quizId + 1);
     setForbCount(answer);
   };
-  
+
   const moveResult = (answer) => {
-    navigate("/result")
+    navigate("/result");
     setForbCount(answer);
-  }
+  };
+
+  const resultFrontBack = (answer) => {
+    if (answer / 100 > answer % 100) {
+      result.push("F");
+      setForbCount(0);
+    } else {
+      result.push("B");
+      setForbCount(0);
+    }
+    setQuizId(quizId + 1);
+  };
+
+  const resultTendency = (answer) => {
+      result.push(answer);
+      dispatch(__quizResult(result));
+      navigate('/result');   
+  };
 
   return (
     <QuizWindowLayout>
-      <QuizContent>{list[quizId].quizTitle}</QuizContent>
+      <QuizContent>
+        {result.find((result) => result === "B")
+          ? list[quizId + 3].quizTitle
+          : list[quizId].quizTitle}
+      </QuizContent>
       <QuizSelect>
         <QuizButton
           onClick={() =>
-            quizId == 2
-              ? setTimeout(() => moveResult(forbCount + 1), 2000)
-              : setTimeout(() => forResult(forbCount + 1), 2000) 
+            result.find((result) => result === "F") ||
+            result.find((result) => result === "B")
+              ? quizId === 7 || quizId === 10
+                ? setTimeout(() => resultTendency(forbCount + 100), 2000)
+                : setTimeout(() => forFrontBack(forbCount + 100), 2000)
+              : quizId === 4
+              ? setTimeout(() => resultFrontBack(forbCount + 100), 2000)
+              : setTimeout(() => forFrontBack(forbCount + 100), 2000)
           }
         >
-          {list[quizId].answerFront}
+          {result.find((result) => result === "B")
+            ? list[quizId + 3].answerFront
+            : list[quizId].answerFront}
         </QuizButton>
-        <QuizButton className="leftButton"
+        <QuizButton
+          className="leftButton"
           onClick={() =>
-            quizId == 2
-              ? setTimeout(() => moveResult(forbCount -1), 2000)
-              : setTimeout(() => forResult(forbCount - 1), 2000) 
+            result.find((result) => result === "F") ||
+            result.find((result) => result === "B")
+              ? quizId === 7 || quizId === 10
+                ? setTimeout(() => resultTendency(forbCount + 1), 2000)
+                : setTimeout(() => forFrontBack(forbCount + 1), 2000)
+              : quizId === 4
+              ? setTimeout(() => resultFrontBack(forbCount + 1), 2000)
+              : setTimeout(() => forFrontBack(forbCount + 1), 2000)
           }
         >
-          {list[quizId].answerBack}
+          {result.find((result) => result === "B")
+            ? list[quizId + 3].answerBack
+            : list[quizId].answerBack}
         </QuizButton>
       </QuizSelect>
     </QuizWindowLayout>
@@ -91,10 +132,11 @@ const QuizContent = styled.div`
   border-radius: 50px;
   margin: auto;
   display: flex;
-  padding:0px 5px;
+  padding: 0px 5px;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 1px #2c2c2c;
+  white-space: pre-wrap;
+  box-shadow: 1px 5px 5px 1px black;
 `;
 
 const QuizSelect = styled.div`
@@ -111,7 +153,7 @@ const QuizButton = styled.button`
   height: calc(25em + 3vw);
   margin: auto;
   background-color: #10141b;
-  border: 9px dashed black;
+  border: 8px dashed black;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -128,7 +170,7 @@ const QuizButton = styled.button`
     color: white;
     animation: ${moving} 2s linear infinite;
   }
-  &:focus{
-    animation: ${disappear} 2s;
+  &:focus {
+    animation: ${disappear} 2.1s;
   }
 `;
