@@ -7,11 +7,14 @@ import RoadmapContent from "./Roadmap/RoadmapContent";
 import LogoutButton from "./Oauth/LogoutButton";
 import Header from "./Layout/Header";
 import TestCodeView from "./TestCode/TestCodeView";
-import TestCode from "./TestCode/TestCode"
-import PageNation from "./TestCode/CodePageNation"
-import TestCodeHeader from "./TestCode/TestCodeHeader"
-
+import TestCode from "./TestCode/TestCode";
+import PageNation from "./TestCode/CodePageNation";
+import TestCodeHeader from "./TestCode/TestCodeHeader";
+import ModalWide from "./Modal/ModalWide";
+import AddContentModal from "./Modal/AddContentModal";
 export {
+  AddContentModal,
+  ModalWide,
   LogoutButton,
   Layout,
   Modal,
@@ -19,5 +22,9 @@ export {
   RoadmapStack,
   RoadmapCategory,
   RoadmapContent,
-  Header,TestCodeView,TestCode,PageNation,TestCodeHeader
+  Header,
+  TestCodeView,
+  TestCode,
+  PageNation,
+  TestCodeHeader,
 };

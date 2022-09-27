@@ -6,6 +6,8 @@ import {
   RoadmapCategory,
   RoadmapContent,
   Header,
+  ModalWide,
+  AddContentModal,
 } from "../components";
 import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
@@ -16,7 +18,7 @@ const RoadMap = () => {
   //   const [closeModal, setCloseModal] = useState(false);
   const [choseStack, setChoseStack] = useState(1);
   const [choseCategory, setChoseCategory] = useState({ id: 1, title: "html" });
-
+  const [closeModal, setCloseModal] = useState(false);
   //Stack 불러오는 부분
   const getStack = async () => {
     return await RoadmapAPI.getStack();
@@ -41,7 +43,7 @@ const RoadMap = () => {
   const getContent = async data => {
     return await RoadmapAPI.getContent(data);
   };
-  const contentlistdata = useQuery(["contentList", choseCategory.id], () =>
+  const contentlistdata = useQuery(["contentList", choseCategory], () =>
     getContent(choseCategory)
   );
   const ContentList = contentlistdata.data?.data.data[0];
@@ -53,12 +55,20 @@ const RoadMap = () => {
     }
   }, []);
 
-  if (Stacklist.isLoading) return;
-  if (categoryList.isLoading) return;
-  if (contentlistdata.isLoading) return;
+  // if (Stacklist.isLoading) return <div>로딩중</div>;
+  // if (categoryList.isLoading) return <div>로딩중</div>;
+  // if (contentlistdata.isLoading) return <div>로딩중</div>;
   return (
     <WrapStyled>
       <Header />
+      {closeModal && (
+        <ModalWide
+          choseCategory={choseCategory}
+          closeModal={() => setCloseModal(!closeModal)}
+        >
+          <AddContentModal closeModal={() => setCloseModal(!closeModal)} />
+        </ModalWide>
+      )}
       <ContainerStyled>
         <button
           className="ForB"
@@ -66,7 +76,7 @@ const RoadMap = () => {
             setCurrentStack(!CurrentStack);
           }}
         >
-          {CurrentStack ? "FE 로드맵" : "BE 로드맵"}
+          {CurrentStack ? "FE 로드맵으로 전환" : "BE 로드맵으로 전환"}
         </button>
         <div className="header">
           {(CurrentStack ? BackStack : FrontStack)?.map(x => {
@@ -93,14 +103,18 @@ const RoadMap = () => {
               );
             })}
           </div>
-          <div className="body">
+          <ContentContainerStyled>
             <TitleCategoryStyled>
               {ContentList?.title} {">"} {ContentList?.category}
+              {" >"}
+              <button onClick={() => setCloseModal(!closeModal)}>
+                추가하기
+              </button>
             </TitleCategoryStyled>
             {ContentList?.contentList.map((x, idx) => {
               return <RoadmapContent key={x.id} data={x} />;
             })}
-          </div>
+          </ContentContainerStyled>
         </BodyStyled>
       </ContainerStyled>
     </WrapStyled>
@@ -137,25 +151,38 @@ const ContainerStyled = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    border: 1px solid black;
+
     height: 15%;
   }
   .hr {
-    width: 100%;
-    border: 1px solid white;
+    width: 90%;
+    margin: auto;
+    border-top: 1px solid rgb(230, 222, 222);
     height: 5%;
   }
   .ForB {
-    position: fixed;
+    position: absolute;
     top: 5%;
     left: 5%;
-    border: none;
+    width: 10%;
+    height: 5%;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: "neodgm";
+    color: white;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: black;
+      cursor: pointer;
+    }
   }
 `;
 const BodyStyled = styled.div`
   display: grid;
   width: 100%;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   height: 80%;
   grid-template-columns: 20% 80%;
   .category {
@@ -166,23 +193,40 @@ const BodyStyled = styled.div`
     align-items: center;
     border: 1px solid white;
   }
-  .body {
-    position: relative;
-    grid-column-start: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border: 1px solid white;
-    padding-top: 30px;
-  }
 `;
-
+const ContentContainerStyled = styled.div`
+  position: relative;
+  grid-column-start: 2;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid white;
+  padding-top: 3%;
+  width: 100%;
+`;
 const TitleCategoryStyled = styled.span`
   position: absolute;
   display: block;
   top: 10px;
   left: 10px;
-  width: 100%;
-  font-size: 1.2rem;
+  width: 90%;
+  font-size: 1.3rem;
+  button {
+    margin-left: 30px;
+    width: 150px;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
+    font-family: "neodgm";
+    font-weight: 700;
+    background-color: black;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+  }
 `;

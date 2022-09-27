@@ -47,13 +47,7 @@ export const RoadmapAPI = {
   getStack: () => api.get("/api/roadmap/title"),
   getCategory: titleId => api.get(`/api/roadmap/category/${titleId}`),
   getContent: data => api.get(`/api/roadmap/${data.title}/${data.id}`),
-};
-
-export const TwitAPI = {
-  addtwit: data => api.post(`/api/auth/twit`, data),
-  gettwit: () => api.get(`/api/twit`),
-  getonetwit: id => api.get(`/api/twit/${id}`),
-  deletetwit: id => api.delete(`/api/auth/twit/${id}`),
+  postContent: data => api.post(`/api/roadmap/${data.title}/${data.id}`, data),
 };
 
 export const CommentAPI = {

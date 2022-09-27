@@ -26,6 +26,12 @@ const StackStyled = styled.div`
   width: 70%;
   height: 5%;
   margin-top: 10px;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 10px;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: black;
+    border: none;
+    cursor: pointer;
+  }
 `;

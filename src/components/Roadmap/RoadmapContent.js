@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { mainFirst } from "../../static";
 const RoadmapContent = props => {
-  console.log(props);
   return (
     <ContentStyled>
       <ContentImgStyled />
@@ -19,16 +18,22 @@ export default RoadmapContent;
 const ContentStyled = styled.div`
   display: grid;
   width: 70%;
-  height: 20%;
-  grid-template-columns: 25% 75%;
+  height: 100px;
+  grid-template-columns: 30% 70%;
   border: 1px solid white;
   border-radius: 10px;
   margin-top: 10px;
+  &:hover {
+    border: none;
+    background-color: black;
+    cursor: pointer;
+  }
 `;
 const ContentImgStyled = styled.div`
   grid-column-start: 1;
+  border-radius: 10px;
   width: 95%;
-  height: 100%;
+  /* height: 100%; */
   background-image: url(${mainFirst});
   background-size: cover;
 `;
