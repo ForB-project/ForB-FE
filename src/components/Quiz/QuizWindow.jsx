@@ -4,37 +4,41 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { __quizResult } from "../../redux/modules/QuizSlice";
+import QuizImage from "./QuizImage";
 
 const QuizWindow = () => {
   const [quizId, setQuizId] = useState(0);
   const [forbCount, setForbCount] = useState(0);
   const [result, setResult] = useState([]);
   const list = useSelector((state) => state.quiz.quiz);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  //답변 선택 함수
   const forFrontBack = (answer) => {
     setQuizId(quizId + 1);
     setForbCount(answer);
   };
-
+  //마지막 질문 답변시 결과 페이지로 네비게이션 함수
   const moveResult = (answer) => {
     navigate("/result");
     setForbCount(answer);
   };
 
+  //프론트&백 결과 함수
   const resultFrontBack = (answer) => {
     if (answer / 100 > answer % 100) {
       result.push("F");
       setForbCount(0);
+      setQuizId(quizId + 1);
     } else {
       result.push("B");
       setForbCount(0);
+      setQuizId(quizId + 4);
     }
-    setQuizId(quizId + 1);
   };
 
+  //성향(ex:슬리데린,레번클로) 결과 함수
   const resultTendency = (answer) => {
       result.push(answer);
       dispatch(__quizResult(result));
@@ -45,7 +49,7 @@ const QuizWindow = () => {
     <QuizWindowLayout>
       <QuizContent>
         {result.find((result) => result === "B")
-          ? list[quizId + 3].quizTitle
+          ? list[quizId].quizTitle
           : list[quizId].quizTitle}
       </QuizContent>
       <QuizSelect>
@@ -62,9 +66,10 @@ const QuizWindow = () => {
           }
         >
           {result.find((result) => result === "B")
-            ? list[quizId + 3].answerFront
+            ? list[quizId].answerFront
             : list[quizId].answerFront}
         </QuizButton>
+        <QuizImage quizId={quizId} />
         <QuizButton
           className="leftButton"
           onClick={() =>
@@ -79,7 +84,7 @@ const QuizWindow = () => {
           }
         >
           {result.find((result) => result === "B")
-            ? list[quizId + 3].answerBack
+            ? list[quizId].answerBack
             : list[quizId].answerBack}
         </QuizButton>
       </QuizSelect>
@@ -118,7 +123,7 @@ const disappear = keyframes`
 `;
 
 const QuizWindowLayout = styled.div`
-  max-height: 500px;
+  height: 50vh;
   font-family: "neodgm", monospace;
   font-style: normal;
   font-size: calc(0.45em + 1vw);
@@ -140,7 +145,7 @@ const QuizContent = styled.div`
 `;
 
 const QuizSelect = styled.div`
-  width: 50vw;
+  width: 60vw;
   height: 35vh;
   display: flex;
   margin: auto;

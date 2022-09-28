@@ -14,6 +14,8 @@ import ModalWide from "./Modal/ModalWide";
 import AddContentModal from "./Modal/AddContentModal";
 import MenuButton from "./TestCode/TestCodeMenuButton";
 import RoadmapGuide from "./Roadmap/RoadmapGuide";
+import QuizImage from "./Quiz/QuizImage";
+
 export {
   RoadmapGuide,
   AddContentModal,
@@ -31,4 +33,5 @@ export {
   PageNation,
   TestCodeHeader,
   MenuButton,
+  QuizImage,
 };

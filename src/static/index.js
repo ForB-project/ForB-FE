@@ -9,6 +9,7 @@ import GreateHall from "./image/PixelGreateHall.png";
 import greathall_pixel from "./image/greathall_pixel.png";
 import Mainimg from "./image/Mainimg.png";
 import r_p from "./image/r_p.png";
+import goldBorder from "./image/goldborder.png";
 
 import cuteOwl from "./image/sample/1owl/cuteOwl.png";
 import fancyOwl from "./image/sample/1owl/fancyOwl.png";
@@ -71,4 +72,5 @@ export {
   fancyMagic4,
   archemy,
   archemy2,
+  goldBorder,
 };
