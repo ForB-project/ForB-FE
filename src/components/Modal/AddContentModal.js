@@ -9,6 +9,8 @@ const AddContentModal = props => {
   const [attachment, setAttachment] = useState(null); //파일 미리보기
   const [fileZero, setFileZero] = useState(null); //files의 첫번째 파일보낼때씀
   const [inputs, onChange] = useInput(null);
+  const choseCategory = props.choseCategory;
+
   const onFileChange = event => {
     const files = event.target.files;
     const theFile = files[0];
@@ -34,37 +36,35 @@ const AddContentModal = props => {
     props.closeModal();
   }
   const AddContent = async data => {
-    return await RoadmapAPI.postContent(data);
+    const res = await RoadmapAPI.postContent(choseCategory, data);
+    return res;
   };
   const { mutate } = useMutation(AddContent, {
     onSuccess: res => {},
   });
   // value들 서버로 보내기
-  //   const onSubmiHandle = e => {
-  //     e.preventDefault();
-  //     const formData = new FormData();
-  //     formData.append("file", fileZero);
+  const onSubmiHandle = () => {
+    // e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", fileZero);
+    const value = {
+      title: inputs.title,
+      desc: inputs.desc,
+      link: inputs.link,
+    };
 
-  //     const value = {
-  //       title: inputs.title,
-  //       link: inputs.link,
-  //       desc: inputs.desc,
-  //     };
-
-  //     const blob = new Blob([JSON.stringify(value)], {
-  //       type: "application/json",
-  //     });
-
-  //     formData.append("contentResponseDto", blob);
-  //     // for (let value of formData.values()) {
-  //     //   console.log(value);
-  //     // } 값 확인하기
-
-  //     mutate(formData);
-  //   };
+    const blob = new Blob([JSON.stringify(value)], {
+      type: "application/json",
+    });
+    formData.append("contentResponseDto", blob);
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // } //값 확인하기
+    mutate(formData);
+  };
   return (
     <>
-      <form>
+      <>
         <Inputplaceholer
           text="URL을 입력해주세요"
           name="link"
@@ -80,7 +80,7 @@ const AddContentModal = props => {
           name="desc"
           onChange={onChange}
         />
-      </form>
+      </>
       <BoxStyled>
         {attachment ? (
           <div className="ImgBox">
@@ -100,7 +100,14 @@ const AddContentModal = props => {
           </>
         )}
         <ButtonBoxStyled>
-          <button className="PostContent">저장하기</button>
+          <button
+            className="PostContent"
+            onClick={() => {
+              onSubmiHandle();
+            }}
+          >
+            저장하기
+          </button>
           <button className="CloseButton" onClick={closeModal}>
             Close
           </button>

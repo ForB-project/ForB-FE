@@ -62,11 +62,11 @@ const RoadMap = () => {
     <WrapStyled>
       <Header />
       {closeModal && (
-        <ModalWide
-          choseCategory={choseCategory}
-          closeModal={() => setCloseModal(!closeModal)}
-        >
-          <AddContentModal closeModal={() => setCloseModal(!closeModal)} />
+        <ModalWide closeModal={() => setCloseModal(!closeModal)}>
+          <AddContentModal
+            choseCategory={choseCategory}
+            closeModal={() => setCloseModal(!closeModal)}
+          />
         </ModalWide>
       )}
       <ContainerStyled>
