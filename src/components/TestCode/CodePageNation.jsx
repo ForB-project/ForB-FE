@@ -5,6 +5,7 @@ const PageNation = ({movePage,frontPage,backPage,htmlPage}) => {
 
   return (
 <PageNationLayout>
+  <FrontBackButton className="runButton">run</FrontBackButton>
     <PageNationNumLayout>
       <PageNationNum onClick={()=>movePage(0)}>1</PageNationNum>
       <PageNationNum onClick={()=>movePage(1)}>2</PageNationNum>
@@ -51,14 +52,8 @@ font-family: "neodgm", monospace;
   opacity: 0.6;
   color: white;
   cursor: pointer;
-&:hover{
-    opacity: 1;
-  }
-  &:focus{
-    opacity: 1;
-  }
-`;
-
+  `;
+  
 const FrontBackButton = styled.button`
  width: 5vw;
   min-width: 42px;
@@ -78,6 +73,10 @@ const FrontBackButton = styled.button`
   font-weight: 500;
   color: white;
   cursor: pointer;
+  .runButton{
+    margin:-0.1vh 11vw -2vh 0px ;
+  }
 `;
+
 
 
