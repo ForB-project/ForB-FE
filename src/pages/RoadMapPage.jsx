@@ -13,17 +13,19 @@ import {
 import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
 import { useNavigate } from "react-router-dom";
-
+import { useInView } from "react-intersection-observer";
 const RoadMap = () => {
   const navigate = useNavigate();
-  //   const [closeModal, setCloseModal] = useState(false);
+  const [ref, inView] = useInView();
   const [choseStack, setChoseStack] = useState(1);
+  const [pageParam, setPageParam] = useState(1);
   const [choseCategory, setChoseCategory] = useState({
     id: 1,
     title: "html",
-    page: 1,
+    page: pageParam,
   });
   const [closeModal, setCloseModal] = useState(false);
+  const [contentList, setContentList] = useState(null);
   //Stack 불러오는 부분
   const getStack = async () => {
     return await RoadmapAPI.getStack();
@@ -32,7 +34,7 @@ const RoadMap = () => {
   const FrontStack = Stacklist.data?.data.data[0]["frontList"];
   const BackStack = Stacklist.data?.data.data[0]["backList"];
   const [CurrentStack, setCurrentStack] = useState(false);
-  // console.log(currentStack);
+
   //StackId 이용해서 category불러오는 부분
   const getCategory = async StackId => {
     return await RoadmapAPI.getCategory(StackId);
@@ -53,15 +55,25 @@ const RoadMap = () => {
   const contentlistdata = useQuery(["contentList", choseCategory], () =>
     getContent(choseCategory)
   );
-  const ContentList = contentlistdata.data?.data.data[0];
-
+  const ContentData = contentlistdata.data?.data.data[0];
+  const ContentAddList = ContentData?.contentList;
+  useEffect(() => {
+    setContentList({ ...contentList, ...ContentAddList });
+  }, []);
+  // console.log(contentList);
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
       navigate("/");
     }
   }, []);
-
+  useEffect(() => {
+    if (!inView) {
+      return;
+    } else {
+      console.log("inview");
+    }
+  }, []);
   // if (Stacklist.isLoading) return <div>로딩중</div>;
   // if (categoryList.isLoading) return <div>로딩중</div>;
   // if (contentlistdata.isLoading) return <div>로딩중</div>;
@@ -115,7 +127,7 @@ const RoadMap = () => {
           <ContentContainerStyled>
             <TitleCategoryStyled>
               <div className="centerItem">
-                {ContentList?.title} {">"} {ContentList?.category}
+                {ContentData?.title} {">"} {ContentData?.category}
                 {" >"}
                 <button onClick={() => setCloseModal(!closeModal)}>
                   추가하기
@@ -123,8 +135,12 @@ const RoadMap = () => {
               </div>
             </TitleCategoryStyled>
             <div className="ContentBorder">
-              {ContentList?.contentList.map((x, idx) => {
-                return <RoadmapContent key={x.id} data={x} />;
+              {contentList?.contentList?.map((x, idx) => {
+                if (idx % 6 === 5) {
+                  return <RoadmapContent ref={ref} key={x.id} data={x} />;
+                } else {
+                  return <RoadmapContent key={x.id} data={x} />;
+                }
               })}
             </div>
           </ContentContainerStyled>
