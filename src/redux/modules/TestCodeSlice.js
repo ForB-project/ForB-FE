@@ -12,21 +12,21 @@ const initialState = {
     }],
     frontCode:[
       {
-      id: 0,
+      id: 2,
       exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java Script 문제1',
     },
     {
-      id: 1,
+      id: 3,
       exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java Script 문제2',
     }
     ],
     backCode:[
     {
-      id: 0,
-      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java 문제1',
+      id: 4,
+      exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n int money = 2000;\n boolean hasCard = true;\n\n if (money>=3000 || hasCard) {\n      System.out.println("택시 탑승 가능");\n} else{\n     System.out.println("걸어가라");\n}',
     },
     {
-      id: 1,
+      id: 5,
       exampleCode: '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n\n\n\n Java 문제2',
     }
   ]

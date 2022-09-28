@@ -7,10 +7,11 @@ import RoadmapContent from "./Roadmap/RoadmapContent";
 import LogoutButton from "./Oauth/LogoutButton";
 import Header from "./Layout/Header";
 import TestCodeView from "./TestCode/TestCodeView";
-import TestCode from "./TestCode/TestCode"
-import PageNation from "./TestCode/CodePageNation"
-import TestCodeHeader from "./TestCode/TestCodeHeader"
+import TestCode from "./TestCode/TestCode";
+import PageNation from "./TestCode/CodePageNation";
+import TestCodeHeader from "./TestCode/TestCodeHeader";
 import MenuButton from "./TestCode/TestCodeMenuButton";
+import QuizImage from "./Quiz/QuizImage";
 
 export {
   LogoutButton,
@@ -20,5 +21,11 @@ export {
   RoadmapStack,
   RoadmapCategory,
   RoadmapContent,
-  Header,TestCodeView,TestCode,PageNation,TestCodeHeader,MenuButton
+  Header,
+  TestCodeView,
+  TestCode,
+  PageNation,
+  TestCodeHeader,
+  MenuButton,
+  QuizImage,
 };

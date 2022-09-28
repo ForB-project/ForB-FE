@@ -9,6 +9,7 @@ import GreateHall from "./image/PixelGreateHall.png";
 import greathall_pixel from "./image/greathall_pixel.png";
 import Mainimg from "./image/Mainimg.png";
 import r_p from "./image/r_p.png";
+import goldBorder from "./image/goldborder.png";
 
 import cuteOwl from "./image/sample/1owl/cuteOwl.png";
 import fancyOwl from "./image/sample/1owl/fancyOwl.png";
@@ -31,9 +32,9 @@ import dragonCastle3 from "./image/sample/7dragon/dragonCastle3.png";
 import fancyMagic from "./image/sample/8spell/fancyMagic.png";
 import fancyMagic2 from "./image/sample/8spell/fancyMagic2.png";
 import fancyMagic3 from "./image/sample/8spell/fancyMagic3.png";
-import fancyMagic4 from "./image/sample/8spell/fancyMagic5.png";
 import archemy from "./image/sample/9archemy/archemy.png";
 import archemy2 from "./image/sample/9archemy/archemy2.png";
+
 
 export {
   Mainimg,
@@ -68,7 +69,7 @@ export {
   fancyMagic,
   fancyMagic2,
   fancyMagic3,
-  fancyMagic4,
   archemy,
   archemy2,
+  goldBorder
 };

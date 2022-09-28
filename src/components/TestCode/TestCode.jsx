@@ -32,6 +32,7 @@ const TestCode = () => {
     setCodeNumber(0);
   };
 
+  console.log(codePrac.split('='));
   return (
     <CodeBackLayout>
       <TestCodeHeader
@@ -116,3 +117,5 @@ const CodePractice = styled.textarea`
   color: white;
   resize: none;
 `;
+
+
