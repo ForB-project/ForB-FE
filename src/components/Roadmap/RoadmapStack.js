@@ -26,7 +26,8 @@ const StackStyled = styled.div`
   transition: all 0.2s ease;
   &:hover {
     background-color: black;
-    border: none;
+    border: 1px solid black;
+
     cursor: pointer;
   }
 `;

@@ -8,6 +8,7 @@ import {
   Header,
   ModalWide,
   AddContentModal,
+  RoadmapGuide,
 } from "../components";
 import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
@@ -17,7 +18,11 @@ const RoadMap = () => {
   const navigate = useNavigate();
   //   const [closeModal, setCloseModal] = useState(false);
   const [choseStack, setChoseStack] = useState(1);
-  const [choseCategory, setChoseCategory] = useState({ id: 1, title: "html" });
+  const [choseCategory, setChoseCategory] = useState({
+    id: 1,
+    title: "html",
+    page: 1,
+  });
   const [closeModal, setCloseModal] = useState(false);
   //Stack 불러오는 부분
   const getStack = async () => {
@@ -41,7 +46,9 @@ const RoadMap = () => {
 
   //Content 불러오는 부분
   const getContent = async data => {
-    return await RoadmapAPI.getContent(data);
+    const res = await RoadmapAPI.getContent(data);
+    console.log(res);
+    return res;
   };
   const contentlistdata = useQuery(["contentList", choseCategory], () =>
     getContent(choseCategory)
@@ -89,7 +96,9 @@ const RoadMap = () => {
           })}
           <div>다음 배울 거는?</div>
         </div>
-        <div className="hr">hr</div>
+        <div className="hr">
+          <RoadmapGuide />
+        </div>
         <BodyStyled>
           <div className="category">
             {CurrentCategory?.map(x => {
@@ -105,15 +114,19 @@ const RoadMap = () => {
           </div>
           <ContentContainerStyled>
             <TitleCategoryStyled>
-              {ContentList?.title} {">"} {ContentList?.category}
-              {" >"}
-              <button onClick={() => setCloseModal(!closeModal)}>
-                추가하기
-              </button>
+              <div className="centerItem">
+                {ContentList?.title} {">"} {ContentList?.category}
+                {" >"}
+                <button onClick={() => setCloseModal(!closeModal)}>
+                  추가하기
+                </button>
+              </div>
             </TitleCategoryStyled>
-            {ContentList?.contentList.map((x, idx) => {
-              return <RoadmapContent key={x.id} data={x} />;
-            })}
+            <div className="ContentBorder">
+              {ContentList?.contentList.map((x, idx) => {
+                return <RoadmapContent key={x.id} data={x} />;
+              })}
+            </div>
           </ContentContainerStyled>
         </BodyStyled>
       </ContainerStyled>
@@ -159,6 +172,9 @@ const ContainerStyled = styled.div`
     margin: auto;
     border-top: 1px solid rgb(230, 222, 222);
     height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .ForB {
     position: absolute;
@@ -175,6 +191,7 @@ const ContainerStyled = styled.div`
     transition: all 0.2s ease;
     &:hover {
       background-color: black;
+      border: 1px solid black;
       cursor: pointer;
     }
   }
@@ -198,21 +215,42 @@ const ContentContainerStyled = styled.div`
   position: relative;
   grid-column-start: 2;
   overflow: auto;
-  display: flex;
+  display: grid;
+  grid-template-rows: 3% 97%;
+  /* display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: center; */
   border: 1px solid white;
-  padding-top: 3%;
   width: 100%;
+  .ContentBorder {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    grid-row-start: 2;
+  }
 `;
 const TitleCategoryStyled = styled.span`
-  position: absolute;
-  display: block;
-  top: 10px;
-  left: 10px;
-  width: 90%;
+  position: fixed;
+
+  grid-row-start: 1;
+  margin: auto;
+  width: 75%;
+  height: 3%;
   font-size: 1.3rem;
+  z-index: 5;
+
+  .centerItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100, 0.9);
+  }
   button {
     margin-left: 30px;
     width: 150px;
@@ -224,7 +262,8 @@ const TitleCategoryStyled = styled.span`
     background-color: black;
     font-size: 1.2rem;
     &:hover {
-      background-color: black;
+      background-color: #424040;
+
       color: white;
       cursor: pointer;
     }

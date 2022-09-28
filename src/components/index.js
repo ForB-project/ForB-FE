@@ -13,7 +13,9 @@ import TestCodeHeader from "./TestCode/TestCodeHeader";
 import ModalWide from "./Modal/ModalWide";
 import AddContentModal from "./Modal/AddContentModal";
 import MenuButton from "./TestCode/TestCodeMenuButton";
+import RoadmapGuide from "./Roadmap/RoadmapGuide";
 export {
+  RoadmapGuide,
   AddContentModal,
   ModalWide,
   LogoutButton,

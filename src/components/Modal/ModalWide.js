@@ -19,7 +19,7 @@ function ModalWide(props) {
   }, []);
 
   return (
-    <ModalStyled onClick={closeModal}>
+    <ModalStyled>
       <div className="modalBody" onClick={e => e.stopPropagation()}>
         {props.children}
       </div>

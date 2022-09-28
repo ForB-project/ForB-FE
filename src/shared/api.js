@@ -46,9 +46,10 @@ export const AccountAPI = {
 export const RoadmapAPI = {
   getStack: () => api.get("/api/roadmap/title"),
   getCategory: titleId => api.get(`/api/roadmap/category/${titleId}`),
-  getContent: data => api.get(`/api/roadmap/${data.title}/${data.id}`),
+  getContent: data =>
+    api.get(`/api/roadmap/${data.title}/${data.id}?page=${data.page}&size=6`),
   postContent: (choseCategory, data) =>
-    api.post(`/api/roadmap/${choseCategory.title}/${choseCategory.id}`, data),
+    api.put(`/api/roadmap/${choseCategory.title}/${choseCategory.id}`, data),
 };
 
 export const CommentAPI = {

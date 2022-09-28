@@ -9,6 +9,7 @@ const RoadmapCategory = props => {
         props.setChoseCategory({
           id: props.data.id,
           title: props.data.title.toLowerCase(),
+          page: 1,
         });
       }}
     >
@@ -31,7 +32,7 @@ const StackStyled = styled.div`
   transition: all 0.1s ease;
   &:hover {
     background-color: black;
-    border: none;
+    border: 1px solid black;
     cursor: pointer;
   }
 `;

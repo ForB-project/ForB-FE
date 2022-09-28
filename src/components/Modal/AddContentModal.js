@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import React, { useState } from "react";
 import { AiOutlinePicture } from "react-icons/ai";
 import { Inputplaceholer } from "../../elem";
 import { RoadmapAPI } from "../../shared/api";
 import useInput from "../../hooks/useInput";
+import { Logo } from "../../static/index";
 const AddContentModal = props => {
   const [attachment, setAttachment] = useState(null); //파일 미리보기
   const [fileZero, setFileZero] = useState(null); //files의 첫번째 파일보낼때씀
   const [inputs, onChange] = useInput(null);
+  const [ButtonDisable, setButtonDisable] = useState(false);
   const choseCategory = props.choseCategory;
 
   const onFileChange = event => {
@@ -39,14 +41,27 @@ const AddContentModal = props => {
     const res = await RoadmapAPI.postContent(choseCategory, data);
     return res;
   };
+  const queryClient = useQueryClient();
   const { mutate } = useMutation(AddContent, {
-    onSuccess: res => {},
+    onSuccess: res => {
+      queryClient.invalidateQueries(["contentList", choseCategory]);
+      closeModal();
+    },
   });
   // value들 서버로 보내기
+
   const onSubmiHandle = () => {
-    // e.preventDefault();
+    setButtonDisable(true);
     const formData = new FormData();
-    formData.append("file", fileZero);
+    if (!fileZero) {
+      const noimg = new Blob([JSON.stringify(fileZero)], {
+        type: "application/json",
+      });
+      formData.append("file", noimg);
+    } else {
+      formData.append("file", fileZero);
+    }
+
     const value = {
       title: inputs.title,
       desc: inputs.desc,
@@ -56,11 +71,12 @@ const AddContentModal = props => {
     const blob = new Blob([JSON.stringify(value)], {
       type: "application/json",
     });
-    formData.append("contentResponseDto", blob);
+    formData.append("contentReqDto", blob);
     // for (let value of formData.values()) {
     //   console.log(value);
     // } //값 확인하기
     mutate(formData);
+    setButtonDisable(false);
   };
   return (
     <>
@@ -105,6 +121,7 @@ const AddContentModal = props => {
             onClick={() => {
               onSubmiHandle();
             }}
+            disabled={ButtonDisable}
           >
             저장하기
           </button>
