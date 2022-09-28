@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { PageTitle } from "../elem/index";
 import { LowerResult, BodyResult } from "../components/Result/index";
 import { GreateHall } from "../static/index";
-import { greathall_pixel } from "../static/index";
 
 const Result = () => {
   return (
