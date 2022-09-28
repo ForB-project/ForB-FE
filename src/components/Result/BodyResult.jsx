@@ -28,8 +28,7 @@ const BodyResult = () => {
           <P1>.</P1>
           <p></p>
           <div>
-            자네는 상당히 지능적이고, 독창적인 면모를 지닌 개발자의 특성을
-            지니고 있어.
+            자네는 상당히 지능적이고, 독창적인 면모를 지니고 있는 듯 하군.
             <P1>.</P1>
             <p>보통사람은 생각하지 못하는, 더 효율적인 방법을 고민하는</p>
             <p>
@@ -44,7 +43,13 @@ const BodyResult = () => {
           </div>
         </Bodystyled>
         <Footerstyled>
-          <div> 보완점 / 상성 / 2지망</div>
+          <div>
+            <p>
+              ex) 자네는 그리핀도르의 리더쉽을 갖춘 프론트 개발자와 잘 어울릴 것
+              같으니 참고하게.
+            </p>
+            ( 보완점 / 상성 / 2지망 ? )
+          </div>
         </Footerstyled>
       </ContentsStyled>
     </BodyStyled>
@@ -108,11 +113,11 @@ const Titlestyled = styled.div`
 const Bodystyled = styled.div`
   /* border: 1px dashed red; */
 
-  margin-left: 17vw;
+  margin-left: 15vw;
   padding: 1vh;
   height: 40vh;
 
-  font-size: 2.2rem;
+  font-size: 3rem;
   text-align: left;
 `;
 const P1 = styled.div`
@@ -126,6 +131,6 @@ const Footerstyled = styled.div`
   /* margin: 1vh; */
   height: 5vh;
 
-  font-size: 2.2rem;
-  line-height: 5vh;
+  font-size: 2.5rem;
+  line-height: 2vh;
 `;
