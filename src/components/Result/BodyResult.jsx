@@ -58,6 +58,9 @@ const BodyStyled = styled.div`
 
   border-radius: 50px;
   background-color: black;
+  /* background-image: url(${r_p}); */
+  /* background-size: contain; */
+
   /* background-color: white; */
   opacity: 0.95;
   transition: 0.5s;
@@ -82,20 +85,19 @@ const Topstyled = styled.div`
   /* border: 1px dashed black; */
 
   margin: 1vh;
-  height: 17vh;
-  line-height: 17vh;
+  height: 10vh;
+  line-height: 10vh;
 
-  font-size: 7rem;
+  font-size: 4rem;
 `;
 const Emblem = styled.div`
   /* border: 1px dashed green; */
 
   display: inline-block;
   float: left;
-  margin-left: 2vw;
+  opacity: 0.5;
 
-  width: 12vw;
-  height: 17vh;
+  width: 300px;
 `;
 const Titlestyled = styled.div`
   /* border: 1px dashed blue; */
@@ -110,7 +112,7 @@ const Bodystyled = styled.div`
   padding: 1vh;
   height: 40vh;
 
-  font-size: 3rem;
+  font-size: 2.2rem;
   text-align: left;
 `;
 const P1 = styled.div`
@@ -124,6 +126,6 @@ const Footerstyled = styled.div`
   /* margin: 1vh; */
   height: 5vh;
 
-  font-size: 3rem;
+  font-size: 2.2rem;
   line-height: 5vh;
 `;
