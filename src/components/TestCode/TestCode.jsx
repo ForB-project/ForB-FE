@@ -13,36 +13,33 @@ const TestCode = () => {
   const backCodeList = useSelector((state) => state.testCode.backCode);
   const [codeNumber, setCodeNumber] = useState(0);
   const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
-  const [changeExampleCode, setChangeExampleCode] = useState(testCodeList);
+  const [exampleCode, setExampleCode] = useState(testCodeList);
 
   const movePage = (codeId) => {
     setCodeNumber(codeId);
   };
   const htmlPage = () => {
-    setChangeExampleCode(testCodeList)
+    setExampleCode(testCodeList);
     setCodeNumber(0);
   };
 
-  const frontPage = () =>{
-    setChangeExampleCode(frontCodeList)
+  const frontPage = () => {
+    setExampleCode(frontCodeList);
     setCodeNumber(0);
   };
 
-  const backPage = () =>{
-    setChangeExampleCode(backCodeList)
+  const backPage = () => {
+    setExampleCode(backCodeList);
     setCodeNumber(0);
   };
-
-  console.log(codePrac.split((/=|;/)),typeof(Boolean(codePrac.split((/=|;/)))));
+  console.log(exampleCode);
+  console.log(codePrac.split(/=|;/), typeof Boolean(codePrac.split(/=|;/)));
   return (
     <CodeBackLayout>
-      <TestCodeHeader
-        codeNumber={codeNumber}
-        codeList={changeExampleCode.length}
-      />
+      <TestCodeHeader codeNumber={codeNumber} codeList={exampleCode.length} />
       <CodeWindow>
         <CodeInputLayout>
-          <CodeExample>{changeExampleCode[codeNumber].exampleCode}</CodeExample>
+          <CodeExample>{exampleCode[codeNumber].exampleCode}</CodeExample>
           <CodePractice
             placeholder="코드를 입력해볼까요?"
             onChange={(e) => setCodePrac(e.target.value)}
@@ -50,7 +47,14 @@ const TestCode = () => {
         </CodeInputLayout>
         <TestCodeView codePrac={codePrac} />
       </CodeWindow>
-      <PageNation movePage={movePage} htmlPage={htmlPage} frontPage={frontPage} backPage={backPage} />
+      <PageNation
+        movePage={movePage}
+        htmlPage={htmlPage}
+        frontPage={frontPage}
+        backPage={backPage}
+        exampleCode={exampleCode}
+        codePrac={codePrac}
+      />
     </CodeBackLayout>
   );
 };
@@ -118,5 +122,3 @@ const CodePractice = styled.textarea`
   color: white;
   resize: none;
 `;
-
-

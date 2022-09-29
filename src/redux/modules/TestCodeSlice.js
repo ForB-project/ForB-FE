@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import {api} from "../../shared/api";
 
 const initialState = {
     testCode: [
@@ -39,6 +40,20 @@ const initialState = {
 //     return thunkAPI.fulfillWithValue(data);
 //   }
 // );
+
+export const __sendPracCode = createAsyncThunk(
+  "QUIZRESULT",
+  async (payload, thunkAPI) => {
+    const result = { type: payload[0], answer: payload[1] };
+    console.log(result);
+    const { data } = await api.post(
+      `/api/codes`,
+      result
+    );
+    
+    return thunkAPI.fulfillWithValue(data);
+  }
+);
 
 export const TestCodeSlice = createSlice({
   name: "testCode",
