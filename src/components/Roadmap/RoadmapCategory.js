@@ -6,10 +6,11 @@ const RoadmapCategory = props => {
   return (
     <StackStyled
       onClick={() => {
+        props.setContentList([]);
+        props.setPageParam(1);
         props.setChoseCategory({
           id: props.data.id,
           title: props.data.title.toLowerCase(),
-          page: 1,
         });
       }}
     >

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/index";
 import { QueryClient, QueryClientProvider } from "react-query";
-
+import { ReactQueryDevtools } from "react-query/devtools";
 import {
   Mainpage,
   RoadMap,
@@ -29,6 +29,7 @@ function App() {
           <Route path="/testcode" element={<TestCodePage />} />
         </Routes>
       </Layout>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }

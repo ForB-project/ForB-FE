@@ -17,16 +17,13 @@ import { useInView } from "react-intersection-observer";
 const RoadMap = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView();
-  const [choseStack, setChoseStack] = useState(1);
+
   const [pageParam, setPageParam] = useState(1);
-  const [choseCategory, setChoseCategory] = useState({
-    id: 1,
-    title: "html",
-    page: pageParam,
-  });
+
   const [closeModal, setCloseModal] = useState(false);
-  const [contentList, setContentList] = useState(null);
+
   //Stack 불러오는 부분
+
   const getStack = async () => {
     return await RoadmapAPI.getStack();
   };
@@ -36,6 +33,7 @@ const RoadMap = () => {
   const [CurrentStack, setCurrentStack] = useState(false);
 
   //StackId 이용해서 category불러오는 부분
+  const [choseStack, setChoseStack] = useState(1);
   const getCategory = async StackId => {
     return await RoadmapAPI.getCategory(StackId);
   };
@@ -47,20 +45,29 @@ const RoadMap = () => {
   const CurrentCategory = categoryList.data?.data.data;
 
   //Content 불러오는 부분
-  const getContent = async data => {
-    const res = await RoadmapAPI.getContent(data);
-    console.log(res);
+  const [choseCategory, setChoseCategory] = useState({
+    id: 1,
+    title: "html",
+  });
+  const [contentList, setContentList] = useState([]);
+  const getContent = async (data, page) => {
+    const res = await RoadmapAPI.getContent(data, page);
+
     return res;
   };
-  const contentlistdata = useQuery(["contentList", choseCategory], () =>
-    getContent(choseCategory)
+  const contentlistdata = useQuery(
+    ["contentList", choseCategory, pageParam],
+    () => getContent(choseCategory, pageParam)
   );
   const ContentData = contentlistdata.data?.data.data[0];
-  const ContentAddList = ContentData?.contentList;
+  const AddList = ContentData?.contentList;
+
   useEffect(() => {
-    setContentList({ ...contentList, ...ContentAddList });
-  }, []);
-  // console.log(contentList);
+    if (AddList) {
+      setContentList([...contentList, ...AddList]);
+    }
+  }, [AddList, pageParam]);
+
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
@@ -70,10 +77,10 @@ const RoadMap = () => {
   useEffect(() => {
     if (!inView) {
       return;
-    } else {
-      console.log("inview");
     }
-  }, []);
+    setPageParam(pageParam + 1);
+  }, [inView]);
+
   // if (Stacklist.isLoading) return <div>로딩중</div>;
   // if (categoryList.isLoading) return <div>로딩중</div>;
   // if (contentlistdata.isLoading) return <div>로딩중</div>;
@@ -98,9 +105,9 @@ const RoadMap = () => {
           {CurrentStack ? "FE 로드맵으로 전환" : "BE 로드맵으로 전환"}
         </button>
         <div className="header">
-          {(CurrentStack ? BackStack : FrontStack)?.map(x => {
+          {(CurrentStack ? BackStack : FrontStack)?.map((x, idx) => {
             return (
-              <React.Fragment key={x.id}>
+              <React.Fragment key={idx}>
                 <RoadmapStack data={x} setChoseStack={setChoseStack} />
                 <p>{`=>`}</p>
               </React.Fragment>
@@ -113,12 +120,14 @@ const RoadMap = () => {
         </div>
         <BodyStyled>
           <div className="category">
-            {CurrentCategory?.map(x => {
+            {CurrentCategory?.map((x, idx) => {
               return (
-                <React.Fragment key={x.id}>
+                <React.Fragment key={idx}>
                   <RoadmapCategory
                     data={x}
                     setChoseCategory={setChoseCategory}
+                    setContentList={setContentList}
+                    setPageParam={setPageParam}
                   />
                 </React.Fragment>
               );
@@ -135,11 +144,11 @@ const RoadMap = () => {
               </div>
             </TitleCategoryStyled>
             <div className="ContentBorder">
-              {contentList?.contentList?.map((x, idx) => {
-                if (idx % 6 === 5) {
-                  return <RoadmapContent ref={ref} key={x.id} data={x} />;
+              {contentList?.map((x, idx) => {
+                if (idx % 7 === 6) {
+                  return <RoadmapContent ref={ref} key={idx} data={x} />;
                 } else {
-                  return <RoadmapContent key={x.id} data={x} />;
+                  return <RoadmapContent key={idx} data={x} />;
                 }
               })}
             </div>

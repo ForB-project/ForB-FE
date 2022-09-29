@@ -1,28 +1,47 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { Logo, mainFirst } from "../../static";
-const RoadmapContent = props => {
+import { LikeAPI } from "../../shared/api";
+import { useMutation } from "react-query";
+const RoadmapContent = forwardRef((props, ref) => {
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
     window.open(props.data.link, "_blank");
   }
-  return (
-    <ContentStyled>
-      <ContentImgStyled
-        thumbnail={thumbnail}
-        onClick={() => {
-          ContentHref();
-        }}
-      />
 
-      <StackStyled>
-        <span className="ContentTitle">{props.data.title}</span>
-        <p className="ContentDesc">{props.data.desc}</p>
-      </StackStyled>
-      <div className="LikeContent">하트</div>
-    </ContentStyled>
+  const contentLike = async contentId => {
+    const res = await LikeAPI.togglelike(contentId);
+    console.log(res);
+    return res;
+  };
+  const toggleLike = useMutation(contentLike);
+  return (
+    <>
+      <ContentStyled>
+        <ContentImgStyled
+          thumbnail={thumbnail}
+          onClick={() => {
+            ContentHref();
+          }}
+        />
+
+        <StackStyled>
+          <span className="ContentTitle">{props.data.title}</span>
+          <p className="ContentDesc">{props.data.desc}</p>
+        </StackStyled>
+        <div
+          className="LikeContent"
+          onClick={() => {
+            contentLike(props.data.id);
+          }}
+        >
+          하트
+        </div>
+      </ContentStyled>
+      <div ref={ref}></div>
+    </>
   );
-};
+});
 
 export default RoadmapContent;
 const ContentStyled = styled.div`
