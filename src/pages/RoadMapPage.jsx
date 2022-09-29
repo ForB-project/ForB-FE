@@ -6,71 +6,153 @@ import {
   RoadmapCategory,
   RoadmapContent,
   Header,
+  ModalWide,
+  AddContentModal,
+  RoadmapGuide,
 } from "../components";
-import { StackAPI } from "../shared/jsonsever";
+import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
 import { useNavigate } from "react-router-dom";
-
+import { useInView } from "react-intersection-observer";
 const RoadMap = () => {
   const navigate = useNavigate();
-  //   const [closeModal, setCloseModal] = useState(false);
-  const [choseStack, setChoseStack] = useState(1);
-  const [choseCategory, setChoseCategory] = useState(1);
+  const [ref, inView] = useInView();
+
+  const [pageParam, setPageParam] = useState(1);
+
+  const [closeModal, setCloseModal] = useState(false);
+
+  //Stack 불러오는 부분
+
   const getStack = async () => {
-    return await StackAPI.gettwit();
+    return await RoadmapAPI.getStack();
   };
-  const getContent = async () => {
-    return await StackAPI.getcontent();
+  const Stacklist = useQuery("Stacklist", getStack, { keepPreviousData: true });
+  const FrontStack = Stacklist.data?.data.data[0]["frontList"];
+  const BackStack = Stacklist.data?.data.data[0]["backList"];
+  const [CurrentStack, setCurrentStack] = useState(false);
+
+  //StackId 이용해서 category불러오는 부분
+  const [choseStack, setChoseStack] = useState(1);
+  const getCategory = async StackId => {
+    return await RoadmapAPI.getCategory(StackId);
   };
-  const Stacklist = useQuery("Stacklist", getStack);
-  const contentlist = useQuery("contentlist", () => getContent());
-  const datalist = Stacklist.data?.data;
-  const contents = contentlist.data?.data;
-  const choesdContent = contents?.find(x => x.id === choseCategory);
+  const categoryList = useQuery(
+    ["categoryList", choseStack],
+    () => getCategory(choseStack),
+    { keepPreviousData: true }
+  );
+  const CurrentCategory = categoryList.data?.data.data;
+
+  //Content 불러오는 부분
+  const [choseCategory, setChoseCategory] = useState({
+    id: 1,
+    title: "html",
+  });
+  const [contentList, setContentList] = useState([]);
+  const getContent = async (data, page) => {
+    const res = await RoadmapAPI.getContent(data, page);
+
+    return res;
+  };
+  const contentlistdata = useQuery(
+    ["contentList", choseCategory, pageParam],
+    () => getContent(choseCategory, pageParam)
+  );
+  const ContentData = contentlistdata.data?.data.data[0];
+  const AddList = ContentData?.contentList;
 
   useEffect(() => {
+    if (AddList) {
+      setContentList([...contentList, ...AddList]);
+    }
+  }, [AddList, pageParam]);
+
+  //로그인 안돼있으면 홈페이지로
+  useEffect(() => {
     if (!localStorage.getItem("access_token")) {
-      navigate("/first");
+      navigate("/");
     }
   }, []);
-  if (Stacklist.isLoading) return;
-  const StackOne = datalist.find(x => x.id == choseStack);
-  const CategoryList = StackOne?.categorylist;
-  console.log(CategoryList);
+  useEffect(() => {
+    if (!inView) {
+      return;
+    }
+    setPageParam(pageParam + 1);
+  }, [inView]);
 
+  // if (Stacklist.isLoading) return <div>로딩중</div>;
+  // if (categoryList.isLoading) return <div>로딩중</div>;
+  // if (contentlistdata.isLoading) return <div>로딩중</div>;
   return (
     <WrapStyled>
       <Header />
+      {closeModal && (
+        <ModalWide closeModal={() => setCloseModal(!closeModal)}>
+          <AddContentModal
+            choseCategory={choseCategory}
+            closeModal={() => setCloseModal(!closeModal)}
+          />
+        </ModalWide>
+      )}
       <ContainerStyled>
+        <button
+          className="ForB"
+          onClick={() => {
+            setCurrentStack(!CurrentStack);
+          }}
+        >
+          {CurrentStack ? "FE 로드맵으로 전환" : "BE 로드맵으로 전환"}
+        </button>
         <div className="header">
-          {datalist.map(x => {
+          {(CurrentStack ? BackStack : FrontStack)?.map((x, idx) => {
             return (
-              <React.Fragment key={x.id}>
+              <React.Fragment key={idx}>
                 <RoadmapStack data={x} setChoseStack={setChoseStack} />
                 <p>{`=>`}</p>
               </React.Fragment>
             );
           })}
-          <div>다음 배울꺼는?</div>
+          <div>다음 배울 거는?</div>
         </div>
-        <div className="hr">hr</div>
+        <div className="hr">
+          <RoadmapGuide />
+        </div>
         <BodyStyled>
           <div className="category">
-            {CategoryList?.map(x => {
+            {CurrentCategory?.map((x, idx) => {
               return (
-                <RoadmapCategory
-                  key={x.id}
-                  data={x}
-                  setChoseCategory={setChoseCategory}
-                />
+                <React.Fragment key={idx}>
+                  <RoadmapCategory
+                    data={x}
+                    setChoseCategory={setChoseCategory}
+                    setContentList={setContentList}
+                    setPageParam={setPageParam}
+                  />
+                </React.Fragment>
               );
             })}
           </div>
-          <div className="body">
-            {choesdContent?.contentlist.map((x, idx) => {
-              return <RoadmapContent key={idx} data={x} />;
-            })}
-          </div>
+          <ContentContainerStyled>
+            <TitleCategoryStyled>
+              <div className="centerItem">
+                {ContentData?.title} {">"} {ContentData?.category}
+                {" >"}
+                <button onClick={() => setCloseModal(!closeModal)}>
+                  추가하기
+                </button>
+              </div>
+            </TitleCategoryStyled>
+            <div className="ContentBorder">
+              {contentList?.map((x, idx) => {
+                if (idx % 7 === 6) {
+                  return <RoadmapContent ref={ref} key={idx} data={x} />;
+                } else {
+                  return <RoadmapContent key={idx} data={x} />;
+                }
+              })}
+            </div>
+          </ContentContainerStyled>
         </BodyStyled>
       </ContainerStyled>
     </WrapStyled>
@@ -107,19 +189,42 @@ const ContainerStyled = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    border: 1px solid black;
+
     height: 15%;
   }
   .hr {
-    width: 100%;
-    border: 1px solid white;
+    width: 90%;
+    margin: auto;
+    border-top: 1px solid rgb(230, 222, 222);
     height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ForB {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 10%;
+    height: 5%;
+    border: 1px solid white;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: "neodgm";
+    color: white;
+    background-color: transparent;
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: black;
+      border: 1px solid black;
+      cursor: pointer;
+    }
   }
 `;
 const BodyStyled = styled.div`
   display: grid;
   width: 100%;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   height: 80%;
   grid-template-columns: 20% 80%;
   .category {
@@ -130,12 +235,62 @@ const BodyStyled = styled.div`
     align-items: center;
     border: 1px solid white;
   }
-  .body {
-    grid-column-start: 2;
+`;
+const ContentContainerStyled = styled.div`
+  position: relative;
+  grid-column-start: 2;
+  overflow: auto;
+  display: grid;
+  grid-template-rows: 3% 97%;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; */
+  border: 1px solid white;
+  width: 100%;
+  .ContentBorder {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid white;
+    grid-row-start: 2;
+  }
+`;
+const TitleCategoryStyled = styled.span`
+  position: fixed;
+
+  grid-row-start: 1;
+  margin: auto;
+  width: 75%;
+  height: 3%;
+  font-size: 1.3rem;
+  z-index: 5;
+
+  .centerItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    border-radius: 10px;
+    background-color: rgb(100, 100, 100, 0.9);
+  }
+  button {
+    margin-left: 30px;
+    width: 150px;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
+    font-family: "neodgm";
+    font-weight: 700;
+    background-color: black;
+    font-size: 1.2rem;
+    &:hover {
+      background-color: #424040;
+
+      color: white;
+      cursor: pointer;
+    }
   }
 `;

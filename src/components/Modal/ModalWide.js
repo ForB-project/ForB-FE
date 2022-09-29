@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-function Modal(props) {
+function ModalWide(props) {
   function closeModal() {
     props.closeModal();
   }
@@ -19,7 +19,7 @@ function Modal(props) {
   }, []);
 
   return (
-    <ModalStyled onClick={closeModal}>
+    <ModalStyled>
       <div className="modalBody" onClick={e => e.stopPropagation()}>
         {props.children}
       </div>
@@ -29,7 +29,7 @@ function Modal(props) {
 // // const [closeModal, setCloseModal] = useState(false);
 // {closeModal && (
 //   <Modal closeModal={() => setCloseModal(!closeModal)}>
-export default Modal;
+export default ModalWide;
 
 const ModalStyled = styled.div`
   position: fixed;
@@ -45,8 +45,8 @@ const ModalStyled = styled.div`
 
   .modalBody {
     position: absolute;
-    width: 230px;
-    height: 230px;
+    width: 600px;
+    height: 500px;
     padding: 30px 30px 30px 30px;
     z-index: 12;
     text-align: left;

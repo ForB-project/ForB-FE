@@ -19,6 +19,7 @@ const OAuthGoogle = () => {
       const res = await axios.get(
         `http://3.38.209.226/login/oauth2/code/google?code=${code}`
       );
+      console.log(res);
       setAccessToken(res.headers["authorization"]);
       setRefreshToken(res.headers["refresh-token"]);
       setUserName(res.data.data.nickname);

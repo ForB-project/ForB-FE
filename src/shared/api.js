@@ -43,17 +43,13 @@ export const AccountAPI = {
   logout: () => api.post("/api/auth/member/logout"),
 };
 
-export const ProflieAPI = {
-  myprofile: () => api.get("/api/auth/user/profile"),
-  otherprofile: id => api.get(`/api/auth/user/profile/${id}`),
-  modify: data => api.put("/api/auth/user/profile", data),
-};
-
-export const TwitAPI = {
-  addtwit: data => api.post(`/api/auth/twit`, data),
-  gettwit: () => api.get(`/api/twit`),
-  getonetwit: id => api.get(`/api/twit/${id}`),
-  deletetwit: id => api.delete(`/api/auth/twit/${id}`),
+export const RoadmapAPI = {
+  getStack: () => api.get("/api/roadmap/title"),
+  getCategory: titleId => api.get(`/api/roadmap/category/${titleId}`),
+  getContent: (data, page) =>
+    api.get(`/api/roadmap/${data.title}/${data.id}?page=${page}&size=7`),
+  postContent: (choseCategory, data) =>
+    api.put(`/api/roadmap/${choseCategory.title}/${choseCategory.id}`, data),
 };
 
 export const CommentAPI = {
@@ -62,6 +58,6 @@ export const CommentAPI = {
 };
 
 export const LikeAPI = {
-  togglelike: data => api.post(`api/auth/like/${data.id}`),
+  togglelike: contentId => api.post(`/api/roadmap/heart/${contentId}`),
   getlike: data => api.get,
 };

@@ -10,10 +10,16 @@ import TestCodeView from "./TestCode/TestCodeView";
 import TestCode from "./TestCode/TestCode";
 import PageNation from "./TestCode/CodePageNation";
 import TestCodeHeader from "./TestCode/TestCodeHeader";
+import ModalWide from "./Modal/ModalWide";
+import AddContentModal from "./Modal/AddContentModal";
 import MenuButton from "./TestCode/TestCodeMenuButton";
+import RoadmapGuide from "./Roadmap/RoadmapGuide";
 import QuizImage from "./Quiz/QuizImage";
 
 export {
+  RoadmapGuide,
+  AddContentModal,
+  ModalWide,
   LogoutButton,
   Layout,
   Modal,

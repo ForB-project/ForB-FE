@@ -32,9 +32,9 @@ import dragonCastle3 from "./image/sample/7dragon/dragonCastle3.png";
 import fancyMagic from "./image/sample/8spell/fancyMagic.png";
 import fancyMagic2 from "./image/sample/8spell/fancyMagic2.png";
 import fancyMagic3 from "./image/sample/8spell/fancyMagic3.png";
+import fancyMagic4 from "./image/sample/8spell/fancyMagic5.png";
 import archemy from "./image/sample/9archemy/archemy.png";
 import archemy2 from "./image/sample/9archemy/archemy2.png";
-
 
 export {
   Mainimg,
@@ -69,7 +69,8 @@ export {
   fancyMagic,
   fancyMagic2,
   fancyMagic3,
+  fancyMagic4,
   archemy,
   archemy2,
-  goldBorder
+  goldBorder,
 };
