@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 
 import { TestCodeView, TestCodeHeader, PageNation } from "../index";
+import { type } from "@testing-library/user-event/dist/type";
 
 const TestCode = () => {
   const testCodeList = useSelector((state) => state.testCode.testCode);
@@ -32,7 +33,7 @@ const TestCode = () => {
     setCodeNumber(0);
   };
 
-  console.log(codePrac.split('='));
+  console.log(codePrac.split((/=|;/)),typeof(Boolean(codePrac.split((/=|;/)))));
   return (
     <CodeBackLayout>
       <TestCodeHeader

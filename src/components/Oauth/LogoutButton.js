@@ -3,6 +3,7 @@ import {
   removeAccessToken,
   removeRefreshToken,
   removeUserName,
+  removeResult
 } from "../../shared/storage";
 import { AccountAPI } from "../../shared/api";
 
@@ -10,6 +11,7 @@ const removeStorage = () => {
   removeAccessToken();
   removeRefreshToken();
   removeUserName();
+  removeResult();
 };
 
 const LogoutButton = props => {

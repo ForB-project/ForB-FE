@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getRefreshToken, getAccessToken } from "./storage";
+import { getRefreshToken, getAccessToken,setResult } from "./storage";
 const BASE_URL = "http://3.38.209.226";
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -28,7 +28,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   function (response) {
     // 응답 데이터를 가공
-
+    if(response.data.data[0].stackType){
+        setResult(response);
+      };
     return response;
   }
   // function (error) {
