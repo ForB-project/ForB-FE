@@ -31,3 +31,29 @@ export const getUserName = () => {
 export const removeUserName = () => {
   return localStorage.removeItem("username");
 };
+
+export const setResult = response =>{
+  const id = response.data.data[0].id;
+  const title = response.data.data[0].title;
+  const description1 = response.data.data[0].description1;
+  const description2 = response.data.data[0].description2;
+  const stackType = response.data.data[0].stackType;
+
+  return(
+    localStorage.setItem('resultId',id),
+    localStorage.setItem('resultTitle',title),
+    localStorage.setItem('resultDescription1',description1),
+    localStorage.setItem('resultDescription2',description2),
+    localStorage.setItem('resultStackType',stackType)
+  );
+};
+
+export const removeResult = () =>{
+  return(
+    localStorage.removeItem('resultId'),
+    localStorage.removeItem('resultTitle'),
+    localStorage.removeItem('resultDescription1'),
+    localStorage.removeItem('resultDescription2'),
+    localStorage.removeItem('resultStackType')
+  );
+};

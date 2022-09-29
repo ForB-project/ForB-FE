@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const PageNation = ({movePage,frontPage,backPage,htmlPage}) => {
+const PageNation = ({movePage,frontPage,backPage,htmlPage,exampleCode,codePrac}) => {
+
+  const runCode = ()=>{
+   const sendCodeInt = Number(codePrac.split(/=|;/)[1]);
+   const sendCodeBoolean = Boolean(codePrac.split(/=|;/)[3]);
+  };
 
   return (
 <PageNationLayout>
-  <FrontBackButton className="runButton">run</FrontBackButton>
+  <FrontBackButton className="runButton" onClick={()=>exampleCode[0].id===4?runCode():null}>run</FrontBackButton>
     <PageNationNumLayout>
       <PageNationNum onClick={()=>movePage(0)}>1</PageNationNum>
       <PageNationNum onClick={()=>movePage(1)}>2</PageNationNum>
