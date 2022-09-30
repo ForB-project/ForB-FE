@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import {api} from "../../shared/api";
+import {setResult} from "../../shared/storage"
 import { forestMoon,fancyOwl,broom1,broom2,scroll,dragonImagine,dragonCastle2,fancyMagic2 } from "../../static/index";
 
 const initialState = {
@@ -99,39 +100,39 @@ const initialState = {
       image: fancyOwl,
     },
   ],
-  result: [],
 };
 
 export const __quizResult = createAsyncThunk(
   "QUIZRESULT",
   async (payload, thunkAPI) => {
     const result = { type: payload[0], answer: payload[1] };
-    console.log(result);
+    console.log(thunkAPI);
     const { data } = await api.post(
       `/api/test/result`,
       result
     );
+    setResult();
     return thunkAPI.fulfillWithValue(data);
   }
 );
 
-export const __getResult = createAsyncThunk(
-  "GETRESULT",
-  async (payload, thunkAPI) => {
-    console.log(payload);
-    const { data } = await axios.get(`http://3.38.209.226/api/test/result`);
-    return thunkAPI.fulfillWithValue(data);
-  }
-);
+// export const __getResult = createAsyncThunk(
+//   "GETRESULT",
+//   async (payload, thunkAPI) => {
+//     console.log(payload);
+//     const { data } = await axios.get(`http://3.38.209.226/api/test/result`);
+//     return thunkAPI.fulfillWithValue(data);
+//   }
+// );
 
 export const QuizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {},
   extraReducers: {
-    [__getResult.fulfilled]: (state, action) => {
-      state.result = action.payload;
-    },
+    // [__getResult.fulfilled]: (state, action) => {
+    //   state.result = action.payload;
+    // },
   },
 });
 export const { getQuizList } = QuizSlice.actions;

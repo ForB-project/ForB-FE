@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import {setQuizResult} from "../../shared/storage"
 import { __quizResult } from "../../redux/modules/QuizSlice";
 import QuizImage from "./QuizImage";
 
@@ -42,7 +42,9 @@ const QuizWindow = () => {
   const resultTendency = (answer) => {
       result.push(answer);
       dispatch(__quizResult(result));
-      navigate('/result');   
+      setQuizResult(result);
+      navigate('/result');
+      console.log(result);   
   };
 
   return (

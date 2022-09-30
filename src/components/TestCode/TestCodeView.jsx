@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const TestCodeView = ({ codePrac }) => {
+  const result = useSelector((state)=>state.testCode.result);
+  
   return (
     <CodeViewLayout>
       {codePrac === "" ? (
