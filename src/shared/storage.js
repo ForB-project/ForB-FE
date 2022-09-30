@@ -57,3 +57,12 @@ export const removeResult = () =>{
     localStorage.removeItem('resultStackType')
   );
 };
+
+export const setQuizResult = result =>{
+  const type =result[0];
+  const answer =result[1];
+  return(
+    localStorage.setItem('answer',answer),
+    localStorage.setItem('type',type)
+  );
+};

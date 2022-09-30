@@ -28,9 +28,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   function (response) {
     // 응답 데이터를 가공
-    if (response.data?.data[0].stackType) {
-      setResult(response);
-    }
+    
     return response;
   }
   // function (error) {
