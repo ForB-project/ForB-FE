@@ -10,23 +10,23 @@ const QuizWindow = () => {
   const [quizId, setQuizId] = useState(0);
   const [forbCount, setForbCount] = useState(0);
   const [result, setResult] = useState([]);
-  const list = useSelector((state) => state.quiz.quiz);
+  const list = useSelector(state => state.quiz.quiz);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   //답변 선택 함수
-  const forFrontBack = (answer) => {
+  const forFrontBack = answer => {
     setQuizId(quizId + 1);
     setForbCount(answer);
   };
   //마지막 질문 답변시 결과 페이지로 네비게이션 함수
-  const moveResult = (answer) => {
+  const moveResult = answer => {
     navigate("/result");
     setForbCount(answer);
   };
 
   //프론트&백 결과 함수
-  const resultFrontBack = (answer) => {
+  const resultFrontBack = answer => {
     if (answer / 100 > answer % 100) {
       result.push("F");
       setForbCount(0);
@@ -39,24 +39,24 @@ const QuizWindow = () => {
   };
 
   //성향(ex:슬리데린,레번클로) 결과 함수
-  const resultTendency = (answer) => {
-      result.push(answer);
-      dispatch(__quizResult(result));
-      navigate('/result');   
+  const resultTendency = answer => {
+    result.push(answer);
+    dispatch(__quizResult(result));
+    navigate("/result");
   };
 
   return (
     <QuizWindowLayout>
       <QuizContent>
-        {result.find((result) => result === "B")
+        {result.find(result => result === "B")
           ? list[quizId].quizTitle
           : list[quizId].quizTitle}
       </QuizContent>
       <QuizSelect>
         <QuizButton
           onClick={() =>
-            result.find((result) => result === "F") ||
-            result.find((result) => result === "B")
+            result.find(result => result === "F") ||
+            result.find(result => result === "B")
               ? quizId === 7 || quizId === 10
                 ? setTimeout(() => resultTendency(forbCount + 100), 2000)
                 : setTimeout(() => forFrontBack(forbCount + 100), 2000)
@@ -65,7 +65,7 @@ const QuizWindow = () => {
               : setTimeout(() => forFrontBack(forbCount + 100), 2000)
           }
         >
-          {result.find((result) => result === "B")
+          {result.find(result => result === "B")
             ? list[quizId].answerFront
             : list[quizId].answerFront}
         </QuizButton>
@@ -73,8 +73,8 @@ const QuizWindow = () => {
         <QuizButton
           className="leftButton"
           onClick={() =>
-            result.find((result) => result === "F") ||
-            result.find((result) => result === "B")
+            result.find(result => result === "F") ||
+            result.find(result => result === "B")
               ? quizId === 7 || quizId === 10
                 ? setTimeout(() => resultTendency(forbCount + 1), 2000)
                 : setTimeout(() => forFrontBack(forbCount + 1), 2000)
@@ -83,7 +83,7 @@ const QuizWindow = () => {
               : setTimeout(() => forFrontBack(forbCount + 1), 2000)
           }
         >
-          {result.find((result) => result === "B")
+          {result.find(result => result === "B")
             ? list[quizId].answerBack
             : list[quizId].answerBack}
         </QuizButton>

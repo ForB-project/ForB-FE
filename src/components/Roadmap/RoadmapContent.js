@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Logo, mainFirst } from "../../static";
 import { LikeAPI } from "../../shared/api";
 import { useMutation } from "react-query";
-const RoadmapContent = forwardRef((props, ref) => {
+const RoadmapContent = props => {
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
     window.open(props.data.link, "_blank");
@@ -11,7 +11,7 @@ const RoadmapContent = forwardRef((props, ref) => {
 
   const contentLike = async contentId => {
     const res = await LikeAPI.togglelike(contentId);
-    console.log(res);
+
     return res;
   };
   const toggleLike = useMutation(contentLike);
@@ -32,16 +32,15 @@ const RoadmapContent = forwardRef((props, ref) => {
         <div
           className="LikeContent"
           onClick={() => {
-            contentLike(props.data.id);
+            toggleLike.mutate(props.data.id);
           }}
         >
           하트
         </div>
       </ContentStyled>
-      <div ref={ref}></div>
     </>
   );
-});
+};
 
 export default RoadmapContent;
 const ContentStyled = styled.div`
