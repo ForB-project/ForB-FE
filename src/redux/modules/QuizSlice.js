@@ -1,7 +1,16 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {api} from "../../shared/api";
-import { forestMoon,fancyOwl,broom1,broom2,scroll,dragonImagine,dragonCastle2,fancyMagic2 } from "../../static/index";
+import { api } from "../../shared/api";
+import {
+  forestMoon,
+  fancyOwl,
+  broom1,
+  broom2,
+  scroll,
+  dragonImagine,
+  dragonCastle2,
+  fancyMagic2,
+} from "../../static/index";
 
 const initialState = {
   quiz: [
@@ -107,10 +116,7 @@ export const __quizResult = createAsyncThunk(
   async (payload, thunkAPI) => {
     const result = { type: payload[0], answer: payload[1] };
     console.log(result);
-    const { data } = await api.post(
-      `/api/test/result`,
-      result
-    );
+    const { data } = await api.post(`/api/test/result`, result);
     return thunkAPI.fulfillWithValue(data);
   }
 );

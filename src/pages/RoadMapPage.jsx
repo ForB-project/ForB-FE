@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, useInfiniteQuery } from "react-query";
 import styled from "styled-components";
 import {
   RoadmapStack,
@@ -17,13 +17,8 @@ import { useInView } from "react-intersection-observer";
 const RoadMap = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView();
-
-  const [pageParam, setPageParam] = useState(1);
-
   const [closeModal, setCloseModal] = useState(false);
-
   //Stack 불러오는 부분
-
   const getStack = async () => {
     return await RoadmapAPI.getStack();
   };
@@ -49,24 +44,31 @@ const RoadMap = () => {
     id: 1,
     title: "html",
   });
-  const [contentList, setContentList] = useState([]);
-  const getContent = async (data, page) => {
-    const res = await RoadmapAPI.getContent(data, page);
 
-    return res;
+  const getContent = async (data, pageParam) => {
+    const res = await RoadmapAPI.getContent(data, pageParam);
+
+    return {
+      result: res.data.data,
+      nextPage: pageParam + 1,
+      isLast: res.data.data[0].contentList.length === 7 ? false : true,
+    };
   };
-  const contentlistdata = useQuery(
-    ["contentList", choseCategory, pageParam],
-    () => getContent(choseCategory, pageParam)
-  );
-  const ContentData = contentlistdata.data?.data.data[0];
-  const AddList = ContentData?.contentList;
 
-  useEffect(() => {
-    if (AddList) {
-      setContentList([...contentList, ...AddList]);
+  const infiniteQuery = useInfiniteQuery(
+    ["contentList", choseCategory],
+    ({ pageParam = 1 }) => getContent(choseCategory, pageParam),
+    {
+      getNextPageParam: (lastPage, pages) => {
+        //hasNextPage 대용
+        if (!lastPage.isLast) {
+          return lastPage.nextPage;
+        }
+        return undefined;
+      },
     }
-  }, [AddList, pageParam]);
+  );
+  const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
 
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
@@ -74,16 +76,14 @@ const RoadMap = () => {
       navigate("/");
     }
   }, []);
+  // inView일때 다음 페이지 가져오기
   useEffect(() => {
     if (!inView) {
       return;
     }
-    setPageParam(pageParam + 1);
+    infiniteQuery.fetchNextPage();
   }, [inView]);
 
-  // if (Stacklist.isLoading) return <div>로딩중</div>;
-  // if (categoryList.isLoading) return <div>로딩중</div>;
-  // if (contentlistdata.isLoading) return <div>로딩중</div>;
   return (
     <WrapStyled>
       <Header />
@@ -122,12 +122,10 @@ const RoadMap = () => {
           <div className="category">
             {CurrentCategory?.map((x, idx) => {
               return (
-                <React.Fragment key={idx}>
+                <React.Fragment key={x.id}>
                   <RoadmapCategory
                     data={x}
                     setChoseCategory={setChoseCategory}
-                    setContentList={setContentList}
-                    setPageParam={setPageParam}
                   />
                 </React.Fragment>
               );
@@ -136,7 +134,7 @@ const RoadMap = () => {
           <ContentContainerStyled>
             <TitleCategoryStyled>
               <div className="centerItem">
-                {ContentData?.title} {">"} {ContentData?.category}
+                {contentHeader?.title} {">"} {contentHeader?.category}
                 {" >"}
                 <button onClick={() => setCloseModal(!closeModal)}>
                   추가하기
@@ -144,13 +142,16 @@ const RoadMap = () => {
               </div>
             </TitleCategoryStyled>
             <div className="ContentBorder">
-              {contentList?.map((x, idx) => {
-                if (idx % 7 === 6) {
-                  return <RoadmapContent ref={ref} key={idx} data={x} />;
-                } else {
-                  return <RoadmapContent key={idx} data={x} />;
-                }
+              {infiniteQuery.data?.pages.map((x, idx) => {
+                return (
+                  <React.Fragment key={idx}>
+                    {x?.result[0]?.contentList.map((y, keys) => {
+                      return <RoadmapContent key={y.id} data={y} />;
+                    })}
+                  </React.Fragment>
+                );
               })}
+              {infiniteQuery.status === "success" && <div ref={ref}></div>}
             </div>
           </ContentContainerStyled>
         </BodyStyled>
@@ -242,10 +243,6 @@ const ContentContainerStyled = styled.div`
   overflow: auto;
   display: grid;
   grid-template-rows: 3% 97%;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center; */
   border: 1px solid white;
   width: 100%;
   .ContentBorder {

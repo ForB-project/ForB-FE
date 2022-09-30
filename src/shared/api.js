@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getRefreshToken, getAccessToken,setResult } from "./storage";
+import { getRefreshToken, getAccessToken, setResult } from "./storage";
 const BASE_URL = "http://3.38.209.226";
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -28,9 +28,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   function (response) {
     // 응답 데이터를 가공
-    if(response.data.data[0].stackType){
-        setResult(response);
-      };
+    if (response.data?.data[0].stackType) {
+      setResult(response);
+    }
     return response;
   }
   // function (error) {
@@ -48,8 +48,8 @@ export const AccountAPI = {
 export const RoadmapAPI = {
   getStack: () => api.get("/api/roadmap/title"),
   getCategory: titleId => api.get(`/api/roadmap/category/${titleId}`),
-  getContent: (data, page) =>
-    api.get(`/api/roadmap/${data.title}/${data.id}?page=${page}&size=7`),
+  getContent: (data, pageParam) =>
+    api.get(`/api/roadmap/${data.title}/${data.id}?page=${pageParam}&size=7`),
   postContent: (choseCategory, data) =>
     api.put(`/api/roadmap/${choseCategory.title}/${choseCategory.id}`, data),
 };
@@ -61,5 +61,4 @@ export const CommentAPI = {
 
 export const LikeAPI = {
   togglelike: contentId => api.post(`/api/roadmap/heart/${contentId}`),
-  getlike: data => api.get,
 };

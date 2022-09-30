@@ -4,7 +4,7 @@ function Modal(props) {
   function closeModal() {
     props.closeModal();
   }
-
+  // 모달창이 나왔을때 백그라운드 클릭이 안되게 하고 스크롤도 고정하는 방법
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed; 
