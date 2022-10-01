@@ -1,8 +1,11 @@
-import React,{useEffect, useState} from "react";
-import {useDispatch} from "react-redux"
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import {__sendPracCode1,__sendPracCode2} from "../../redux/modules/TestCodeSlice"
+import {
+  __sendPracCode1,
+  __sendPracCode2,
+} from "../../redux/modules/TestCodeSlice";
 
 const PageNation = ({
   movePage,
@@ -11,7 +14,7 @@ const PageNation = ({
   htmlPage,
   exampleCode,
   codePrac,
-  codeNumber
+  codeNumber,
 }) => {
   const dispatch = useDispatch();
   const [codeList, setCodeList] = useState({});
@@ -22,16 +25,30 @@ const PageNation = ({
       const sendCodeInt = codePrac.split(/=|;/)[1].trim();
       const forIf = codePrac.replace(regex, "");
       const sendCodeIf = forIf.slice(sendCodeInt.length, forIf.length);
-      setCodeList({...codeList,inputInt1:Number(sendCodeInt),inputInt2:Number(sendCodeIf)})
-    } else if(exampleCode[codeNumber].id === 5) {
+      setCodeList({
+        ...codeList,
+        inputInt1: Number(sendCodeInt),
+        inputInt2: Number(sendCodeIf),
+      });
+    } else if (exampleCode[codeNumber].id === 5) {
       const forIf = codePrac.replace(regex, "");
-      console.log(forIf);
+      const firstInt = forIf.slice(-2);
+      const secondInt = forIf.slice(-4, 3);
+      setCodeList({
+        ...codeList,
+        inputInt1: Number(firstInt),
+        inputInt2: Number(secondInt),
+      });
     }
   };
-  console.log(codeNumber);
-  useEffect(()=>{
-  dispatch(__sendPracCode1(codeList));
-  },[codeList, dispatch]);
+
+  useEffect(() => {
+    if (exampleCode[codeNumber].id === 4) {
+      dispatch(__sendPracCode1(codeList));
+    } else if (exampleCode[codeNumber].id === 5) {
+      dispatch(__sendPracCode2(codeList));
+    }
+  }, [codeList]);
 
   return (
     <PageNationLayout>
@@ -87,9 +104,9 @@ const PageNationNum = styled.button`
   opacity: 0.6;
   color: white;
   cursor: pointer;
-  &:hover{
+  &:hover {
     opacity: 1;
-  };
+  }
 `;
 
 const FrontBackButton = styled.button`
@@ -115,10 +132,10 @@ const FrontBackButton = styled.button`
   .runButton {
     margin: -0.1vh 11vw -2vh 0px;
   }
-  &:hover{
+  &:hover {
     opacity: 1;
-  };
-  &:focus{
+  }
+  &:focus {
     opacity: 1;
-  };
+  }
 `;

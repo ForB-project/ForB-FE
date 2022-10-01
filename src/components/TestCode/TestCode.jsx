@@ -46,7 +46,7 @@ const TestCode = () => {
             onChange={(e) => setCodePrac(e.target.value)}
           />
         </CodeInputLayout>
-        <TestCodeView codePrac={codePrac} />
+        <TestCodeView exampleCode={exampleCode} codeNumber={codeNumber} codePrac={codePrac} />
       </CodeWindow>
       <PageNation
         movePage={movePage}
