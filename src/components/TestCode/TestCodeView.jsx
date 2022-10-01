@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 
 const TestCodeView = ({ codePrac, exampleCode, codeNumber }) => {
   const result = useSelector((state) => state.testCode.result.data);
-  
+
   return (
     <CodeViewLayout>
       {codePrac === "" ? (
         <CodeView>코드를 입력해볼까요?</CodeView>
-      ) : exampleCode[codeNumber].id === 4 || 5 ? (
+      ) : exampleCode[codeNumber].id === 4 && 5 ? (
         <CodeView dangerouslySetInnerHTML={{ __html: result }} />
       ) : (
         <CodeView dangerouslySetInnerHTML={{ __html: codePrac }} />

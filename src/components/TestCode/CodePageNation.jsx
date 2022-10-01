@@ -52,12 +52,15 @@ const PageNation = ({
 
   return (
     <PageNationLayout>
-      <FrontBackButton
-        className="runButton"
-        onClick={() => (exampleCode[0].id >= 4 ? runBackCode() : null)}
-      >
-        run
-      </FrontBackButton>
+      {exampleCode[0].id <= 1 ? null : (
+        <FrontBackButton
+          className="runButton"
+          onClick={() => (exampleCode[0].id >= 4 ? runBackCode() : null)}
+        >
+          run
+        </FrontBackButton>
+      )}
+
       <PageNationNumLayout>
         <PageNationNum onClick={() => movePage(0)}>1</PageNationNum>
         <PageNationNum onClick={() => movePage(1)}>2</PageNationNum>
