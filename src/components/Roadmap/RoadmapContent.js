@@ -1,9 +1,12 @@
 import React, { forwardRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Logo, mainFirst } from "../../static";
 import { LikeAPI } from "../../shared/api";
-import { useMutation } from "react-query";
-const RoadmapContent = props => {
+import { useMutation, useQueryClient } from "react-query";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
+const RoadmapContent = forwardRef((props, ref) => {
+  console.log(props);
+  const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
     window.open(props.data.link, "_blank");
@@ -14,7 +17,12 @@ const RoadmapContent = props => {
 
     return res;
   };
-  const toggleLike = useMutation(contentLike);
+  const toggleLike = useMutation(contentLike, {
+    onSuccess: res => {
+      console.log(res);
+      queryClient.invalidateQueries(["contentList", props.querykey]);
+    },
+  });
   return (
     <>
       <ContentStyled>
@@ -35,14 +43,35 @@ const RoadmapContent = props => {
             toggleLike.mutate(props.data.id);
           }}
         >
-          하트
+          <div className="heartBox">
+            {props.data.heartCheck ? (
+              <FaHeart className="icon" />
+            ) : (
+              <FaRegHeart className="icon" />
+            )}
+          </div>
+          {props.data.heartCnt}
         </div>
+        <div className="inviewref" ref={ref}></div>
       </ContentStyled>
     </>
   );
-};
+});
 
 export default RoadmapContent;
+
+const iconhover = keyframes`
+
+        0% {
+          font-size: 1rem;
+        }
+        50% {
+          font-size: 1.5rem;
+        }
+        100% {
+          font-size: 2rem;
+        }
+      `;
 const ContentStyled = styled.div`
   display: grid;
   width: 70%;
@@ -63,10 +92,25 @@ const ContentStyled = styled.div`
     justify-content: center;
     align-items: center;
     &:hover {
-      background-color: #ffc;
+      background-color: black;
+    }
+    .heartBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 60%;
+    }
+    .icon {
+      transition: 0.2s;
+      animation: ${iconhover} 1s 1s infinite linear alternate;
+      &:hover {
+        color: pink;
+      }
     }
   }
 `;
+
 const ContentImgStyled = styled.div`
   grid-column-start: 1;
   border-radius: 10px;
