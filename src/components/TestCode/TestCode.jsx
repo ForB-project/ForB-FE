@@ -17,6 +17,7 @@ const TestCode = () => {
 
   const movePage = (codeId) => {
     setCodeNumber(codeId);
+    setCodePrac('');
   };
   const htmlPage = () => {
     setExampleCode(testCodeList);
@@ -32,8 +33,7 @@ const TestCode = () => {
     setExampleCode(backCodeList);
     setCodeNumber(0);
   };
-  console.log(exampleCode);
-  console.log(codePrac.split(/=|;/), typeof Boolean(codePrac.split(/=|;/)));
+  console.log(codeNumber);
   return (
     <CodeBackLayout>
       <TestCodeHeader codeNumber={codeNumber} codeList={exampleCode.length} />
@@ -42,10 +42,11 @@ const TestCode = () => {
           <CodeExample>{exampleCode[codeNumber].exampleCode}</CodeExample>
           <CodePractice
             placeholder="코드를 입력해볼까요?"
+            value={codePrac}
             onChange={(e) => setCodePrac(e.target.value)}
           />
         </CodeInputLayout>
-        <TestCodeView codePrac={codePrac} />
+        <TestCodeView exampleCode={exampleCode} codeNumber={codeNumber} codePrac={codePrac} />
       </CodeWindow>
       <PageNation
         movePage={movePage}
@@ -54,6 +55,7 @@ const TestCode = () => {
         backPage={backPage}
         exampleCode={exampleCode}
         codePrac={codePrac}
+        codeNumber={codeNumber}
       />
     </CodeBackLayout>
   );
