@@ -9,6 +9,7 @@ import {
   ModalWide,
   AddContentModal,
   RoadmapGuide,
+  RoadmapContentHeader,
 } from "../components";
 import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
@@ -40,13 +41,14 @@ const RoadMap = () => {
   const CurrentCategory = categoryList.data?.data.data;
 
   //Content 불러오는 부분
+  const [getSort, setSort] = useState("heartCnt");
   const [choseCategory, setChoseCategory] = useState({
     id: 1,
     title: "html",
   });
 
-  const getContent = async (data, pageParam) => {
-    const res = await RoadmapAPI.getContent(data, pageParam);
+  const getContent = async (data, pageParam, getSort) => {
+    const res = await RoadmapAPI.getContent(data, pageParam, getSort);
 
     return {
       result: res.data.data,
@@ -56,15 +58,17 @@ const RoadMap = () => {
   };
 
   const infiniteQuery = useInfiniteQuery(
-    ["contentList", choseCategory],
-    ({ pageParam = 1 }) => getContent(choseCategory, pageParam),
+    ["contentList", choseCategory, getSort],
+    ({ pageParam = 1 }) => getContent(choseCategory, pageParam, getSort),
     {
       getNextPageParam: (lastPage, pages) => {
         //hasNextPage 대용
+        // console.log(lastPage);
         if (!lastPage.isLast) {
           return lastPage.nextPage;
+        } else {
+          return undefined;
         }
-        return undefined;
       },
     }
   );
@@ -78,10 +82,9 @@ const RoadMap = () => {
   }, []);
   // inView일때 다음 페이지 가져오기
   useEffect(() => {
-    if (!inView) {
-      return;
+    if (inView) {
+      infiniteQuery.fetchNextPage();
     }
-    infiniteQuery.fetchNextPage();
   }, [inView]);
 
   return (
@@ -133,25 +136,41 @@ const RoadMap = () => {
           </div>
           <ContentContainerStyled>
             <TitleCategoryStyled>
-              <div className="centerItem">
-                {contentHeader?.title} {">"} {contentHeader?.category}
-                {" >"}
-                <button onClick={() => setCloseModal(!closeModal)}>
-                  추가하기
-                </button>
-              </div>
+              <RoadmapContentHeader
+                setSort={setSort}
+                getSort={getSort}
+                setCloseModal={setCloseModal}
+                contentHeader={contentHeader}
+                closeModal={closeModal}
+              />
             </TitleCategoryStyled>
             <div className="ContentBorder">
               {infiniteQuery.data?.pages.map((x, idx) => {
                 return (
                   <React.Fragment key={idx}>
                     {x?.result[0]?.contentList.map((y, keys) => {
-                      return <RoadmapContent key={y.id} data={y} />;
+                      if (keys % 7 === 6) {
+                        return (
+                          <RoadmapContent
+                            ref={ref}
+                            key={y.id}
+                            querykey={choseCategory}
+                            data={y}
+                          />
+                        );
+                      } else {
+                        return (
+                          <RoadmapContent
+                            key={y.id}
+                            querykey={choseCategory}
+                            data={y}
+                          />
+                        );
+                      }
                     })}
                   </React.Fragment>
                 );
               })}
-              {infiniteQuery.status === "success" && <div ref={ref}></div>}
             </div>
           </ContentContainerStyled>
         </BodyStyled>
@@ -225,7 +244,6 @@ const ContainerStyled = styled.div`
 const BodyStyled = styled.div`
   display: grid;
   width: 100%;
-  /* border: 1px solid white; */
   height: 80%;
   grid-template-columns: 20% 80%;
   .category {
@@ -255,39 +273,10 @@ const ContentContainerStyled = styled.div`
 `;
 const TitleCategoryStyled = styled.span`
   position: fixed;
-
   grid-row-start: 1;
   margin: auto;
   width: 75%;
   height: 3%;
   font-size: 1.3rem;
   z-index: 5;
-
-  .centerItem {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    margin: auto;
-    border-radius: 10px;
-    background-color: rgb(100, 100, 100, 0.9);
-  }
-  button {
-    margin-left: 30px;
-    width: 150px;
-    border: 3px solid white;
-    border-radius: 10px;
-    color: white;
-    font-family: "neodgm";
-    font-weight: 700;
-    background-color: black;
-    font-size: 1.2rem;
-    &:hover {
-      background-color: #424040;
-
-      color: white;
-      cursor: pointer;
-    }
-  }
 `;

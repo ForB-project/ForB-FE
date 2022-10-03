@@ -15,8 +15,9 @@ import AddContentModal from "./Modal/AddContentModal";
 import MenuButton from "./TestCode/TestCodeMenuButton";
 import RoadmapGuide from "./Roadmap/RoadmapGuide";
 import QuizImage from "./Quiz/QuizImage";
-
+import RoadmapContentHeader from "./Roadmap/RoadmapContentHeader";
 export {
+  RoadmapContentHeader,
   RoadmapGuide,
   AddContentModal,
   ModalWide,

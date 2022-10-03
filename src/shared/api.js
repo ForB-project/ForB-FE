@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getRefreshToken, getAccessToken, setResult } from "./storage";
-const BASE_URL = "http://3.38.209.226";
+const BASE_URL = "https://www.sheshesh.shop";
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -28,7 +28,11 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   function (response) {
     // 응답 데이터를 가공
-    
+
+    // if (response.data?.data[0].stackType) {
+    //   setResult(response);
+    // }
+
     return response;
   }
   // function (error) {
@@ -46,8 +50,10 @@ export const AccountAPI = {
 export const RoadmapAPI = {
   getStack: () => api.get("/api/roadmap/title"),
   getCategory: titleId => api.get(`/api/roadmap/category/${titleId}`),
-  getContent: (data, pageParam) =>
-    api.get(`/api/roadmap/${data.title}/${data.id}?page=${pageParam}&size=7`),
+  getContent: (data, pageParam, getSort) =>
+    api.get(
+      `/api/roadmap/${data.title}/${data.id}?page=${pageParam}&size=7&sortBy=${getSort}`
+    ),
   postContent: (choseCategory, data) =>
     api.put(`/api/roadmap/${choseCategory.title}/${choseCategory.id}`, data),
 };
