@@ -8,10 +8,7 @@ const TestCodeView = ({ codePrac, exampleCode, codeNumber }) => {
   const sanitizer = dompurify.sanitize;
 
   const result = useSelector((state) => state.testCode.result.data);
-  const [resultBack, setResultBack] = useState(result);
 
-  console.log(resultBack);
-  console.log(exampleCode[codeNumber].id);
   return (
     <CodeViewLayout>
       {codePrac === "" ? (
@@ -46,4 +43,5 @@ const CodeView = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  white-space: pre-line;
 `;

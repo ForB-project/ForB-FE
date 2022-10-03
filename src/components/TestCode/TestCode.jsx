@@ -31,7 +31,6 @@ const TestCode = () => {
     setCodePrac("");
   };
 
-  console.log(codeNumber);
   return (
     <CodeBackLayout>
       <TestCodeHeader />

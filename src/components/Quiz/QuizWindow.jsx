@@ -172,6 +172,7 @@ const QuizButton = styled.button`
   cursor: pointer;
   opacity: 0.8;
   transition: 0.1s;
+  white-space: pre-line;
   &:hover {
     opacity: 1;
     color: white;

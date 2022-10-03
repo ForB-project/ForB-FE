@@ -16,6 +16,8 @@ import MenuButton from "./TestCode/TestCodeMenuButton";
 import RoadmapGuide from "./Roadmap/RoadmapGuide";
 import QuizImage from "./Quiz/QuizImage";
 import RoadmapContentHeader from "./Roadmap/RoadmapContentHeader";
+import RunFrontButton from "./TestCode/RunFrontButton";
+import RunBackButton from "./TestCode/RunBackButton";
 export {
   RoadmapContentHeader,
   RoadmapGuide,
@@ -35,4 +37,6 @@ export {
   TestCodeHeader,
   MenuButton,
   QuizImage,
+  RunFrontButton,
+  RunBackButton
 };

@@ -18,12 +18,12 @@ const initialState = {
     {
       id: 2,
       exampleCode:
-        `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n\n<body>\n   <h2>자바스크립트란..?</h2>\n   <p id="test">여기보세요!</p>\n\n<button type="button" onclick="document.getElementById('test')\n.innerHTML = 'Java Script는 HTML을 바꿀 수 있어요!!'">\n눌러보세요!\n</button>\n</body>\n</html>`,
+        `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n<body>\n   <h2>자바스크립트란..?</h2>\n   <p id="test">여기보세요!</p>\n\n<button type="button" onclick="document.getElementById('test')\n.innerHTML = 'Java Script는 HTML을 바꿀 수 있어요!!'">\n눌러보세요!\n</button>\n</body>\n</html>`,
     },
     {
       id: 3,
       exampleCode:
-        `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n\n<body>\n   <h3 id="test">\n     버튼 누르고 위에 보세요! \n   </h3>\n\n   <button type="button"\n   onclick="alert('자바스크립트!')">\n   눌러보세요!\n   </button>\n</body>\n\n</html>`,
+        `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n<body>\n   <h3 id="test">\n     버튼 누르고 위에 보세요! \n   </h3>\n\n   <button type="button"\n   onclick="alert('자바스크립트!')">\n   눌러보세요!\n   </button>\n</body>\n\n</html>`,
     },
   ],
   backCode: [
@@ -54,7 +54,6 @@ export const __sendPracCode1 = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload);
     const { data } = await api.post(`/api/firstCode`,payload);
-    console.log(data);
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -62,7 +61,6 @@ export const __sendPracCode1 = createAsyncThunk(
 export const __sendPracCode2 = createAsyncThunk(
   "QUIZRESULT",
   async (payload, thunkAPI) => {
-    console.log(payload);
     const { data } = await api.post(`/api/secondCode`,payload);
     return thunkAPI.fulfillWithValue(data);
   }
@@ -72,17 +70,16 @@ export const TestCodeSlice = createSlice({
   name: "testCode",
   initialState,
   reducers: {
-    addComment: (state, action) => {
-      console.log(state);
-      // state.testCode = state.testCode.concat(action.payload);
+    addPracCode: (state, action) => {
+      console.log(action.payload);
+      state.result = state.result.concat(action.payload);
     },
   },
   extraReducers: {
     [__sendPracCode1.fulfilled]: (state, action) => {
       state.result = action.payload;
-      console.log(state.result);
     },
   },
 });
-export const { getTestCodeList, addComment } = TestCodeSlice.actions;
+export const { addPracCode } = TestCodeSlice.actions;
 export default TestCodeSlice.reducer;
