@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import {
-  __sendPracCode1,
-  __sendPracCode2,
-} from "../../redux/modules/TestCodeSlice";
 import { RunBackButton, RunFrontButton } from "../index";
 
 const PageNation = ({
@@ -16,56 +12,24 @@ const PageNation = ({
   codeNumber,
 }) => {
   const dispatch = useDispatch();
-  const [codeList, setCodeList] = useState({});
 
-  const runBackCode = () => {
-    const regex = /[^0-9]/g;
-    if (exampleCode[codeNumber].id === 4) {
-      const sendCodeInt = codePrac.split(/=|;/)[1].trim();
-      const forIf = codePrac.replace(regex, "");
-      const sendCodeIf = forIf.slice(sendCodeInt.length, forIf.length);
-      setCodeList({
-        ...codeList,
-        inputInt1: Number(sendCodeInt),
-        inputInt2: Number(sendCodeIf),
-      });
-    } else if (exampleCode[codeNumber].id === 5) {
-      const forIf = codePrac.replace(regex, "");
-      const firstInt = forIf.slice(-2);
-      const secondInt = forIf.slice(-4, 3);
-      setCodeList({
-        ...codeList,
-        inputInt1: Number(firstInt),
-        inputInt2: Number(secondInt),
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (exampleCode[codeNumber].id === 4) {
-      dispatch(__sendPracCode1(codeList));
-    } else if (exampleCode[codeNumber].id === 5) {
-      dispatch(__sendPracCode2(codeList));
-    }
-  }, [codeList]);
- 
   return (
     <PageNationLayout>
-      {exampleCode[0].id < 4 ? 
-        exampleCode[0].id >= 2 ? 
+      {exampleCode[0].id < 4 ? (
+        exampleCode[0].id >= 2 ? (
           <RunFrontButton
             exampleCode={exampleCode}
             codePrac={codePrac}
             codeNumber={codeNumber}
           />
-         : null
-       : 
+        ) : null
+      ) : (
         <RunBackButton
           exampleCode={exampleCode}
           codePrac={codePrac}
           codeNumber={codeNumber}
         />
-      }
+      )}
 
       <PageNationNumLayout>
         <PageNationNum onClick={() => moveNum(0)}>1</PageNationNum>
