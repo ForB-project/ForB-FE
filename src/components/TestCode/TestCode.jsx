@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 
 import { TestCodeView, TestCodeHeader, PageNation } from "../index";
-import { type } from "@testing-library/user-event/dist/type";
 
 const TestCode = () => {
   const testCodeList = useSelector((state) => state.testCode.testCode);
@@ -15,28 +14,27 @@ const TestCode = () => {
   const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
   const [exampleCode, setExampleCode] = useState(testCodeList);
 
-  const movePage = (codeId) => {
+  const moveNum = (codeId) => {
     setCodeNumber(codeId);
-    setCodePrac('');
+    setCodePrac("");
   };
-  const htmlPage = () => {
-    setExampleCode(testCodeList);
+  
+  const movePage = (page) => {
+    if (page === "h") {
+      setExampleCode(testCodeList);
+    } else if (page === "f") {
+      setExampleCode(frontCodeList);
+    } else if (page === "b") {
+      setExampleCode(backCodeList);
+    }
     setCodeNumber(0);
+    setCodePrac("");
   };
 
-  const frontPage = () => {
-    setExampleCode(frontCodeList);
-    setCodeNumber(0);
-  };
-
-  const backPage = () => {
-    setExampleCode(backCodeList);
-    setCodeNumber(0);
-  };
   console.log(codeNumber);
   return (
     <CodeBackLayout>
-      <TestCodeHeader codeNumber={codeNumber} codeList={exampleCode.length} />
+      <TestCodeHeader />
       <CodeWindow>
         <CodeInputLayout>
           <CodeExample>{exampleCode[codeNumber].exampleCode}</CodeExample>
@@ -46,13 +44,15 @@ const TestCode = () => {
             onChange={(e) => setCodePrac(e.target.value)}
           />
         </CodeInputLayout>
-        <TestCodeView exampleCode={exampleCode} codeNumber={codeNumber} codePrac={codePrac} />
+        <TestCodeView
+          exampleCode={exampleCode}
+          codeNumber={codeNumber}
+          codePrac={codePrac}
+        />
       </CodeWindow>
       <PageNation
+        moveNum={moveNum}
         movePage={movePage}
-        htmlPage={htmlPage}
-        frontPage={frontPage}
-        backPage={backPage}
         exampleCode={exampleCode}
         codePrac={codePrac}
         codeNumber={codeNumber}

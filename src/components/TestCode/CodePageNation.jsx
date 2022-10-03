@@ -8,10 +8,8 @@ import {
 } from "../../redux/modules/TestCodeSlice";
 
 const PageNation = ({
+  moveNum,
   movePage,
-  frontPage,
-  backPage,
-  htmlPage,
   exampleCode,
   codePrac,
   codeNumber,
@@ -52,22 +50,22 @@ const PageNation = ({
 
   return (
     <PageNationLayout>
-      {exampleCode[0].id <= 1 ? null : (
+      {exampleCode[0].id <= 3 ? null : (
         <FrontBackButton
           className="runButton"
-          onClick={() => (exampleCode[0].id >= 4 ? runBackCode() : null)}
+          onClick={() => runBackCode()}
         >
           run
         </FrontBackButton>
       )}
 
       <PageNationNumLayout>
-        <PageNationNum onClick={() => movePage(0)}>1</PageNationNum>
-        <PageNationNum onClick={() => movePage(1)}>2</PageNationNum>
+        <PageNationNum onClick={() => moveNum(0)}>1</PageNationNum>
+        <PageNationNum onClick={() => moveNum(1)}>2</PageNationNum>
       </PageNationNumLayout>
-      <FrontBackButton onClick={() => htmlPage()}>HTML</FrontBackButton>
-      <FrontBackButton onClick={() => frontPage()}>Front</FrontBackButton>
-      <FrontBackButton onClick={() => backPage()}>Back</FrontBackButton>
+      <FrontBackButton onClick={() => movePage('h')}>HTML</FrontBackButton>
+      <FrontBackButton onClick={() => movePage('f')}>Front</FrontBackButton>
+      <FrontBackButton onClick={() => movePage('b')}>Back</FrontBackButton>
     </PageNationLayout>
   );
 };
@@ -108,6 +106,9 @@ const PageNationNum = styled.button`
   color: white;
   cursor: pointer;
   &:hover {
+    opacity: 1;
+  }
+  &:active {
     opacity: 1;
   }
 `;
