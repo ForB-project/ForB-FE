@@ -60,11 +60,11 @@ const QuizWindow = () => {
             result.find(result => result === "F") ||
             result.find(result => result === "B")
               ? quizId === 7 || quizId === 10
-                ? setTimeout(() => resultTendency(forbCount + 100), 2000)
-                : setTimeout(() => forFrontBack(forbCount + 100), 2000)
+                ? resultTendency(forbCount + 100)
+                : forFrontBack(forbCount + 100)
               : quizId === 4
-              ? setTimeout(() => resultFrontBack(forbCount + 100), 2000)
-              : setTimeout(() => forFrontBack(forbCount + 100), 2000)
+              ? resultFrontBack(forbCount + 100)
+              : forFrontBack(forbCount + 100)
           }
         >
           {result.find(result => result === "B")
@@ -78,11 +78,11 @@ const QuizWindow = () => {
             result.find(result => result === "F") ||
             result.find(result => result === "B")
               ? quizId === 7 || quizId === 10
-                ? setTimeout(() => resultTendency(forbCount + 1), 2000)
-                : setTimeout(() => forFrontBack(forbCount + 1), 2000)
+                ? resultTendency(forbCount + 1)
+                : forFrontBack(forbCount + 1)
               : quizId === 4
-              ? setTimeout(() => resultFrontBack(forbCount + 1), 2000)
-              : setTimeout(() => forFrontBack(forbCount + 1), 2000)
+              ? resultFrontBack(forbCount + 1)
+              : forFrontBack(forbCount + 1)
           }
         >
           {result.find(result => result === "B")
@@ -176,8 +176,5 @@ const QuizButton = styled.button`
     opacity: 1;
     color: white;
     animation: ${moving} 2s linear infinite;
-  }
-  &:focus {
-    animation: ${disappear} 2.1s;
   }
 `;
