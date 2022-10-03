@@ -6,16 +6,18 @@ import { useSelector } from "react-redux";
 const TestCodeView = ({ codePrac, exampleCode, codeNumber }) => {
   //보안 문제로 인해 dompurify패키지 사용했습니다.
   const sanitizer = dompurify.sanitize;
+
   const result = useSelector((state) => state.testCode.result.data);
   const [resultBack, setResultBack] = useState(result);
-  
-  console.log( sanitizer(codePrac));
+
+  console.log(resultBack);
   console.log(exampleCode[codeNumber].id);
   return (
     <CodeViewLayout>
       {codePrac === "" ? (
         <CodeView>코드를 입력해볼까요?</CodeView>
-      ) : exampleCode[codeNumber].id === 4 || exampleCode[codeNumber].id ===5 ? (
+      ) : exampleCode[codeNumber].id === 4 ||
+        exampleCode[codeNumber].id === 5 ? (
         <CodeView dangerouslySetInnerHTML={{ __html: result }} />
       ) : (
         <CodeView dangerouslySetInnerHTML={{ __html: sanitizer(codePrac) }} />
