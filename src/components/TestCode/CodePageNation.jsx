@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -44,7 +44,7 @@ const PageNation = ({
 export default PageNation;
 
 const PageNationLayout = styled.div`
-  width: 62vw;
+  width: 61.8vw;
   height: 40px;
   display: flex;
   flex-direction: row;
