@@ -171,7 +171,7 @@ const MenuStyled = styled.div`
           }
         `
       : css`
-          right: -20%;
+          right: -22%;
           .closeSideBar {
             position: fixed;
             top: 0;
