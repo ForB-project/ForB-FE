@@ -3,7 +3,7 @@ import {
   removeAccessToken,
   removeRefreshToken,
   removeUserName,
-  removeResult
+  removeQuizResult,
 } from "../../shared/storage";
 import { AccountAPI } from "../../shared/api";
 
@@ -11,7 +11,7 @@ const removeStorage = () => {
   removeAccessToken();
   removeRefreshToken();
   removeUserName();
-  removeResult();
+  removeQuizResult();
 };
 
 const LogoutButton = props => {
@@ -24,40 +24,36 @@ const LogoutButton = props => {
   };
 
   return (
-    <LogoutButtonStlyed>
-      <span
-        onClick={() => {
-          logout();
-        }}
-      >
-        Logout
-      </span>
+    <LogoutButtonStlyed
+      onClick={() => {
+        logout();
+      }}
+    >
+      <span>Logout</span>
     </LogoutButtonStlyed>
   );
 };
 
 export default LogoutButton;
 
-const LogoutButtonStlyed = styled.button`
+const LogoutButtonStlyed = styled.div`
   font-family: "neodgm";
   font-size: 1.5rem;
   width: 20%;
-  height: 10%;
+  height: 9%;
   background-color: rgb(230, 230, 230);
   border: 5px solid black;
   border-radius: 20%/60%;
   margin: 10px auto;
   transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: rgb(74, 159, 228);
   }
   span {
-    display: block;
-    z-index: 2;
     color: white;
-    width: auto;
-    height: 100%;
-
     filter: drop-shadow(-2px 0 0 black) drop-shadow(2px 0 0 black)
       drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
   }

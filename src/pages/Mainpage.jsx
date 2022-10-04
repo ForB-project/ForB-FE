@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Modal, MainLoginModal, LogoutButton, Header } from "../components";
 import { Mainimg, FEvsBE, mainFirst, Logo } from "../static";
 import { useNavigate } from "react-router-dom";
-import { getRefreshToken } from "../shared/storage";
+import {
+  getRefreshToken,
+  getExpiration,
+  removeExpiration,
+} from "../shared/storage";
 
 const Mainpage = () => {
   const [closeModal, setCloseModal] = useState(false);
   const [isLogin, setIsLogin] = useState(getRefreshToken());
   const navigate = useNavigate();
-
+  const expiration = getExpiration();
+  useEffect(() => {
+    if (expiration) {
+      removeExpiration();
+      window.alert("로그인이 만료되었습니다 다시 로그인해주세요");
+    }
+  }, []);
   return (
     <WrapStyled>
       <Header />
@@ -33,9 +43,7 @@ const Mainpage = () => {
         </button>
 
         {isLogin ? (
-          <button>
-            <span>Login 완료!</span>
-          </button>
+          ""
         ) : (
           <button>
             <span

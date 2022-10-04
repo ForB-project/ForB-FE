@@ -32,37 +32,53 @@ export const removeUserName = () => {
   return localStorage.removeItem("username");
 };
 
-export const setResult = response =>{
-  const id = response.data.data[0].id;
-  const title = response.data.data[0].title;
-  const description1 = response.data.data[0].description1;
-  const description2 = response.data.data[0].description2;
-  const stackType = response.data.data[0].stackType;
+export const getExpiration = () => {
+  return localStorage.getItem("expiration");
+};
+export const removeExpiration = () => {
+  return localStorage.removeItem("expiration");
+};
+// export const setResult = response =>{
+//   const id = response.data.data[0].id;
+//   const title = response.data.data[0].title;
+//   const description1 = response.data.data[0].description1;
+//   const description2 = response.data.data[0].description2;
+//   const stackType = response.data.data[0].stackType;
 
-  return(
-    localStorage.setItem('resultId',id),
-    localStorage.setItem('resultTitle',title),
-    localStorage.setItem('resultDescription1',description1),
-    localStorage.setItem('resultDescription2',description2),
-    localStorage.setItem('resultStackType',stackType)
+//   return(
+//     localStorage.setItem('resultId',id),
+//     localStorage.setItem('resultTitle',title),
+//     localStorage.setItem('resultDescription1',description1),
+//     localStorage.setItem('resultDescription2',description2),
+//     localStorage.setItem('resultStackType',stackType)
+//   );
+// };
+
+// export const removeResult = () =>{
+//   return(
+//     localStorage.removeItem('resultId'),
+//     localStorage.removeItem('resultTitle'),
+//     localStorage.removeItem('resultDescription1'),
+//     localStorage.removeItem('resultDescription2'),
+//     localStorage.removeItem('resultStackType')
+//   );
+// };
+
+export const setQuizResult = result => {
+  const type = result[0];
+  const answer = result[1];
+  return (
+    localStorage.setItem("answer", answer), localStorage.setItem("type", type)
   );
 };
 
-export const removeResult = () =>{
-  return(
-    localStorage.removeItem('resultId'),
-    localStorage.removeItem('resultTitle'),
-    localStorage.removeItem('resultDescription1'),
-    localStorage.removeItem('resultDescription2'),
-    localStorage.removeItem('resultStackType')
-  );
+export const getQuizResult = () => {
+  const answer = localStorage.getItem("answer");
+  const type = localStorage.getItem("type");
+  const data = { type: type, answerSum: answer };
+  return data;
 };
-
-export const setQuizResult = result =>{
-  const type =result[0];
-  const answer =result[1];
-  return(
-    localStorage.setItem('answer',answer),
-    localStorage.setItem('type',type)
-  );
+export const removeQuizResult = () => {
+  localStorage.removeItem("answer");
+  localStorage.removeItem("type");
 };

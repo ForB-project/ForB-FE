@@ -36,13 +36,13 @@ const ContentHeaderStyled = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  width: 80%;
   margin: auto;
   border-radius: 10px;
   background-color: rgb(100, 100, 100, 0.9);
   button {
     margin-left: 30px;
-    width: 180px;
+    width: 200px;
     border: 3px solid white;
     border-radius: 10px;
     color: white;

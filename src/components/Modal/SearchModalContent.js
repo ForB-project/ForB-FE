@@ -4,13 +4,14 @@ import { Logo, mainFirst } from "../../static";
 import { LikeAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-const RoadmapContent = forwardRef((props, ref) => {
+const SearchModalContent = forwardRef((props, ref) => {
+  console.log(props);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
     window.open(props.data.link, "_blank");
   }
-
+  const keyword = props.keyword;
   const contentLike = async contentId => {
     const res = await LikeAPI.togglelike(contentId);
 
@@ -18,7 +19,7 @@ const RoadmapContent = forwardRef((props, ref) => {
   };
   const toggleLike = useMutation(contentLike, {
     onSuccess: res => {
-      queryClient.invalidateQueries(["contentList", props.querykey]);
+      queryClient.invalidateQueries(["SearchContentList", keyword]);
     },
   });
   return (
@@ -33,7 +34,7 @@ const RoadmapContent = forwardRef((props, ref) => {
 
         <StackStyled>
           <span className="ContentTitle">{props.data.title}</span>
-          <p className="ContentDesc">{props.data.desc}</p>
+          <p className="ContentDesc">{props.data?.desc}</p>
         </StackStyled>
         <div
           className="LikeContent"
@@ -48,7 +49,6 @@ const RoadmapContent = forwardRef((props, ref) => {
               <FaRegHeart className="icon" />
             )}
           </div>
-          {props.data.heartCnt}
         </div>
         <div className="inviewref" ref={ref}></div>
       </ContentStyled>
@@ -56,7 +56,7 @@ const RoadmapContent = forwardRef((props, ref) => {
   );
 });
 
-export default RoadmapContent;
+export default SearchModalContent;
 
 const iconhover = keyframes`
 
@@ -72,7 +72,8 @@ const iconhover = keyframes`
       `;
 const ContentStyled = styled.div`
   display: grid;
-  width: 70%;
+  color: white;
+  width: 90%;
   height: 100px;
   grid-template-columns: 30% 60% 10%;
   border: 1px solid white;
