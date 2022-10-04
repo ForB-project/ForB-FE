@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import styled from "styled-components";
 
 import {
@@ -13,6 +13,8 @@ const RunFrontButton = ({
   codeNumber,
 }) => {
   const dispatch = useDispatch();
+  const result = useSelector((state) => state.testCode.result.data);
+  const [saveAnswer, setSaveAnswer] = useState([]);
   const [codeList, setCodeList] = useState({});
 
   const runFrontCode = () => {
@@ -29,6 +31,7 @@ const RunFrontButton = ({
         inputInt1: Number(firstInt),
         inputInt2: Number(secondInt),
       });
+      setSaveAnswer([{answer:result,id:exampleCode[codeNumber].id}])
     }
   };
 
@@ -58,7 +61,7 @@ const RunFrontCode = styled.button`
   min-width: 42px;
   height: 2vw;
   min-height: 22px;
-  margin: 0.5vw 0.2vw 0px 0.5vw;
+  margin: 0.5vw 0.2vw 0px 0.2vw;
   margin-top: -0.1vh;
   margin-bottom: -2vh;
   border: 2px dashed black;

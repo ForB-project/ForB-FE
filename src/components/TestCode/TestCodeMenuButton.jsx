@@ -77,12 +77,14 @@ const HeaderSyled = styled.div`
     border: 4px dashed black;
   border-radius: 8px;
   background-color: #10141b;
-  /* width: 50px;
-  height: 50px; */
+  width: 2.5vw;
+  height: 2vh; 
   padding: 6px 12px;
+  display: flex;
+  justify-content: center;
   color: white;
   z-index: 10;
-  font-size: 1.5rem;
+  font-size: calc(0.4em + 0.9vw);
   font-family: "neodgm";
   cursor: pointer;
   opacity: 0.8;

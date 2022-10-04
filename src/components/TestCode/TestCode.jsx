@@ -1,25 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 
 import { TestCodeView, TestCodeHeader, PageNation } from "../index";
+import {
+  addPracCode,
+  addBackPracCode,
+} from "../../redux/modules/TestCodeSlice";
 
 const TestCode = () => {
+  const dispatch = useDispatch();
   const testCodeList = useSelector((state) => state.testCode.testCode);
   const frontCodeList = useSelector((state) => state.testCode.frontCode);
   const backCodeList = useSelector((state) => state.testCode.backCode);
+  const result = useSelector((state) => state.testCode.result);
   const [codeNumber, setCodeNumber] = useState(0);
-  const [codePrac, setCodePrac] = useState("코드를 입력해볼까요?");
   const [exampleCode, setExampleCode] = useState(testCodeList);
+  const [codePrac, setCodePrac] = useState("");
 
-  const moveNum = (codeId) => {
-    setCodeNumber(codeId);
-    setCodePrac("");
+  const moveNum = (codeIndex) => {
+    const resultPracCode = {
+      id: exampleCode[codeNumber].id,
+      codePrac,
+      answer: codePrac,
+    };
+    setCodeNumber(codeIndex);
+    // 사용자가 쓴 예제코드, 출력 저장 용도
+    if (exampleCode[codeNumber].id === 4 || exampleCode[codeNumber].id === 5) {
+      dispatch(addBackPracCode(resultPracCode));
+    } else {
+      dispatch(addPracCode(resultPracCode));
+    }
   };
-  
+
   const movePage = (page) => {
+    const resultPracCode = {
+      id: exampleCode[codeNumber].id,
+      codePrac,
+      answer: codePrac,
+    };
     if (page === "h") {
       setExampleCode(testCodeList);
     } else if (page === "f") {
@@ -28,8 +49,14 @@ const TestCode = () => {
       setExampleCode(backCodeList);
     }
     setCodeNumber(0);
-    setCodePrac("");
+    dispatch(addPracCode(resultPracCode));
   };
+  // 사용자가 쓴 예제코드, 출력 저장 용도
+  useEffect(() => {
+    setCodePrac(
+      result.find((list) => list.id === exampleCode[codeNumber].id).pracCode
+    );
+  }, [exampleCode, codeNumber]);
 
   return (
     <CodeBackLayout>
@@ -107,6 +134,7 @@ const CodeExample = styled.div`
   background-color: #10141b;
   margin: auto;
   display: flex;
+  justify-content: center;
   padding-top: 10px;
   white-space: pre-wrap;
 `;

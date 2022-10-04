@@ -6,6 +6,7 @@ import {
   __sendPracCode1,
   __sendPracCode2,
 } from "../../redux/modules/TestCodeSlice";
+import {addBackPracCode} from "../../redux/modules/TestCodeSlice";
 
 const RunBackButton = ({
   exampleCode,
@@ -27,9 +28,11 @@ const RunBackButton = ({
         inputInt2: Number(sendCodeIf),
       });
     } else if (exampleCode[codeNumber].id === 5) {
-      const forIf = codePrac.replace(regex, "");
-      const firstInt = forIf.slice(-2);
-      const secondInt = forIf.slice(-4, 3);
+      const sendCodeInt = codePrac.split(';');
+      // const firstInt = forIf.slice(-2);
+      // const secondInt = forIf.slice(-4, 3);
+      const firstInt = sendCodeInt[1].replace(regex, "");
+      const secondInt = sendCodeInt[3].replace(regex, "");
       setCodeList({
         ...codeList,
         inputInt1: Number(firstInt),
@@ -39,11 +42,13 @@ const RunBackButton = ({
   };
 
   useEffect(() => {
-    if (exampleCode[codeNumber].id === 4) {
-      dispatch(__sendPracCode1(codeList));
-    } else if (exampleCode[codeNumber].id === 5) {
+    const result = {id:exampleCode[codeNumber].id, codePrac}
+    if (exampleCode[codeNumber].id === 4 && codeList!=={}) {
+      dispatch(__sendPracCode1(codeList,codePrac));
+    } else if (exampleCode[codeNumber].id === 5 && codeList!=={} ) {
       dispatch(__sendPracCode2(codeList));
     }
+    dispatch(addBackPracCode(result));
   }, [codeList]);
 
   return (
@@ -62,7 +67,7 @@ const RunBackCode = styled.button`
   min-width: 42px;
   height: 2vw;
   min-height: 22px;
-  margin: 0.5vw 0.2vw 0px 0.5vw;
+  margin: 0.5vw 0.2vw 0px 0.2vw;
   margin-top: -0.1vh;
   margin-bottom: -2vh;
   border: 2px dashed black;
