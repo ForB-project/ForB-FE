@@ -11,8 +11,8 @@ const LowerResult = () => {
       <Header />
       <LowerStyled>
         <LeftButtonStyled>
-          <CodingButton onClick={() => navigate("/community")}>
-            코딩 테스트해보기(게시판)
+          <CodingButton onClick={() => navigate("/testcode")}>
+            코드체험 해보기
           </CodingButton>
         </LeftButtonStyled>
         <CenterButtonStyled> </CenterButtonStyled>

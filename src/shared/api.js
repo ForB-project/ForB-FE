@@ -1,6 +1,21 @@
 import axios from "axios";
-import { getRefreshToken, getAccessToken, setResult } from "./storage";
+import {
+  getRefreshToken,
+  getAccessToken,
+  setResult,
+  removeAccessToken,
+  removeQuizResult,
+  removeRefreshToken,
+  removeUserName,
+} from "./storage";
+import { useNavigate } from "react-router-dom";
 const BASE_URL = "https://www.sheshesh.shop";
+const ClearStorage = () => {
+  removeAccessToken();
+  removeQuizResult();
+  removeRefreshToken();
+  removeUserName();
+};
 export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -14,32 +29,35 @@ api.interceptors.request.use(
     const refreshToken = getRefreshToken();
     const preaccessToken = getAccessToken();
     const accessToken = preaccessToken?.split(" ")[1];
-
-    config.headers["Authorization"] = `Bearer ${accessToken}`;
-    config.headers["Refresh-Token"] = `${refreshToken}`;
-    return config;
+    if (!refreshToken) {
+      return config;
+    } else {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+      config.headers["Refresh-Token"] = `${refreshToken}`;
+      return config;
+    }
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
   }
-  // function (error) {
-  //   // Do something with request error
-  //   return Promise.reject(error);
-  // }
 );
 
 api.interceptors.response.use(
   function (response) {
     // 응답 데이터를 가공
 
-    // if (response.data?.data[0].stackType) {
-    //   setResult(response);
-    // }
-
     return response;
-  }
-  // function (error) {
-  //   // 오류 응답을 처리
+  },
+  function (error) {
+    // 오류 응답을 처리
 
-  //   return Promise.reject(error);
-  // }
+    if (error.response.data.success === false) {
+      ClearStorage();
+      localStorage.setItem("expiration", true);
+      // window.location.reload();
+    }
+  }
 );
 export const AccountAPI = {
   goolgeLogin: code => api.get(`/login/oauth2/code/google?code=${code}`),
@@ -58,6 +76,10 @@ export const RoadmapAPI = {
     api.put(`/api/roadmap/${choseCategory.title}/${choseCategory.id}`, data),
 };
 
+export const ContentAPI = {
+  getContent: keyword => api.get(`/api/roadmap/search?keyword=${keyword}`),
+};
+
 export const CommentAPI = {
   addcomment: data => api.post(`api/auth/comment`, data),
   deletecomment: id => api.delete(`api/auth/comment/${id}`),
@@ -65,4 +87,8 @@ export const CommentAPI = {
 
 export const LikeAPI = {
   togglelike: contentId => api.post(`/api/roadmap/heart/${contentId}`),
+};
+
+export const QuizResultAPI = {
+  postResult: data => api.post(`/api/test/result`, data),
 };

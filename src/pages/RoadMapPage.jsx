@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, useInfiniteQuery } from "react-query";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   RoadmapStack,
   RoadmapCategory,
@@ -10,15 +10,19 @@ import {
   AddContentModal,
   RoadmapGuide,
   RoadmapContentHeader,
+  SearchModal,
 } from "../components";
 import { RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { GrSearchAdvanced } from "react-icons/gr";
+import { getAccessToken } from "../shared/storage";
 const RoadMap = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView();
   const [closeModal, setCloseModal] = useState(false);
+  const [closeSearch, setCloseSearch] = useState(false);
   //Stack 불러오는 부분
   const getStack = async () => {
     return await RoadmapAPI.getStack();
@@ -76,10 +80,10 @@ const RoadMap = () => {
 
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
-    if (!localStorage.getItem("access_token")) {
+    if (!getAccessToken()) {
       navigate("/");
     }
-  }, []);
+  }, [getAccessToken()]);
   // inView일때 다음 페이지 가져오기
   useEffect(() => {
     if (inView) {
@@ -97,6 +101,9 @@ const RoadMap = () => {
             closeModal={() => setCloseModal(!closeModal)}
           />
         </ModalWide>
+      )}
+      {closeSearch && (
+        <SearchModal closeSearch={() => setCloseSearch(!closeSearch)} />
       )}
       <ContainerStyled>
         <button
@@ -135,6 +142,14 @@ const RoadMap = () => {
             })}
           </div>
           <ContentContainerStyled>
+            <button
+              className="Search"
+              onClick={() => {
+                setCloseSearch(!closeSearch);
+              }}
+            >
+              <GrSearchAdvanced />
+            </button>
             <TitleCategoryStyled>
               <RoadmapContentHeader
                 setSort={setSort}
@@ -255,6 +270,23 @@ const BodyStyled = styled.div`
     border: 1px solid white;
   }
 `;
+const fontsize = keyframes`
+0%{
+  font-size: 2rem;
+}
+  25%{
+    font-size: 3rem;
+  }
+  50%{
+    font-size: 2rem;;
+  }
+  75%{
+    font-size: 1rem;
+  }
+  100%{
+    font-size: 2rem;
+  }
+`;
 const ContentContainerStyled = styled.div`
   position: relative;
   grid-column-start: 2;
@@ -270,7 +302,24 @@ const ContentContainerStyled = styled.div`
     align-items: center;
     grid-row-start: 2;
   }
+  .Search {
+    position: fixed;
+    margin-top: 2%;
+    margin-left: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    z-index: 5;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    &:hover {
+      animation: ${fontsize} 2s ease-in infinite;
+    }
+  }
 `;
+
 const TitleCategoryStyled = styled.span`
   position: fixed;
   grid-row-start: 1;

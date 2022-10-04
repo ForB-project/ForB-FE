@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 const RoadmapGuide = props => {
   const [tipNum, setTipNum] = useState(1);
-  const [currentTip, setCurrentTip] = useState();
+  const [currentTip, setCurrentTip] = useState({
+    id: 1,
+    tip: "블로그,게시물이 도움이 되었다면 좋아요를 눌러주세요",
+  });
   const tips = [
     { id: 1, tip: "블로그,게시물이 도움이 되었다면 좋아요를 눌러주세요" },
     { id: 2, tip: "게시물을 추가할때 사진을 안넣으면 기본이미지가 들어갑니다" },

@@ -35,8 +35,15 @@ import fancyMagic3 from "./image/sample/8spell/fancyMagic3.png";
 import fancyMagic4 from "./image/sample/8spell/fancyMagic5.png";
 import archemy from "./image/sample/9archemy/archemy.png";
 import archemy2 from "./image/sample/9archemy/archemy2.png";
-
+import DoteS from "./image/dometory/도트슬린.png";
+import DoteR from "./image/dometory/도트레반.png";
+import DoteG from "./image/dometory/도트그리핀.png";
+import DoteH from "./image/dometory/도트푸르.png";
 export {
+  DoteS,
+  DoteR,
+  DoteG,
+  DoteH,
   Mainimg,
   Logo,
   hogwart_logo,

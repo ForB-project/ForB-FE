@@ -18,7 +18,9 @@ import QuizImage from "./Quiz/QuizImage";
 import RoadmapContentHeader from "./Roadmap/RoadmapContentHeader";
 import RunFrontButton from "./TestCode/RunFrontButton";
 import RunBackButton from "./TestCode/RunBackButton";
+import SearchModal from "./Modal/SearchModal";
 export {
+  SearchModal,
   RoadmapContentHeader,
   RoadmapGuide,
   AddContentModal,
@@ -38,5 +40,5 @@ export {
   MenuButton,
   QuizImage,
   RunFrontButton,
-  RunBackButton
+  RunBackButton,
 };
