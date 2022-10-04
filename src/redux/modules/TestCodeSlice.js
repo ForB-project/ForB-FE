@@ -56,9 +56,9 @@ const initialState = {
 
 export const __sendPracCode1 = createAsyncThunk(
   "QUIZRESULT1",
-  async (payload, thunkAPI) => {
-    const { data } = await api.post(`/api/firstCode`, payload);
-    return thunkAPI.fulfillWithValue(data);
+  async (payload, thunkAPI) => { 
+      const { data } = await api.post(`/api/firstCode`, payload);
+      return thunkAPI.fulfillWithValue(data);
   }
 );
 

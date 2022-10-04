@@ -56,6 +56,7 @@ const TestCode = () => {
     setCodePrac(
       result.find((list) => list.id === exampleCode[codeNumber].id).pracCode
     );
+    console.log('렌더링');
   }, [exampleCode, codeNumber]);
 
   return (

@@ -8,10 +8,10 @@ const TestCodeView = ({ codePrac, exampleCode, codeNumber }) => {
   const sanitizer = dompurify.sanitize;
 
   const result = useSelector((state) => state.testCode.result);
-
+  console.log(result.find(list=>list.id === exampleCode[codeNumber].id));
   return (
     <CodeViewLayout>
-      {result[codeNumber].answer === "" && codePrac==='' ? (
+      {result.find(list=>list.id === exampleCode[codeNumber].id).pracCode === "" && codePrac==='' ? (
         <CodeView>코드를 입력해볼까요?</CodeView>
       ) : exampleCode[codeNumber].id === 4 ||
         exampleCode[codeNumber].id === 5 ? (
