@@ -1,10 +1,11 @@
 import React, { forwardRef } from "react";
 import styled, { keyframes } from "styled-components";
 import { Logo, mainFirst } from "../../static";
-import { LikeAPI } from "../../shared/api";
+import { LikeAPI, ContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
 const RoadmapContent = forwardRef((props, ref) => {
+  console.log(props);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
@@ -21,6 +22,17 @@ const RoadmapContent = forwardRef((props, ref) => {
       queryClient.invalidateQueries(["contentList", props.querykey]);
     },
   });
+
+  const DeleteContent = async contentId => {
+    const res = await ContentAPI.deleteContent(contentId);
+    return res;
+  };
+  const deleteAction = useMutation(DeleteContent, {
+    onSuccess: res => {
+      queryClient.invalidateQueries(["contentList", props.querykey]);
+    },
+  });
+
   return (
     <>
       <ContentStyled>
@@ -35,21 +47,34 @@ const RoadmapContent = forwardRef((props, ref) => {
           <span className="ContentTitle">{props.data.title}</span>
           <p className="ContentDesc">{props.data.desc}</p>
         </StackStyled>
-        <div
-          className="LikeContent"
-          onClick={() => {
-            toggleLike.mutate(props.data.id);
-          }}
-        >
-          <div className="heartBox">
-            {props.data.heartCheck ? (
-              <FaHeart className="icon" />
-            ) : (
-              <FaRegHeart className="icon" />
-            )}
+        {props.deletekey === 1 ? (
+          <div className="DeleteButton">
+            <div
+              className="DeleteBack"
+              onClick={() => {
+                deleteAction.mutate(props.data.id);
+              }}
+            >
+              <FaTrashAlt />
+            </div>
           </div>
-          {props.data.heartCnt}
-        </div>
+        ) : (
+          <div
+            className="LikeContent"
+            onClick={() => {
+              toggleLike.mutate(props.data.id);
+            }}
+          >
+            <div className="heartBox">
+              {props.data.heartCheck ? (
+                <FaHeart className="icon" />
+              ) : (
+                <FaRegHeart className="icon" />
+              )}
+            </div>
+            {props.data.heartCnt}
+          </div>
+        )}
         <div className="inviewref" ref={ref}></div>
       </ContentStyled>
     </>
@@ -78,10 +103,33 @@ const ContentStyled = styled.div`
   border: 1px solid white;
   border-radius: 10px;
   margin-top: 10px;
+  transition: 0.3s;
   &:hover {
     border: 1px solid black;
     background-color: black;
     cursor: pointer;
+  }
+  .DeleteButton {
+    grid-column-start: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    &:hover {
+      cursor: pointer;
+      .DeleteBack {
+        width: 40px;
+        height: 40px;
+        border-radius: 99999px;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
+    }
   }
   .LikeContent {
     grid-column-start: 3;
@@ -100,7 +148,7 @@ const ContentStyled = styled.div`
       height: 60%;
     }
     .icon {
-      transition: 0.2s;
+      transition: 0.3s;
       animation: ${iconhover} 1s 1s infinite linear alternate;
       &:hover {
         color: pink;

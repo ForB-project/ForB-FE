@@ -78,6 +78,9 @@ export const RoadmapAPI = {
 
 export const ContentAPI = {
   getContent: keyword => api.get(`/api/roadmap/search?keyword=${keyword}`),
+  getMyPage: (Id, pageParam) =>
+    api.get(`api/myroadmap/${Id}?page=${pageParam}&size=7`),
+  deleteContent: Id => api.delete(`/api/myroadmap/${Id}`),
 };
 
 export const CommentAPI = {

@@ -6,7 +6,9 @@ import OAuthKakao from "./OAuthKakao";
 import QuizPage from "./QuizPage";
 import TestCodePage from "./TestCodePage";
 import Mainpage from "./Mainpage";
+import Mypage from "./Mypage";
 export {
+  Mypage,
   RoadMap,
   Result,
   Community,

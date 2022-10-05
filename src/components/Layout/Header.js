@@ -68,6 +68,9 @@ const Header = () => {
                 </NavLink>
               </p>
               <p>
+                <NavLink to="/mypage">마이페이지</NavLink>
+              </p>
+              <p>
                 <NavLink to="/roadmap">로드맵</NavLink>
               </p>
               <p>
