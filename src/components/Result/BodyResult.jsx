@@ -19,7 +19,8 @@ const BodyResult = () => {
   const data = getQuizResult();
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
-
+  console.log(data);
+  console.log(resultData);
   // console.log("contents =", contents);
   const selectImg = () => {
     let result = "";

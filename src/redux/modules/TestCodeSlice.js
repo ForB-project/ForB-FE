@@ -76,7 +76,7 @@ export const TestCodeSlice = createSlice({
   reducers: {
     addPracCode: (state, action) => {
       state.result = state.result.map((list) =>
-       list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.answer } : list
+       list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.codePrac } : list
      );
     },
     addBackPracCode: (state, action) => {

@@ -16,19 +16,18 @@ const TestCode = () => {
   const frontCodeList = useSelector((state) => state.testCode.frontCode);
   const backCodeList = useSelector((state) => state.testCode.backCode);
   const result = useSelector((state) => state.testCode.result);
-  const [codeNumber, setCodeNumber] = useState(0);
+  const [codeIndex, setCodeIndex] = useState(0);
   const [exampleCode, setExampleCode] = useState(testCodeList);
   const [codePrac, setCodePrac] = useState("");
+  const resultPracCode = {
+    id: exampleCode[codeIndex].id,
+    codePrac,
+  };
 
   const moveNum = (codeIndex) => {
-    const resultPracCode = {
-      id: exampleCode[codeNumber].id,
-      codePrac,
-      answer: codePrac,
-    };
-    setCodeNumber(codeIndex);
+    setCodeIndex(codeIndex);
     // 사용자가 쓴 예제코드, 출력 저장 용도
-    if (exampleCode[codeNumber].id === 4 || exampleCode[codeNumber].id === 5) {
+    if (exampleCode[codeIndex].id === 4 || exampleCode[codeIndex].id === 5) {
       dispatch(addBackPracCode(resultPracCode));
     } else {
       dispatch(addPracCode(resultPracCode));
@@ -36,35 +35,55 @@ const TestCode = () => {
   };
 
   const movePage = (page) => {
-    const resultPracCode = {
-      id: exampleCode[codeNumber].id,
-      codePrac,
-      answer: codePrac,
-    };
+    // switch (page) {
+    //   case "h":
+    //     setExampleCode(testCodeList);
+    //     dispatch(addBackPracCode(resultPracCode));
+    //     break;
+    //   case "f":
+    //     setExampleCode(frontCodeList);
+    //     break;
+    //   case "b":
+    //     if (
+    //       exampleCode[codeNumber].id === 4 ||
+    //       exampleCode[codeNumber].id === 5
+    //     )
+    //       return null;
+    //     setExampleCode(backCodeList);
+    //     dispatch(addPracCode(resultPracCode));
+    //     break;
+    // }
     if (page === "h") {
       setExampleCode(testCodeList);
+      dispatch(addBackPracCode(resultPracCode));
     } else if (page === "f") {
       setExampleCode(frontCodeList);
     } else if (page === "b") {
+      if (
+        exampleCode[codeIndex].id === 4 ||
+        exampleCode[codeIndex].id === 5
+      )
+        return null;
       setExampleCode(backCodeList);
+      dispatch(addPracCode(resultPracCode));
     }
-    setCodeNumber(0);
-    dispatch(addPracCode(resultPracCode));
+
+    console.log(resultPracCode);
+    console.log(result);
+    setCodeIndex(0);
   };
   // 사용자가 쓴 예제코드, 출력 저장 용도
   useEffect(() => {
     setCodePrac(
-      result.find((list) => list.id === exampleCode[codeNumber].id).pracCode
+      result.find((list) => list.id === exampleCode[codeIndex].id).pracCode
     );
-    console.log('렌더링');
-  }, [exampleCode, codeNumber]);
-
+  }, [exampleCode, codeIndex]);
   return (
     <CodeBackLayout>
       <TestCodeHeader />
       <CodeWindow>
         <CodeInputLayout>
-          <CodeExample>{exampleCode[codeNumber].exampleCode}</CodeExample>
+          <CodeExample>{exampleCode[codeIndex].exampleCode}</CodeExample>
           <CodePractice
             placeholder="코드를 입력해볼까요?"
             value={codePrac}
@@ -73,7 +92,7 @@ const TestCode = () => {
         </CodeInputLayout>
         <TestCodeView
           exampleCode={exampleCode}
-          codeNumber={codeNumber}
+          codeIndex={codeIndex}
           codePrac={codePrac}
         />
       </CodeWindow>
@@ -82,7 +101,7 @@ const TestCode = () => {
         movePage={movePage}
         exampleCode={exampleCode}
         codePrac={codePrac}
-        codeNumber={codeNumber}
+        codeIndex={codeIndex}
       />
     </CodeBackLayout>
   );

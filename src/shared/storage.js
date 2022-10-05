@@ -75,7 +75,7 @@ export const setQuizResult = result => {
 export const getQuizResult = () => {
   const answer = localStorage.getItem("answer");
   const type = localStorage.getItem("type");
-  const data = { type: type, answerSum: answer };
+  const data = { type: type, answerSum: Number(answer)};
   return data;
 };
 export const removeQuizResult = () => {

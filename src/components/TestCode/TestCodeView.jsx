@@ -3,19 +3,19 @@ import styled from "styled-components";
 import dompurify from "dompurify";
 import { useSelector, useDispatch } from "react-redux";
 
-const TestCodeView = ({ codePrac, exampleCode, codeNumber }) => {
+const TestCodeView = ({ codePrac, exampleCode, codeIndex }) => {
   //보안 문제로 인해 dompurify패키지 사용했습니다.
   const sanitizer = dompurify.sanitize;
 
   const result = useSelector((state) => state.testCode.result);
-  console.log(result.find(list=>list.id === exampleCode[codeNumber].id));
+  console.log(result);
   return (
     <CodeViewLayout>
-      {result.find(list=>list.id === exampleCode[codeNumber].id).pracCode === "" && codePrac==='' ? (
+      {result.find(list=>list.id === exampleCode[codeIndex].id).pracCode === "" && codePrac==='' ? (
         <CodeView>코드를 입력해볼까요?</CodeView>
-      ) : exampleCode[codeNumber].id === 4 ||
-        exampleCode[codeNumber].id === 5 ? (
-        <CodeView dangerouslySetInnerHTML={{ __html: result.find((list)=>list.id===exampleCode[codeNumber].id).answer }} />
+      ) : exampleCode[codeIndex].id === 4 ||
+        exampleCode[codeIndex].id === 5 ? (
+        <CodeView dangerouslySetInnerHTML={{ __html: result.find((list)=>list.id===exampleCode[codeIndex].id).answer }} />
       ) : (
         <CodeView dangerouslySetInnerHTML={{ __html: sanitizer(codePrac) }} />
       )}

@@ -10,7 +10,7 @@ import {
 const RunFrontButton = ({
   exampleCode,
   codePrac,
-  codeNumber,
+  codeIndex,
 }) => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.testCode.result.data);
@@ -19,10 +19,10 @@ const RunFrontButton = ({
 
   const runFrontCode = () => {
     const regex = /[^0-9]/g;
-    if (exampleCode[codeNumber].id === 2) {
+    if (exampleCode[codeIndex].id === 2) {
       const sendCodeInt = codePrac.split(/'/)
       console.log(sendCodeInt);
-    } else if (exampleCode[codeNumber].id === 3) {
+    } else if (exampleCode[codeIndex].id === 3) {
       const forIf = codePrac.replace(regex, "");
       const firstInt = forIf.slice(-2);
       const secondInt = forIf.slice(-4, 3);
@@ -31,14 +31,14 @@ const RunFrontButton = ({
         inputInt1: Number(firstInt),
         inputInt2: Number(secondInt),
       });
-      setSaveAnswer([{answer:result,id:exampleCode[codeNumber].id}])
+      setSaveAnswer([{answer:result,id:exampleCode[codeIndex].id}])
     }
   };
 
   useEffect(() => {
-    if (exampleCode[codeNumber].id === 4) {
+    if (exampleCode[codeIndex].id === 4) {
       dispatch(__sendPracCode1(codeList));
-    } else if (exampleCode[codeNumber].id === 5) {
+    } else if (exampleCode[codeIndex].id === 5) {
       dispatch(__sendPracCode2(codeList));
     }
   }, [codeList]);

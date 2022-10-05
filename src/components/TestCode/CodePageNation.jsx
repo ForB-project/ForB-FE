@@ -9,9 +9,8 @@ const PageNation = ({
   movePage,
   exampleCode,
   codePrac,
-  codeNumber,
+  codeIndex,
 }) => {
-  const dispatch = useDispatch();
 
   return (
     <PageNationLayout>
@@ -20,14 +19,14 @@ const PageNation = ({
           <RunFrontButton
             exampleCode={exampleCode}
             codePrac={codePrac}
-            codeNumber={codeNumber}
+            codeIndex={codeIndex}
           />
         ) : null
       ) : (
         <RunBackButton
           exampleCode={exampleCode}
           codePrac={codePrac}
-          codeNumber={codeNumber}
+          codeIndex={codeIndex}
         />
       )}
 
