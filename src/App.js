@@ -11,6 +11,7 @@ import {
   OAuthKakao,
   QuizPage,
   TestCodePage,
+  Mypage,
 } from "./pages";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Mainpage />} />
           <Route path="/roadmap" element={<RoadMap />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/mypage" element={<Mypage />} />
           <Route path="/community" element={<Community />} />
           <Route path="/login/oauth2/code/google" element={<OAuthGoogle />} />
           <Route path="/oauth/callback/kakao" element={<OAuthKakao />} />
