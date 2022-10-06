@@ -16,9 +16,7 @@ const OAuthGoogle = () => {
   // 쿠키에 저장 안한 이유는 로그아웃할때 쿠기 삭제를 위해 로직을 만들었는데 쿠키가 바로 삭제 되지않고 남아있어 변경했다
   useEffect(() => {
     async function googleLogin() {
-      const res = await axios.get(
-        `http://3.38.209.226/login/oauth2/code/google?code=${code}`
-      );
+      const res = await AccountAPI.goolgeLogin(code);
       setAccessToken(res.headers["authorization"]);
       setRefreshToken(res.headers["refresh-token"]);
       setUserName(res.data.data.nickname);

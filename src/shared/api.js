@@ -9,7 +9,8 @@ import {
   removeUserName,
 } from "./storage";
 import { useNavigate } from "react-router-dom";
-const BASE_URL = "https://www.sheshesh.shop";
+const BASE_URL = process.env.REACT_APP_API;
+
 const ClearStorage = () => {
   removeAccessToken();
   removeQuizResult();

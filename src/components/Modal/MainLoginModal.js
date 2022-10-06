@@ -5,8 +5,10 @@ import LoginFunction from "./LoginFunction";
 import React from "react";
 const MainLoginModal = props => {
   //해당 사이트로 로그인 하고 인가코드 받아오기
-  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${"1023463463380-doq31dj1a7l9mmp8e3qm7tp62etlrq4g.apps.googleusercontent.com"}&redirect_uri=${"http://localhost:3000/login/oauth2/code/google"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid`;
-  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${"1292d3ba37e3caecf0ce708dccf32bb2"}&redirect_uri=${"http://localhost:3000/oauth/callback/kakao"}&response_type=code`;
+  const GoogleClientId = process.env.REACT_APP_GOOGLE_ID;
+  const KakaoId = process.env.REACT_APP_KAKAO_ID;
+  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GoogleClientId}&redirect_uri=${"http://localhost:3000/login/oauth2/code/google"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid`;
+  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KakaoId}&redirect_uri=${"http://localhost:3000/oauth/callback/kakao"}&response_type=code`;
   function closeModal() {
     props.closeModal();
   }
