@@ -7,8 +7,8 @@ const MainLoginModal = props => {
   //해당 사이트로 로그인 하고 인가코드 받아오기
   const GoogleClientId = process.env.REACT_APP_GOOGLE_ID;
   const KakaoId = process.env.REACT_APP_KAKAO_ID;
-  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GoogleClientId}&redirect_uri=${"http://localhost:3000/login/oauth2/code/google"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid`;
-  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KakaoId}&redirect_uri=${"http://localhost:3000/oauth/callback/kakao"}&response_type=code`;
+  const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GoogleClientId}&redirect_uri=${"https://main.d3j01gv2rz8p4k.amplifyapp.com/login/oauth2/code/google"}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid`;
+  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KakaoId}&redirect_uri=${"https://main.d3j01gv2rz8p4k.amplifyapp.com/oauth/callback/kakao"}&response_type=code`;
   function closeModal() {
     props.closeModal();
   }
