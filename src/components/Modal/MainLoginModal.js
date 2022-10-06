@@ -8,7 +8,7 @@ const MainLoginModal = props => {
   const GoogleClientId = process.env.REACT_APP_GOOGLE_ID;
   const KakaoId = process.env.REACT_APP_KAKAO_ID;
   const GoogleLoginURL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GoogleClientId}&redirect_uri=${process.env.REACT_APP_REDIRECT_GOOGLE}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid`;
-  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KakaoId}&redirect_uri=${process.env.REACT_APP_REDIRECT_GOOGLE}&response_type=code`;
+  const KakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${KakaoId}&redirect_uri=${process.env.REACT_APP_REDIRECT_KAKAO}&response_type=code`;
   function closeModal() {
     props.closeModal();
   }
