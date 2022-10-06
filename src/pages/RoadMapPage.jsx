@@ -74,6 +74,7 @@ const RoadMap = () => {
           return undefined;
         }
       },
+      refetchInterval: 1000
     }
   );
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
