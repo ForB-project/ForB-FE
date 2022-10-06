@@ -39,6 +39,8 @@ import DoteS from "./image/dometory/도트슬린.png";
 import DoteR from "./image/dometory/도트레반.png";
 import DoteG from "./image/dometory/도트그리핀.png";
 import DoteH from "./image/dometory/도트푸르.png";
+import Brige from "./image/pixelBrokenBrige.png"
+import Team from "./image/jointeam.png"
 export {
   DoteS,
   DoteR,
@@ -80,4 +82,6 @@ export {
   archemy,
   archemy2,
   goldBorder,
+  Brige,
+  Team
 };

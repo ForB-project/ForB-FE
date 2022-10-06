@@ -11,6 +11,8 @@ import {
   dragonImagine,
   dragonCastle2,
   fancyMagic2,
+  Brige,
+  Team
 } from "../../static/index";
 
 const initialState = {
@@ -65,7 +67,7 @@ const initialState = {
       answerFront: "최전방에서 \n학생들을 이끌며 \n용에게 맞선다.",
       answerBack: "인력이 부족한데에서 묵묵히 \n자기 할 일을 한다.",
       forbCount: 0,
-      image: dragonImagine,
+      image: dragonCastle2,
     },
     {
       id: 7,
@@ -73,7 +75,7 @@ const initialState = {
       answerFront: "원하는 학생 \n혹은 \n믿을 수 있는 \n학생을 찾아 나선다.",
       answerBack: "원했던 조가 아니라도 협동을 위해 발 벗고 나선다.",
       forbCount: 0,
-      image: dragonCastle2,
+      image: Team,
     },
     {
       id: 8,
@@ -81,7 +83,7 @@ const initialState = {
       answerFront: "자신이 \n먼저 넘어가서 \n팀원들이 \n넘어 올 수 있게 \n도와준다.",
       answerBack: "의견을 \n내기보다는 \n보조 하는데 \n힘을 다한다.",
       forbCount: 0,
-      image: fancyMagic2,
+      image: Brige,
     },
     {
       id: 9,
@@ -89,7 +91,7 @@ const initialState = {
       answerFront: "꼭 \n물리쳐야하나..? \n유인해서 \n피해를 최소화 하자!  ",
       answerBack: "죽이지 않고, \n내 것으로 \n만들어야겠다.",
       forbCount: 0,
-      image: fancyOwl,
+      image: dragonCastle2,
     },
     {
       id: 10,
@@ -97,7 +99,7 @@ const initialState = {
       answerFront: "친분과 관계 없이 \n실력이 가장 좋은 사람들과 함께 한다.",
       answerBack: "자신과 \n친분이 있거나 \n믿을 수 있는 \n사람과 함께 한다.",
       forbCount: 0,
-      image: fancyOwl,
+      image: Team,
     },
     {
       id: 11,
@@ -105,7 +107,7 @@ const initialState = {
       answerFront: "다리를 \n건너지 않고 \n다른 방법을 \n찾아본다.",
       answerBack: "다리를 건널 \n다른 수단을 \n생각해본다.",
       forbCount: 0,
-      image: fancyOwl,
+      image: Brige,
     },
   ],
 };
