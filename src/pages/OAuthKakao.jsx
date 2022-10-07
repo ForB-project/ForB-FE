@@ -10,12 +10,18 @@ import {
 const OAuthKakao = () => {
   let code = new URL(window.location.href).searchParams.get("code");
   const navigate = useNavigate();
+  const pathname = localStorage.getItem("pathname");
   const handleSubmit = async () => {
     const res = await AccountAPI.kakaoLogin(code);
     setAccessToken(res.headers["authorization"]);
     setRefreshToken(res.headers["refresh-token"]);
     setUserName(res.data.data.nickname);
-    navigate("/");
+    if (pathname) {
+      navigate(pathname);
+      localStorage.removeItem("pathname");
+    } else {
+      navigate("/");
+    }
   };
   React.useEffect(() => {
     handleSubmit();

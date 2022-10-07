@@ -7,7 +7,9 @@ import QuizPage from "./QuizPage";
 import TestCodePage from "./TestCodePage";
 import Mainpage from "./Mainpage";
 import Mypage from "./Mypage";
+import Detailpage from "./Detailpage";
 export {
+  Detailpage,
   Mypage,
   RoadMap,
   Result,

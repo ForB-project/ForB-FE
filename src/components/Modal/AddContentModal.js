@@ -6,6 +6,7 @@ import { Inputplaceholer } from "../../elem";
 import { RoadmapAPI } from "../../shared/api";
 import useInput from "../../hooks/useInput";
 import { Logo } from "../../static/index";
+import { emailCheck } from "../../shared/regExp";
 const AddContentModal = props => {
   const [attachment, setAttachment] = useState(null); //파일 미리보기
   const [fileZero, setFileZero] = useState(null); //files의 첫번째 파일보낼때씀
@@ -51,6 +52,19 @@ const AddContentModal = props => {
   // value들 서버로 보내기
 
   const onSubmiHandle = () => {
+    if (emailCheck(inputs?.link) === false) {
+      window.alert(
+        `주소가 올바른 형식이 아닙니다
+        https://www.xxx.com/ 형식으로 적어주세요`
+      );
+      return;
+    } else if (!inputs?.title) {
+      window.alert("설명을 적어주세요");
+      return;
+    } else if (!inputs?.desc) {
+      window.alert("설명을 적어주세요");
+      return;
+    }
     setButtonDisable(true);
     const formData = new FormData();
     if (!fileZero) {
@@ -63,9 +77,9 @@ const AddContentModal = props => {
     }
 
     const value = {
-      title: inputs.title,
-      desc: inputs.desc,
-      link: inputs.link,
+      title: inputs?.title,
+      desc: inputs?.desc,
+      link: inputs?.link,
     };
 
     const blob = new Blob([JSON.stringify(value)], {
@@ -112,6 +126,7 @@ const AddContentModal = props => {
                 <AiOutlinePicture size="6rem" color="rgb(051, 153, 255, 0.7)" />
               </label>
               <span>아이콘을 눌러 사진을 추가해보세요</span>
+              <span>1MB이하의 사진으로 올려주세요</span>
             </LabelBoxStyled>
           </>
         )}
