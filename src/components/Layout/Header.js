@@ -23,7 +23,7 @@ const Header = () => {
     removeQuizResult();
   };
   const logout = async () => {
-    await AccountAPI.logout().then(res => {
+    await AccountAPI.logout().then((res) => {
       removeStorage();
       window.location.reload();
     });
@@ -132,17 +132,15 @@ const HeaderSyled = styled.div`
   position: fixed;
   right: 5%;
   top: 5%;
-  /* width: 50px;
-  height: 50px; */
-  padding: 10px;
+  padding: 0.5%;
 
-  border: 4px dashed black;
+  border: 4px solid black;
   border-radius: 10px;
   background-color: #10141b;
   opacity: 0.8;
 
   z-index: 10;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   font-family: "neodgm";
   color: white;
@@ -153,23 +151,22 @@ const MenuStyled = styled.div`
   position: fixed;
   top: 0%;
   padding-top: 4vh;
-  width: 20%;
+  width: 15%;
   height: 100%;
 
   border: 4px solid black;
-  background-color: white;
-  color: black;
+  background-color: #10141b;
+  color: white;
 
   z-index: 20;
   transition: 0.5s;
-  ${props =>
+  ${(props) =>
     props.menuActive === true
       ? css`
           right: 0%;
           .closeSideBar {
             position: fixed;
-            top: 0;
-            right: 17.5%;
+            top: 0.5%;
             font-size: 1.5rem;
           }
         `
@@ -178,7 +175,6 @@ const MenuStyled = styled.div`
           .closeSideBar {
             position: fixed;
             top: 0;
-            right: -17.5%;
             font-size: 1.5rem;
           }
         `}
@@ -191,11 +187,14 @@ const MenuStyled = styled.div`
   a {
     font-size: 1.3rem;
     text-decoration: none;
-    color: black;
+    color: white;
 
     &.active {
-      font-size: 2rem;
-      font-weight: 400;
+      font-size: 1.8rem;
+      /* font-weight: 400; */
+    }
+    &:hover {
+      font-size: 1.5rem;
     }
   }
   .username {
@@ -227,10 +226,11 @@ const MenuStyled = styled.div`
     border-radius: 20px;
     transition: 0.3s;
     &:hover {
-      background-color: rgb(74, 159, 228);
+      /* background-color: rgb(74, 159, 228); */
 
       font-weight: 700;
       cursor: pointer;
+      font-size: 1.5rem;
     }
   }
 `;
