@@ -42,8 +42,6 @@ const RunFrontButton = ({
       dispatch(__sendPracCode2(codeList));
     }
   }, [codeList]);
-  console.log( exampleCode);
-  console.log(exampleCode[0].id);
   
   return (
         <RunFrontCode

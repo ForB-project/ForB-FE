@@ -21,7 +21,7 @@ const initialState = {
     },
     {
       id: 3,
-      exampleCode: `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n<body>\n   <h3 id="test">\n     버튼 누르고 위에 보세요! \n   </h3>\n\n   <button type="button"\n   onclick="alert('자바스크립트!')">\n   눌러보세요!\n   </button>\n</body>\n\n</html>`,
+      exampleCode: `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시 탑승 가능");\n} else{\n     console.log("걸어가라");\n}`,
     },
   ],
   backCode: [
