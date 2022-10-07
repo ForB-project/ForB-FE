@@ -12,13 +12,13 @@ const LowerResult = () => {
       <LowerStyled>
         <LeftButtonStyled>
           <CodingButton onClick={() => navigate("/testcode")}>
-            코드체험 해보기
+            성향에 맞는 코드 체험하러 가기
           </CodingButton>
         </LeftButtonStyled>
         <CenterButtonStyled> </CenterButtonStyled>
         <RightButtonStyled>
           <RoadmapButton onClick={() => navigate("/roadmap")}>
-            로드맵 보기
+            바로 로드맵 보러가기
           </RoadmapButton>
         </RightButtonStyled>
       </LowerStyled>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//Bodycommunity
 export const Body = styled.div`
   /* border: 1px dashed black; */
 
@@ -9,7 +10,7 @@ export const Body = styled.div`
   transition: 0.5s;
 
   color: white;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-family: "neodgm";
 
   margin: auto;
@@ -20,6 +21,7 @@ export const Body = styled.div`
   text-align: center;
 `;
 
+//ContentCommunity
 export const Line = styled.div`
   /* border: 1px dashed purple; */
   display: flex;
@@ -35,7 +37,7 @@ export const Line = styled.div`
 
   cursor: pointer;
   &:hover {
-    font-size: 2.7rem;
+    font-size: 1.6rem;
     color: white;
     opacity: 1;
   }
