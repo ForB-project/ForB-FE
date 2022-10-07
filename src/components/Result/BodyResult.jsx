@@ -1,16 +1,12 @@
-import { React, useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { DoteS, DoteR, DoteG, DoteH } from "../../static";
-import { useDispatch, useSelector } from "react-redux";
-import { _getResult } from "../../redux/modules/ResultSlice";
-import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
-  // const param = useParams();
-  const postResult = async data => {
+  const postResult = async (data) => {
     const res = await QuizResultAPI.postResult(data);
     console.log(res);
     return res.data?.data[0];
@@ -19,9 +15,6 @@ const BodyResult = () => {
   const data = getQuizResult();
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
-  console.log(data);
-  console.log(resultData);
-  // console.log("contents =", contents);
   const selectImg = () => {
     let result = "";
     switch (resultData?.stackType) {
@@ -74,8 +67,8 @@ const BodyStyled = styled.div`
     width: 50%;
     height: 100%;
     z-index: -1;
-    opacity: 0.7;
-    background-image: url(${props => props.backImg});
+    opacity: 0.15;
+    background-image: url(${(props) => props.backImg});
     background-size: cover;
   }
 `;
@@ -98,21 +91,21 @@ const Topstyled = styled.div`
 `;
 
 const Bodystyled = styled.div`
-  margin-top: 7%;
+  margin-top: 5%;
   width: 70%;
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
-  font-size: 1.3rem;
-  line-height: 1.5rem;
+  font-size: 1.5rem;
+  line-height: 3rem;
 `;
 
 const Footerstyled = styled.div`
-  margin-top: 7%;
+  margin-top: 5%;
   width: 70%;
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
-  font-size: 1.3rem;
-  line-height: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 2.5rem;
 `;
