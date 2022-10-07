@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
+// api배포주소 숨김/import
 import { api } from "../../shared/api";
 
 const ContentModal = ({ setModalOpen }) => {
@@ -8,11 +10,19 @@ const ContentModal = ({ setModalOpen }) => {
     setModalOpen(false);
   };
 
-  // 게시판 상세글 get?
-  const _getContents = async (data) => {
-    const res = await api.get(`/api/post/{postId}`);
-    return res;
-  };
+  // 게시글 가져오기
+
+  useEffect(() => {
+    const _getContents = async () => {
+      console.log("_getContents");
+      return await api.get(`/api/post?page=1&size=6`);
+    };
+    // contents = _getContents();
+    // console.log("contents =", contents);
+  }, []);
+
+  // get요청한 data 간직하기..
+  // usestate? useQuery?
 
   return (
     <ContentModalStyled>

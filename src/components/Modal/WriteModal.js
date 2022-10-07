@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { api } from "../../shared/api";
@@ -23,26 +23,20 @@ const WriteModal = ({ setModalOpen }) => {
 
   // 제목+내용 input
   const postContents = {
-    // id:id,
     title: title,
     content: content,
+    // id:id,
     // nickname:nickname,
     // createdAt:
   };
-  console.log("postContents =", postContents);
 
-  // post 요청
-  // user id / 제목 / 내용 / 그림(sh님 작업중)
-  const dispatch = useDispatch();
-  const _postContents = async (data) => {
-    const res = await api.post(`/api/auth/post`);
-    // console.log("data =", data);
-    return res;
-  };
-
+  // 버튼클릭 > post 요청
   const writeClickHandler = () => {
-    console.log("post요청");
-    dispatch(_postContents);
+    const _postContents = async (data) => {
+      const res = await api.post(`/api/auth/post`);
+    };
+    console.log("post요청확인");
+    return _postContents();
   };
 
   return (
@@ -65,7 +59,7 @@ const WriteModal = ({ setModalOpen }) => {
           />
         </ContentBoxStyled>
         <WriteButtonBoxStyled onClick={writeClickHandler}>
-          <WriteButton>작성하기</WriteButton>
+          <WriteButton onClick={closeModal}>작성하기</WriteButton>
         </WriteButtonBoxStyled>
       </div>
     </WriteModalStyled>

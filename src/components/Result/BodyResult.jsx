@@ -8,7 +8,7 @@ import { getQuizResult } from "../../shared/storage";
 const BodyResult = () => {
   const postResult = async (data) => {
     const res = await QuizResultAPI.postResult(data);
-    // console.log(res);
+    console.log(res);
     return res.data?.data[0];
   };
 
