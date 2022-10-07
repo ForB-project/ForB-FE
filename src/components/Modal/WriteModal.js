@@ -26,6 +26,7 @@ const WriteModal = ({ setModalOpen }) => {
   const dispatch = useDispatch();
   const writeClickHandler = () => {
     dispatch();
+    console.log("post요청");
   };
 
   return (
@@ -48,7 +49,7 @@ const WriteModal = ({ setModalOpen }) => {
           />
         </ContentBoxStyled>
         <WriteButtonBoxStyled onClick={writeClickHandler}>
-          <WriteButton>글쓰기</WriteButton>
+          <WriteButton>작성하기</WriteButton>
         </WriteButtonBoxStyled>
       </div>
     </WriteModalStyled>
@@ -68,11 +69,11 @@ const WriteModalStyled = styled.div`
   background-color: #888888;
 
   width: 60vw;
-  height: 50vh;
+  height: 60vh;
   padding-top: 1vh;
 
   color: white;
-  font-size: 2rem;
+  font-size: 1rem;
 
   .closebutton {
     border: none;
@@ -81,9 +82,9 @@ const WriteModalStyled = styled.div`
   .close {
     position: absolute;
     top: 1px;
-    right: 20px;
+    right: 30px;
     color: black;
-    font-size: 2rem;
+    font-size: 1.5rem;
     &:hover {
       cursor: pointer;
     }
@@ -99,7 +100,7 @@ const TitleInput = styled.input`
   padding: 1vw;
   width: 30vw;
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "neodgm";
 `;
 const ContentInput = styled.textarea`
@@ -111,21 +112,21 @@ const ContentInput = styled.textarea`
   padding: 1vw;
 
   width: 50vw;
-  height: 30vh;
+  height: 35vh;
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "neodgm";
 `;
 const ContentBoxStyled = styled.div``;
 
 const WriteButtonBoxStyled = styled.div`
-  border-radius: 10px;
   /* border: 4px solid black; */
+
+  border-radius: 10px;
   border: none;
   background-color: #10141b;
-  /* float: right; */
 
-  margin: 1vw;
+  margin-top: 3vh;
   display: inline-block;
   width: 9vw;
 `;
@@ -142,7 +143,7 @@ const WriteButton = styled.button`
 
   cursor: pointer;
   &:hover {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: white;
   }
 `;
