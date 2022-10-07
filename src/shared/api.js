@@ -84,6 +84,9 @@ export const ContentAPI = {
   deleteContent: Id => api.delete(`/api/myroadmap/${Id}`),
 };
 
+export const CommunityContentAPI = {
+  getCommunityContent: id => api.get(`api/post/${id}`),
+};
 export const CommentAPI = {
   addcomment: data => api.post(`api/auth/comment`, data),
   deletecomment: id => api.delete(`api/auth/comment/${id}`),

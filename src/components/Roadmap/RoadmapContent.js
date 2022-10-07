@@ -5,7 +5,6 @@ import { LikeAPI, ContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
 const RoadmapContent = forwardRef((props, ref) => {
-  console.log(props);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
@@ -52,7 +51,9 @@ const RoadmapContent = forwardRef((props, ref) => {
             <div
               className="DeleteBack"
               onClick={() => {
-                deleteAction.mutate(props.data.id);
+                if (window.confirm("삭제하시겠습니까?")) {
+                  deleteAction.mutate(props.data.id);
+                }
               }}
             >
               <FaTrashAlt />
