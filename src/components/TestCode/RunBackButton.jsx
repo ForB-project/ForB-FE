@@ -23,6 +23,9 @@ const RunBackButton = ({
       const sendCodeInt = codePrac.split(/=|;/)[1].trim();
       const forIf = codePrac.replace(regex, "");
       const sendCodeIf = forIf.slice(sendCodeInt.length, forIf.length);
+      console.log(sendCodeInt);
+      console.log(forIf);
+      console.log(sendCodeIf);
       setInputList({
         ...inputList,
         inputInt1: Number(sendCodeInt),
@@ -34,6 +37,7 @@ const RunBackButton = ({
       // const secondInt = forIf.slice(-4, 3);
       const firstInt = sendCodeInt[1].replace(regex, "");
       const secondInt = sendCodeInt[3].replace(regex, "");
+      console.log(sendCodeInt);
       setInputList({
         ...inputList,
         inputInt1: Number(firstInt),
@@ -41,7 +45,7 @@ const RunBackButton = ({
       });
     }
   };
-
+  console.log(inputList);
   useEffect(() => {
     if(inputList==={}) return;
     const result = {id:exampleCode[codeIndex].id, codePrac}
@@ -51,6 +55,7 @@ const RunBackButton = ({
       dispatch(__sendPracCode2(inputList));
     }
     dispatch(addBackPracCode(result));
+    console.log('fpsejfld');
   }, [inputList]);
 
   return (
