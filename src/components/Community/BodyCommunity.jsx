@@ -5,7 +5,7 @@ import { useState } from "react";
 import ContentModal from "../Modal/ContentModal";
 
 const BodyCommunity = ({ title, author, stack }) => {
-  //게시글 클릭 > 모달
+  //게시글 > modal창
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);

@@ -60,16 +60,16 @@ export default WriteModal;
 
 const WriteModalStyled = styled.div`
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 8.5%;
+  left: 15%;
   font-family: "neodgm";
 
   /* border: 4px solid black; */
-  border-radius: 20px;
-  background-color: #888888;
+  border-radius: 50px;
+  background-color: #000000;
 
-  width: 60vw;
-  height: 60vh;
+  width: 70vw;
+  height: 70vh;
   padding-top: 1vh;
 
   color: white;
@@ -83,7 +83,7 @@ const WriteModalStyled = styled.div`
     position: absolute;
     top: 1px;
     right: 30px;
-    color: black;
+    color: white;
     font-size: 1.5rem;
     &:hover {
       cursor: pointer;
@@ -98,7 +98,7 @@ const TitleInput = styled.input`
 
   margin-top: 1vh;
   padding: 1vw;
-  width: 30vw;
+  width: 40vw;
 
   font-size: 1.5rem;
   font-family: "neodgm";
@@ -108,11 +108,11 @@ const ContentInput = styled.textarea`
   border: none;
   border-radius: 20px;
 
-  margin-top: 1vh;
+  margin-top: 3vh;
   padding: 1vw;
 
-  width: 50vw;
-  height: 35vh;
+  width: 60vw;
+  height: 45vh;
 
   font-size: 1.5rem;
   font-family: "neodgm";
@@ -128,12 +128,12 @@ const WriteButtonBoxStyled = styled.div`
 
   margin-top: 3vh;
   display: inline-block;
-  width: 9vw;
+  width: 10vw;
 `;
 const WriteButton = styled.button`
   border: none;
 
-  color: gray;
+  color: white;
   font-size: 1.5rem;
   font-family: "neodgm";
 

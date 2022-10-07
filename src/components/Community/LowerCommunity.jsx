@@ -3,11 +3,12 @@ import styled from "styled-components";
 import WriteModal from "../Modal/WriteModal";
 
 const LowerCommunity = () => {
-  // 글쓰기 modal창
+  // 글쓰기 > modal창
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);
   };
+
   return (
     <>
       <LowerStyled>

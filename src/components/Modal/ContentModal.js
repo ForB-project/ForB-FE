@@ -13,7 +13,6 @@ const ContentModal = ({ setModalOpen }) => {
         <p className="close">X</p>
       </button>
       <div>Detail</div>
-      <div>내용</div>
     </ContentModalStyled>
   );
 };
