@@ -31,7 +31,7 @@ const LowerStyled = styled.div`
 `;
 const CenterStyled = styled.div`
   border-radius: 10px;
-  border: 8px dashed black;
+  border: 3px solid black;
   background-color: #10141b;
   opacity: 0.95;
 

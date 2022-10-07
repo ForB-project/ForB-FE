@@ -1,32 +1,48 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { api } from "../../shared/api";
 
 const WriteModal = ({ setModalOpen }) => {
-  // modal 닫기 설정
+  // modal close
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  // 제목 입력 받기
+  // 제목 input
   const [title, setTitle] = useState("");
   const titleHandler = (e) => {
     setTitle(e.target.value);
-    console.log("title =", title);
   };
 
-  // 내용 입력 받기
+  // 내용 input
   const [content, setContent] = useState("");
   const contentHandler = (e) => {
     setContent(e.target.value);
-    console.log("content =", content);
   };
 
+  // 제목+내용 input
+  const postContents = {
+    // id:id,
+    title: title,
+    content: content,
+    // nickname:nickname,
+    // createdAt:
+  };
+  console.log("postContents =", postContents);
+
   // post 요청
+  // user id / 제목 / 내용 / 그림(sh님 작업중)
   const dispatch = useDispatch();
+  const _postContents = async (data) => {
+    const res = await api.post(`/api/auth/post`);
+    // console.log("data =", data);
+    return res;
+  };
+
   const writeClickHandler = () => {
-    dispatch();
     console.log("post요청");
+    dispatch(_postContents);
   };
 
   return (
@@ -66,7 +82,7 @@ const WriteModalStyled = styled.div`
 
   /* border: 4px solid black; */
   border-radius: 50px;
-  background-color: #000000;
+  background-color: black;
 
   width: 70vw;
   height: 70vh;
@@ -85,6 +101,7 @@ const WriteModalStyled = styled.div`
     right: 30px;
     color: white;
     font-size: 1.5rem;
+
     &:hover {
       cursor: pointer;
     }
@@ -133,7 +150,7 @@ const WriteButtonBoxStyled = styled.div`
 const WriteButton = styled.button`
   border: none;
 
-  color: white;
+  color: #909090;
   font-size: 1.5rem;
   font-family: "neodgm";
 

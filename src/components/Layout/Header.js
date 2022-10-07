@@ -68,22 +68,22 @@ const Header = () => {
                 </NavLink>
               </p>
               <p>
-                <NavLink to="/mypage">마이페이지</NavLink>
+                <NavLink to="/quiz">성향테스트</NavLink>
               </p>
               <p>
-                <NavLink to="/roadmap">로드맵</NavLink>
-              </p>
-              <p>
-                <NavLink to="/result">Test결과 </NavLink>
-              </p>
-              <p>
-                <NavLink to="/quiz">Test</NavLink>
+                <NavLink to="/result">테스트결과 </NavLink>
               </p>
               <p>
                 <NavLink to="/testcode">코드체험</NavLink>
               </p>
               <p>
+                <NavLink to="/roadmap">로드맵</NavLink>
+              </p>
+              <p>
                 <NavLink to="/community">게시판</NavLink>
+              </p>
+              <p>
+                <NavLink to="/mypage">마이페이지</NavLink>
               </p>
               <div
                 className="logoutButton"
@@ -150,8 +150,8 @@ const MenuStyled = styled.div`
   font-family: "neodgm";
   position: fixed;
   top: 0%;
-  padding-top: 4vh;
-  width: 15%;
+  padding-top: 10vh;
+  width: 20%;
   height: 100%;
 
   border: 4px solid black;

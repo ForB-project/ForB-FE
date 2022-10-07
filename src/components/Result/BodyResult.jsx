@@ -8,7 +8,7 @@ import { getQuizResult } from "../../shared/storage";
 const BodyResult = () => {
   const postResult = async (data) => {
     const res = await QuizResultAPI.postResult(data);
-    console.log(res);
+    // console.log(res);
     return res.data?.data[0];
   };
 
@@ -48,7 +48,7 @@ const BodyResult = () => {
 export default BodyResult;
 
 const BodyStyled = styled.div`
-  /* border: 1px solid black; */
+  /* border: 1px solid purple; */
   position: relative;
   border-radius: 50px;
   background-color: black;
@@ -85,23 +85,26 @@ const ContentsStyled = styled.div`
     drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
 `;
 const Topstyled = styled.div`
+  /* border: 1px dashed purple; */
   margin-top: 10%;
   font-size: 1.5rem;
   font-weight: 600;
 `;
 
 const Bodystyled = styled.div`
+  /* border: 1px dashed purple; */
   margin-top: 5%;
   width: 70%;
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
   font-size: 1.5rem;
-  line-height: 3rem;
+  line-height: 2.8rem;
 `;
 
 const Footerstyled = styled.div`
-  margin-top: 5%;
+  /* border: 1px dashed purple; */
+  margin-top: 3%;
   width: 70%;
   word-break: keep-all;
   white-space: pre-line;

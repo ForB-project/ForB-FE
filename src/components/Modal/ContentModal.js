@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { api } from "../../shared/api";
 
 const ContentModal = ({ setModalOpen }) => {
   // modal 닫기 설정
@@ -7,12 +8,23 @@ const ContentModal = ({ setModalOpen }) => {
     setModalOpen(false);
   };
 
+  // 게시판 상세글 get?
+  const _getContents = async (data) => {
+    const res = await api.get(`/api/post/{postId}`);
+    return res;
+  };
+
   return (
     <ContentModalStyled>
       <button className="closebutton" onClick={closeModal}>
         <p className="close">X</p>
       </button>
-      <div>Detail</div>
+      <TitleBoxStyled>
+        <TitleInput placeholder="제목" />
+      </TitleBoxStyled>
+      <ContentBoxStyled>
+        <ContentInput placeholder="내용" />
+      </ContentBoxStyled>{" "}
     </ContentModalStyled>
   );
 };
@@ -27,7 +39,7 @@ const ContentModalStyled = styled.div`
 
   /* border: 4px solid black; */
   border-radius: 20px;
-  background-color: #888888;
+  background-color: black;
 
   width: 70vw;
   height: 70vh;
@@ -44,10 +56,40 @@ const ContentModalStyled = styled.div`
     position: absolute;
     top: 1px;
     right: 30px;
-    color: black;
+    color: white;
     font-size: 1.5rem;
+
     &:hover {
       cursor: pointer;
     }
   }
 `;
+
+const TitleBoxStyled = styled.div``;
+const TitleInput = styled.input`
+  /* border: 4px solid black; */
+  border: none;
+  border-radius: 10px;
+
+  margin-top: 1vh;
+  padding: 1vw;
+  width: 40vw;
+
+  font-size: 1.5rem;
+  font-family: "neodgm";
+`;
+const ContentInput = styled.textarea`
+  /* border: 4px solid black; */
+  border: none;
+  border-radius: 20px;
+
+  margin-top: 3vh;
+  padding: 1vw;
+
+  width: 60vw;
+  height: 45vh;
+
+  font-size: 1.5rem;
+  font-family: "neodgm";
+`;
+const ContentBoxStyled = styled.div``;

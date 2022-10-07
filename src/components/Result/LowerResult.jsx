@@ -41,7 +41,7 @@ const LeftButtonStyled = styled.div`
 
   border-radius: 10px;
   /* background-color: #9e6c31; */
-  border: 8px dashed black;
+  border: 4px solid black;
   background-color: #10141b;
   opacity: 0.8;
 
@@ -61,7 +61,7 @@ const RightButtonStyled = styled.div`
 
   border-radius: 10px;
   /* background-color: #9e6c31; */
-  border: 8px dashed black;
+  border: 4px solid black;
   background-color: #10141b;
   opacity: 0.8;
 
