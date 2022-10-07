@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const ContentCommunity = ({ title, author, stack }) => {
+const ContentCommunity = ({ title, nickname, stack }) => {
   return (
     <LineStyled>
       <TitleStyled>{title}</TitleStyled>
-      <AuthorStyled>{author}</AuthorStyled>
+      <AuthorStyled>{nickname}</AuthorStyled>
       <DateStyled>{stack}</DateStyled>
     </LineStyled>
   );

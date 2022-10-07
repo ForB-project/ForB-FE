@@ -5,7 +5,7 @@ import { ContentCommunity } from "./index";
 import { api } from "../../shared/api";
 import { useNavigate } from "react-router-dom";
 
-const BodyCommunity = ({ title, nickname, stack }) => {
+const BodyCommunity = () => {
   // pagination 상단에 선언해두기
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -19,15 +19,26 @@ const BodyCommunity = ({ title, nickname, stack }) => {
     _getContents(pageNumber)
   );
   const CurrentContentsList = contentsList.data?.data.data;
-  // console.log("contentsList =", contentsList.data?.data.data);
+  console.log("CurrentContentsList.title =", CurrentContentsList[0].id);
 
-  // 배열의 키값 >
+  // 배열의 id값 별로 받아오기
+  // 먼저 필터?ㄴ
+  // const filter = CurrentContentsList.filter((data) => data.id ===)
 
   return (
     <>
       <BodyStyled>
         <div onClick={useNavigate("/community")}>
-          <ContentCommunity title={title} author={nickname} stack={"badge"} />
+          {CurrentContentsList.map((data) => {
+            return (
+              <ContentCommunity
+                key={CurrentContentsList.id}
+                title={CurrentContentsList.title}
+                nickname={CurrentContentsList.nickname}
+                stack={"badge"}
+              />
+            );
+          })}
         </div>
       </BodyStyled>
     </>
