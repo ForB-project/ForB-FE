@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 
 // api배포주소 숨김/import
@@ -11,18 +12,27 @@ const ContentModal = ({ setModalOpen }) => {
   };
 
   // 게시글 가져오기
-
+  const _getContents = async () => {
+    console.log("_getContents");
+    const res = await api.get(`/api/post?page=1&size=11`);
+    console.log("res", res);
+    return res;
+  };
   useEffect(() => {
-    const _getContents = async () => {
-      console.log("_getContents");
-      return await api.get(`/api/post?page=1&size=6`);
-    };
-    // contents = _getContents();
-    // console.log("contents =", contents);
+    _getContents();
   }, []);
 
   // get요청한 data 간직하기..
   // usestate? useQuery?
+  const [pageNumber, setPateNumber] = useState();
+
+  const contentsList = useQuery(
+    //배열 [키값, 데이터]
+    ["contentsList", pageNumber],
+    //함수 (get할때 page number에 맞추서)
+    () => _getContents(pageNumber)
+    //옵션(필요할 때)
+  );
 
   return (
     <ContentModalStyled>
@@ -85,7 +95,7 @@ const TitleInput = styled.input`
   padding: 1vw;
   width: 40vw;
 
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: "neodgm";
 `;
 const ContentInput = styled.textarea`

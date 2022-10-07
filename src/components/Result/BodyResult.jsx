@@ -98,8 +98,8 @@ const Bodystyled = styled.div`
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
-  font-size: 1.5rem;
-  line-height: 2.8rem;
+  font-size: 1rem;
+  line-height: 2rem;
 `;
 
 const Footerstyled = styled.div`
@@ -109,6 +109,6 @@ const Footerstyled = styled.div`
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
-  font-size: 1.4rem;
-  line-height: 2.5rem;
+  font-size: 1rem;
+  line-height: 2rem;
 `;
