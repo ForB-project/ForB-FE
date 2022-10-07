@@ -34,7 +34,7 @@ const RoadMap = () => {
 
   //StackId 이용해서 category불러오는 부분
   const [choseStack, setChoseStack] = useState(1);
-  const getCategory = async StackId => {
+  const getCategory = async (StackId) => {
     return await RoadmapAPI.getCategory(StackId);
   };
   const categoryList = useQuery(
@@ -74,7 +74,7 @@ const RoadMap = () => {
           return undefined;
         }
       },
-      refetchInterval: 1000
+      refetchInterval: 1000,
     }
   );
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];

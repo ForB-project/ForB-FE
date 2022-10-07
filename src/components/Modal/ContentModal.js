@@ -1,38 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import React from "react";
 import styled from "styled-components";
-
-// api배포주소 숨김/import
-import { api } from "../../shared/api";
 
 const ContentModal = ({ setModalOpen }) => {
   // modal 닫기 설정
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  // 게시글 가져오기
-  const _getContents = async () => {
-    console.log("_getContents");
-    const res = await api.get(`/api/post?page=1&size=11`);
-    console.log("res", res);
-    return res;
-  };
-  useEffect(() => {
-    _getContents();
-  }, []);
-
-  // get요청한 data 간직하기..
-  // usestate? useQuery?
-  const [pageNumber, setPateNumber] = useState();
-
-  const contentsList = useQuery(
-    //배열 [키값, 데이터]
-    ["contentsList", pageNumber],
-    //함수 (get할때 page number에 맞추서)
-    () => _getContents(pageNumber)
-    //옵션(필요할 때)
-  );
 
   return (
     <ContentModalStyled>

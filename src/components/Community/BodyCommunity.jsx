@@ -1,26 +1,34 @@
 import React, { useState } from "react";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 import { ContentCommunity } from "./index";
-import ContentModal from "../Modal/ContentModal";
+import { api } from "../../shared/api";
+import { useNavigate } from "react-router-dom";
 
-const BodyCommunity = ({ title, author, stack }) => {
-  //게시글 > modal창
-  const [modalOpen, setModalOpen] = useState(false);
-  const showModal = () => {
-    setModalOpen(true);
+const BodyCommunity = ({ title, nickname, stack }) => {
+  // pagination 상단에 선언해두기
+  const [pageNumber, setPageNumber] = useState(1);
+
+  // 게시글 가져오기 (useQuery로 실행)
+  const _getContents = async (pageNumber) => {
+    const res = await api.get(`/api/post?page=${pageNumber}&size=11`);
+    return res;
   };
+  // useQuery
+  const contentsList = useQuery(["communityList", pageNumber], () =>
+    _getContents(pageNumber)
+  );
+  const CurrentContentsList = contentsList.data?.data.data;
+  // console.log("contentsList =", contentsList.data?.data.data);
+
+  // 배열의 키값 >
 
   return (
     <>
       <BodyStyled>
-        <div onClick={showModal}>
-          <ContentCommunity
-            title={`이거모에여`}
-            author={"코린이"}
-            stack={"badge"}
-          />
+        <div onClick={useNavigate("/community")}>
+          <ContentCommunity title={title} author={nickname} stack={"badge"} />
         </div>
-        {modalOpen && <ContentModal setModalOpen={setModalOpen} />}
       </BodyStyled>
     </>
   );
