@@ -27,7 +27,7 @@ const TestCode = () => {
   const moveNum = (codeIndex) => {
     setCodeIndex(codeIndex);
     // 사용자가 쓴 예제코드, 출력 저장 용도
-    if (exampleCode[codeIndex].id === 4 || exampleCode[codeIndex].id === 5) {
+    if (exampleCode[codeIndex].id >=2) {
       dispatch(addBackPracCode(resultPracCode));
     } else {
       dispatch(addPracCode(resultPracCode));
@@ -58,18 +58,11 @@ const TestCode = () => {
       dispatch(addBackPracCode(resultPracCode));
     } else if (page === "f") {
       setExampleCode(frontCodeList);
+      dispatch(addPracCode(resultPracCode));
     } else if (page === "b") {
-      if (
-        exampleCode[codeIndex].id === 4 ||
-        exampleCode[codeIndex].id === 5
-      )
-        return null;
       setExampleCode(backCodeList);
       dispatch(addPracCode(resultPracCode));
     }
-
-    console.log(resultPracCode);
-    console.log(result);
     setCodeIndex(0);
   };
   // 사용자가 쓴 예제코드, 출력 저장 용도
