@@ -70,6 +70,14 @@ export const __sendPracCode2 = createAsyncThunk(
   }
 );
 
+export const __sendPracCode3 = createAsyncThunk(
+  "QUIZRESULT3",
+  async (payload, thunkAPI) => {
+    const { data } = await api.post(`/api/secondCode`, payload);
+    return thunkAPI.fulfillWithValue(data);
+  }
+);
+
 export const TestCodeSlice = createSlice({
   name: "testCode",
   initialState,
@@ -80,7 +88,6 @@ export const TestCodeSlice = createSlice({
      );
     },
     addFrontPracCode: (state, action) => {
-      console.log(action.payload);
       state.result = state.result.map((list) =>
        list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.answer} : list
      );
@@ -99,7 +106,12 @@ export const TestCodeSlice = createSlice({
     },
     [__sendPracCode2.fulfilled]: (state, action) => {
       state.result = state.result.map((list) =>
-       list.id === 5 || list.id === 3 ? { ...list, answer: action.payload.data } : list
+       list.id === 5? { ...list, answer: action.payload.data } : list
+     );
+    },
+    [__sendPracCode3.fulfilled]: (state, action) => {
+      state.result = state.result.map((list) =>
+       list.id === 3 ? { ...list, answer: action.payload.data } : list
      );
     },
   },

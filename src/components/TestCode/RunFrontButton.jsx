@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import {
-  addBackPracCode,
-  __sendPracCode2,
+  __sendPracCode3,
   addFrontPracCode,
 } from "../../redux/modules/TestCodeSlice";
 
 const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.testCode.result.data);
-  const [codeList, setCodeList] = useState({});
   const [frontResult, setFrontResult] = useState({});
+  const [forSendResult, setForSendResult] = useState({});
 
   const runFrontCode = () => {
     const regex = /[^0-9]/g;
@@ -36,13 +34,16 @@ const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
         });
       }
     } else if (exampleCode[codeIndex].id === 3) {
-      const sendCodeInt = codePrac.split(';');
-      // const firstInt = forIf.slice(-2);
-      // const secondInt = forIf.slice(-4, 3);
+      const sendCodeInt = codePrac.split(";");
       const firstInt = sendCodeInt[1].replace(regex, "");
       const secondInt = sendCodeInt[3].replace(regex, "");
       setFrontResult({
         ...frontResult,
+        id: exampleCode[codeIndex].id,
+        codePrac,
+      });
+      setForSendResult({
+        ...forSendResult,
         inputInt1: Number(firstInt),
         inputInt2: Number(secondInt),
       });
@@ -53,13 +54,10 @@ const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
     if (exampleCode[codeIndex].id === 2) {
       dispatch(addFrontPracCode(frontResult));
     } else if (exampleCode[codeIndex].id === 3) {
-      dispatch(addBackPracCode(frontResult));
-      dispatch(__sendPracCode2(frontResult));
+      dispatch(addFrontPracCode(frontResult));
+      dispatch(__sendPracCode3(forSendResult));
     }
-    console.log("렌더링 됐습니다");
   }, [frontResult]);
-  console.log(frontResult);
-
 
   return (
     <RunFrontCode className="runButton" onClick={() => runFrontCode()}>

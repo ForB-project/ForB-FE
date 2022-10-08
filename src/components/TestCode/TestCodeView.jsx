@@ -8,7 +8,7 @@ const TestCodeView = ({ codePrac, exampleCode, codeIndex }) => {
   const sanitizer = dompurify.sanitize;
 
   const result = useSelector((state) => state.testCode.result);
-  console.log(result);
+  
   return (
     <CodeViewLayout>
       {result.find(list=>list.id === exampleCode[codeIndex].id).pracCode === "" && codePrac==='' ? (
