@@ -8,6 +8,7 @@ import TestCodePage from "./TestCodePage";
 import Mainpage from "./Mainpage";
 import Mypage from "./Mypage";
 import Detailpage from "./Detailpage";
+import MessagePage from "./MessagePage";
 export {
   Detailpage,
   Mypage,
@@ -19,4 +20,5 @@ export {
   QuizPage,
   TestCodePage,
   Mainpage,
+  MessagePage
 };

@@ -13,6 +13,7 @@ import {
   TestCodePage,
   Mypage,
   Detailpage,
+  MessagePage
 } from "./pages";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/oauth/callback/kakao" element={<OAuthKakao />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/testcode" element={<TestCodePage />} />
+          <Route path="/message" element={<MessagePage />} />
         </Routes>
       </Layout>
       <ReactQueryDevtools />
