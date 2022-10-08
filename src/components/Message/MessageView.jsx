@@ -19,8 +19,7 @@ export default MessageView;
 const MessageViewLayout = styled.div`
 width: 17vw;
   min-width:280px;
-  height: 50vh;
+  height: 49vh;
   min-height: 440px;
 margin: 5px auto 0px auto;
-background-color: red;
 `;

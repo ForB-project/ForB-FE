@@ -7,7 +7,7 @@ const MessageInput = () => {
   return (
     <MessageInputLayout>
       <MessageTextArea />
-      <MessageButton />
+      <MessageButton>전송</MessageButton>
     </MessageInputLayout>
   );
 };
@@ -26,12 +26,31 @@ const MessageInputLayout = styled.div`
 `;
 
 const MessageTextArea = styled.textarea`
-width: 1vw;
-min-width: 200px;
+width: 14.5vw;
+min-width: 230px;
+height: 24px;
+margin: auto;
+resize: none;
 `;
 
 const MessageButton = styled.button`
-  width: 20px;
-  height: 20px;
-  background-color: blue;
+  width: 2.04vw;
+  min-width: 41px;
+  height: 30px;
+  margin: auto;
+  border: none;
+  background-color: #10141b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "neodgm", monospace;
+  font-style: normal;
+  font-size: 12px;
+  color: white;
+  opacity: 0.8;
+  
+  &:hover{
+    opacity: 1;
+  }
 `;
