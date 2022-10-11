@@ -13,7 +13,9 @@ import {
   TestCodePage,
   Mypage,
   Detailpage,
-  MessagePage
+  MessagePage,
+  WritePage,
+  EditPage,
 } from "./pages";
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/testcode" element={<TestCodePage />} />
           <Route path="/message" element={<MessagePage />} />
+          <Route path="/write" element={<WritePage />} />
+          <Route path="/edit/:id" element={<EditPage />} />
         </Routes>
       </Layout>
       <ReactQueryDevtools />
