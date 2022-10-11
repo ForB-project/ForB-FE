@@ -49,94 +49,100 @@
 
 // export default SocketPage;
 
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 
-const io = require('socket.io-client');
-const socket = io();
+// const io = require('socket.io-client');
+// const socket = io();
 
-function SocketPage() {
+// function SocketPage() {
   
-  const [messageCount, setMessageCount] = useState(0);
-  const [theme, setTheme] = useState('dark');
-  const [inRoom, setInRoom] = useState(false);
+//   const [messageCount, setMessageCount] = useState(0);
+//   const [isConnected, setIsConnected] = useState(socket.connected);
+//   const [theme, setTheme] = useState('dark');
+//   const [inRoom, setInRoom] = useState(false);
   
-   useEffect(() => {
+//    useEffect(() => {
 
-    if(inRoom) {
-      console.log('joining room');
-      socket.emit('room', {room: 'test-room'});
-    }
+//     if(inRoom) {
+//       console.log('joining room');
+//       socket.emit('room', {room: 'test-room'});
+//     }
 
-    return () => {
-      if(inRoom) {
-        console.log('leaving room');
-        socket.emit('leave room', {
-          room: 'test-room'
-        })
-      }
-    }
-  });
+//     return () => {
+//       if(inRoom) {
+//         console.log('leaving room');
+//         socket.emit('leave room', {
+//           room: 'test-room'
+//         })
+//       }
 
-  useEffect(() => {
-    socket.on('receive message', payload => {
-      setMessageCount(messageCount + 1);
-      document.title = `${messageCount} new messages have been emitted`;
-      console.log(payload);
-    });
-  }, []); //only re-run the effect if new message comes in
+//       socket.on('connect', (socket) => {
+//               setIsConnected(true);
+//               console.log(isConnected);
+//             });
+//     }
+//   });
 
-  const handleSetTheme = () => {
-    let newTheme;
-    (theme === 'light')
-      ? newTheme = 'dark'
-      : newTheme = 'light';
-    console.log('new theme: ' + newTheme);
-    setTheme(newTheme);
-  }
+//   useEffect(() => {
+//     socket.on('receive message', payload => {
+//       setMessageCount(messageCount + 1);
+//       document.title = `${messageCount} new messages have been emitted`;
+//       console.log(payload);
+//     });
+//   }, []); //only re-run the effect if new message comes in
 
-  const handleInRoom = () => {
-    inRoom
-      ? setInRoom(false)
-      : setInRoom(true);
-  }
+//   const handleSetTheme = () => {
+//     let newTheme;
+//     (theme === 'light')
+//       ? newTheme = 'dark'
+//       : newTheme = 'light';
+//     console.log('new theme: ' + newTheme);
+//     setTheme(newTheme);
+//   }
 
-  const handleNewMessage = () => {
-    console.log('emitting new message');
-    socket.emit('new message', {
-      room: 'test-room'
-    });
-    setMessageCount(messageCount + 1);
-  }
+//   const handleInRoom = () => {
+//     inRoom
+//       ? setInRoom(false)
+//       : setInRoom(true);
+//   }
 
-  return (
-    <div className={`App Theme-${theme}`}>
-      <header className="App-header">
+//   const handleNewMessage = () => {
+//     console.log('emitting new message');
+//     socket.emit('new message', {
+//       room: 'test-room'
+//     });
+//     setMessageCount(messageCount + 1);
+//   }
 
-        <h1>
-          {inRoom && `You Have Entered The Room` }
-          {!inRoom && `Outside Room` }
-        </h1>
+//   return (
+//     <div className={`App Theme-${theme}`}>
+//       <header className="App-header">
+
+//         <h1>
+//           {inRoom && `You Have Entered The Room` }
+//           {!inRoom && `Outside Room` }
+//         </h1>
         
-        <p>{messageCount} messages have been emitted</p>
+//         <p>{messageCount} messages have been emitted</p>
 
-        {inRoom &&
-        <button onClick={() => handleNewMessage()}>
-          Emit new message
-        </button>
-        }
+//         {inRoom &&
+//         <button onClick={() => handleNewMessage()}>
+//           Emit new message
+//         </button>
+//         }
 
-        <button onClick={() => handleSetTheme()}>
-          Toggle Theme
-        </button>
+//         <button onClick={() => handleSetTheme()}>
+//           Toggle Theme
+//         </button>
 
-        <button onClick={() => handleInRoom()}>
-          {inRoom && `Leave Room` }
-          {!inRoom && `Enter Room` }
-        </button>
+//         <button onClick={() => handleInRoom()}>
+//           {inRoom && `Leave Room` }
+//           {!inRoom && `Enter Room` }
+//         </button>
 
-      </header>
-    </div>
-  );
-}
+//       </header>
+//     </div>
+//   );
+// }
 
-export default SocketPage;
+// export default SocketPage;
