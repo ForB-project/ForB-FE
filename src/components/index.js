@@ -19,6 +19,9 @@ import RoadmapContentHeader from "./Roadmap/RoadmapContentHeader";
 import RunFrontButton from "./TestCode/RunFrontButton";
 import RunBackButton from "./TestCode/RunBackButton";
 import SearchModal from "./Modal/SearchModal";
+import MessageInput from "./Message/MessageInput";
+import MessageView from "./Message/MessageView";
+import MessageHeader from "./Message/MessageHeader";
 export {
   SearchModal,
   RoadmapContentHeader,
@@ -41,4 +44,7 @@ export {
   QuizImage,
   RunFrontButton,
   RunBackButton,
+  MessageHeader,
+  MessageView,
+  MessageInput
 };

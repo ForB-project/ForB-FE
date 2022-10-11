@@ -4,14 +4,14 @@ import styled from "styled-components";
 import { GreateHall } from "../../static/index";
 import { hogwart_logo } from "../../static/index";
 
-import MessageView from "./MessageView";
-import MessageInput from "./MessageInput";
+import {MessageView,MessageInput,MessageHeader} from "../index";
 
 const Message = () => {
   const navigate =  useNavigate();
   return (
     <MessageBackLayout>
       <MessageWindowLayout>
+        <MessageHeader/>
         <MessageView/>
         <MessageInput/>
       </MessageWindowLayout>
