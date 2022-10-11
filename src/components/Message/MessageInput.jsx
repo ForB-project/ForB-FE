@@ -20,7 +20,7 @@ const MessageInputLayout = styled.div`
   height: 2vh;
   min-height: 35px;
   margin: auto;
-  background-color: black;
+  border: 2px solid black;
   display: flex;
   flex-direction: row;
 `;

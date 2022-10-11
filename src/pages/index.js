@@ -11,6 +11,7 @@ import Detailpage from "./Detailpage";
 import MessagePage from "./MessagePage";
 import WritePage from "./WritePage";
 import EditPage from "./EditPage";
+import SocketPage from "./SocketPage"
 export {
   EditPage,
   WritePage,
@@ -25,4 +26,5 @@ export {
   TestCodePage,
   Mainpage,
   MessagePage,
+  SocketPage
 };
