@@ -9,6 +9,7 @@ import Mainpage from "./Mainpage";
 import Mypage from "./Mypage";
 import Detailpage from "./Detailpage";
 import MessagePage from "./MessagePage";
+import SocketPage from "./SocketPage"
 export {
   Detailpage,
   Mypage,
@@ -20,5 +21,6 @@ export {
   QuizPage,
   TestCodePage,
   Mainpage,
-  MessagePage
+  MessagePage,
+  SocketPage
 };

@@ -13,7 +13,8 @@ import {
   TestCodePage,
   Mypage,
   Detailpage,
-  MessagePage
+  MessagePage,
+  SocketPage
 } from "./pages";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/testcode" element={<TestCodePage />} />
           <Route path="/message" element={<MessagePage />} />
+          <Route path="/socket" element={<SocketPage />} />
         </Routes>
       </Layout>
       <ReactQueryDevtools />
