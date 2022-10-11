@@ -53,7 +53,7 @@ api.interceptors.response.use(
   function (error) {
     // 오류 응답을 처리
 
-    if (error.response.data.success === false) {
+    if (error.response.data?.success === false) {
       ClearStorage();
       localStorage.setItem("expiration", true);
       // window.location.reload();
@@ -86,10 +86,13 @@ export const ContentAPI = {
 
 export const CommunityContentAPI = {
   getCommunityContent: id => api.get(`api/post/${id}`),
+  postCommunityContent: data => api.post(`api/auth/post`, data),
+  getImgURL: data => api.post(`api/auth/image`, data),
+  petchCommunityContent: (id, data) => api.put(`/api/auth/post/${id}`, data),
 };
 export const CommentAPI = {
-  addcomment: data => api.post(`api/auth/comment`, data),
-  deletecomment: id => api.delete(`api/auth/comment/${id}`),
+  addcomment: (postId, data) => api.post(`/api/auth/comment/${postId}`, data),
+  deletecomment: commentId => api.delete(`/api/auth/comment/${commentId}`),
 };
 
 export const LikeAPI = {

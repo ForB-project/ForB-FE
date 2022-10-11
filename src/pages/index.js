@@ -9,7 +9,11 @@ import Mainpage from "./Mainpage";
 import Mypage from "./Mypage";
 import Detailpage from "./Detailpage";
 import MessagePage from "./MessagePage";
+import WritePage from "./WritePage";
+import EditPage from "./EditPage";
 export {
+  EditPage,
+  WritePage,
   Detailpage,
   Mypage,
   RoadMap,
@@ -20,5 +24,5 @@ export {
   QuizPage,
   TestCodePage,
   Mainpage,
-  MessagePage
+  MessagePage,
 };
