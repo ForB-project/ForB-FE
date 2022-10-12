@@ -52,12 +52,11 @@
 // import React, { useState, useEffect } from 'react';
 
 // const io = require('socket.io-client');
-// const socket = io();
+// const socket = io('ws://3.38.209.226/stomp');
 
 // function SocketPage() {
   
 //   const [messageCount, setMessageCount] = useState(0);
-//   const [isConnected, setIsConnected] = useState(socket.connected);
 //   const [theme, setTheme] = useState('dark');
 //   const [inRoom, setInRoom] = useState(false);
   
@@ -75,11 +74,6 @@
 //           room: 'test-room'
 //         })
 //       }
-
-//       socket.on('connect', (socket) => {
-//               setIsConnected(true);
-//               console.log(isConnected);
-//             });
 //     }
 //   });
 
@@ -111,6 +105,7 @@
 //     socket.emit('new message', {
 //       room: 'test-room'
 //     });
+//     socket.emit('hello!');
 //     setMessageCount(messageCount + 1);
 //   }
 
@@ -144,5 +139,100 @@
 //     </div>
 //   );
 // }
+
+// export default SocketPage;
+
+import React, { useState, useEffect,useRef } from 'react';
+import * as StompJs from "@stomp/stompjs";
+import * as SockJS from "sockjs-client";
+
+const ROOM_SEQ = 1;
+
+function SocketPage() {
+
+  const client = useRef({});
+  const [chatMessages, setChatMessages] = useState([]);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    connect();
+    return () => disconnect();
+  }, []);
+
+  const connect = () => {
+    client.current = new StompJs.Client({
+      brokerURL: "ws://3.38.209.226/stomp", // 웹소켓 서버로 직접 접속
+      connectHeaders: {
+        Authorization: `${localStorage.getItem("access_token")}`,
+        "Refresh-Token": `${localStorage.getItem("refresh_token")}`,
+      },
+      headers: {
+        Authorization: `${localStorage.getItem("access_token")}`,
+        "Refresh-Token": `${localStorage.getItem("refresh_token")}`,
+      },
+      debug: function (str) {
+        console.log(str);
+      },
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      onConnect: () => {
+        subscribe();
+        console.log("됨");
+      },
+      onStompError: (frame) => {
+        console.error(frame);
+      },
+    });
+    client.current.activate();
+  };
+
+  const disconnect = () => {
+    client.current.deactivate();
+  };
+
+  const subscribe = () => {
+    client.current.subscribe(`/sub/chat/room/1`, ({ body }) => {
+      setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+    });
+    console.log('sub 됨');
+  };
+
+  const publish = (message) => {
+    if (!client.current.connected) {
+      return;
+    }
+
+    client.current.publish({
+      destination: "/pub/chat/message",
+      body: JSON.stringify({ roomId: ROOM_SEQ, message }),
+      // body:`${message}`,
+    });
+    console.log(message);
+    setMessage("");
+  };
+
+  return (
+    <div>
+      {chatMessages && chatMessages.length > 0 && (
+        <ul>
+          {chatMessages.map((_chatMessage, index) => (
+            <li key={index}>{_chatMessage.message}</li>
+          ))}
+        </ul>
+      )}
+      <div>
+        <input
+          type={"text"}
+          placeholder={"message"}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyPress={(e) => e.which === 13 && publish(message)}
+        />
+        <button onClick={() => publish(message)}>send</button>
+      </div>
+    </div>
+  );
+};
 
 // export default SocketPage;

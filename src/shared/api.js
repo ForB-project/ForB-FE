@@ -31,10 +31,12 @@ api.interceptors.request.use(
     const preaccessToken = getAccessToken();
     const accessToken = preaccessToken?.split(" ")[1];
     if (!refreshToken) {
+      console.log(config);
       return config;
     } else {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
       config.headers["Refresh-Token"] = `${refreshToken}`;
+      console.log(config);
       return config;
     }
   },
