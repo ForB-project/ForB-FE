@@ -19,7 +19,7 @@ const BodyCommunity = () => {
     _getContents(pageNumber)
   );
   const CurrentContentsList = contentsList.data?.data.data;
-  // console.log("CurrentContentsList.title =", CurrentContentsList[0].id);
+  console.log("CurrentContentsList.title =", CurrentContentsList.id);
 
   // 배열의 id값 별로 받아오기
   // 먼저 필터?ㄴ
