@@ -57,11 +57,14 @@ const EditPage = () => {
       contentId,
       formData
     );
-    for (let value of formData.values()) {
-      console.log(value);
-    } //값 확인하기
-    console.log(res);
-    // navigate(`/community/${contentId}`);
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // } //값 확인하기
+    if (res.data.success) {
+      navigate(`/community/${contentId}`);
+    } else if (!res.data.success) {
+      window.alert("오류가 생겨서 내용을 일단 복사해주세요!");
+    }
   };
 
   const editTitle = title => {

@@ -33,7 +33,13 @@ const WritePage = () => {
     }
     const res = await CommunityContentAPI.postCommunityContent(formData);
     console.log(res);
-    // navigate(`/`);
+    if (res.data.success) {
+      navigate(`/community/${res.data.data.id}`);
+    } else if (!res.data.success) {
+      window.alert(
+        "오류가 발생했습니다 일단 내용을 복사하고 새로고침해주세요!"
+      );
+    }
   };
   const onClearPhot = () => {
     setAttachment(null);

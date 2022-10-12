@@ -25,7 +25,13 @@ import Edit from "./EditpageComponent/Edit";
 import MessageInput from "./Message/MessageInput";
 import MessageView from "./Message/MessageView";
 import MessageHeader from "./Message/MessageHeader";
+import MyCommunityContent from "./MypageComponent/MyCommunityContent";
+import MyRoadmapContent from "./MypageComponent/MyRoadmapContent";
+import CommentListComponent from "./Detailpage/CommentList";
 export {
+  CommentListComponent,
+  MyRoadmapContent,
+  MyCommunityContent,
   Edit,
   Write,
   WriteShow,
@@ -52,5 +58,5 @@ export {
   RunBackButton,
   MessageHeader,
   MessageView,
-  MessageInput
+  MessageInput,
 };
