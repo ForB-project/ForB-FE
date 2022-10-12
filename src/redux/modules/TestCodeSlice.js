@@ -17,18 +17,18 @@ const initialState = {
   frontCode: [
     {
       id: 2,
-      exampleCode: `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n<body>\n   <h2>자바스크립트란..?</h2>\n   <p id="test">여기보세요!</p>\n\n<button type="button" onclick="document.getElementById('test')\n.innerHTML = 'Java Script는 HTML을 바꿀 수 있어요!!'">\n눌러보세요!\n</button>\n</body>\n</html>`,
+      exampleCode:  `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
     },
     {
       id: 3,
-      exampleCode: `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n<!DOCTYPE html>\n<html>\n<body>\n   <h3 id="test">\n     버튼 누르고 위에 보세요! \n   </h3>\n\n   <button type="button"\n   onclick="alert('자바스크립트!')">\n   눌러보세요!\n   </button>\n</body>\n\n</html>`,
+      exampleCode: `   *주의*  treeHit 초깃값은 0으로 고정,\n   ()안에 숫자 값은 20이하로 적용시켜주세요!\n --------------------------------------------\n\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
     },
   ],
   backCode: [
     {
       id: 4,
       exampleCode:
-        '      *조건을 원하는 대로 입력해보세요!* \n --------------------------------------------\n\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시 탑승 가능");\n} else{\n     System.out.println("걸어가라");\n}',
+        '      *조건을 원하는 대로 입력해보세요!* \n --------------------------------------------\n\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
     },
     {
       id: 5,
@@ -70,6 +70,14 @@ export const __sendPracCode2 = createAsyncThunk(
   }
 );
 
+export const __sendPracCode3 = createAsyncThunk(
+  "QUIZRESULT3",
+  async (payload, thunkAPI) => {
+    const { data } = await api.post(`/api/secondCode`, payload);
+    return thunkAPI.fulfillWithValue(data);
+  }
+);
+
 export const TestCodeSlice = createSlice({
   name: "testCode",
   initialState,
@@ -77,6 +85,11 @@ export const TestCodeSlice = createSlice({
     addPracCode: (state, action) => {
       state.result = state.result.map((list) =>
        list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.codePrac } : list
+     );
+    },
+    addFrontPracCode: (state, action) => {
+      state.result = state.result.map((list) =>
+       list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.answer} : list
      );
     },
     addBackPracCode: (state, action) => {
@@ -93,10 +106,15 @@ export const TestCodeSlice = createSlice({
     },
     [__sendPracCode2.fulfilled]: (state, action) => {
       state.result = state.result.map((list) =>
-       list.id === 5 ? { ...list, answer: action.payload.data } : list
+       list.id === 5? { ...list, answer: action.payload.data } : list
+     );
+    },
+    [__sendPracCode3.fulfilled]: (state, action) => {
+      state.result = state.result.map((list) =>
+       list.id === 3 ? { ...list, answer: action.payload.data } : list
      );
     },
   },
 });
-export const { addPracCode,addBackPracCode } = TestCodeSlice.actions;
+export const { addPracCode,addBackPracCode,addFrontPracCode } = TestCodeSlice.actions;
 export default TestCodeSlice.reducer;

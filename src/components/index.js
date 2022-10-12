@@ -19,7 +19,16 @@ import RoadmapContentHeader from "./Roadmap/RoadmapContentHeader";
 import RunFrontButton from "./TestCode/RunFrontButton";
 import RunBackButton from "./TestCode/RunBackButton";
 import SearchModal from "./Modal/SearchModal";
+import Write from "./WriteComponent/Write";
+import WriteShow from "./WriteComponent/WriteShow";
+import Edit from "./EditpageComponent/Edit";
+import MessageInput from "./Message/MessageInput";
+import MessageView from "./Message/MessageView";
+import MessageHeader from "./Message/MessageHeader";
 export {
+  Edit,
+  Write,
+  WriteShow,
   SearchModal,
   RoadmapContentHeader,
   RoadmapGuide,
@@ -41,4 +50,7 @@ export {
   QuizImage,
   RunFrontButton,
   RunBackButton,
+  MessageHeader,
+  MessageView,
+  MessageInput
 };

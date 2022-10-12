@@ -23,11 +23,15 @@ const Header = () => {
     removeQuizResult();
   };
   const logout = async () => {
-    await AccountAPI.logout().then((res) => {
-      removeStorage();
-      window.location.reload();
-    });
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      await AccountAPI.logout().then((res) => {
+        removeStorage();
+        window.location.reload();
+      });
+    }
   };
+
+  const pathname = window.location.pathname;
 
   useEffect(() => {
     if (getRefreshToken()) {
@@ -107,6 +111,7 @@ const Header = () => {
               <span
                 className=""
                 onClick={() => {
+                  localStorage.setItem("pathname", pathname);
                   setCloseModal(!closeModal);
                 }}
               >

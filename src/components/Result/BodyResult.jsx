@@ -15,6 +15,8 @@ const BodyResult = () => {
   const data = getQuizResult();
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
+
+  // console.log("contents =", contents);
   const selectImg = () => {
     let result = "";
     switch (resultData?.stackType) {

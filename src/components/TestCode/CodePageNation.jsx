@@ -11,19 +11,16 @@ const PageNation = ({
   codePrac,
   codeIndex,
 }) => {
-
   return (
     <PageNationLayout>
-      {exampleCode[0].id < 4 ? (
-        exampleCode[0].id >= 2 ? (
-          <RunFrontButton
-            exampleCode={exampleCode}
-            codePrac={codePrac}
-            codeIndex={codeIndex}
-          />
-        ) : null
-      ) : (
+      {exampleCode[0].id <= 1 ? null : exampleCode[0].id >= 4 ? (
         <RunBackButton
+          exampleCode={exampleCode}
+          codePrac={codePrac}
+          codeIndex={codeIndex}
+        />
+      ) : (
+        <RunFrontButton
           exampleCode={exampleCode}
           codePrac={codePrac}
           codeIndex={codeIndex}
@@ -34,9 +31,33 @@ const PageNation = ({
         <PageNationNum onClick={() => moveNum(0)}>1</PageNationNum>
         <PageNationNum onClick={() => moveNum(1)}>2</PageNationNum>
       </PageNationNumLayout>
-      <FrontBackButton onClick={() => movePage("h")}>HTML</FrontBackButton>
-      <FrontBackButton onClick={() => movePage("f")}>Front</FrontBackButton>
-      <FrontBackButton onClick={() => movePage("b")}>Back</FrontBackButton>
+      <FrontBackButton
+        onClick={() =>
+          exampleCode[codeIndex].id === 0 || exampleCode[codeIndex].id === 1
+            ? null
+            : movePage("h")
+        }
+      >
+        HTML
+      </FrontBackButton>
+      <FrontBackButton
+        onClick={() =>
+          exampleCode[codeIndex].id === 2 || exampleCode[codeIndex].id === 3
+            ? null
+            : movePage("f")
+        }
+      >
+        Front
+      </FrontBackButton>
+      <FrontBackButton
+        onClick={() =>
+          exampleCode[codeIndex].id === 4 || exampleCode[codeIndex].id === 5
+            ? null
+            : movePage("b")
+        }
+      >
+        Back
+      </FrontBackButton>
     </PageNationLayout>
   );
 };

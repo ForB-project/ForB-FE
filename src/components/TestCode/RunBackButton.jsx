@@ -14,7 +14,7 @@ const RunBackButton = ({
   codeIndex,
 }) => {
   const dispatch = useDispatch();
-  const [inputList, setInputList] = useState(null);
+  const [backResult, setBackResult] = useState(null);
 
   const runBackCode = () => {
     if(codePrac==='') return;
@@ -23,35 +23,33 @@ const RunBackButton = ({
       const sendCodeInt = codePrac.split(/=|;/)[1].trim();
       const forIf = codePrac.replace(regex, "");
       const sendCodeIf = forIf.slice(sendCodeInt.length, forIf.length);
-      setInputList({
-        ...inputList,
+      setBackResult({
+        ...backResult,
         inputInt1: Number(sendCodeInt),
         inputInt2: Number(sendCodeIf),
       });
     } else if (exampleCode[codeIndex].id === 5) {
       const sendCodeInt = codePrac.split(';');
-      // const firstInt = forIf.slice(-2);
-      // const secondInt = forIf.slice(-4, 3);
       const firstInt = sendCodeInt[1].replace(regex, "");
       const secondInt = sendCodeInt[3].replace(regex, "");
-      setInputList({
-        ...inputList,
+      setBackResult({
+        ...backResult,
         inputInt1: Number(firstInt),
         inputInt2: Number(secondInt),
       });
     }
   };
-
+  
   useEffect(() => {
-    if(inputList==={}) return;
     const result = {id:exampleCode[codeIndex].id, codePrac}
-    if (exampleCode[codeIndex].id === 4 && inputList!==null) {
-      dispatch(__sendPracCode1(inputList));
-    } else if (exampleCode[codeIndex].id === 5 && inputList!==null ) {
-      dispatch(__sendPracCode2(inputList));
+    if (exampleCode[codeIndex].id === 4 && backResult!==null) {
+      dispatch(__sendPracCode1(backResult));
+      dispatch(addBackPracCode(result));
+    } else if (exampleCode[codeIndex].id === 5 && backResult!==null ) {
+      dispatch(__sendPracCode2(backResult));
+      dispatch(addBackPracCode(result));
     }
-    dispatch(addBackPracCode(result));
-  }, [inputList]);
+  }, [backResult]);
 
   return (
         <RunBackCode

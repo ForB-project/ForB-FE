@@ -11,7 +11,7 @@ import {
 const OAuthGoogle = () => {
   const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");
-
+  const pathname = localStorage.getItem("pathname");
   // 페이지 redirect 해서 오면 인가코드 백엔드로 넘기고 토큰 받아와서 localstorage에 저장
   // 쿠키에 저장 안한 이유는 로그아웃할때 쿠기 삭제를 위해 로직을 만들었는데 쿠키가 바로 삭제 되지않고 남아있어 변경했다
   useEffect(() => {
@@ -20,7 +20,12 @@ const OAuthGoogle = () => {
       setAccessToken(res.headers["authorization"]);
       setRefreshToken(res.headers["refresh-token"]);
       setUserName(res.data.data.nickname);
-      navigate("/");
+      if (pathname) {
+        navigate(pathname);
+        localStorage.removeItem("pathname");
+      } else {
+        navigate("/");
+      }
     }
     googleLogin();
   }, []);

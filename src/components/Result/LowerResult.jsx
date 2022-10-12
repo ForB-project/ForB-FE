@@ -2,10 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Header from "../Layout/Header";
-
+import { getAccessToken } from "../../shared/storage";
 const LowerResult = () => {
   const navigate = useNavigate();
-
+  const toTestCode = () => {
+    if (!getAccessToken()) {
+      window.alert("로그인이 필요합니다! 메뉴창을 통해 로그인가능합니다");
+    } else {
+      navigate("/testcode");
+    }
+  };
+  const toRoadmap = () => {
+    if (!getAccessToken()) {
+      window.alert("로그인이 필요합니다! 메뉴창을 통해 로그인가능합니다");
+    } else {
+      navigate("/roadmap");
+    }
+  };
   return (
     <>
       <Header />

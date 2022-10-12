@@ -16,11 +16,13 @@ const removeStorage = () => {
 
 const LogoutButton = props => {
   const logout = async () => {
-    await AccountAPI.logout().then(res => {
-      console.log(res);
-      removeStorage();
-      window.location.reload();
-    });
+    if (window.confirm("로그아웃 하시겠습니까?")) {
+      await AccountAPI.logout().then(res => {
+        console.log(res);
+        removeStorage();
+        window.location.reload();
+      });
+    }
   };
 
   return (

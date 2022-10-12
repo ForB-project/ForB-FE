@@ -1,57 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import {
-  __sendPracCode1,
-  __sendPracCode2,
+  __sendPracCode3,
+  addFrontPracCode,
 } from "../../redux/modules/TestCodeSlice";
 
-const RunFrontButton = ({
-  exampleCode,
-  codePrac,
-  codeIndex,
-}) => {
+const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.testCode.result.data);
-  const [saveAnswer, setSaveAnswer] = useState([]);
-  const [codeList, setCodeList] = useState({});
+  const [frontResult, setFrontResult] = useState({});
+  const [forSendResult, setForSendResult] = useState({});
 
   const runFrontCode = () => {
     const regex = /[^0-9]/g;
     if (exampleCode[codeIndex].id === 2) {
-      const sendCodeInt = codePrac.split(/'/)
-      console.log(sendCodeInt);
-    } else if (exampleCode[codeIndex].id === 3) {
+      const firstAnswer = codePrac.split(/=|;/)[1].trim();
       const forIf = codePrac.replace(regex, "");
-      const firstInt = forIf.slice(-2);
-      const secondInt = forIf.slice(-4, 3);
-      setCodeList({
-        ...codeList,
+      const secondAnswer = forIf.slice(firstAnswer.length, forIf.length);
+      if (firstAnswer >= secondAnswer) {
+        setFrontResult({
+          ...frontResult,
+          id: exampleCode[codeIndex].id,
+          answer: "택시를 타고 가라",
+          codePrac,
+        });
+      } else {
+        setFrontResult({
+          ...frontResult,
+          id: exampleCode[codeIndex].id,
+          answer: "걸어가라",
+          codePrac,
+        });
+      }
+    } else if (exampleCode[codeIndex].id === 3) {
+      const sendCodeInt = codePrac.split(";");
+      const firstInt = sendCodeInt[1].replace(regex, "");
+      const secondInt = sendCodeInt[3].replace(regex, "");
+      setFrontResult({
+        ...frontResult,
+        id: exampleCode[codeIndex].id,
+        codePrac,
+      });
+      setForSendResult({
+        ...forSendResult,
         inputInt1: Number(firstInt),
         inputInt2: Number(secondInt),
       });
-      setSaveAnswer([{answer:result,id:exampleCode[codeIndex].id}])
     }
   };
 
   useEffect(() => {
-    if (exampleCode[codeIndex].id === 4) {
-      dispatch(__sendPracCode1(codeList));
-    } else if (exampleCode[codeIndex].id === 5) {
-      dispatch(__sendPracCode2(codeList));
+    if (exampleCode[codeIndex].id === 2) {
+      dispatch(addFrontPracCode(frontResult));
+    } else if (exampleCode[codeIndex].id === 3) {
+      dispatch(addFrontPracCode(frontResult));
+      dispatch(__sendPracCode3(forSendResult));
     }
-  }, [codeList]);
-  console.log( exampleCode);
-  console.log(exampleCode[0].id);
-  
+  }, [frontResult]);
+
   return (
-        <RunFrontCode
-          className="runButton"
-          onClick={()=>runFrontCode()}
-        >
-          run
-        </RunFrontCode>
+    <RunFrontCode className="runButton" onClick={() => runFrontCode()}>
+      run
+    </RunFrontCode>
   );
 };
 export default RunFrontButton;

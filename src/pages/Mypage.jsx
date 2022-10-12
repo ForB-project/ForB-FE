@@ -66,14 +66,7 @@ const Mypage = () => {
   return (
     <WrapStyled>
       <Header />
-      {closeModal && (
-        <ModalWide closeModal={() => setCloseModal(!closeModal)}>
-          <AddContentModal
-            choseCategory={choseCategory}
-            closeModal={() => setCloseModal(!closeModal)}
-          />
-        </ModalWide>
-      )}
+
       {closeSearch && (
         <SearchModal closeSearch={() => setCloseSearch(!closeSearch)} />
       )}
@@ -106,12 +99,6 @@ const Mypage = () => {
               }}
             >
               <GrSearchAdvanced />
-            </button>
-            <button
-              className="Addbutton"
-              onClick={() => setCloseModal(!closeModal)}
-            >
-              +
             </button>
 
             <div className="ContentBorder">

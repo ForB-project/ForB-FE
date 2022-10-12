@@ -7,7 +7,15 @@ import QuizPage from "./QuizPage";
 import TestCodePage from "./TestCodePage";
 import Mainpage from "./Mainpage";
 import Mypage from "./Mypage";
+import Detailpage from "./Detailpage";
+import MessagePage from "./MessagePage";
+import WritePage from "./WritePage";
+import EditPage from "./EditPage";
+import SocketPage from "./SocketPage"
 export {
+  EditPage,
+  WritePage,
+  Detailpage,
   Mypage,
   RoadMap,
   Result,
@@ -17,4 +25,6 @@ export {
   QuizPage,
   TestCodePage,
   Mainpage,
+  MessagePage,
+  SocketPage
 };
