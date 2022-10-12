@@ -22,8 +22,7 @@ import SearchModal from "./Modal/SearchModal";
 import Write from "./WriteComponent/Write";
 import WriteShow from "./WriteComponent/WriteShow";
 import Edit from "./EditpageComponent/Edit";
-import MessageInput from "./Message/MessageInput";
-import MessageView from "./Message/MessageView";
+import MessageFunction from "./Message/MessageFunction";
 import MessageHeader from "./Message/MessageHeader";
 export {
   Edit,
@@ -51,6 +50,5 @@ export {
   RunFrontButton,
   RunBackButton,
   MessageHeader,
-  MessageView,
-  MessageInput
+  MessageFunction,
 };

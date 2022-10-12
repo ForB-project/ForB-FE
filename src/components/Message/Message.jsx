@@ -1,19 +1,22 @@
 import React from "react";
 import {useNavigate} from "react-router-dom"
 import styled from "styled-components";
-import { GreateHall } from "../../static/index";
-import { hogwart_logo } from "../../static/index";
+import { GreateHall,hogwart_logo } from "../../static/index";
+import {MenuButton} from "../index";
 
-import {MessageView,MessageInput,MessageHeader} from "../index";
+import {MessageFunction,MessageHeader} from "../index";
 
 const Message = () => {
   const navigate =  useNavigate();
   return (
     <MessageBackLayout>
+      <Header>
+        <img className="Logo" src={hogwart_logo} onClick={()=>navigate('/')} />
+        <MenuButton className="menu"/>
+      </Header>
       <MessageWindowLayout>
         <MessageHeader/>
-        <MessageView/>
-        <MessageInput/>
+        <MessageFunction/>
       </MessageWindowLayout>
     </MessageBackLayout>
   );
@@ -35,10 +38,21 @@ const MessageBackLayout = styled.div`
   z-index: -0;
 `;
 
+const Header = styled.div`
+  width: 75vw;
+  height: 10vh;
+  margin: 2rem 0.5rem -3rem;
+  .Logo {
+    max-width: 9vw;
+    max-height: 11vh;
+    cursor: pointer;
+  }
+`;
+
 const MessageWindowLayout = styled.div`
   width: 18vw;
   min-width:300px;
-  height: 55vh;
+  height: 56vh;
   min-height: 480px;
   margin: auto;
   background-color: #10141b;
