@@ -11,6 +11,7 @@ import {
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../hooks/useInput";
 import MarkdownPreview from "@uiw/react-markdown-preview";
+import { CommentListComponent } from "../components";
 const Detailpage = () => {
   const navigate = useNavigate();
   const param = useParams();
@@ -25,14 +26,17 @@ const Detailpage = () => {
   const CommunityQuery = useQuery(["CommunityContent", contentId], () =>
     getCommunityContent(contentId)
   );
-
+  // 본문 삭제
+  const DeleteCommunityContent = async id => {
+    return CommunityContentAPI.deleteCommunityContent(id);
+  };
   // 댓글 작성
   const [inputs, onChange] = useInput(null);
   const newComment = async data => {
     const res = await CommentAPI.addcomment(data.contentId, {
       content: data.content,
     });
-    console.log(res);
+
     return res;
   };
   const queryClient = useQueryClient();
@@ -44,7 +48,7 @@ const Detailpage = () => {
   //댓글 삭제
   const deleteComment = async commentId => {
     const res = await CommentAPI.deletecomment(commentId);
-    console.log(res);
+
     return res;
   };
   const DeleteComment = useMutation(deleteComment, {
@@ -58,18 +62,33 @@ const Detailpage = () => {
         <DetailHeaderStyled>
           <div
             onClick={() => {
-              navigate(-1);
+              navigate("/community");
             }}
           >
-            뒤로가기
+            <div className="backbutton"> 뒤로가기</div>
           </div>
-          <div>{CommunityQuery.data?.title}</div>
-          <div
-            onClick={() => {
-              navigate(`/edit/${contentId}`);
-            }}
-          >
-            수정하기 버튼?
+          <div className="detailtitle">{CommunityQuery.data?.title}</div>
+          <div>
+            <div
+              className="modifybutton"
+              onClick={() => {
+                navigate(`/edit/${contentId}`);
+              }}
+            >
+              수정
+            </div>
+            {`  |  `}
+            <div
+              className="modifybutton"
+              onClick={() => {
+                if (window.confirm("삭제하시겠습니까?")) {
+                  DeleteCommunityContent(contentId);
+                  navigate("/community");
+                }
+              }}
+            >
+              삭제
+            </div>
           </div>
         </DetailHeaderStyled>
         <DetailBodyStyled>
@@ -83,40 +102,15 @@ const Detailpage = () => {
             ""
           )}
           <MarkdownPreview
-            style={{ fontSize: "25px", backgroundColor: "#fbfdfc" }}
+            style={{
+              fontSize: "1.3rem",
+              backgroundColor: "#fbfdfc",
+              borderBlockStyle: "none",
+            }}
             source={CommunityQuery.data?.content}
           />
         </DetailBodyStyled>
-        <DetailCommentStyled>
-          <div className="CommentAddBox">
-            <div>댓글작성</div>
-            <input placeholder="댓글작성" onChange={onChange} name="content" />
-            <div
-              onClick={() => {
-                AddComment.mutate({ contentId, content: inputs.content });
-              }}
-            >
-              댓글달기
-            </div>
-          </div>
-          <div className="CommentBody">
-            {CommunityQuery.data?.commentList.map(x => (
-              <div className="CommentBodyMain" key={x.id}>
-                <div>{x.nickname}</div>
-                <div>{x.content}</div>
-                <div
-                  onClick={() => {
-                    if (window.confirm("삭제하시겠습니까?")) {
-                      DeleteComment.mutate(x.id);
-                    }
-                  }}
-                >
-                  삭제
-                </div>
-              </div>
-            ))}
-          </div>
-        </DetailCommentStyled>
+        <CommentListComponent contentId={contentId} />
       </ContainerStyled>
     </WrapStyled>
   );
@@ -157,7 +151,7 @@ const ContainerStyled = styled.div`
   border-radius: 60px;
   font-family: "neodgm", monospace;
   font-style: normal;
-  background-color: rgb(255, 255, 255, 0.7);
+  background-color: rgb(255, 255, 255, 1);
 `;
 
 const DetailHeaderStyled = styled.div`
@@ -165,47 +159,45 @@ const DetailHeaderStyled = styled.div`
   grid-template-columns: 15% 70% 15%;
   width: 80%;
   height: 10vh;
-  border: 1px solid black;
+  border: 1px solid transparent;
+  font-family: "neodgm";
+  font-size: 1.3rem;
+
   div {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  .detailtitle {
+    font-size: 2rem;
+  }
+  .backbutton {
+    border: 1px solid black;
+    width: 80%;
+    height: 50%;
+    border-radius: 20px;
+    transition: 0.3s;
+    &:hover {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .modifybutton {
+    border: 1px solid transparent;
+    width: 50%;
+    height: 60%;
+    border-radius: 20px;
+    transition: 0.3s;
+    &:hover {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+  }
 `;
 const DetailBodyStyled = styled.div`
   width: 75%;
   height: 50%;
-  border: 1px solid black;
-`;
-
-const DetailCommentStyled = styled.div`
-  display: grid;
-  grid-template-rows: 15% 85%;
-  width: 75%;
-  height: 50vh;
-  border: 1px solid black;
-  .CommentAddBox {
-    display: grid;
-    grid-template-columns: 15% 70% 15%;
-    div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  .CommentBody {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    .CommentBodyMain {
-      display: grid;
-      grid-template-columns: 15% 70% 15%;
-      div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-  }
+  border: 1px solid transparent;
 `;

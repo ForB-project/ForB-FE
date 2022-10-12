@@ -8,8 +8,10 @@ import {
   AddContentModal,
   RoadmapGuide,
   SearchModal,
+  MyRoadmapContent,
+  MyCommunityContent,
 } from "../components";
-import { ContentAPI, RoadmapAPI } from "../shared/api";
+import { CommunityContentAPI, ContentAPI, RoadmapAPI } from "../shared/api";
 import { GreateHall } from "../static";
 import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
@@ -20,35 +22,8 @@ const Mypage = () => {
   const [ref, inView] = useInView();
   const [closeModal, setCloseModal] = useState(false);
   const [closeSearch, setCloseSearch] = useState(false);
-
-  //Content 불러오는 부분
+  const [getCommunity, setCommunity] = useState(false);
   const [choseCategory, setChoseCategory] = useState(1);
-
-  const getContent = async (Id, pageParam) => {
-    const res = await ContentAPI.getMyPage(Id, pageParam);
-
-    return {
-      result: res.data.data,
-      nextPage: pageParam + 1,
-      isLast: res.data.data.length === 7 ? false : true,
-    };
-  };
-
-  const mypageInfiniteQuery = useInfiniteQuery(
-    ["contentList", choseCategory],
-    ({ pageParam = 1 }) => getContent(choseCategory, pageParam),
-    {
-      getNextPageParam: (lastPage, pages) => {
-        //hasNextPage 대용
-        // console.log(lastPage);
-        if (!lastPage.isLast) {
-          return lastPage.nextPage;
-        } else {
-          return undefined;
-        }
-      },
-    }
-  );
 
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
@@ -56,12 +31,6 @@ const Mypage = () => {
       navigate("/");
     }
   }, [getAccessToken()]);
-  // inView일때 다음 페이지 가져오기
-  useEffect(() => {
-    if (inView) {
-      mypageInfiniteQuery.fetchNextPage();
-    }
-  }, [inView]);
 
   return (
     <WrapStyled>
@@ -79,16 +48,25 @@ const Mypage = () => {
             <CategoryStyled
               onClick={() => {
                 setChoseCategory(1);
+                setCommunity(false);
               }}
             >
-              나의 게시물
+              나의 로드맵 게시물
             </CategoryStyled>
             <CategoryStyled
               onClick={() => {
                 setChoseCategory(2);
+                setCommunity(false);
               }}
             >
               좋아요 누른 게시물
+            </CategoryStyled>
+            <CategoryStyled
+              onClick={() => {
+                setCommunity(true);
+              }}
+            >
+              나의 게시판글
             </CategoryStyled>
           </div>
           <ContentContainerStyled>
@@ -102,34 +80,11 @@ const Mypage = () => {
             </button>
 
             <div className="ContentBorder">
-              {mypageInfiniteQuery.data?.pages.map((x, idx) => {
-                return (
-                  <React.Fragment key={idx}>
-                    {x?.result.map((y, keys) => {
-                      if (keys % 7 === 6) {
-                        return (
-                          <RoadmapContent
-                            ref={ref}
-                            key={y.id}
-                            querykey={choseCategory}
-                            data={y}
-                            deletekey={choseCategory}
-                          />
-                        );
-                      } else {
-                        return (
-                          <RoadmapContent
-                            key={y.id}
-                            querykey={choseCategory}
-                            data={y}
-                            deletekey={choseCategory}
-                          />
-                        );
-                      }
-                    })}
-                  </React.Fragment>
-                );
-              })}
+              {getCommunity ? (
+                <MyCommunityContent />
+              ) : (
+                <MyRoadmapContent querykey={choseCategory} />
+              )}
             </div>
           </ContentContainerStyled>
         </BodyStyled>

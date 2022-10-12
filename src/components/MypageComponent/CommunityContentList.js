@@ -1,34 +1,23 @@
 import React, { forwardRef } from "react";
 import styled, { keyframes } from "styled-components";
-import { Logo, mainFirst } from "../../static";
-import { LikeAPI, ContentAPI } from "../../shared/api";
+import { mainFirst } from "../../static";
+import { CommunityContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
-import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
-const RoadmapContent = forwardRef((props, ref) => {
+import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+const CommunityContentList = forwardRef((props, ref) => {
+  console.log(props);
   const queryClient = useQueryClient();
-  const thumbnail = props.data.thumbnail;
-  function ContentHref() {
-    window.open(props.data.link, "_blank");
-  }
-
-  const contentLike = async contentId => {
-    const res = await LikeAPI.togglelike(contentId);
-
-    return res;
-  };
-  const toggleLike = useMutation(contentLike, {
-    onSuccess: res => {
-      queryClient.invalidateQueries(["contentList", props.querykey]);
-    },
-  });
+  const navigate = useNavigate();
+  const thumbnail = props.data.postImage;
 
   const DeleteContent = async contentId => {
-    const res = await ContentAPI.deleteContent(contentId);
+    const res = await CommunityContentAPI.deleteCommunityContent(contentId);
     return res;
   };
   const deleteAction = useMutation(DeleteContent, {
     onSuccess: res => {
-      queryClient.invalidateQueries(["contentList", props.querykey]);
+      queryClient.invalidateQueries(["CommunityList"]);
     },
   });
 
@@ -38,51 +27,35 @@ const RoadmapContent = forwardRef((props, ref) => {
         <ContentImgStyled
           thumbnail={thumbnail}
           onClick={() => {
-            ContentHref();
+            navigate(`/community/${props.navigate}`);
           }}
         />
 
         <StackStyled>
           <span className="ContentTitle">{props.data.title}</span>
-          <p className="ContentDesc">{props.data.desc}</p>
+          <p className="ContentDesc">{props.data.content}</p>
         </StackStyled>
-        {props.querykey === 1 ? (
-          <div className="DeleteButton">
-            <div
-              className="DeleteBack"
-              onClick={() => {
-                if (window.confirm("삭제하시겠습니까?")) {
-                  deleteAction.mutate(props.data.id);
-                }
-              }}
-            >
-              <FaTrashAlt />
-            </div>
-          </div>
-        ) : (
+
+        <div className="DeleteButton">
           <div
-            className="LikeContent"
+            className="DeleteBack"
             onClick={() => {
-              toggleLike.mutate(props.data.id);
+              if (window.confirm("삭제하시겠습니까?")) {
+                deleteAction.mutate(props.data.id);
+              }
             }}
           >
-            <div className="heartBox">
-              {props.data.heartCheck ? (
-                <FaHeart className="icon" />
-              ) : (
-                <FaRegHeart className="icon" />
-              )}
-            </div>
-            {props.data.heartCnt}
+            <FaTrashAlt />
           </div>
-        )}
+        </div>
+
         <div className="inviewref" ref={ref}></div>
       </ContentStyled>
     </>
   );
 });
 
-export default RoadmapContent;
+export default CommunityContentList;
 
 const iconhover = keyframes`
 
@@ -182,5 +155,9 @@ const StackStyled = styled.div`
   .ContentDesc {
     font-size: 1rem;
     word-break: normal;
+
+    width: 30vw;
+    height: 50px;
+    overflow: hidden;
   }
 `;

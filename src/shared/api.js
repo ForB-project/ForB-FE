@@ -87,10 +87,14 @@ export const ContentAPI = {
 export const CommunityContentAPI = {
   getCommunityContent: id => api.get(`api/post/${id}`),
   postCommunityContent: data => api.post(`api/auth/post`, data),
-  getImgURL: data => api.post(`api/auth/image`, data),
+  deleteCommunityContent: id => api.delete(`/api/auth/post/${id}`),
   petchCommunityContent: (id, data) => api.put(`/api/auth/post/${id}`, data),
+  getmyCommunity: pageParam =>
+    api.get(`/api/myroadmap/post?page=${pageParam}&size=7`),
 };
 export const CommentAPI = {
+  getcommnet: (postId, pageParam) =>
+    api.get(`/api/comment/${postId}?page=${pageParam}&size=6`),
   addcomment: (postId, data) => api.post(`/api/auth/comment/${postId}`, data),
   deletecomment: commentId => api.delete(`/api/auth/comment/${commentId}`),
 };
