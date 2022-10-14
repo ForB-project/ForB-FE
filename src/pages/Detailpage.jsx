@@ -8,12 +8,17 @@ import {
   setRefreshToken,
   setUserName,
 } from "../shared/storage";
+
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../hooks/useInput";
 import MarkdownPreview from "@uiw/react-markdown-preview";
-import { CommentListComponent } from "../components";
+import {
+  CommentListComponent,
+  DetailHeader,
+  DetailSideHeader,
+} from "../components";
+
 const Detailpage = () => {
-  const navigate = useNavigate();
   const param = useParams();
   const contentId = parseInt(param.id);
   //본문 내용 가져오기
@@ -23,74 +28,31 @@ const Detailpage = () => {
     return res.data?.data;
   };
 
-  const CommunityQuery = useQuery(["CommunityContent", contentId], () =>
-    getCommunityContent(contentId)
+  const CommunityQuery = useQuery(
+    ["CommunityContent", contentId],
+    () => getCommunityContent(contentId),
+    { refetchInterval: 1000 }
   );
+  const createdAt = CommunityQuery?.data?.createdAt;
   // 본문 삭제
   const DeleteCommunityContent = async id => {
     return CommunityContentAPI.deleteCommunityContent(id);
   };
-  // 댓글 작성
-  const [inputs, onChange] = useInput(null);
-  const newComment = async data => {
-    const res = await CommentAPI.addcomment(data.contentId, {
-      content: data.content,
-    });
+  //좋아요
 
-    return res;
-  };
-  const queryClient = useQueryClient();
-  const AddComment = useMutation(newComment, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["CommunityContent", contentId]);
-    },
-  });
-  //댓글 삭제
-  const deleteComment = async commentId => {
-    const res = await CommentAPI.deletecomment(commentId);
-
-    return res;
-  };
-  const DeleteComment = useMutation(deleteComment, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["CommunityContent", contentId]);
-    },
-  });
   return (
     <WrapStyled>
       <ContainerStyled>
-        <DetailHeaderStyled>
-          <div
-            onClick={() => {
-              navigate("/community");
-            }}
-          >
-            <div className="backbutton"> 뒤로가기</div>
-          </div>
-          <div className="detailtitle">{CommunityQuery.data?.title}</div>
-          <div>
-            <div
-              className="modifybutton"
-              onClick={() => {
-                navigate(`/edit/${contentId}`);
-              }}
-            >
-              수정
-            </div>
-            {`  |  `}
-            <div
-              className="modifybutton"
-              onClick={() => {
-                if (window.confirm("삭제하시겠습니까?")) {
-                  DeleteCommunityContent(contentId);
-                  navigate("/community");
-                }
-              }}
-            >
-              삭제
-            </div>
-          </div>
-        </DetailHeaderStyled>
+        <DetailHeader
+          contentId={contentId}
+          CommunityQuery={CommunityQuery}
+          DeleteCommunityContent={DeleteCommunityContent}
+        />
+        <DetailSideHeader
+          createdAt={createdAt}
+          CommunityQuery={CommunityQuery}
+        />
+
         <DetailBodyStyled>
           {CommunityQuery.data?.postImage ? (
             <div className="ImgBox">
@@ -110,7 +72,10 @@ const Detailpage = () => {
             source={CommunityQuery.data?.content}
           />
         </DetailBodyStyled>
-        <CommentListComponent contentId={contentId} />
+        <CommentListComponent
+          contentId={contentId}
+          CommentCount={CommunityQuery.data?.commentCount}
+        />
       </ContainerStyled>
     </WrapStyled>
   );
@@ -152,50 +117,29 @@ const ContainerStyled = styled.div`
   font-family: "neodgm", monospace;
   font-style: normal;
   background-color: rgb(255, 255, 255, 1);
-`;
-
-const DetailHeaderStyled = styled.div`
-  display: grid;
-  grid-template-columns: 15% 70% 15%;
-  width: 80%;
-  height: 10vh;
-  border: 1px solid transparent;
-  font-family: "neodgm";
-  font-size: 1.3rem;
-
-  div {
+  .sideTitle {
     display: flex;
-    justify-content: center;
+    height: 4vh;
+    width: 100%;
     align-items: center;
-  }
-  .detailtitle {
-    font-size: 2rem;
-  }
-  .backbutton {
-    border: 1px solid black;
-    width: 80%;
-    height: 50%;
-    border-radius: 20px;
-    transition: 0.3s;
-    &:hover {
-      background-color: black;
-      color: white;
-      cursor: pointer;
-    }
-  }
-  .modifybutton {
-    border: 1px solid transparent;
-    width: 50%;
-    height: 60%;
-    border-radius: 20px;
-    transition: 0.3s;
-    &:hover {
-      background-color: black;
-      color: white;
-      cursor: pointer;
+    justify-content: space-around;
+    margin-bottom: 1vh;
+    .likebox {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 3vh;
+      width: 5vw;
+      height: 4vh;
+      border-radius: 10px;
+      background-color: rgb(200, 200, 200, 0.8);
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 `;
+
 const DetailBodyStyled = styled.div`
   width: 75%;
   height: 50%;

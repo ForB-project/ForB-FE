@@ -6,7 +6,6 @@ import { useMutation, useQueryClient } from "react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 const CommunityContentList = forwardRef((props, ref) => {
-  console.log(props);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const thumbnail = props.data.postImage;
@@ -37,16 +36,18 @@ const CommunityContentList = forwardRef((props, ref) => {
         </StackStyled>
 
         <div className="DeleteButton">
-          <div
-            className="DeleteBack"
-            onClick={() => {
-              if (window.confirm("삭제하시겠습니까?")) {
-                deleteAction.mutate(props.data.id);
-              }
-            }}
-          >
-            <FaTrashAlt />
-          </div>
+          {!props.likeContent && (
+            <div
+              className="DeleteBack"
+              onClick={() => {
+                if (window.confirm("삭제하시겠습니까?")) {
+                  deleteAction.mutate(props.data.id);
+                }
+              }}
+            >
+              <FaTrashAlt />
+            </div>
+          )}
         </div>
 
         <div className="inviewref" ref={ref}></div>
@@ -72,7 +73,7 @@ const iconhover = keyframes`
 const ContentStyled = styled.div`
   display: grid;
   width: 70%;
-  height: 100px;
+  height: 13vh;
   grid-template-columns: 30% 60% 10%;
   border: 1px solid white;
   border-radius: 10px;

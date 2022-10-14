@@ -13,6 +13,7 @@ const EditPage = () => {
   const [attachment, setAttachment] = useState(null);
   const getCommunityContent = async id => {
     const res = await CommunityContentAPI.getCommunityContent(id);
+    console.log(res);
     setDetail(res.data?.data);
   };
   const [markdown, setMarkdown] = useState("로딩중");

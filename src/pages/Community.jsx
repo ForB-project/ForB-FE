@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Layout/Header";
 import { PageTitle } from "../elem/index";
 import { BodyCommunity, LowerCommunity } from "../components/Community/index";
 import { GreateHall } from "../static/index";
+import { getAccessToken } from "../shared/storage";
+import { useNavigate } from "react-router-dom";
 
 //재사용 component 파일위치 정리필
 
 const Community = () => {
+  const navigate = useNavigate();
+  //로그인 안돼있으면 홈페이지로
+  useEffect(() => {
+    if (!getAccessToken()) {
+      navigate("/");
+    }
+  }, [getAccessToken()]);
   return (
     <>
       <Header />

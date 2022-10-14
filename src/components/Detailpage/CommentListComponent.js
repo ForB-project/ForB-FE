@@ -8,6 +8,7 @@ import useInput from "../../hooks/useInput";
 
 const CommentListComponent = props => {
   // 댓글 불러오기
+
   const [getPageParam, setPageParam] = useState(1);
   const getComment = async (postId, pageParam) => {
     const res = await CommentAPI.getcommnet(postId, pageParam);
@@ -17,7 +18,7 @@ const CommentListComponent = props => {
     ["CommentList", props.contentId, getPageParam],
     () => getComment(props.contentId, getPageParam)
   );
-  console.log(myCommentQuery);
+
   // 댓글 작성
   const textRef = useRef(null);
   const [inputs, onChange] = useInput(null);
@@ -26,7 +27,7 @@ const CommentListComponent = props => {
       content: data.content,
     });
     textRef.current.value = null;
-    console.log(res);
+
     return res;
   };
   const queryClient = useQueryClient();
@@ -87,9 +88,10 @@ const CommentListComponent = props => {
             >
               이전 댓글
             </div>
+            <span>{getPageParam}</span>
             <div
               onClick={() => {
-                if (getPageParam > 0) {
+                if (props.CommentCount / 6 > getPageParam) {
                   setPageParam(getPageParam + 1);
                 }
               }}
@@ -98,26 +100,28 @@ const CommentListComponent = props => {
               다음 댓글
             </div>
           </div>
-          {myCommentQuery.data?.map(x => (
-            <div className="CommentBodyMain" key={x.id}>
-              <div>{x.nickname}</div>
-              <div>{x.content}</div>
-              <div>
-                <div
-                  className="modifybutton"
-                  onClick={() => {
-                    if (window.confirm("삭제하시겠습니까?")) {
-                      DeleteComment.mutate(x.id);
-                    }
-                  }}
-                >
-                  삭제
+          <div>
+            {myCommentQuery.data?.map(x => (
+              <div className="CommentBodyMain" key={x.id}>
+                <div>{x.nickname}</div>
+                <div>{x.content}</div>
+                <div>
+                  <div
+                    className="modifybutton"
+                    onClick={() => {
+                      if (window.confirm("삭제하시겠습니까?")) {
+                        DeleteComment.mutate(x.id);
+                      }
+                    }}
+                  >
+                    삭제
+                  </div>
+                  {`  |  `}
+                  <div className="modifybutton">수정</div>
                 </div>
-                {`  |  `}
-                <div className="modifybutton">수정</div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </DetailCommentStyled>
     </React.Fragment>
@@ -129,7 +133,7 @@ const DetailCommentStyled = styled.div`
   display: grid;
   grid-template-rows: 15% 85%;
   width: 75%;
-
+  min-height: 10vh;
   /* border: 1px solid black; */
   margin: 5vh auto 10vh auto;
   .CommentAddBox {
@@ -144,17 +148,14 @@ const DetailCommentStyled = styled.div`
     textarea {
       font-size: 18px;
       width: 100%;
-
+      min-height: 4vh;
       resize: none;
-      border: 1px solid transparent;
+      border: 1px solid black;
       outline: none;
+      border-radius: 10px;
       &:focus {
         border: 1px solid black;
-        border-radius: 10px;
       }
-    }
-    textarea::-webkit-input-placeholder {
-      padding-top: 3vh;
     }
   }
   .modifybutton {
@@ -188,7 +189,7 @@ const DetailCommentStyled = styled.div`
     }
     .pagenation {
       border-bottom: 1px solid black;
-      margin-top: 10px;
+      margin-top: 5vh;
       padding-bottom: 10px;
       display: flex;
       justify-content: space-around;

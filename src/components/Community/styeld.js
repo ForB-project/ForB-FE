@@ -9,12 +9,12 @@ export const Body = styled.div`
   transition: 0.5s;
 
   color: white;
-  font-size: 2.5rem;
+  font-size: 3vh;
   font-family: "neodgm";
 
   margin: auto;
   width: 70vw;
-  height: 70vh;
+  min-height: 70vh;
   padding-top: 1vh;
 
   text-align: center;
@@ -23,21 +23,20 @@ export const Body = styled.div`
 export const Line = styled.div`
   /* border: 1px dashed purple; */
   display: flex;
-
-  margin-top: 1.5vh;
-  margin-bottom: 1.6vh;
+  justify-content: space-around;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
   padding-left: 2vw;
   padding-right: 2vw;
-
-  line-height: 3vh;
-
+  min-height: 4vh;
   opacity: 0.9;
 
   cursor: pointer;
   &:hover {
-    font-size: 2.7rem;
-    color: white;
-    opacity: 1;
+    div {
+      background-color: white;
+      color: black;
+    }
   }
 `;
 export const Title = styled.div`
@@ -47,8 +46,10 @@ export const Title = styled.div`
   background-color: #10141b;
 
   width: 45vw;
-  height: 3vh;
-
+  max-height: 6vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding-left: 1vw;
   text-align: left;
 `;
@@ -58,7 +59,7 @@ export const Author = styled.div`
   border-radius: 5px;
   background-color: #10141b;
 
-  width: 15vw;
+  width: 10vw;
   margin-left: 1vw;
   height: 3vh;
 `;
