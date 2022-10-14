@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 import CommunityContentList from "./CommunityContentList";
 const MyCommunityContent = props => {
   const [ref, inView] = useInView();
-  // 게시판 글 가져오기
+  // 나의 게시판 글 가져오기
   const getmyCommunity = async pageParam => {
     const res = await CommunityContentAPI.getmyCommunity(pageParam);
     return {
@@ -33,16 +33,47 @@ const MyCommunityContent = props => {
       },
     }
   );
-  console.log(myCommunityQuery);
 
+  //좋아요누른 게시글 가져오기
+  const getLikemyCommunity = async pageParam => {
+    const res = await CommunityContentAPI.getLikeCommunity(pageParam);
+    return {
+      result: res.data.data,
+      nextPage: pageParam + 1,
+      isLast: res.data.data.length === 7 ? false : true,
+    };
+  };
+
+  const myLikeCommunityQuery = useInfiniteQuery(
+    ["LikeCommunityList"],
+    ({ pageParam = 1 }) => getLikemyCommunity(pageParam),
+    {
+      getNextPageParam: (lastPage, pages) => {
+        //hasNextPage 대용
+        // console.log(lastPage);
+        if (!lastPage.isLast) {
+          return lastPage.nextPage;
+        } else {
+          return undefined;
+        }
+      },
+      refetchInterval: 200,
+    }
+  );
+  console.log(myLikeCommunityQuery);
   useEffect(() => {
     if (inView) {
       myCommunityQuery.fetchNextPage();
+    } else if (myLikeCommunityQuery) {
+      myLikeCommunityQuery.fetchNextPage();
     }
   }, [inView]);
   return (
     <React.Fragment>
-      {myCommunityQuery.data?.pages.map((x, idx) => {
+      {(props.likeContent
+        ? myLikeCommunityQuery
+        : myCommunityQuery
+      ).data?.pages.map((x, idx) => {
         return (
           <React.Fragment key={idx}>
             {x?.result.map((y, keys) => {
@@ -53,11 +84,17 @@ const MyCommunityContent = props => {
                     key={y.id}
                     navigate={y.id}
                     data={y}
+                    likeContent={props.likeContent}
                   />
                 );
               } else {
                 return (
-                  <CommunityContentList key={y.id} navigate={y.id} data={y} />
+                  <CommunityContentList
+                    key={y.id}
+                    navigate={y.id}
+                    data={y}
+                    likeContent={props.likeContent}
+                  />
                 );
               }
             })}

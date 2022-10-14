@@ -26,8 +26,12 @@ import MessageFunction from "./Message/MessageFunction";
 import MessageHeader from "./Message/MessageHeader";
 import MyCommunityContent from "./MypageComponent/MyCommunityContent";
 import MyRoadmapContent from "./MypageComponent/MyRoadmapContent";
-import CommentListComponent from "./Detailpage/CommentList";
+import CommentListComponent from "./Detailpage/CommentListComponent";
+import DetailHeader from "./Detailpage/DetailHeader";
+import DetailSideHeader from "./Detailpage/DetailSideHeader";
 export {
+  DetailSideHeader,
+  DetailHeader,
   CommentListComponent,
   MyRoadmapContent,
   MyCommunityContent,

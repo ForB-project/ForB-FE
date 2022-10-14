@@ -19,11 +19,10 @@ import { GrSearchAdvanced } from "react-icons/gr";
 import { getAccessToken } from "../shared/storage";
 const Mypage = () => {
   const navigate = useNavigate();
-  const [ref, inView] = useInView();
-  const [closeModal, setCloseModal] = useState(false);
   const [closeSearch, setCloseSearch] = useState(false);
   const [getCommunity, setCommunity] = useState(false);
   const [choseCategory, setChoseCategory] = useState(1);
+  const [likeContent, setLikeContent] = useState(false);
 
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
@@ -51,22 +50,31 @@ const Mypage = () => {
                 setCommunity(false);
               }}
             >
-              나의 로드맵 게시물
+              나의 로드맵 자료
             </CategoryStyled>
             <CategoryStyled
               onClick={() => {
                 setChoseCategory(2);
-                setCommunity(false);
+                setCommunity();
               }}
             >
-              좋아요 누른 게시물
+              좋아요 로드맵자료
             </CategoryStyled>
             <CategoryStyled
               onClick={() => {
                 setCommunity(true);
+                setLikeContent(false);
               }}
             >
               나의 게시판글
+            </CategoryStyled>
+            <CategoryStyled
+              onClick={() => {
+                setCommunity(true);
+                setLikeContent(true);
+              }}
+            >
+              좋아요 누른 게시판글
             </CategoryStyled>
           </div>
           <ContentContainerStyled>
@@ -81,7 +89,7 @@ const Mypage = () => {
 
             <div className="ContentBorder">
               {getCommunity ? (
-                <MyCommunityContent />
+                <MyCommunityContent likeContent={likeContent} />
               ) : (
                 <MyRoadmapContent querykey={choseCategory} />
               )}
