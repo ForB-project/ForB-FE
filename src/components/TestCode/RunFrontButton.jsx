@@ -40,6 +40,7 @@ const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
       setFrontResult({
         ...frontResult,
         id: exampleCode[codeIndex].id,
+        answer:'',
         codePrac,
       });
       setForSendResult({
@@ -50,6 +51,7 @@ const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
     }
   };
 
+  console.log(frontResult);
   useEffect(() => {
     if (exampleCode[codeIndex].id === 2) {
       dispatch(addFrontPracCode(frontResult));

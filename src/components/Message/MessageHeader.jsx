@@ -16,12 +16,13 @@ export default MessageHeader;
 
 
 const MessageHeaderLayout = styled.div`
-  width: 17vw;
-  min-width: 280px;
+  width: 17.9vw;
+  min-width: 298px;
   min-height: 70px;
-  margin: 5px auto 5px auto;
+  margin: 5px auto 0px auto;
   display: flex;
   flex-direction: row;
+  box-shadow:0px 2px 3px black ;
 `;
 
 const ProfileImageBox = styled.div`
@@ -32,7 +33,7 @@ border-radius: 10px;
 background-color: white;
 background-image: url(${profile});
 background-size: cover;
-margin: 10px 0px;
+margin: 10px 5px;
 `;
 
 
