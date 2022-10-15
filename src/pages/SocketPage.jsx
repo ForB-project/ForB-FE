@@ -147,9 +147,9 @@ import * as StompJs from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 
 const ROOM_SEQ = 1;
+const token = localStorage.getItem("access_token");
 
 function SocketPage() {
-
   const client = useRef({});
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -163,17 +163,12 @@ function SocketPage() {
     client.current = new StompJs.Client({
       brokerURL: "ws://3.38.209.226/stomp", // 웹소켓 서버로 직접 접속
       connectHeaders: {
-        Authorization: `${localStorage.getItem("access_token")}`,
-        "Refresh-Token": `${localStorage.getItem("refresh_token")}`,
-      },
-      headers: {
-        Authorization: `${localStorage.getItem("access_token")}`,
-        "Refresh-Token": `${localStorage.getItem("refresh_token")}`,
+        Authorization: token.slice(7)
       },
       debug: function (str) {
         console.log(str);
       },
-      reconnectDelay: 5000,
+      reconnectDelay: 50000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       onConnect: () => {
@@ -194,6 +189,9 @@ function SocketPage() {
   const subscribe = () => {
     client.current.subscribe(`/sub/chat/room/1`, ({ body }) => {
       setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+      console.log(body,JSON.parse(body));
+    },{
+      Authorization: token.slice(7)
     });
     console.log('sub 됨');
   };
@@ -202,14 +200,16 @@ function SocketPage() {
     if (!client.current.connected) {
       return;
     }
-
     client.current.publish({
       destination: "/pub/chat/message",
       body: JSON.stringify({ roomId: ROOM_SEQ, message }),
       // body:`${message}`,
+      headers: {
+        Authorization: token.slice(7),
+      },
     });
-    console.log(message);
     setMessage("");
+    console.log(message);
   };
 
   return (
@@ -235,4 +235,4 @@ function SocketPage() {
   );
 };
 
-// export default SocketPage;
+export default SocketPage;
