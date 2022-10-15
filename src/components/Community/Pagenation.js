@@ -11,8 +11,8 @@ const Pagenation = props => {
   const [numberList, setnumberList] = useState([1, 2, 3]);
   const [page, setPage] = useState(1);
   const [currentpage, setcurrent] = useState(1);
-  const rowsPerPage = 3;
-  const startNum = (page - 1) * 3 + 1;
+  const rowsPerPage = 5;
+  const startNum = (page - 1) * rowsPerPage + 1;
   const endNumber =
     startNum + rowsPerPage - 1 >= postCount
       ? postCount

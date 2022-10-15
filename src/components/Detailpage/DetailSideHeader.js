@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { CommentAPI, CommunityContentAPI } from "../../shared/api";
-import { setAccessToken } from "../../shared/storage";
+
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
 import useInput from "../../hooks/useInput";
 
 const DetailSideHeader = props => {
-  const navigate = useNavigate();
   const param = useParams();
   const contentId = parseInt(param.id);
   const createdAt = props.createdAt;

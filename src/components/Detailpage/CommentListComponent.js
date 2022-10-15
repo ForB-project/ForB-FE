@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CommentAPI } from "../../shared/api";
-import { setAccessToken } from "../../shared/storage";
+import { getUserName, setAccessToken } from "../../shared/storage";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../../hooks/useInput";
-
+import Modal from "../Modal/Modal";
 const CommentListComponent = props => {
   // 댓글 불러오기
-
   const [getPageParam, setPageParam] = useState(1);
   const getComment = async (postId, pageParam) => {
     const res = await CommentAPI.getcommnet(postId, pageParam);
@@ -47,6 +46,23 @@ const CommentListComponent = props => {
     return res;
   };
   const DeleteComment = useMutation(deleteComment, {
+    onSuccess: () => {
+      queryClient.invalidateQueries([
+        "CommentList",
+        props.contentId,
+        getPageParam,
+      ]);
+    },
+  });
+  //댓글 수정
+  const modifyRef = useRef(null);
+  const [closeModal, setCloseModal] = useState(false);
+  const [defaultData, setDefaultData] = useState(null);
+  const modify = async data => {
+    const res = await CommentAPI.modifyComment(data.id, { content: data.data });
+    return res;
+  };
+  const modifyComment = useMutation(modify, {
     onSuccess: () => {
       queryClient.invalidateQueries([
         "CommentList",
@@ -105,24 +121,65 @@ const CommentListComponent = props => {
               <div className="CommentBodyMain" key={x.id}>
                 <div>{x.nickname}</div>
                 <div>{x.content}</div>
-                <div>
-                  <div
-                    className="modifybutton"
-                    onClick={() => {
-                      if (window.confirm("삭제하시겠습니까?")) {
-                        DeleteComment.mutate(x.id);
-                      }
-                    }}
-                  >
-                    삭제
+                {getUserName() === x.nickname && (
+                  <div>
+                    <div
+                      className="modifybutton"
+                      onClick={() => {
+                        if (window.confirm("삭제하시겠습니까?")) {
+                          DeleteComment.mutate(x.id);
+                        }
+                      }}
+                    >
+                      삭제
+                    </div>
+                    {`  |  `}
+                    <div
+                      className="modifybutton"
+                      onClick={() => {
+                        setCloseModal(!closeModal);
+                        setDefaultData({ value: x.content, commentId: x.id });
+                      }}
+                    >
+                      수정
+                    </div>
                   </div>
-                  {`  |  `}
-                  <div className="modifybutton">수정</div>
-                </div>
+                )}
               </div>
             ))}
           </div>
         </div>
+        {closeModal && (
+          <ModalStyled>
+            <Modal wide closeModal={() => setCloseModal(!closeModal)}>
+              <textarea
+                defaultValue={defaultData.value}
+                ref={modifyRef}
+              ></textarea>
+
+              <button
+                className="CloseButton"
+                onClick={() => {
+                  setCloseModal(!closeModal);
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                className="ModifyButton"
+                onClick={() => {
+                  modifyComment.mutate({
+                    id: defaultData.commentId,
+                    data: modifyRef.current.value,
+                  });
+                  setCloseModal(!closeModal);
+                }}
+              >
+                수정완료
+              </button>
+            </Modal>
+          </ModalStyled>
+        )}
       </DetailCommentStyled>
     </React.Fragment>
   );
@@ -207,6 +264,50 @@ const DetailCommentStyled = styled.div`
           color: white;
         }
       }
+    }
+  }
+`;
+const ModalStyled = styled.div`
+  button {
+    position: absolute;
+
+    z-index: 11;
+    right: 88px;
+    border: 1px solid rgb(220, 220, 220);
+    width: 60%;
+    height: 10%;
+    border-radius: 12%/60%;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  .CloseButton {
+    bottom: 8%;
+    &:hover {
+      background-color: rgb(230, 230, 230);
+      cursor: pointer;
+    }
+  }
+  .ModifyButton {
+    bottom: 20%;
+    &:hover {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  textarea {
+    font-size: 18px;
+    width: 100%;
+    min-height: 65%;
+    resize: none;
+    border: 1px solid black;
+    outline: none;
+    border-radius: 10px;
+    &:focus {
+      border: 1px solid black;
     }
   }
 `;

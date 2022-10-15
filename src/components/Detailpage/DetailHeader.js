@@ -5,8 +5,9 @@ import { CommentAPI } from "../../shared/api";
 import { setAccessToken } from "../../shared/storage";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../../hooks/useInput";
-
+import { getUserName } from "../../shared/storage";
 const DetailHeader = props => {
+  const author = props.CommunityQuery?.data?.nickname;
   const navigate = useNavigate();
   return (
     <DetailHeaderStyled>
@@ -19,26 +20,31 @@ const DetailHeader = props => {
       </div>
       <div className="detailtitle">{props.CommunityQuery.data?.title}</div>
       <div>
-        <div
-          className="modifybutton"
-          onClick={() => {
-            navigate(`/edit/${props.contentId}`);
-          }}
-        >
-          수정
-        </div>
-        {`  |  `}
-        <div
-          className="modifybutton"
-          onClick={() => {
-            if (window.confirm("삭제하시겠습니까?")) {
-              props.DeleteCommunityContent(props.contentId);
-              navigate("/community");
-            }
-          }}
-        >
-          삭제
-        </div>
+        {getUserName() === author && (
+          <>
+            <div
+              className="modifybutton"
+              onClick={() => {
+                navigate(`/edit/${props.contentId}`);
+              }}
+            >
+              수정
+            </div>
+            <span>|</span>
+
+            <div
+              className="modifybutton"
+              onClick={() => {
+                if (window.confirm("삭제하시겠습니까?")) {
+                  props.DeleteCommunityContent(props.contentId);
+                  navigate("/community");
+                }
+              }}
+            >
+              삭제
+            </div>
+          </>
+        )}
       </div>
     </DetailHeaderStyled>
   );

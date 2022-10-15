@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 function Modal(props) {
   function closeModal() {
     props.closeModal();
@@ -19,7 +19,7 @@ function Modal(props) {
   }, []);
 
   return (
-    <ModalStyled onClick={closeModal}>
+    <ModalStyled onClick={closeModal} wide={props.wide}>
       <div className="modalBody" onClick={e => e.stopPropagation()}>
         {props.children}
       </div>
@@ -45,8 +45,17 @@ const ModalStyled = styled.div`
 
   .modalBody {
     position: absolute;
-    width: 230px;
-    height: 230px;
+    ${props =>
+      props.wide
+        ? css`
+            width: 400px;
+            height: 430px;
+          `
+        : css`
+            width: 230px;
+            height: 230px;
+          `}
+
     padding: 30px 30px 30px 30px;
     z-index: 12;
     text-align: left;

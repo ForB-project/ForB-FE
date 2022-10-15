@@ -102,6 +102,8 @@ export const CommentAPI = {
     api.get(`/api/comment/${postId}?page=${pageParam}&size=6`),
   addcomment: (postId, data) => api.post(`/api/auth/comment/${postId}`, data),
   deletecomment: commentId => api.delete(`/api/auth/comment/${commentId}`),
+  modifyComment: (commentId, data) =>
+    api.put(`/api/auth/comment/${commentId}`, data),
 };
 
 export const LikeAPI = {
