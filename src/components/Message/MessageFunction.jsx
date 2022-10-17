@@ -44,7 +44,7 @@ const MessageFunction = () => {
   };
 
   const subscribe = () => {
-    client.current.subscribe(`/sub/chat/room/1`, ({ body }) => {
+    client.current.subscribe(`/sub/chat/room/${ROOM_SEQ}`, ({ body }) => {
       setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
       console.log(body,JSON.parse(body));
     },{
@@ -73,16 +73,16 @@ const MessageFunction = () => {
       publish(message); 
     }
   };
-  console.log(message);
+  console.log(chatMessages);
   return (
     <MessageInnerLayout>
       <MessageViewLayout>
         {chatMessages && chatMessages.length > 0 && (
-          <p>
+          <div>
             {chatMessages.map((_chatMessage, index) => (
-              <Message primary className="myMessage" key={index}>{_chatMessage.message}</Message>
+              <Message key={index}>{_chatMessage.message}</Message>
             ))}
-          </p>
+          </div>
         )}
       </MessageViewLayout>
       <MessageInputLayout>
@@ -111,20 +111,33 @@ const MessageInnerLayout = styled.div`
 `;
 
 const MessageViewLayout = styled.div`
-  width: 17vw;
-  min-width: 280px;
+  width: 17.3vw;
+  min-width: 285px;
   height: 41vh;
   min-height: 345px;
-  margin: -10px auto 15px auto;
+  margin: 0px auto 5px auto;
   display: flex;
   justify-content: end;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+  }
 `;
 
 const Message = styled.p`
 max-width: 9vw;
-margin: 0px;
+margin: 2px;
 padding: 1px 5px;
-background-color: black;
+background-color: white;
+border: none;
+border-radius: 5px;
 `;
 
 const MessageInputLayout = styled.div`
