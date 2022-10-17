@@ -8,6 +8,8 @@ const token = localStorage.getItem("access_token");
 
 const MessageFunction = () => {
   const client = useRef({});
+  const scrollRef = useRef();
+  const inputFocus = useRef(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -20,7 +22,7 @@ const MessageFunction = () => {
     client.current = new StompJs.Client({
       brokerURL: "ws://3.38.209.226/stomp", // 웹소켓 서버로 직접 접속
       connectHeaders: {
-        Authorization: token.slice(7)
+        Authorization: token.slice(7),
       },
       debug: function (str) {
         console.log(str);
@@ -44,17 +46,27 @@ const MessageFunction = () => {
   };
 
   const subscribe = () => {
-    client.current.subscribe(`/sub/chat/room/1`, ({ body }) => {
-      setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
-      console.log(body,JSON.parse(body));
-    },{
-      Authorization: token.slice(7)
-    });
-    console.log('sub 됨');
+    client.current.subscribe(
+      `/sub/chat/room/${ROOM_SEQ}`,
+      ({ body }) => {
+        setChatMessages((_chatMessages) => [
+          ..._chatMessages,
+          JSON.parse(body),
+        ]);
+        console.log(body, JSON.parse(body));
+      },
+      {
+        Authorization: token.slice(7),
+      }
+    );
+    console.log("sub 됨");
   };
 
   const publish = (message) => {
     if (!client.current.connected) {
+      return;
+    }
+    if (!message) {
       return;
     }
     client.current.publish({
@@ -64,34 +76,39 @@ const MessageFunction = () => {
         Authorization: token.slice(7),
       },
     });
+    inputFocus.current.focus();
     setMessage("");
-    console.log(message);
   };
 
-  const handleOnKeyPress = e => {
-    if (e.key === 'Enter') {
-      publish(message); 
+ useEffect(() => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  });
+
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      publish(message);
     }
   };
-  console.log(message);
+
   return (
     <MessageInnerLayout>
-      <MessageViewLayout>
+      <MessageViewLayout ref={scrollRef}>
         {chatMessages && chatMessages.length > 0 && (
-          <p>
+          <div>
             {chatMessages.map((_chatMessage, index) => (
-              <Message primary className="myMessage" key={index}>{_chatMessage.message}</Message>
+              <Message key={index}>{_chatMessage.message}</Message>
             ))}
-          </p>
+          </div>
         )}
       </MessageViewLayout>
       <MessageInputLayout>
         <MessageTextArea
+          ref={inputFocus}
           type={"text"}
           placeholder={"message"}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-           onKeyPress={handleOnKeyPress}
+          onKeyPress={handleOnKeyPress}
         />
         <MessageButton onClick={() => publish(message)}>전송</MessageButton>
       </MessageInputLayout>
@@ -111,20 +128,26 @@ const MessageInnerLayout = styled.div`
 `;
 
 const MessageViewLayout = styled.div`
-  width: 17vw;
-  min-width: 280px;
+  width: 17.3vw;
+  min-width: 285px;
   height: 41vh;
   min-height: 345px;
-  margin: -10px auto 15px auto;
+  margin: 0px auto 5px auto;
   display: flex;
   justify-content: end;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 const Message = styled.p`
 max-width: 9vw;
-margin: 0px;
+margin: 2px;
 padding: 1px 5px;
-background-color: black;
+background-color: white;
+border: none;
+border-radius: 5px;
 `;
 
 const MessageInputLayout = styled.div`

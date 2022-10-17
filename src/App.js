@@ -35,7 +35,7 @@ function App() {
           <Route path="/oauth/callback/kakao" element={<OAuthKakao />} />
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/testcode" element={<TestCodePage />} />
-          <Route path="/message" element={<MessagePage />} />
+          <Route path="/messageRoom" element={<MessagePage />} />
           <Route path="/write" element={<WritePage />} />
           <Route path="/edit/:id" element={<EditPage />} />
           <Route path="/socket" element={<SocketPage />} />

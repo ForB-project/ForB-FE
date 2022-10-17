@@ -60,7 +60,7 @@ const MessageWindowLayout = styled.div`
   font-family: "neodgm", monospace;
   font-style: normal;
   font-size: 18px;
-  color: white;
+  color: black;
   .Logo {
     max-width: 9vw;
     max-height: 11vh;
