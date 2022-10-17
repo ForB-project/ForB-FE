@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Body = styled.div`
   /* border: 1px dashed black; */
 
-  border-radius: 50px;
+  border-radius: 30px;
   background-color: black;
   opacity: 0.95;
   transition: 0.5s;
@@ -13,8 +13,8 @@ export const Body = styled.div`
   font-family: "neodgm";
 
   margin: auto;
-  width: 70vw;
-  min-height: 70vh;
+  width: 60vw;
+  min-height: 50vh;
   padding-top: 1vh;
 
   text-align: center;
@@ -24,7 +24,7 @@ export const Line = styled.div`
   /* border: 1px dashed purple; */
   display: flex;
   justify-content: space-around;
-  margin-top: 2vh;
+  margin-top: 3vh;
   margin-bottom: 3vh;
   padding-left: 2vw;
   padding-right: 2vw;
@@ -78,7 +78,7 @@ export const Lower = styled.div`
   text-align: center;
 
   margin: 1vh;
-  padding-top: 2vh;
+  padding-top: 1vh;
 `;
 export const Center = styled.div`
   border-radius: 10px;

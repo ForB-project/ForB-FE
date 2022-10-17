@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { CommunityContentAPI } from "../shared/api";
+import { getAccessToken } from "../shared/storage";
 
 const WritePage = () => {
   const navigate = useNavigate();
@@ -45,6 +46,11 @@ const WritePage = () => {
     setAttachment(null);
     setImage(null);
   };
+  useEffect(() => {
+    if (!getAccessToken()) {
+      navigate("/");
+    }
+  }, [getAccessToken()]);
   return (
     <StyledDiv>
       <Write
