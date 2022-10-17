@@ -8,6 +8,8 @@ const token = localStorage.getItem("access_token");
 
 const MessageFunction = () => {
   const client = useRef({});
+  const scrollRef = useRef();
+  const inputFocus = useRef(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
 
@@ -16,19 +18,11 @@ const MessageFunction = () => {
     return () => disconnect();
   }, []);
 
-  const scrollRef = useRef();
-  useEffect(() => {
-    // 현재 스크롤 위치 === scrollRef.current.scrollTop
-      // 스크롤 길이 === scrollRef.current.scrollHeight
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-      console.log(scrollRef.current);
-  });
-
   const connect = () => {
     client.current = new StompJs.Client({
       brokerURL: "ws://3.38.209.226/stomp", // 웹소켓 서버로 직접 접속
       connectHeaders: {
-        Authorization: token.slice(7)
+        Authorization: token.slice(7),
       },
       debug: function (str) {
         console.log(str);
@@ -52,13 +46,20 @@ const MessageFunction = () => {
   };
 
   const subscribe = () => {
-    client.current.subscribe(`/sub/chat/room/${ROOM_SEQ}`, ({ body }) => {
-      setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
-      console.log(body,JSON.parse(body));
-    },{
-      Authorization: token.slice(7)
-    });
-    console.log('sub 됨');
+    client.current.subscribe(
+      `/sub/chat/room/${ROOM_SEQ}`,
+      ({ body }) => {
+        setChatMessages((_chatMessages) => [
+          ..._chatMessages,
+          JSON.parse(body),
+        ]);
+        console.log(body, JSON.parse(body));
+      },
+      {
+        Authorization: token.slice(7),
+      }
+    );
+    console.log("sub 됨");
   };
 
   const publish = (message) => {
@@ -75,16 +76,20 @@ const MessageFunction = () => {
         Authorization: token.slice(7),
       },
     });
+    inputFocus.current.focus();
     setMessage("");
-    console.log(message);
   };
 
-  const handleOnKeyPress = e => {
-    if (e.key === 'Enter') {
-      publish(message); 
+ useEffect(() => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  });
+
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      publish(message);
     }
   };
-  console.log(chatMessages);
+
   return (
     <MessageInnerLayout>
       <MessageViewLayout ref={scrollRef}>
@@ -98,11 +103,12 @@ const MessageFunction = () => {
       </MessageViewLayout>
       <MessageInputLayout>
         <MessageTextArea
+          ref={inputFocus}
           type={"text"}
           placeholder={"message"}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-           onKeyPress={handleOnKeyPress}
+          onKeyPress={handleOnKeyPress}
         />
         <MessageButton onClick={() => publish(message)}>전송</MessageButton>
       </MessageInputLayout>
