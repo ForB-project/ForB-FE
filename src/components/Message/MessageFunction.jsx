@@ -16,6 +16,14 @@ const MessageFunction = () => {
     return () => disconnect();
   }, []);
 
+  const scrollRef = useRef();
+  useEffect(() => {
+    // 현재 스크롤 위치 === scrollRef.current.scrollTop
+      // 스크롤 길이 === scrollRef.current.scrollHeight
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      console.log(scrollRef.current);
+  });
+
   const connect = () => {
     client.current = new StompJs.Client({
       brokerURL: "ws://3.38.209.226/stomp", // 웹소켓 서버로 직접 접속
@@ -57,6 +65,9 @@ const MessageFunction = () => {
     if (!client.current.connected) {
       return;
     }
+    if (!message) {
+      return;
+    }
     client.current.publish({
       destination: "/pub/chat/message",
       body: JSON.stringify({ roomId: ROOM_SEQ, message }),
@@ -76,7 +87,7 @@ const MessageFunction = () => {
   console.log(chatMessages);
   return (
     <MessageInnerLayout>
-      <MessageViewLayout>
+      <MessageViewLayout ref={scrollRef}>
         {chatMessages && chatMessages.length > 0 && (
           <div>
             {chatMessages.map((_chatMessage, index) => (
@@ -120,14 +131,7 @@ const MessageViewLayout = styled.div`
   justify-content: end;
   overflow: auto;
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    border-radius: 6px;
-    background: rgba(255, 255, 255, 0.4);
-  }
-  &::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 6px;
+    width: 0px;
   }
 `;
 
