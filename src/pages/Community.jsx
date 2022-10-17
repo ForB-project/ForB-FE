@@ -36,6 +36,7 @@ export default Community;
 const AllWrapStyled = styled.div`
   background-color: #10141b;
   display: flex;
+  height: 100vh;
 `;
 
 const WarperStyled = styled.div`
@@ -47,7 +48,7 @@ const WarperStyled = styled.div`
   background-size: cover;
 
   width: 100vw;
-  height: 92.7vh;
+  /* height: 92.7vh; */
 
   /* margin: 5vw; */
 

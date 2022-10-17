@@ -3,14 +3,13 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 const Pagenation = props => {
   const postCount =
-    props.postCount % 10 === 0
-      ? parseInt(props.postCount / 10)
-      : parseInt(props.postCount / 10) + 1;
-
+    props.postCount % 6 === 0
+      ? parseInt(props.postCount / 6)
+      : parseInt(props.postCount / 6) + 1;
+  console.log(postCount);
   //   const [numberList, setNumberList] = useState([]);
   const [numberList, setnumberList] = useState([1, 2, 3]);
   const [page, setPage] = useState(1);
-  const [currentpage, setcurrent] = useState(1);
   const rowsPerPage = 5;
   const startNum = (page - 1) * rowsPerPage + 1;
   const endNumber =
@@ -26,8 +25,8 @@ const Pagenation = props => {
   };
   useEffect(() => {
     setlist();
-  }, [page]);
-  console.log(page);
+  }, [page, postCount]);
+
   return (
     <PagenationBoxStyled>
       <div
@@ -43,14 +42,13 @@ const Pagenation = props => {
       </div>
 
       {numberList.map((x, idx) => {
-        if (currentpage === x) {
+        if (props.pageParam === x) {
           return (
             <div key={idx}>
               <span
                 className="currentpage"
                 onClick={() => {
                   props.setPageParam(x);
-                  setcurrent(x);
                 }}
               >
                 {x}
@@ -64,7 +62,6 @@ const Pagenation = props => {
               <span
                 onClick={() => {
                   props.setPageParam(x);
-                  setcurrent(x);
                 }}
               >
                 {x}
@@ -78,7 +75,6 @@ const Pagenation = props => {
       <div
         className="fastpagenation"
         onClick={() => {
-          console.log(postCount, rowsPerPage, page);
           if (page < postCount / rowsPerPage) {
             setPage(page + 1);
           }

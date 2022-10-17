@@ -86,7 +86,7 @@ export const ContentAPI = {
 };
 
 export const CommunityContentAPI = {
-  getAllContent: pageParam => api.get(`/api/post?page=${pageParam}&size=10`),
+  getAllContent: pageParam => api.get(`/api/post?page=${pageParam}&size=6`),
   getCommunityContent: id => api.get(`api/post/${id}`),
   postCommunityContent: data => api.post(`api/auth/post`, data),
   deleteCommunityContent: id => api.delete(`/api/auth/post/${id}`),
@@ -96,6 +96,8 @@ export const CommunityContentAPI = {
   getLikeCommunity: pageParam =>
     api.get(`/api/myroadmap/likePost?page=${pageParam}&size=7`),
   likeCommunityContent: postId => api.post(`/api/auth/post/like/${postId}`),
+  searchContent: (keyword, pageParam) =>
+    api.get(`/api/post/search?keyword=${keyword}&page=${pageParam}&size=6`),
 };
 export const CommentAPI = {
   getcommnet: (postId, pageParam) =>
