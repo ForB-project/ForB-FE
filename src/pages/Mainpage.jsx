@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { Modal, MainLoginModal, LogoutButton, Header } from "../components";
-import { Mainimg, FEvsBE, mainFirst, Logo } from "../static";
+import { Mainimg, hogwart_logo, Logo } from "../static";
 import { useNavigate } from "react-router-dom";
 import {
   getRefreshToken,
@@ -24,8 +24,8 @@ const Mainpage = () => {
     <WrapStyled>
       <Header />
       <ContainerStyled>
-        <img className="Logo" src={Logo} />
-        <p className="Introduce"> 프론트냐 백이냐 </p>
+        <img className="Logo" src={hogwart_logo} />
+        <p className="Introduce"> 프론트 or 백 </p>
         <p className="Desc">
           개발을 시작하기전에 간단하게
           <br />
