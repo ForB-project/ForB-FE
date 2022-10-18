@@ -1,22 +1,31 @@
 import React from "react";
-import {useNavigate} from "react-router-dom"
 import styled from "styled-components";
+import {useNavigate} from "react-router-dom"
 import { GreateHall,hogwart_logo } from "../../static/index";
 import {MenuButton} from "../index";
 
-import {MessageFunction,MessageHeader} from "../index";
+import {MessageFunction,MessageHeader,MessageList} from "../index";
 
 const Message = () => {
   const navigate =  useNavigate();
   return (
     <MessageBackLayout>
-      <Header>
-        <img className="Logo" src={hogwart_logo} onClick={()=>navigate('/')} />
-        <MenuButton className="menu"/>
-      </Header>
       <MessageWindowLayout>
-        <MessageHeader/>
-        <MessageFunction/>
+        <Header>
+          <img
+            className="Logo"
+            src={hogwart_logo}
+            onClick={() => navigate("/")}
+          />
+          <MenuButton className="menu" />
+        </Header>
+        <MessageInLayout>
+        <MessageList />
+        <MessageFunctionLayout>
+        <MessageHeader />
+        <MessageFunction />
+        </MessageFunctionLayout>
+        </MessageInLayout>
       </MessageWindowLayout>
     </MessageBackLayout>
   );
@@ -26,7 +35,9 @@ export default Message;
 
 const MessageBackLayout = styled.div`
   width: 85vw;
+  min-width: 950px;
   height: 90vh;
+  min-height: 750px;
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
@@ -39,21 +50,25 @@ const MessageBackLayout = styled.div`
 `;
 
 const Header = styled.div`
-  width: 75vw;
-  height: 10vh;
-  margin: 2rem 0.5rem -3rem;
+  width: 59.95vw;
+  min-width: 774px;
+  height: 8vh;
+  min-height: 70px;
   .Logo {
-    max-width: 9vw;
-    max-height: 11vh;
+    width: 4vw;
+    min-width: 65px;
+    height: 6.5vh;
+    min-height: 60px;
+    margin: 5px;
     cursor: pointer;
   }
 `;
 
 const MessageWindowLayout = styled.div`
-  width: 18vw;
-  min-width:300px;
-  height: 56vh;
-  min-height: 480px;
+  width: 60vw;
+  min-width:774px;
+  height: 70vh;
+  min-height: 625px;
   margin: auto;
   background-color: #10141b;
   border: 10px dashed black;
@@ -61,10 +76,25 @@ const MessageWindowLayout = styled.div`
   font-style: normal;
   font-size: 18px;
   color: black;
+  display: flex;
+  flex-direction: column;
   .Logo {
     max-width: 9vw;
     max-height: 11vh;
     cursor: pointer;
   }
+`;
+
+const MessageInLayout = styled.div`
+  height: 61.7vh;
+  min-height: 554px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const MessageFunctionLayout = styled.div`
+width: 65vw;
+border: 2px solid black;
 `;
 

@@ -1,13 +1,18 @@
 import React from "react";
+import {useSelector} from "react-redux";
 import styled from "styled-components";
 import {profile} from "../../static/index";
  
 const MessageHeader = () => {
-  
+  const chatList = useSelector((state) => state.chat.chatList);
+  const roomNum = useSelector((state) => state.chat.roomNum);
+
   return (
     <MessageHeaderLayout>
-      <ProfileImageBox/>
-      <ProfileNameBox>(이름)</ProfileNameBox>
+      <ProfileImageBox />
+      <ProfileNameBox>
+        {chatList.find((list) => list.roomId === roomNum.roomid).userName}
+      </ProfileNameBox>
     </MessageHeaderLayout>
   );
 };
@@ -16,13 +21,11 @@ export default MessageHeader;
 
 
 const MessageHeaderLayout = styled.div`
-  width: 17.9vw;
-  min-width: 298px;
   min-height: 70px;
-  margin: 5px auto 0px auto;
+  margin: 1px auto 0px auto;
   display: flex;
   flex-direction: row;
-  box-shadow:0px 2px 3px black ;
+  box-shadow:0px 2px 3px black;
 `;
 
 const ProfileImageBox = styled.div`
@@ -35,7 +38,6 @@ background-image: url(${profile});
 background-size: cover;
 margin: 10px 5px;
 `;
-
 
 const ProfileNameBox = styled.p`
 margin:auto 2px;
