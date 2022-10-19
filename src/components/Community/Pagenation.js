@@ -6,7 +6,7 @@ const Pagenation = props => {
     props.postCount % 6 === 0
       ? parseInt(props.postCount / 6)
       : parseInt(props.postCount / 6) + 1;
-  console.log(postCount);
+
   //   const [numberList, setNumberList] = useState([]);
   const [numberList, setnumberList] = useState([1, 2, 3]);
   const [page, setPage] = useState(1);

@@ -47,7 +47,6 @@ const BodyCommunity = ({ title, author, stack }) => {
       return null;
     } else {
       const res = await CommunityContentAPI.searchContent(keyword, pageParam);
-      console.log("req", res);
       return res.data.data;
     }
   };
@@ -85,7 +84,6 @@ const BodyCommunity = ({ title, author, stack }) => {
             <input ref={SearchRef} placeholder="단어를 입력하세요" />
             <div
               onClick={() => {
-                console.log("zmfflr");
                 refetchQuery();
                 setPageParam(1);
               }}

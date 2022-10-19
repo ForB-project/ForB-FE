@@ -1,10 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { MessageAPI } from "../../shared/api";
 
 import * as S from "./styeld";
 
 const ContentCommunity = props => {
   const navigate = useNavigate();
+  const joinroom = async memberId => {
+    const res = await MessageAPI.joinroom(memberId);
+    console.log(res);
+  };
 
   return (
     <S.Line>
@@ -17,7 +22,8 @@ const ContentCommunity = props => {
       </S.Title>
       <S.Author
         onClick={() => {
-          navigate(`/community/${props.data?.id}`);
+          joinroom(props.data.memberId);
+          // navigate(`/message`);
         }}
       >
         {props.data.nickname}

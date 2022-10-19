@@ -115,3 +115,6 @@ export const LikeAPI = {
 export const QuizResultAPI = {
   postResult: data => api.post(`/api/test/result`, data),
 };
+export const MessageAPI = {
+  joinroom: targetMemberId => api.get(`/api/roadmap/${targetMemberId}/chat`),
+};
