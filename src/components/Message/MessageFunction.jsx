@@ -17,7 +17,7 @@ const MessageFunction = () => {
   useEffect(() => {
     connect();
     return () => disconnect();
-  }, []);
+  }, [roomNum]);
 
   const connect = () => {
     client.current = new StompJs.Client({
