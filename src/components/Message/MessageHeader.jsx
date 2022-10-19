@@ -1,18 +1,26 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useSelector,useDispatch} from "react-redux";
 import styled from "styled-components";
 import {profile} from "../../static/index";
+import { AiFillDelete } from "react-icons/ai";
+
+import {__chatListDelete} from "../../redux/modules/ChatSlice";
  
 const MessageHeader = () => {
+  const dispatch = useDispatch();
   const chatList = useSelector((state) => state.chat.chatList);
   const roomNum = useSelector((state) => state.chat.roomNum);
 
+  const removeChat = (roomNum) =>{
+    dispatch(__chatListDelete(roomNum))
+  }
   return (
     <MessageHeaderLayout>
       <ProfileImageBox />
       <ProfileNameBox>
         {chatList.find((list) => list.roomId === roomNum.roomid).userName}
       </ProfileNameBox>
+      <AiFillDelete onClick={()=>removeChat(roomNum) } className="deleteBox"/>
     </MessageHeaderLayout>
   );
 };
@@ -25,7 +33,19 @@ const MessageHeaderLayout = styled.div`
   margin: 1px auto 0px auto;
   display: flex;
   flex-direction: row;
+  align-items: center;
   box-shadow:0px 2px 3px black;
+  .deleteBox{
+    font-size: 30px;
+    color:white;
+    opacity: 0.8;
+    display: flex;
+    margin: auto 15px auto auto;
+    cursor: pointer;
+    &:hover{
+      opacity: 1;
+    }
+  }
 `;
 
 const ProfileImageBox = styled.div`

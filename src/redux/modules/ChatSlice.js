@@ -19,6 +19,15 @@ export const __chatList = createAsyncThunk(
   }
 );
 
+export const __chatListDelete = createAsyncThunk(
+  "DELETECHAT",
+    async (payload, thunkAPI) => {
+      console.log(payload.roomid);
+    const { data } =  await api.delete(`/api/chat/${payload.roomid}`);
+    return thunkAPI.fulfillWithValue(data);
+  }
+);
+
 // export const __getResult = createAsyncThunk(
 //   "GETRESULT",
 //   async (payload, thunkAPI) => {
