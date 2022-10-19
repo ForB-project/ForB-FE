@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import {useNavigate} from "react-router-dom"
 import { GreateHall,hogwart_logo } from "../../static/index";
 import {MenuButton} from "../index";
@@ -8,6 +9,8 @@ import {MessageFunction,MessageHeader,MessageList} from "../index";
 
 const Message = () => {
   const navigate =  useNavigate();
+  const chatList = useSelector((state) => state.chat.chatList);
+
   return (
     <MessageBackLayout>
       <MessageWindowLayout>
@@ -20,11 +23,13 @@ const Message = () => {
           <MenuButton className="menu" />
         </Header>
         <MessageInLayout>
-        <MessageList />
-        <MessageFunctionLayout>
-        <MessageHeader />
-        <MessageFunction />
-        </MessageFunctionLayout>
+          <MessageList />
+          {chatList===[]? null : (
+            <MessageFunctionLayout>
+              <MessageHeader />
+              <MessageFunction />
+            </MessageFunctionLayout>
+          )}
         </MessageInLayout>
       </MessageWindowLayout>
     </MessageBackLayout>

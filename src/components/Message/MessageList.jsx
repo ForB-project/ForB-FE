@@ -15,6 +15,7 @@ const MessageList = () => {
 
   useEffect(()=>{
     dispatch(__chatList());
+    console.log('렌더링 됨');
   },[])
 
   console.log(chatList);

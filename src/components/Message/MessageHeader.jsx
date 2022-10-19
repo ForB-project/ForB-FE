@@ -12,10 +12,9 @@ const MessageHeader = () => {
   const roomNum = useSelector((state) => state.chat.roomNum);
 
   const removeChat = (roomNum) =>{
-    if (window.confirm("채팅방을 나가시겠습니까?")) {
+    if (window.confirm("채팅방을 나가시겠습니까?")) { 
       dispatch(__chatListDelete(roomNum));
     }
-    dispatch(__chatList());
   }
   console.log(roomNum);
 
@@ -23,9 +22,9 @@ const MessageHeader = () => {
     <MessageHeaderLayout>
       <ProfileImageBox />
       <ProfileNameBox>
-        {roomNum.roomid===1? null :chatList.find((list) => list.roomId === roomNum).subMember}
+        {roomNum.room_Id===1? null :chatList.find((list) => list.roomId === roomNum.room_Id).subMember}
       </ProfileNameBox>
-      <AiFillDelete onClick={()=>removeChat(roomNum) } className="deleteBox"/>
+      <AiFillDelete onClick={()=>removeChat(roomNum)} className="deleteBox"/>
     </MessageHeaderLayout>
   );
 };

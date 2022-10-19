@@ -12,7 +12,7 @@ const MessageFunction = () => {
   const inputFocus = useRef(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const roomNum = useSelector((state)=>state.chat.roomNum.roomid);
+  const roomNum = useSelector((state)=>state.chat.roomNum.room_Id);
 
   useEffect(() => {
     connect();
@@ -87,6 +87,7 @@ const MessageFunction = () => {
   };
 
   console.log(chatMessages);
+  console.log(roomNum);
 
   return (
     <MessageInnerLayout>
