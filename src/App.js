@@ -16,7 +16,7 @@ import {
   MessagePage,
   WritePage,
   EditPage,
-  SocketPage
+  SocketPage,
 } from "./pages";
 
 function App() {
