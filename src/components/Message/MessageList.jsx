@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import styled, {css} from "styled-components";
 import {profile} from "../../static/index";
 
-import {moveRoom} from "../../redux/modules/ChatSlice";
+import {moveRoom,__chatList} from "../../redux/modules/ChatSlice";
 
 const MessageList = () => {
   const dispatch = useDispatch();
   const chatList = useSelector((state)=>state.chat.chatList);
-  const roomId = useSelector((state)=>state.chat.roomNum);
   
   const changeNum = (num)=>{
     dispatch(moveRoom(num));
   }
 
+  useEffect(()=>{
+    dispatch(__chatList());
+  },[])
+
+  console.log(chatList);
   return (
     <MessageListLayout>
       <MessageListHeader>{`${localStorage.getItem(
@@ -22,7 +26,7 @@ const MessageList = () => {
       {chatList.map((list) => (
         <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
           <ProfileImageBox />
-          <ProfileNameBox>{list.userName}</ProfileNameBox>
+          <ProfileNameBox>{list.subMember}</ProfileNameBox>
         </ChatList>
       ))}
     </MessageListLayout>

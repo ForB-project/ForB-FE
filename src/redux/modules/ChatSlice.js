@@ -3,10 +3,10 @@ import { api } from "../../shared/api";
 
 const initialState = {
   chatList: [
-    { userName: "이태권", roomId: 1, token: "accessToken" },
-    { userName: "김준하", roomId: 2, token: "accessToken" },
-    { userName: "박세진", roomId: 3, token: "accessToken" },
-    { userName: "이소현", roomId: 4, token: "accessToken" },
+    { userName: "아무개", roomId: 1, token: "accessToken" },
+    { userName: "이무진", roomId: 2, token: "accessToken" },
+    { userName: "아이유", roomId: 3, token: "accessToken" },
+    { userName: "카리나", roomId: 4, token: "accessToken" },
   ],
   roomNum:{roomid:1} 
 };
@@ -14,7 +14,8 @@ const initialState = {
 export const __chatList = createAsyncThunk(
   "CHATLIST",
   async (payload, thunkAPI) => {
-    const { data } = await api.get(`/api/test/result`);
+    const { data } = await api.get(`/api/roadmap/chatLists`);
+    console.log(data);
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -22,8 +23,8 @@ export const __chatList = createAsyncThunk(
 export const __chatListDelete = createAsyncThunk(
   "DELETECHAT",
     async (payload, thunkAPI) => {
-      console.log(payload.roomid);
-    const { data } =  await api.delete(`/api/chat/${payload.roomid}`);
+      console.log(payload);
+    const { data } =  await api.delete(`/api/chat/${payload}`);
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -50,7 +51,8 @@ export const ChatSlice = createSlice({
   },
   extraReducers: {
     [__chatList.fulfilled]: (state, action) => { 
-      state.chatList = action.payload;
+      state.chatList = action.payload.data;
+      state.roomNum = action.payload.data[0].roomId;
     },
   },
 });

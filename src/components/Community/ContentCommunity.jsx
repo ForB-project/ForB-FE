@@ -23,7 +23,7 @@ const ContentCommunity = props => {
       <S.Author
         onClick={() => {
           joinroom(props.data.memberId);
-          // navigate(`/message`);
+          navigate(`/message`);
         }}
       >
         {props.data.nickname}

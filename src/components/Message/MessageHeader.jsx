@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {profile} from "../../static/index";
 import { AiFillDelete } from "react-icons/ai";
 
-import {__chatListDelete} from "../../redux/modules/ChatSlice";
+import {__chatListDelete,__chatList} from "../../redux/modules/ChatSlice";
  
 const MessageHeader = () => {
   const dispatch = useDispatch();
@@ -12,13 +12,18 @@ const MessageHeader = () => {
   const roomNum = useSelector((state) => state.chat.roomNum);
 
   const removeChat = (roomNum) =>{
-    dispatch(__chatListDelete(roomNum))
+    if (window.confirm("채팅방을 나가시겠습니까?")) {
+      dispatch(__chatListDelete(roomNum));
+    }
+    dispatch(__chatList());
   }
+  console.log(roomNum);
+
   return (
     <MessageHeaderLayout>
       <ProfileImageBox />
       <ProfileNameBox>
-        {chatList.find((list) => list.roomId === roomNum.roomid).userName}
+        {roomNum.roomid===1? null :chatList.find((list) => list.roomId === roomNum).subMember}
       </ProfileNameBox>
       <AiFillDelete onClick={()=>removeChat(roomNum) } className="deleteBox"/>
     </MessageHeaderLayout>
