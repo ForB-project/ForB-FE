@@ -10,16 +10,14 @@ const WriteModal = ({ setModalOpen }) => {
 
   // 제목 입력 받기
   const [title, setTitle] = useState("");
-  const titleHandler = (e) => {
+  const titleHandler = e => {
     setTitle(e.target.value);
-    console.log("title =", title);
   };
 
   // 내용 입력 받기
   const [content, setContent] = useState("");
-  const contentHandler = (e) => {
+  const contentHandler = e => {
     setContent(e.target.value);
-    console.log("content =", content);
   };
 
   // post 요청

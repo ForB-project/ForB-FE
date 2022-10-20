@@ -60,7 +60,7 @@ const MyCommunityContent = props => {
       refetchInterval: 200,
     }
   );
-  console.log(myLikeCommunityQuery);
+
   useEffect(() => {
     if (inView) {
       myCommunityQuery.fetchNextPage();

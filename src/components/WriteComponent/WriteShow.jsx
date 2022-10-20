@@ -20,10 +20,18 @@ const WriteShow = ({ markdown, attachment, onClearPhot, preImg }) => {
             <ContentImageStlyed src={preImg} />
           </ImageBoxStyled>
         )}
-        <MarkdownPreview
-          style={{ fontSize: "25px", backgroundColor: "#fbfdfc" }}
-          source={markdown}
-        />
+        <div className="markdownview">
+          <MarkdownPreview
+            style={{
+              fontSize: "25px",
+              color: "#999998",
+              backgroundColor: "#000000",
+              Height: "100%",
+              overflow: "auto",
+            }}
+            source={markdown}
+          />
+        </div>
       </StyledInnerDiv>
     </StyledDiv>
   );
@@ -34,12 +42,17 @@ const StyledDiv = styled.div`
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   top: 0px;
-  height: 100vh;
-  background-color: #fbfdfc;
+  height: 95%;
+  background-color: black;
 `;
 const StyledInnerDiv = styled.div`
   margin: 80px 50px 50px;
   font-size: 18px;
+  .markdownview {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
 `;
 const ImageBoxStyled = styled.div`
   position: relative;

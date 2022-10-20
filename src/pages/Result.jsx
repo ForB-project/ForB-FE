@@ -21,6 +21,7 @@ export default Result;
 const AllWrapStyled = styled.div`
   background-color: #10141b;
   display: flex;
+  height: 100%;
 `;
 
 const WarperStyled = styled.div`
@@ -32,7 +33,7 @@ const WarperStyled = styled.div`
   background-size: cover;
 
   width: 100%;
-  height: 100%;
+  height: 92vh;
 
   /* margin: 5vw; */
 

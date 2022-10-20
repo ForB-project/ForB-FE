@@ -1,10 +1,12 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Logo, mainFirst } from "../../static";
 import { LikeAPI, ContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
+import Modal from "../Modal/Modal";
 const RoadmapContent = forwardRef((props, ref) => {
+  const [closeModal, setCloseModal] = useState(false);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
@@ -51,9 +53,7 @@ const RoadmapContent = forwardRef((props, ref) => {
             <div
               className="DeleteBack"
               onClick={() => {
-                if (window.confirm("삭제하시겠습니까?")) {
-                  deleteAction.mutate(props.data.id);
-                }
+                setCloseModal(!closeModal);
               }}
             >
               <FaTrashAlt />
@@ -78,11 +78,43 @@ const RoadmapContent = forwardRef((props, ref) => {
         )}
         <div className="inviewref" ref={ref}></div>
       </ContentStyled>
+      {closeModal && (
+        <Modal closeModal={() => setCloseModal(!closeModal)}>
+          <DeleteContentStyled>
+            <div>게시물을</div>
+            <div>삭제하시겠습니까?</div>
+          </DeleteContentStyled>
+          <button
+            id="deleteButton"
+            onClick={() => {
+              console.log();
+              deleteAction.mutate(props.data.id);
+            }}
+          >
+            Delete
+          </button>
+          <button id="modalCloseBtn" onClick={() => setCloseModal(!closeModal)}>
+            Cancel
+          </button>
+        </Modal>
+      )}
     </>
   );
 });
 
 export default RoadmapContent;
+
+const DeleteContentStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-top: 35px;
+  font-size: 3vmin;
+  div {
+    margin-bottom: 15px;
+  }
+`;
 
 const iconhover = keyframes`
 

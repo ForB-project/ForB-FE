@@ -5,7 +5,6 @@ import { LikeAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 const SearchModalContent = forwardRef((props, ref) => {
-  console.log(props);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {

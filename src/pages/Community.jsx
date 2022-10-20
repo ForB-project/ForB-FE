@@ -6,6 +6,7 @@ import { BodyCommunity, LowerCommunity } from "../components/Community/index";
 import { GreateHall } from "../static/index";
 import { getAccessToken } from "../shared/storage";
 import { useNavigate } from "react-router-dom";
+import CommunityGuide from "../components/Community/CommunityGuide";
 
 //재사용 component 파일위치 정리필
 
@@ -23,6 +24,7 @@ const Community = () => {
       <AllWrapStyled>
         <WarperStyled>
           <PageTitle>게시판</PageTitle>
+          <CommunityGuide />
           <BodyCommunity />
           <LowerCommunity />
         </WarperStyled>

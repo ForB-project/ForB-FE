@@ -6,7 +6,7 @@ import Quiz from "../components/Quiz/Quiz";
 const QuizPage = () => {
   return (
     <QuizWrapStyled>
-      <Quiz/>
+      <Quiz />
     </QuizWrapStyled>
   );
 };
@@ -16,6 +16,6 @@ export default QuizPage;
 const QuizWrapStyled = styled.div`
   background-color: #10141b;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
 `;

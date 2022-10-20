@@ -29,30 +29,6 @@ const OAuthGoogle = () => {
     }
     googleLogin();
   }, []);
-  // const location = useLocation();
-  // let code = new URL(window.location.href);
-  // let postcode = code.searchParams.get("code");
-  // // const parsed = location.search.split(/(\w+=[\w.-_]+)/g);
-  // // let codes = parsed[1][5] + parsed[2];
-  // // codes = codes.slice(0, -1);
-  // // parsed[3] +
-  // // parsed[4] +
-  // // parsed[5] +
-  // // parsed[6] +
-  // // parsed[7];
-
-  // const navigate = useNavigate();
-  // const handleSubmit = async () => {
-  //   const res = await AccountAPI.goolgeLogin(postcode);
-  //   console.log(res);
-  //   // setAccessToken(res.headers["authorization"]);
-  //   // setRefreshToken(res.headers["refresh-token"]);
-  //   // setUserName(res.data.data.nickname);
-  //   // navigate("/");
-  // };
-  // React.useEffect(() => {
-  //   handleSubmit();
-  // }, []);
 
   return (
     <WrapStyled>
@@ -82,7 +58,7 @@ const ContainerStyled = styled.div`
   height: 95%;
   margin: auto;
   border-radius: 20px;
-  font-size: 6rem;
+  font-size: 10vmin;
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */

@@ -10,12 +10,12 @@ const EditToolBox = ({ setImage, setHeader, setTextStyle }) => {
   const [imageURL, setImageURL] = useState([]);
   useEffect(() => {
     setImage([...imageURL, imageURL]);
-  },[]);
+  }, []);
   const upLoadImg = useRef();
   const openFile = () => {
     upLoadImg.current.click();
   };
-  const onChange = (e) => {
+  const onChange = e => {
     e.preventDefault();
     if (e.target.files) {
       const img = e.target.files[0];
@@ -23,17 +23,14 @@ const EditToolBox = ({ setImage, setHeader, setTextStyle }) => {
       formData.append("image", img);
       userApis
         .uploadImage(formData)
-        .then((res) => {
+        .then(res => {
           const image = res.data.data;
-          const pushImage = (img) => {
+          const pushImage = img => {
             setImageURL([...imageURL, img]);
           };
           pushImage(image);
-          console.log(res);
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(err => {});
     }
   };
 

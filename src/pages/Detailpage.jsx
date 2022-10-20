@@ -66,7 +66,8 @@ const Detailpage = () => {
           <MarkdownPreview
             style={{
               fontSize: "1.3rem",
-              backgroundColor: "#fbfdfc",
+              color: "#999998",
+              backgroundColor: "black",
               borderBlockStyle: "none",
             }}
             source={CommunityQuery.data?.content}
@@ -116,7 +117,7 @@ const ContainerStyled = styled.div`
   border-radius: 60px;
   font-family: "neodgm", monospace;
   font-style: normal;
-  background-color: rgb(255, 255, 255, 1);
+  background-color: black;
   .sideTitle {
     display: flex;
     height: 4vh;
@@ -124,6 +125,7 @@ const ContainerStyled = styled.div`
     align-items: center;
     justify-content: space-around;
     margin-bottom: 1vh;
+    color: white;
     .likebox {
       display: flex;
       justify-content: space-around;
@@ -131,8 +133,9 @@ const ContainerStyled = styled.div`
       font-size: 3vh;
       width: 5vw;
       height: 4vh;
+      color: black;
       border-radius: 10px;
-      background-color: rgb(200, 200, 200, 0.8);
+      background-color: rgb(230, 230, 230, 0.9);
       &:hover {
         cursor: pointer;
       }

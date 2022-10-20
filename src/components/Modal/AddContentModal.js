@@ -45,6 +45,7 @@ const AddContentModal = props => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(AddContent, {
     onSuccess: res => {
+      console.log(res);
       queryClient.invalidateQueries(["contentList", choseCategory]);
       closeModal();
     },

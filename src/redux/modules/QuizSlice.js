@@ -12,7 +12,7 @@ import {
   dragonCastle2,
   fancyMagic2,
   Brige,
-  Team
+  Team,
 } from "../../static/index";
 
 const initialState = {
@@ -62,8 +62,7 @@ const initialState = {
     },
     {
       id: 6,
-      quizTitle:
-      "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야하는데, ",
+      quizTitle: "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야하는데, ",
       answerFront: "최전방에서 \n학생들을 이끌며 \n용에게 맞선다.",
       answerBack: "인력이 부족한데에서 묵묵히 \n자기 할 일을 한다.",
       forbCount: 0,
@@ -71,7 +70,8 @@ const initialState = {
     },
     {
       id: 7,
-      quizTitle: "마법 팀대항전이 곧 열린다. 조를 구해야 참가 할 수 있는데 이때 당신은? ",
+      quizTitle:
+        "마법 팀대항전이 곧 열린다. 조를 구해야 참가 할 수 있는데 이때 당신은? ",
       answerFront: "원하는 학생 \n혹은 \n믿을 수 있는 \n학생을 찾아 나선다.",
       answerBack: "원했던 조가 아니라도 협동을 위해 발 벗고 나선다.",
       forbCount: 0,
@@ -80,7 +80,8 @@ const initialState = {
     {
       id: 8,
       quizTitle: "팀대항전 중에 끊어진 다리를 건너야한다. 이때 당신은?",
-      answerFront: "자신이 \n먼저 넘어가서 \n팀원들이 \n넘어 올 수 있게 \n도와준다.",
+      answerFront:
+        "자신이 \n먼저 넘어가서 \n팀원들이 \n넘어 올 수 있게 \n도와준다.",
       answerBack: "의견을 \n내기보다는 \n보조 하는데 \n힘을 다한다.",
       forbCount: 0,
       image: Brige,
@@ -95,7 +96,8 @@ const initialState = {
     },
     {
       id: 10,
-      quizTitle: "마법 팀대항전이 곧 열린다. 조를 구해야 참가 할 수 있는데 이때 당신은? ",
+      quizTitle:
+        "마법 팀대항전이 곧 열린다. 조를 구해야 참가 할 수 있는데 이때 당신은? ",
       answerFront: "친분과 관계 없이 \n실력이 가장 좋은 사람들과 함께 한다.",
       answerBack: "자신과 \n친분이 있거나 \n믿을 수 있는 \n사람과 함께 한다.",
       forbCount: 0,
@@ -116,7 +118,7 @@ export const __quizResult = createAsyncThunk(
   "QUIZRESULT",
   async (payload, thunkAPI) => {
     const result = { type: payload[0], answer: payload[1] };
-    console.log(thunkAPI);
+
     const { data } = await api.post(`/api/test/result`, result);
 
     return thunkAPI.fulfillWithValue(data);

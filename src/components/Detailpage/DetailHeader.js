@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { CommentAPI } from "../../shared/api";
@@ -6,51 +6,85 @@ import { setAccessToken } from "../../shared/storage";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../../hooks/useInput";
 import { getUserName } from "../../shared/storage";
+import Modal from "../Modal/Modal";
 const DetailHeader = props => {
+  const [closeModal, setCloseModal] = useState(false);
   const author = props.CommunityQuery?.data?.nickname;
   const navigate = useNavigate();
   return (
-    <DetailHeaderStyled>
-      <div
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        <div className="backbutton"> 뒤로가기</div>
-      </div>
-      <div className="detailtitle">{props.CommunityQuery.data?.title}</div>
-      <div>
-        {getUserName() === author && (
-          <>
-            <div
-              className="modifybutton"
-              onClick={() => {
-                navigate(`/edit/${props.contentId}`);
-              }}
-            >
-              수정
-            </div>
-            <span>|</span>
+    <>
+      <DetailHeaderStyled>
+        <div
+          onClick={() => {
+            navigate("/community");
+          }}
+        >
+          <div className="backbutton"> 게시판으로</div>
+        </div>
+        <div className="detailtitle">{props.CommunityQuery.data?.title}</div>
+        <div>
+          {getUserName() === author && (
+            <>
+              <div
+                className="modifybutton"
+                onClick={() => {
+                  navigate(`/edit/${props.contentId}`);
+                }}
+              >
+                수정
+              </div>
+              <span>|</span>
 
-            <div
-              className="modifybutton"
-              onClick={() => {
-                if (window.confirm("삭제하시겠습니까?")) {
-                  props.DeleteCommunityContent(props.contentId);
-                  navigate("/community");
-                }
-              }}
-            >
-              삭제
-            </div>
-          </>
-        )}
-      </div>
-    </DetailHeaderStyled>
+              <div
+                className="modifybutton"
+                onClick={() => {
+                  setCloseModal(!closeModal);
+                }}
+              >
+                삭제
+              </div>
+            </>
+          )}
+        </div>
+      </DetailHeaderStyled>
+      {closeModal && (
+        <Modal closeModal={() => setCloseModal(!closeModal)}>
+          <DeleteContentStyled>
+            <div>게시물을</div>
+            <div>삭제하시겠습니까?</div>
+          </DeleteContentStyled>
+          <button
+            id="deleteButton"
+            onClick={() => {
+              props.DeleteCommunityContent(props.contentId);
+              navigate("/community");
+            }}
+          >
+            Delete
+          </button>
+          <button id="modalCloseBtn" onClick={() => setCloseModal(!closeModal)}>
+            Cancel
+          </button>
+        </Modal>
+      )}
+    </>
   );
 };
 
 export default DetailHeader;
+
+const DeleteContentStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-top: 35px;
+  font-size: 3vmin;
+  color: white;
+  div {
+    margin-bottom: 15px;
+  }
+`;
 const DetailHeaderStyled = styled.div`
   display: grid;
   grid-template-columns: 15% 70% 15%;
@@ -59,7 +93,7 @@ const DetailHeaderStyled = styled.div`
   border: 1px solid transparent;
   font-family: "neodgm";
   font-size: 1.3rem;
-
+  color: white;
   div {
     display: flex;
     justify-content: center;
@@ -69,26 +103,26 @@ const DetailHeaderStyled = styled.div`
     font-size: 2rem;
   }
   .backbutton {
-    border: 1px solid black;
+    border: 1px solid white;
     width: 80%;
     height: 50%;
     border-radius: 20px;
     transition: 0.3s;
     &:hover {
-      background-color: black;
-      color: white;
+      background-color: white;
+      color: black;
       cursor: pointer;
     }
   }
   .modifybutton {
-    border: 1px solid transparent;
+    border: 1px solid white;
     width: 50%;
     height: 60%;
     border-radius: 20px;
     transition: 0.3s;
     &:hover {
-      background-color: black;
-      color: white;
+      background-color: white;
+      color: black;
       cursor: pointer;
     }
   }

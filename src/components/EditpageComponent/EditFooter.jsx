@@ -19,7 +19,7 @@ const EditFooter = ({ onSubmit }) => {
         &nbsp; 나가기
       </StyledButton>
       <StyledInnerDiv>
-        <StyledButton hover="#21C997" onClick={onSubmit}>
+        <StyledButton bg="#ffffff" onClick={onSubmit}>
           저장하기
         </StyledButton>
       </StyledInnerDiv>
@@ -33,9 +33,9 @@ const StyledDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  width: 50vw;
-  height: 80px;
+
+  width: 45.5vw;
+  height: 90px;
   font-size: 28px;
   box-shadow: 0 0 8px rgb(0 0 0 / 20%);
   bottom: 0px;
@@ -53,14 +53,18 @@ const StyledButton = styled.button`
   margin: 20px;
   cursor: pointer;
   background-color: ${props => props.bg || "#14B886"};
-  color: ${props => props.color || "white"};
-  font-size: 23px;
+  color: ${props => props.color || "black"};
+  font-size: 1.2rem;
   font-weight: 500;
-  width: 125px;
+  width: 110px;
   height: 55px;
   border-radius: 6px;
   align-items: center;
+  transition: 0.3s;
+  border: 1px solid transparent;
   &:hover {
-    background-color: ${props => props.hover || "#F4F4F4"};
+    background-color: black;
+    border: 1px solid white;
+    color: ${props => props.hovercolor || "white"};
   }
 `;

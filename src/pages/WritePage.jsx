@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { CommunityContentAPI } from "../shared/api";
 import { getAccessToken } from "../shared/storage";
-
+import { GreateHall } from "../static/index";
 const WritePage = () => {
   const navigate = useNavigate();
   const [markdown, setMarkdown] = useState("");
@@ -33,7 +33,7 @@ const WritePage = () => {
       formData.append("image", image);
     }
     const res = await CommunityContentAPI.postCommunityContent(formData);
-    console.log(res);
+
     if (res.data.success) {
       navigate(`/community/${res.data.data.id}`);
     } else if (!res.data.success) {
@@ -52,32 +52,45 @@ const WritePage = () => {
     }
   }, [getAccessToken()]);
   return (
-    <StyledDiv>
-      <Write
-        setMarkdown={setMarkdown}
-        onSubmit={onSubmitHandler}
-        setTitle={setTitle}
-        setImage={setImage}
-        setAttachment={setAttachment}
-        // setTag={setTag}
-        image={image}
-      />
-      <WriteShow
-        attachment={attachment}
-        onClearPhot={onClearPhot}
-        markdown={markdown}
-      />
-    </StyledDiv>
+    <Layout>
+      <StyledDiv>
+        <Write
+          setMarkdown={setMarkdown}
+          onSubmit={onSubmitHandler}
+          setTitle={setTitle}
+          setImage={setImage}
+          setAttachment={setAttachment}
+          // setTag={setTag}
+          image={image}
+        />
+        <WriteShow
+          attachment={attachment}
+          onClearPhot={onClearPhot}
+          markdown={markdown}
+        />
+      </StyledDiv>
+    </Layout>
   );
 };
 
 export default WritePage;
+const Layout = styled.div`
+  background-image: url(${GreateHall});
+  background-size: cover;
+  width: 100%;
 
+  min-height: 100%;
+`;
 const StyledDiv = styled.div`
   display: grid;
-  background-color: white;
+  background-color: black;
   grid-template-columns: 50% 50%;
-  height: 100%;
+  border: 12px solid black;
+  padding-top: 5px;
+  margin: auto;
+  width: 90vw;
+  min-height: 95vh;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;

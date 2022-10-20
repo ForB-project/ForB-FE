@@ -1,15 +1,16 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { mainFirst } from "../../static";
 import { CommunityContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Modal from "../Modal/Modal";
 const CommunityContentList = forwardRef((props, ref) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const thumbnail = props.data.postImage;
-
+  const [closeModal, setCloseModal] = useState(false);
   const DeleteContent = async contentId => {
     const res = await CommunityContentAPI.deleteCommunityContent(contentId);
     return res;
@@ -40,9 +41,7 @@ const CommunityContentList = forwardRef((props, ref) => {
             <div
               className="DeleteBack"
               onClick={() => {
-                if (window.confirm("삭제하시겠습니까?")) {
-                  deleteAction.mutate(props.data.id);
-                }
+                setCloseModal(!closeModal);
               }}
             >
               <FaTrashAlt />
@@ -52,11 +51,43 @@ const CommunityContentList = forwardRef((props, ref) => {
 
         <div className="inviewref" ref={ref}></div>
       </ContentStyled>
+      {closeModal && (
+        <Modal closeModal={() => setCloseModal(!closeModal)}>
+          <DeleteContentStyled>
+            <div>게시물을</div>
+            <div>삭제하시겠습니까?</div>
+          </DeleteContentStyled>
+          <button
+            id="deleteButton"
+            onClick={() => {
+              console.log();
+              deleteAction.mutate(props.data.id);
+            }}
+          >
+            Delete
+          </button>
+          <button id="modalCloseBtn" onClick={() => setCloseModal(!closeModal)}>
+            Cancel
+          </button>
+        </Modal>
+      )}
     </>
   );
 });
 
 export default CommunityContentList;
+
+const DeleteContentStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-top: 35px;
+  font-size: 3vmin;
+  div {
+    margin-bottom: 15px;
+  }
+`;
 
 const iconhover = keyframes`
 
@@ -135,8 +166,8 @@ const ContentStyled = styled.div`
 const ContentImgStyled = styled.div`
   grid-column-start: 1;
   border-radius: 10px;
-  width: 200px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   background-image: url(${props =>
     props.thumbnail ? props.thumbnail : mainFirst});
   background-size: cover;
@@ -146,10 +177,15 @@ const StackStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding-left: 10px;
   .ContentTitle {
     padding-top: 5px;
     font-size: 1.3rem;
+
     filter: drop-shadow(-2px 0 0 black) drop-shadow(2px 0 0 black)
       drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
   }

@@ -1,6 +1,6 @@
-import React, { useState,useEffect,useRef  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as StompJs from "@stomp/stompjs";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 import { useSelector } from "react-redux";
 
 // const ROOM_SEQ = 1;
@@ -12,7 +12,7 @@ const MessageFunction = () => {
   const inputFocus = useRef(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const roomNum = useSelector((state)=>state.chat.roomNum.room_Id);
+  const roomNum = useSelector(state => state.chat.roomNum.room_Id);
 
   useEffect(() => {
     connect();
@@ -25,16 +25,14 @@ const MessageFunction = () => {
       connectHeaders: {
         Authorization: token.slice(7),
       },
-      debug: function (str) {
-        console.log(str);
-      },
+      debug: function (str) {},
       reconnectDelay: 50000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       onConnect: () => {
         subscribe();
       },
-      onStompError: (frame) => {
+      onStompError: frame => {
         console.error(frame);
       },
     });
@@ -49,10 +47,7 @@ const MessageFunction = () => {
     client.current.subscribe(
       `/sub/chat/room/${roomNum}`,
       ({ body }) => {
-        setChatMessages((_chatMessages) => [
-          ..._chatMessages,
-          JSON.parse(body),
-        ]);
+        setChatMessages(_chatMessages => [..._chatMessages, JSON.parse(body)]);
       },
       {
         Authorization: token.slice(7),
@@ -60,7 +55,7 @@ const MessageFunction = () => {
     );
   };
 
-  const publish = (message) => {
+  const publish = message => {
     if (!client.current.connected || !message) {
       return;
     }
@@ -75,12 +70,11 @@ const MessageFunction = () => {
     setMessage("");
   };
 
-
- useEffect(() => {
+  useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   });
 
-  const handleOnKeyPress = (e) => {
+  const handleOnKeyPress = e => {
     if (e.key === "Enter") {
       publish(message);
     }
@@ -94,7 +88,7 @@ const MessageFunction = () => {
       <MessageViewLayout ref={scrollRef}>
         {chatMessages && chatMessages.length > 0 && (
           <div>
-            {chatMessages.find((list) => list.roomId === roomNum)
+            {chatMessages.find(list => list.roomId === roomNum)
               ? chatMessages.map((_chatMessage, index) => (
                   <Message key={index}>{_chatMessage.message}</Message>
                 ))
@@ -108,7 +102,7 @@ const MessageFunction = () => {
           type={"text"}
           placeholder={"message"}
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={e => setMessage(e.target.value)}
           onKeyPress={handleOnKeyPress}
         />
         <MessageButton onClick={() => publish(message)}>전송</MessageButton>
@@ -118,7 +112,6 @@ const MessageFunction = () => {
 };
 
 export default MessageFunction;
-
 
 const MessageInnerLayout = styled.div`
   height: 53.4vh;
@@ -139,11 +132,11 @@ const MessageViewLayout = styled.div`
 `;
 
 const Message = styled.p`
-margin: 2px;
-padding: 1px 5px;
-background-color: white;
-border: none;
-border-radius: 5px;
+  margin: 2px;
+  padding: 1px 5px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
 `;
 
 const MessageInputLayout = styled.div`
@@ -158,11 +151,11 @@ const MessageInputLayout = styled.div`
 `;
 
 const MessageTextArea = styled.textarea`
-width: 37vw;
-min-width: 380px;
-height: 30px;
-resize: none;
-font-family: "neodgm", monospace;
+  width: 37vw;
+  min-width: 380px;
+  height: 30px;
+  resize: none;
+  font-family: "neodgm", monospace;
   font-style: normal;
   font-size: 15px;
   color: black;
@@ -184,8 +177,8 @@ const MessageButton = styled.button`
   font-size: 12px;
   color: white;
   opacity: 0.8;
-  
-  &:hover{
+
+  &:hover {
     opacity: 1;
   }
 `;

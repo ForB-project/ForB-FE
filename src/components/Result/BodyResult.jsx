@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import styled from "styled-components";
 import { DoteS, DoteR, DoteG, DoteH } from "../../static";
-import { useDispatch, useSelector } from "react-redux";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 import { _getResult } from "../../redux/modules/ResultSlice";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -12,7 +12,7 @@ const BodyResult = () => {
   // const param = useParams();
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
-    console.log(res);
+
     return res.data?.data[0];
   };
 
@@ -20,7 +20,6 @@ const BodyResult = () => {
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
 
-  // console.log("contents =", contents);
   const selectImg = () => {
     let result = "";
     switch (resultData?.stackType) {
@@ -39,12 +38,37 @@ const BodyResult = () => {
     }
     return result;
   };
+  console.log(resultData?.title);
+  const title = resultData?.title;
+
   return (
     <BodyStyled backImg={selectImg()}>
       <div className="BackImg"></div>
       <ContentsStyled>
-        <Topstyled>{resultData?.title}</Topstyled>
-        <Bodystyled>{resultData?.description1}</Bodystyled>
+        <Topstyled>
+          <MarkdownPreview
+            style={{
+              fontSize: "3.5vmin",
+              fontWeight: "900",
+              lineHeight: "1.8rem",
+              backgroundColor: "transparent",
+              color: "white",
+            }}
+            source={title}
+          />
+        </Topstyled>
+        <Bodystyled>
+          <MarkdownPreview
+            style={{
+              fontSize: "2.4vmin",
+              fontWeight: "900",
+              lineHeight: "1.8rem",
+              backgroundColor: "transparent",
+              color: "white",
+            }}
+            source={resultData?.description1}
+          />
+        </Bodystyled>
         <Footerstyled>{resultData?.description2}</Footerstyled>
       </ContentsStyled>
     </BodyStyled>
@@ -73,7 +97,7 @@ const BodyStyled = styled.div`
     width: 50%;
     height: 100%;
     z-index: -1;
-    opacity: 0.7;
+    opacity: 0.6;
     background-image: url(${props => props.backImg});
     background-size: cover;
   }
@@ -81,8 +105,7 @@ const BodyStyled = styled.div`
 
 const ContentsStyled = styled.div`
   color: white;
-  font-size: 1rem;
-  font-family: "neodgm";
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,27 +114,26 @@ const ContentsStyled = styled.div`
     drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
 `;
 const Topstyled = styled.div`
-  margin-top: 10%;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin-top: 5%;
 `;
 
 const Bodystyled = styled.div`
-  margin-top: 7%;
-  width: 70%;
+  margin-top: 3%;
+  width: 80%;
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
-  font-size: 1.3rem;
+  font-size: 2.4vmin;
   line-height: 1.5rem;
 `;
 
 const Footerstyled = styled.div`
-  margin-top: 7%;
-  width: 70%;
+  margin-top: 4%;
+  width: 80%;
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
-  font-size: 1.3rem;
+  font-size: 2.5vmin;
   line-height: 1.5rem;
+  font-weight: 900;
 `;

@@ -74,7 +74,7 @@ const WrapStyled = styled.div`
   /* position: relative; */
   background-color: #10141b; // rgb(32, 8, 64, 1);
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -5;
 `;
 
@@ -102,11 +102,10 @@ const ContainerStyled = styled.div`
     border-radius: 500px;
     top: 2%;
     left: 2%;
-    width: 100px;
-    height: 100px;
+    width: 15vmin;
   }
   .Introduce {
-    font-size: 4rem;
+    font-size: 10vmin;
     color: transparent;
     font-weight: 700;
     background: linear-gradient(90deg, pink 0, orange 100%);
@@ -117,7 +116,7 @@ const ContainerStyled = styled.div`
   }
   .Desc {
     color: white;
-    font-size: 1.8rem;
+    font-size: 4vmin;
     margin: 15px auto 130px auto;
     text-align: center;
     filter: drop-shadow(-2px 0 0 black) drop-shadow(2px 0 0 black)
@@ -125,16 +124,17 @@ const ContainerStyled = styled.div`
   }
   button {
     font-family: "neodgm";
-    font-size: 1.5rem;
+    font-size: 4vmin;
     width: 20%;
     height: 10%;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(178, 183, 187);
     border: 5px solid black;
     border-radius: 20%/60%;
     margin: 10px auto;
     transition: 0.2s;
     &:hover {
       background-color: rgb(74, 159, 228);
+      cursor: pointer;
     }
     span {
       display: block;

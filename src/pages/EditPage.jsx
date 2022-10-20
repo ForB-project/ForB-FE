@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CommunityContentAPI } from "../shared/api";
 import { Edit, Write, WriteShow } from "../components";
 import { getAccessToken } from "../shared/storage";
-
+import { GreateHall } from "../static/index";
 const EditPage = () => {
   const navigate = useNavigate();
   const param = useParams();
@@ -13,7 +13,7 @@ const EditPage = () => {
   const [attachment, setAttachment] = useState(null);
   const getCommunityContent = async id => {
     const res = await CommunityContentAPI.getCommunityContent(id);
-    console.log(res);
+
     setDetail(res.data?.data);
   };
   const [markdown, setMarkdown] = useState("로딩중");
@@ -80,34 +80,47 @@ const EditPage = () => {
     setImage(null);
   };
   return (
-    <StyledDiv>
-      <Edit
-        setMarkdown={setMarkdown}
-        setContent={editContent}
-        onSubmit={onSubmitHandler}
-        setTitle={editTitle}
-        setImage={setImage}
-        image={image}
-        setAttachment={setAttachment}
-        {...detail}
-      />
-      <WriteShow
-        attachment={attachment}
-        onClearPhot={onClearPhot}
-        markdown={markdown}
-        preImg={preImg}
-      />
-    </StyledDiv>
+    <Layout>
+      <StyledDiv>
+        <Edit
+          setMarkdown={setMarkdown}
+          setContent={editContent}
+          onSubmit={onSubmitHandler}
+          setTitle={editTitle}
+          setImage={setImage}
+          image={image}
+          setAttachment={setAttachment}
+          {...detail}
+        />
+        <WriteShow
+          attachment={attachment}
+          onClearPhot={onClearPhot}
+          markdown={markdown}
+          preImg={preImg}
+        />
+      </StyledDiv>
+    </Layout>
   );
 };
 
 export default EditPage;
+const Layout = styled.div`
+  background-image: url(${GreateHall});
+  background-size: cover;
+  width: 100%;
 
+  min-height: 100%;
+`;
 const StyledDiv = styled.div`
   display: grid;
-  background-color: white;
+  background-color: black;
   grid-template-columns: 50% 50%;
-  height: 100%;
+  border: 12px solid black;
+  padding-top: 5px;
+  margin: auto;
+  width: 90vw;
+  min-height: 95vh;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
