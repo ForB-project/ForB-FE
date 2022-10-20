@@ -96,7 +96,7 @@ export const WriteButton = styled.button`
   border: none;
 
   color: gray;
-  font-size: 2rem;
+  font-size: 4vmin;
   font-family: "neodgm";
 
   width: 100%;
@@ -105,7 +105,7 @@ export const WriteButton = styled.button`
 
   cursor: pointer;
   &:hover {
-    font-size: 2.5rem;
+    font-size: 4.2vmin;
     color: white;
     opacity: 1;
   }

@@ -67,7 +67,7 @@ const RoadMap = () => {
     {
       getNextPageParam: (lastPage, pages) => {
         //hasNextPage 대용
-        // console.log(lastPage);
+
         if (!lastPage.isLast) {
           return lastPage.nextPage;
         } else {

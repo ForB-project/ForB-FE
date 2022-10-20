@@ -1,16 +1,20 @@
 import React from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { GreateHall } from "../../static/index";
 import QuizWindow from "./QuizWindow";
 import { hogwart_logo } from "../../static/index";
 
 const Quiz = () => {
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
   return (
     <QuizBackLayout>
       <QuizWindowHeader>
-        <img className="Logo" src={hogwart_logo} onClick={()=>navigate('/')} />
+        <img
+          className="Logo"
+          src={hogwart_logo}
+          onClick={() => navigate("/")}
+        />
       </QuizWindowHeader>
       <QuizWindow />
     </QuizBackLayout>
@@ -20,8 +24,8 @@ const Quiz = () => {
 export default Quiz;
 
 const QuizBackLayout = styled.div`
-  width: 85vw;
-  height: 90vh;
+  width: 100%;
+  height: 94vh;
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
@@ -35,11 +39,11 @@ const QuizBackLayout = styled.div`
 
 const QuizWindowHeader = styled.div`
   width: 75vw;
-  height: 10vh;
+  height: 10%;
   margin: 2rem 0.5rem 3rem;
   .Logo {
-    max-width: 9vw;
-    max-height: 11vh;
+    max-width: 13vmin;
+    max-height: 13vmin;
     cursor: pointer;
   }
 `;

@@ -13,7 +13,7 @@ const DetailSideHeader = props => {
   const createdAt = props.createdAt;
   const togglelike = async postid => {
     const res = await CommunityContentAPI.likeCommunityContent(postid);
-    console.log(res);
+
     return res;
   };
   const queryClient = useQueryClient();

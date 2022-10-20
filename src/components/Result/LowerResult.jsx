@@ -94,7 +94,7 @@ const CodingButton = styled.button`
   border: none;
 
   color: gray;
-  font-size: 20px;
+  font-size: 3vmin;
   font-family: "neodgm";
 
   width: 100%;
@@ -103,7 +103,7 @@ const CodingButton = styled.button`
 
   cursor: pointer;
   &:hover {
-    font-size: 21px;
+    font-size: 3vmin;
     color: white;
     opacity: 1;
   }
@@ -112,7 +112,7 @@ const RoadmapButton = styled.button`
   border: none;
 
   color: gray;
-  font-size: 20px;
+  font-size: 3vmin;
   font-family: "neodgm";
 
   width: 100%;
@@ -121,7 +121,7 @@ const RoadmapButton = styled.button`
 
   cursor: pointer;
   &:hover {
-    font-size: 21px;
+    font-size: 3vmin;
     color: white;
     opacity: 1;
   }

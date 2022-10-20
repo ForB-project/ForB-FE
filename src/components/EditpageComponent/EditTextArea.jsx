@@ -143,9 +143,10 @@ export default EditTextArea;
 const StyledTextArea = styled.textarea`
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: #333;
+  color: #999998;
+  background-color: black;
   font-size: 18px;
-  max-height: 815px;
+  max-height: 800px;
   width: 100%;
   resize: none;
   border: none;

@@ -122,12 +122,14 @@ const StyledDiv = styled.div`
     height: 5vh;
     width: 3.7vw;
     font-size: 28px;
-    color: #868e96;
+    color: #d9e1e9;
     align-items: center;
     justify-content: center;
   }
   div:hover {
-    background-color: #f8f9fa;
+    background-color: #5f6366;
+    border-radius: 30px;
+    cursor: pointer;
   }
 `;
 const StyledDivision = styled.span`

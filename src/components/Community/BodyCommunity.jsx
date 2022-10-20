@@ -59,7 +59,7 @@ const BodyCommunity = ({ title, author, stack }) => {
 
       // onSuccess: res => {
       //   if (activeSearch) {
-      //     console.log("search", res);
+      //
       //     setQueryData(res);
       //   }
       // },
@@ -159,15 +159,19 @@ const SearchBox = styled.div`
       justify-content: center;
       align-items: center;
       height: 100%;
+      
       &:hover {
         cursor: pointer;
-        font-size: 1.3rem;
+        font-size: 3vmin;
       }
     }
   }
   .openSearch{
+    font-size: 2vmin;
+    color: gray;
     &:hover {
         cursor: pointer;
-        font-size: 1.3rem;
+        font-size: 2.2vmin;
+        color: white;
   }
 `;

@@ -22,7 +22,7 @@ const EditTitle = ({
       <hr
         style={{
           height: "8px",
-          backgroundColor: "#495057",
+          backgroundColor: "#d9e1e9",
           marginTop: "1rem",
           border: "none",
           width: "80px",
@@ -54,45 +54,12 @@ const StyledTitleInput = styled.input`
   width: 100%;
   border: none;
   font-size: 44px;
+  color: #d9e1e9;
+  background-color: black;
   :focus {
     outline: none;
   }
   ::placeholder {
-    color: #868e96;
+    color: #d9e1e9;
   }
 `;
-const StyledTagInput = styled.input`
-  background-color: transparent;
-  display: inline-flex;
-  outline: none;
-  cursor: text;
-  font-size: 1.125rem;
-  line-height: 2rem;
-  margin-bottom: 0.75rem;
-  min-width: 8rem;
-  border: none;
-  font-weight: 400;
-  :focus {
-    outline: none;
-  }
-  ::placeholder {
-    color: #7e7e7e;
-  }
-`;
-const TagItem = styled.div`
-  background-color: #f8f9fa;
-  display: inline-flex;
-  align-items: center;
-  height: 2rem;
-  border-radius: 1rem;
-  padding: 0 1rem;
-  margin: 0 0.75rem 0.75rem 0;
-  cursor: pointer;
-  transition: all 0.125s ease-in 0s;
-  animation: 0.125s ease-in-out 0s 1 normal forwards running;
-`;
-const Tag = styled.div`
-  color: #14b886;
-  font-size: 1rem;
-`;
-const Button = styled.button``;

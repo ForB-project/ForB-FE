@@ -114,7 +114,7 @@ const WriteTextArea = ({
       textArea.value =
         beforeCursor + textStyle + selectedCursor + textStyle + afterCursor;
     }
-    console.log(selectedCursor);
+
     setTextStyle("");
   };
   return (
@@ -135,9 +135,10 @@ export default WriteTextArea;
 const StyledTextArea = styled.textarea`
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: #333;
+  color: #999998;
+  background-color: black;
   font-size: 18px;
-  max-height: 815px;
+  max-height: 580px;
   width: 100%;
   resize: none;
   border: none;

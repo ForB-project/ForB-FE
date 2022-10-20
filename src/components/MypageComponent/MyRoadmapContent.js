@@ -13,7 +13,7 @@ const MyRoadmapContent = props => {
   //Content 불러오는 부분
   const getContent = async (Id, pageParam) => {
     const res = await ContentAPI.getMyPage(Id, pageParam);
-
+    console.log(res);
     return {
       result: res.data.data,
       nextPage: pageParam + 1,
@@ -27,7 +27,7 @@ const MyRoadmapContent = props => {
     {
       getNextPageParam: (lastPage, pages) => {
         //hasNextPage 대용
-        // console.log(lastPage);
+
         if (!lastPage.isLast) {
           return lastPage.nextPage;
         } else {

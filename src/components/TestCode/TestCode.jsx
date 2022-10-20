@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 
-import { TestCodeView, TestCodeHeader, PageNation } from "../index";
+import { TestCodeView, Header, PageNation } from "../index";
 import {
   addPracCode,
   addBackPracCode,
@@ -12,10 +12,10 @@ import {
 
 const TestCode = () => {
   const dispatch = useDispatch();
-  const testCodeList = useSelector((state) => state.testCode.testCode);
-  const frontCodeList = useSelector((state) => state.testCode.frontCode);
-  const backCodeList = useSelector((state) => state.testCode.backCode);
-  const result = useSelector((state) => state.testCode.result);
+  const testCodeList = useSelector(state => state.testCode.testCode);
+  const frontCodeList = useSelector(state => state.testCode.frontCode);
+  const backCodeList = useSelector(state => state.testCode.backCode);
+  const result = useSelector(state => state.testCode.result);
   const [codeIndex, setCodeIndex] = useState(0);
   const [exampleCode, setExampleCode] = useState(testCodeList);
   const [codePrac, setCodePrac] = useState("");
@@ -24,7 +24,7 @@ const TestCode = () => {
     codePrac,
   };
 
-  const moveNum = (codeIndex) => {
+  const moveNum = codeIndex => {
     setCodeIndex(codeIndex);
     // 사용자가 쓴 예제코드, 출력 저장 용도
     if (exampleCode[codeIndex].id >= 2) {
@@ -34,7 +34,7 @@ const TestCode = () => {
     }
   };
 
-  const movePage = (page) => {
+  const movePage = page => {
     // switch (page) {
     //   case "h":
     //     setExampleCode(testCodeList);
@@ -72,21 +72,20 @@ const TestCode = () => {
   // 사용자가 쓴 예제코드, 출력 저장 용도
   useEffect(() => {
     setCodePrac(
-      result.find((list) => list.id === exampleCode[codeIndex].id).pracCode
+      result.find(list => list.id === exampleCode[codeIndex].id).pracCode
     );
   }, [exampleCode, codeIndex]);
 
-  console.log(result);
   return (
     <CodeBackLayout>
-      <TestCodeHeader />
+      <Header />
       <CodeWindow>
         <CodeInputLayout>
           <CodeExample>{exampleCode[codeIndex].exampleCode}</CodeExample>
           <CodePractice
             placeholder="코드를 입력해볼까요?"
             value={codePrac}
-            onChange={(e) => setCodePrac(e.target.value)}
+            onChange={e => setCodePrac(e.target.value)}
           />
         </CodeInputLayout>
         <TestCodeView
@@ -109,8 +108,8 @@ const TestCode = () => {
 export default TestCode;
 
 const CodeBackLayout = styled.div`
-  width: 85%;
-  height: 90vh;
+  width: 100%;
+  height: 94vh;
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});

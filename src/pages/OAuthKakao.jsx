@@ -55,7 +55,7 @@ const ContainerStyled = styled.div`
   height: 95%;
   margin: auto;
   border-radius: 20px;
-  font-size: 6rem;
+  font-size: 10vmin;
   font-family: "neodgm", monospace;
   font-style: normal;
   /* word-break: keep-all; */

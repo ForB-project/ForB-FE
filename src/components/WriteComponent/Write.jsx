@@ -46,8 +46,9 @@ const Write = props => {
 };
 
 export default Write;
+
 const StyledDiv = styled.div`
-  height: 90%;
+  height: 95%;
 `;
 const StyledInnerDiv = styled.div`
   margin: 3rem 2.5vw 0;

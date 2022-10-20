@@ -6,6 +6,8 @@ import {
   removeQuizResult,
 } from "../../shared/storage";
 import { AccountAPI } from "../../shared/api";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
 
 const removeStorage = () => {
   removeAccessToken();
@@ -16,34 +18,57 @@ const removeStorage = () => {
 
 const LogoutButton = props => {
   const logout = async () => {
-    if (window.confirm("로그아웃 하시겠습니까?")) {
-      await AccountAPI.logout().then(res => {
-        console.log(res);
-        removeStorage();
-        window.location.reload();
-      });
-    }
+    await AccountAPI.logout().then(res => {
+      removeStorage();
+      window.location.reload();
+    });
   };
-
+  const [closeModal, setCloseModal] = useState(false);
   return (
-    <LogoutButtonStlyed
-      onClick={() => {
-        logout();
-      }}
-    >
-      <span>Logout</span>
-    </LogoutButtonStlyed>
+    <>
+      <LogoutButtonStlyed
+        onClick={() => {
+          setCloseModal(!closeModal);
+        }}
+      >
+        <span>Logout</span>
+      </LogoutButtonStlyed>
+      {closeModal && (
+        <Modal closeModal={() => setCloseModal(!closeModal)}>
+          <DeleteContentStyled> {`  로그아웃하기`}</DeleteContentStyled>
+          <button
+            id="deleteButton"
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logout
+          </button>
+          <button id="modalCloseBtn" onClick={() => setCloseModal(!closeModal)}>
+            Cancel
+          </button>
+        </Modal>
+      )}
+    </>
   );
 };
 
 export default LogoutButton;
-
+const DeleteContentStyled = styled.div`
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  font-family: "neodgm";
+  padding-top: 40px;
+  font-size: 4.5vmin;
+  font-weight: 800;
+`;
 const LogoutButtonStlyed = styled.div`
   font-family: "neodgm";
-  font-size: 1.5rem;
+  font-size: 4vmin;
   width: 20%;
   height: 9%;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(178, 183, 187);
   border: 5px solid black;
   border-radius: 20%/60%;
   margin: 10px auto;

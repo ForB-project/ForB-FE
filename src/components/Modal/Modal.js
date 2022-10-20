@@ -45,6 +45,7 @@ const ModalStyled = styled.div`
 
   .modalBody {
     position: absolute;
+    color: black;
     ${props =>
       props.wide
         ? css`
@@ -57,7 +58,7 @@ const ModalStyled = styled.div`
           `}
 
     padding: 30px 30px 30px 30px;
-    z-index: 12;
+    z-index: 13;
     text-align: left;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
@@ -75,11 +76,33 @@ const ModalStyled = styled.div`
     border-radius: 12%/60%;
     color: rgba(0, 0, 0, 0.7);
     background-color: transparent;
-    font-size: 1rem;
+    font-size: 3vmin;
     font-weight: 600;
     transition: 0.3s;
+    font-family: "neodgm";
     &:hover {
       background-color: rgb(230, 230, 230);
+      cursor: pointer;
+    }
+  }
+  #deleteButton {
+    position: absolute;
+    bottom: 80px;
+    z-index: 11;
+    right: 28px;
+    border: 1px solid rgb(220, 220, 220);
+    width: 80%;
+    height: 15%;
+    border-radius: 12%/60%;
+    color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
+    font-size: 3vmin;
+    font-weight: 600;
+    transition: 0.3s;
+    font-family: "neodgm";
+    &:hover {
+      background-color: black;
+      color: white;
       cursor: pointer;
     }
   }

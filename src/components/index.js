@@ -23,14 +23,16 @@ import Write from "./WriteComponent/Write";
 import WriteShow from "./WriteComponent/WriteShow";
 import Edit from "./EditpageComponent/Edit";
 import MessageFunction from "./Message/MessageFunction";
-import MessageList from "./Message/MessageList"
+import MessageList from "./Message/MessageList";
 import MessageHeader from "./Message/MessageHeader";
 import MyCommunityContent from "./MypageComponent/MyCommunityContent";
 import MyRoadmapContent from "./MypageComponent/MyRoadmapContent";
 import CommentListComponent from "./Detailpage/CommentListComponent";
 import DetailHeader from "./Detailpage/DetailHeader";
 import DetailSideHeader from "./Detailpage/DetailSideHeader";
+import MobileView from "./Layout/MobileView";
 export {
+  MobileView,
   DetailSideHeader,
   DetailHeader,
   CommentListComponent,
@@ -62,5 +64,5 @@ export {
   RunBackButton,
   MessageHeader,
   MessageFunction,
-  MessageList
+  MessageList,
 };

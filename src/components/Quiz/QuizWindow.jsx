@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {setQuizResult} from "../../shared/storage"
+import { setQuizResult } from "../../shared/storage";
 import { __quizResult } from "../../redux/modules/QuizSlice";
 import QuizImage from "./QuizImage";
 
@@ -11,6 +11,7 @@ const QuizWindow = () => {
   const [forbCount, setForbCount] = useState(0);
   const [result, setResult] = useState([]);
   const list = useSelector(state => state.quiz.quiz);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,12 +40,11 @@ const QuizWindow = () => {
   };
 
   //성향(ex:슬리데린,레번클로) 결과 함수
-  const resultTendency = (answer) => {
-      result.push(answer);
-      dispatch(__quizResult(result));
-      setQuizResult(result);
-      navigate('/result');
-      console.log(result);   
+  const resultTendency = answer => {
+    result.push(answer);
+    dispatch(__quizResult(result));
+    setQuizResult(result);
+    navigate("/result");
   };
 
   return (
@@ -125,15 +125,16 @@ const disappear = keyframes`
 `;
 
 const QuizWindowLayout = styled.div`
+  width: 100%;
   height: 50vh;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: calc(0.45em + 1vw);
+  font-size: 2.5vmin;
   color: white;
 `;
 
 const QuizContent = styled.div`
-  max-width: 60vw;
+  width: 60vw;
   height: 10vh;
   background-color: #10141b;
   border-radius: 50px;
@@ -157,7 +158,7 @@ const QuizSelect = styled.div`
 const QuizButton = styled.button`
   width: 22vh;
   max-height: 34vh;
-  height: calc(25em + 3vw);
+  height: calc(25em + 3vmin);
   margin: auto;
   background-color: #10141b;
   border: 8px dashed black;

@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { CommentAPI } from "../../shared/api";
+import { CommentAPI, MessageAPI } from "../../shared/api";
 import { getUserName, setAccessToken } from "../../shared/storage";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../../hooks/useInput";
 import Modal from "../Modal/Modal";
 const CommentListComponent = props => {
+  const navigate = useNavigate();
   // 댓글 불러오기
   const [getPageParam, setPageParam] = useState(1);
   const getComment = async (postId, pageParam) => {
@@ -40,6 +41,8 @@ const CommentListComponent = props => {
     },
   });
   //댓글 삭제
+  const [closeModal2, setCloseModal2] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const deleteComment = async commentId => {
     const res = await CommentAPI.deletecomment(commentId);
 
@@ -71,6 +74,14 @@ const CommentListComponent = props => {
       ]);
     },
   });
+
+  // 메세지페이지로 이동
+  const [closeMessage, setCloseMessage] = useState(false);
+  const [getUserId, setUserId] = useState(null);
+  const [getUserNickName, setUserNickName] = useState(null);
+  const joinroom = async memberId => {
+    const res = await MessageAPI.joinroom(memberId);
+  };
   return (
     <React.Fragment>
       <DetailCommentStyled>
@@ -119,16 +130,24 @@ const CommentListComponent = props => {
           <div>
             {myCommentQuery.data?.map(x => (
               <div className="CommentBodyMain" key={x.id}>
-                <div>{x.nickname}</div>
+                <div
+                  className="tomessage"
+                  onClick={() => {
+                    setCloseMessage(!closeMessage);
+                    setUserId(x.memberId);
+                    setUserNickName(x.nickname);
+                  }}
+                >
+                  {x.nickname}
+                </div>
                 <div>{x.content}</div>
                 {getUserName() === x.nickname && (
                   <div>
                     <div
                       className="modifybutton"
                       onClick={() => {
-                        if (window.confirm("삭제하시겠습니까?")) {
-                          DeleteComment.mutate(x.id);
-                        }
+                        setDeleteId(x.id);
+                        setCloseModal2(!closeModal2);
                       }}
                     >
                       삭제
@@ -181,11 +200,73 @@ const CommentListComponent = props => {
           </ModalStyled>
         )}
       </DetailCommentStyled>
+      {closeModal2 && (
+        <Modal closeModal={() => setCloseModal2(!closeModal2)}>
+          <DeleteContentStyled>
+            <div></div>
+            <div>댓글을</div>
+            <div>삭제하시겠습니까?</div>
+          </DeleteContentStyled>
+          <button
+            id="deleteButton"
+            onClick={() => {
+              DeleteComment.mutate(deleteId);
+              setCloseModal2(!closeModal2);
+            }}
+          >
+            Delete
+          </button>
+          <button
+            id="modalCloseBtn"
+            onClick={() => setCloseModal2(!closeModal2)}
+          >
+            Cancel
+          </button>
+        </Modal>
+      )}
+      {closeMessage && (
+        <Modal closeModal={() => setCloseMessage(!closeMessage)}>
+          <DeleteContentStyled>
+            <div>{getUserNickName}님에게</div>
+            <div>메세지를 </div>
+            <div>보내시겠습니까?</div>
+          </DeleteContentStyled>
+          <button
+            id="deleteButton"
+            onClick={() => {
+              joinroom(getUserId);
+              navigate(`/message`);
+            }}
+          >
+            Message
+          </button>
+          <button
+            id="modalCloseBtn"
+            onClick={() => setCloseMessage(!closeMessage)}
+          >
+            Cancel
+          </button>
+        </Modal>
+      )}
     </React.Fragment>
   );
 };
 
 export default CommentListComponent;
+
+const DeleteContentStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding-top: 15px;
+  font-size: 3vmin;
+  color: black;
+  div {
+    margin-bottom: 15px;
+  }
+`;
+
 const DetailCommentStyled = styled.div`
   display: grid;
   grid-template-rows: 15% 85%;
@@ -201,6 +282,12 @@ const DetailCommentStyled = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      color: white;
+      transition: 0.3s;
+      &:hover {
+        font-size: 1.4rem;
+        cursor: pointer;
+      }
     }
     textarea {
       font-size: 18px;
@@ -222,8 +309,8 @@ const DetailCommentStyled = styled.div`
     border-radius: 20px;
     transition: 0.3s;
     &:hover {
-      background-color: black;
-      color: white;
+      background-color: white;
+      color: black;
       cursor: pointer;
     }
   }
@@ -237,7 +324,14 @@ const DetailCommentStyled = styled.div`
       grid-template-columns: 15% 70% 15%;
       min-height: 10vh;
       font-size: 1rem;
-      border-bottom: 1px solid black;
+      color: white;
+      border-bottom: 1px solid white;
+      .tomessage {
+        &:hover {
+          cursor: pointer;
+          font-size: 1.2rem;
+        }
+      }
       div {
         display: flex;
         justify-content: center;
@@ -245,10 +339,11 @@ const DetailCommentStyled = styled.div`
       }
     }
     .pagenation {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid white;
       margin-top: 5vh;
       padding-bottom: 10px;
       display: flex;
+      color: white;
       justify-content: space-around;
       align-items: center;
       div {
@@ -256,12 +351,14 @@ const DetailCommentStyled = styled.div`
         justify-content: center;
         align-items: center;
         width: 8vw;
-        height: 2vh;
+        height: 20px;
         border: 1px solid black;
+        border-radius: 10px;
         transition: 0.3s;
         &:hover {
-          background-color: black;
-          color: white;
+          background-color: white;
+          color: black;
+          cursor: pointer;
         }
       }
     }
