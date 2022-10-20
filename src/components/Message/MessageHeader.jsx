@@ -1,30 +1,73 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import {useSelector,useDispatch} from "react-redux";
+import {useMutation, useQuery ,useQueryClient } from "react-query";
+import {api} from "../../shared/api";
 import styled from "styled-components";
 import {profile} from "../../static/index";
 import { AiFillDelete } from "react-icons/ai";
 
-import {__chatListDelete,__chatList} from "../../redux/modules/ChatSlice";
+import { MessageAPI } from "../../shared/api";
+
+import {__chatListDelete,moveRoom} from "../../redux/modules/ChatSlice";
  
 const MessageHeader = () => {
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const [chat_list, setChatList] = useState([]);
   const chatList = useSelector((state) => state.chat.chatList);
   const roomNum = useSelector((state) => state.chat.roomNum);
 
-  const removeChat = (roomNum) =>{
-    if (window.confirm("채팅방을 나가시겠습니까?")) { 
-      dispatch(__chatListDelete(roomNum));
-    }
-  }
-  console.log(roomNum);
+  const queryGetApi = async() => {
+    return await api.get(`/api/chat/Lists`);
+  };
 
+  const queryList = useQuery("chat_list", queryGetApi, {
+    onSuccess: (data) => {
+      setChatList(data.data.data);
+    },
+  });
+
+  const queryDeleteApi = async (ListId) => {
+    return MessageAPI.deleteList(ListId);
+  };
+
+  const queryDeleteList = useMutation(queryDeleteApi, { 
+    onSuccess: () => {
+      queryClient.invalidateQueries("chat_list");
+    },
+  });
+
+  const removeChat = (roomNum) => {
+    console.log(roomNum);
+    if (window.confirm("채팅방을 나가시겠습니까?")) {
+      queryDeleteList.mutate(roomNum);
+      dispatch(moveRoom(1));
+    }
+  };
+
+  useEffect(()=>{
+    queryClient.invalidateQueries('chat_list');
+  },[chat_list])
+
+  if (queryList.isLoading) {
+    return null;
+  }
+
+  console.log(chat_list);
+  console.log(roomNum.room_Id);
   return (
     <MessageHeaderLayout>
       <ProfileImageBox />
       <ProfileNameBox>
-        {roomNum.room_Id===1? null :chatList.find((list) => list.roomId === roomNum.room_Id).subMember}
+        {chat_list.length &&
+        chat_list.find((list) => list.roomId === roomNum.room_Id)
+          ? chat_list.find((list) => list.roomId === roomNum.room_Id).subMember
+          : null}
       </ProfileNameBox>
-      <AiFillDelete onClick={()=>removeChat(roomNum)} className="deleteBox"/>
+      <AiFillDelete
+        onClick={() => removeChat(roomNum.room_Id)}
+        className="deleteBox"
+      />
     </MessageHeaderLayout>
   );
 };
