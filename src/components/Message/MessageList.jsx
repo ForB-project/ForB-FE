@@ -23,7 +23,6 @@ const MessageList = () => {
 
   const queryList = useQuery('chat_list',queryGetApi,{
     onSuccess:(data) => {
-      setChatList(data.data.data);
       dispatch(addRoom(data.data.data));
     }
   });
@@ -34,7 +33,7 @@ const MessageList = () => {
       window.confirm('로그인이 필요합니다');
       navigate('/');
     }
-  },[chatList,chat_list]);
+  },[chatList]);
 
   if (queryList.isLoading) {
     return null;
@@ -46,17 +45,25 @@ const MessageList = () => {
   }
   
   console.log(roomNum);
-  console.log(chatList,'chat_list');
   return (
     <MessageListLayout>
       <MessageListHeader>
         {localStorage.getItem("username") || null}
       </MessageListHeader>
-      {chatList.map((list) => list.subMember!==list.pubMember?
-        <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
-          <ProfileImageBox />
-          <ProfileNameBox>{list.subMember}</ProfileNameBox>
-        </ChatList>:null
+      {chatList.map((list) =>
+        list.subMember !== list.pubMember ? (
+          list.pubMember === localStorage.getItem("username") ? (
+            <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
+              <ProfileImageBox />
+              <ProfileNameBox>{list.subMember}</ProfileNameBox>
+            </ChatList>
+          ) : (
+            <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
+              <ProfileImageBox />
+              <ProfileNameBox>{list.pubMember}</ProfileNameBox>
+            </ChatList>
+          )
+        ) : null
       )}
     </MessageListLayout>
   );

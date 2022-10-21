@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal";
 import styled from "styled-components";
 import * as S from "./styeld";
 import { useDispatch } from "react-redux";
-import { __chatList } from "../../redux/modules/ChatSlice";
+import { __chatList,moveRoom } from "../../redux/modules/ChatSlice";
 import { getUserName } from "../../shared/storage";
 
 const ContentCommunity = props => {
@@ -28,11 +28,7 @@ const ContentCommunity = props => {
         </S.Title>
         <S.Author
           onClick={() => {
-            if (getUserName() === props.data.nickname) {
-              window.alert("자기 자신에게는 메세지를 보낼 수 없습니다");
-            } else {
-              setCloseModal(!closeModal);
-            }
+            setCloseModal(!closeModal);
           }}
         >
           {props.data.nickname}
@@ -48,9 +44,14 @@ const ContentCommunity = props => {
           <button
             id="deleteButton"
             onClick={() => {
-              joinroom(props.data.memberId);
-              dispatch(__chatList());
-              navigate(`/message`);
+              if (getUserName() === props.data.nickname) {
+                window.alert("자기 자신에게는 메세지를 보낼 수 없습니다");
+                setCloseModal(!closeModal);
+              } else {
+                joinroom(props.data.memberId);
+                dispatch(__chatList());
+                navigate(`/message`);
+              }
             }}
           >
             Message

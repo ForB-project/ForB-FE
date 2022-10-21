@@ -18,6 +18,8 @@ const MessageHeader = () => {
   const reduxChatMessage =  useSelector((state)=>state.chat.chatMessage);
   const roomNum = useSelector((state) => state.chat.roomNum);
 
+  const selectChat = chat_list.find((list) => list.roomId === roomNum.room_Id)
+
   const queryGetApi = async() => {
     return await api.get(`/api/chat/Lists`);
   };
@@ -42,7 +44,7 @@ const MessageHeader = () => {
     console.log(roomNum);
     if (window.confirm("채팅방을 나가시겠습니까?")) {
       queryDeleteList.mutate(roomNum);
-      dispatch(moveRoom(1));
+      dispatch(moveRoom(0));
     }
   };
 
@@ -60,9 +62,12 @@ const MessageHeader = () => {
     <MessageHeaderLayout>
       <ProfileImageBox />
       <ProfileNameBox>
-        {chat_list.length && reduxChatMessage!==null &&
+        {chat_list.length &&
+        reduxChatMessage !== null &&
         chat_list.find((list) => list.roomId === roomNum.room_Id)
-          ? chat_list.find((list) => list.roomId === roomNum.room_Id).subMember
+          ? selectChat.pubMember === localStorage.getItem("username")
+            ? selectChat.subMember
+            : selectChat.pubMember
           : null}
       </ProfileNameBox>
       <AiFillDelete
