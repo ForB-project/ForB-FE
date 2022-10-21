@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { api } from "../../shared/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,7 @@ const MessageList = () => {
   const dispatch = useDispatch();
   const chatList = useSelector(state => state.chat.chatList);
 
+  // (get메소드) 페이지 접속시 채팅 리스트 조회
   const queryClient = useQueryClient();
   const queryGetApi = () => {
     return api.get(`/api/chat/Lists`);
@@ -24,12 +25,13 @@ const MessageList = () => {
     },
   });
 
+  // 페이지 접속시 로그인 여부 확인 후 query를 통한 업데이트
   useEffect(() => {
-    queryClient.invalidateQueries("chat_list");
     if (!localStorage.getItem("access_token")) {
       window.confirm("로그인이 필요합니다");
       navigate("/");
     }
+    queryClient.invalidateQueries("chat_list");  
   }, [chatList]);
 
   if (queryList.isLoading) {

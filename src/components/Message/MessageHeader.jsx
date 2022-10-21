@@ -18,8 +18,9 @@ const MessageHeader = () => {
   const reduxChatMessage = useSelector(state => state.chat.chatMessage);
   const roomNum = useSelector(state => state.chat.roomNum);
 
-  const selectChat = chat_list.find(list => list.roomId === roomNum.room_Id);
+  const selectChat = reduxChatMessage.find(list => list.roomId === roomNum.room_Id);
 
+  // (get메소드) 페이지 접속시 채팅 리스트 조회
   const queryGetApi = async () => {
     return await api.get(`/api/chat/Lists`);
   };
@@ -30,6 +31,7 @@ const MessageHeader = () => {
     },
   });
 
+  // (delete메소드) 채팅 삭제 기능
   const queryDeleteApi = async ListId => {
     return MessageAPI.deleteList(ListId);
   };
@@ -40,6 +42,7 @@ const MessageHeader = () => {
     },
   });
 
+  // 채팅 삭제 함수
   const removeChat = roomNum => {
     if (window.confirm("채팅방을 나가시겠습니까?")) {
       queryDeleteList.mutate(roomNum);
@@ -47,6 +50,7 @@ const MessageHeader = () => {
     }
   };
 
+  // React-query로 상한 데이터 업데이트
   useEffect(() => {
     queryClient.invalidateQueries("chat_list");
   }, [chat_list]);
@@ -61,7 +65,7 @@ const MessageHeader = () => {
       <ProfileNameBox>
         {chat_list.length &&
         reduxChatMessage !== null &&
-        chat_list.find(list => list.roomId === roomNum.room_Id)
+        selectChat
           ? selectChat.pubMember === localStorage.getItem("username")
             ? selectChat.subMember
             : selectChat.pubMember

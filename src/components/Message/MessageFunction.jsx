@@ -18,7 +18,8 @@ const MessageFunction = () => {
 
   const roomNum = useSelector(state => state.chat.roomNum.room_Id);
   const reduxChatMessage = useSelector(state => state.chat.chatMessage);
-
+  
+  // roomid와 비교해서 연결
   const connect = () => {
     client.current = new StompJs.Client({
       brokerURL: process.env.REACT_APP_BROKER_URL, // 웹소켓 서버로 직접 접속
@@ -43,6 +44,7 @@ const MessageFunction = () => {
     client.current.deactivate();
   };
 
+  //메시지 저장 및 채팅방 구독
   const subscribe = () => {
     client.current.subscribe(
       `/sub/chat/room/${roomNum}`,
@@ -54,7 +56,8 @@ const MessageFunction = () => {
       }
     );
   };
-
+  
+  //메시지 전송 
   const publish = message => {
     if (!client.current.connected || !message) {
       return;
@@ -73,10 +76,10 @@ const MessageFunction = () => {
   useEffect(() => {
     connect();
     dispatch(__chatMessage(roomNum));
-
     return () => disconnect();
   }, [roomNum]);
 
+  // 업데이트 되는 메시지에 포커스
   useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   });
