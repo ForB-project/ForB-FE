@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { CommunityContentAPI } from "../shared/api";
-import { Edit, Write, WriteShow } from "../components";
+import { Edit, WriteShow } from "../components";
 import { getAccessToken } from "../shared/storage";
 import { GreateHall } from "../static/index";
 const EditPage = () => {
@@ -46,11 +46,6 @@ const EditPage = () => {
     formData.append("data", blobs);
     if (image === null) {
       formData.delete("image");
-      // // const noimg = { image: null };
-      // const img = new Blob([JSON.stringify("")], {
-      //   type: "application/json",
-      // });
-      // formData.append("image", img);
     } else {
       formData.append("image", image);
     }
@@ -58,9 +53,7 @@ const EditPage = () => {
       contentId,
       formData
     );
-    // for (let value of formData.values()) {
-    //   console.log(value);
-    // } //값 확인하기
+
     if (res.data.success) {
       navigate(`/community/${contentId}`);
     } else if (!res.data.success) {

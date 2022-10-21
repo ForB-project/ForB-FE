@@ -1,19 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { hogwart_logo } from "../../static/index";
-import {MenuButton} from "../index"
+import { MenuButton } from "../index";
 
-const TestCodeHeader = ({ codeNumber, plusNum, codeList }) => {
+const TestCodeHeader = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   return (
     <CodeHeader>
-      <img className="Logo" src={hogwart_logo} onClick={()=>navigate('/')} />
+      <img className="Logo" src={hogwart_logo} onClick={() => navigate("/")} />
       <CodeButtonLayout>
-        <MenuButton/>
+        <MenuButton />
       </CodeButtonLayout>
     </CodeHeader>
   );
@@ -41,4 +39,3 @@ const CodeButtonLayout = styled.div`
   display: flex;
   justify-content: end;
 `;
-

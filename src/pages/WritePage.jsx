@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { WriteShow, Write } from "../components";
 import styled from "styled-components";
-// import { userApis } from "api/userApi";
+
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { CommunityContentAPI } from "../shared/api";
@@ -14,7 +14,7 @@ const WritePage = () => {
   const [attachment, setAttachment] = useState(null);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
-  // const [tag, setTag] = useState([]);
+
   const formData = new FormData();
   const onSubmitHandler = async e => {
     e.preventDefault();

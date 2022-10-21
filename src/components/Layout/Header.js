@@ -164,15 +164,13 @@ const DeleteContentStyled = styled.div`
   align-items: center;
   font-family: "neodgm";
   padding-top: 40px;
-  font-size: 4.5vmin;
+  font-size: 4vmin;
   font-weight: 800;
 `;
 const HeaderStyled = styled.div`
   position: fixed;
   right: 5%;
   top: 5%;
-  /* width: 50px;
-  height: 50px; */
   padding: 10px;
 
   border: 2px solid gray;

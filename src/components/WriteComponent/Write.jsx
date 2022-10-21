@@ -20,7 +20,6 @@ const Write = props => {
             setTitle={props.setTitle}
             setImage={props.setImage}
             setAttachment={props.setAttachment}
-            // setTag={props.setTag}
             setHeader={setHeader}
             setTextStyle={setTextStyle}
           />

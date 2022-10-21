@@ -42,20 +42,12 @@ const AllWrapStyled = styled.div`
 `;
 
 const WarperStyled = styled.div`
-  /* border: 1px solid gray; */
   border: 20px solid black;
   border-radius: 30px;
-
   background-image: url(${GreateHall});
   background-size: cover;
-
   width: 100vw;
-  /* height: 92.7vh; */
-
-  /* margin: 5vw; */
-
   padding: 1.5vh;
-
   color: #ffffff;
   font-family: "neodgm";
 `;

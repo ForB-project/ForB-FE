@@ -1,7 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
 import { RunBackButton, RunFrontButton } from "../index";
 
 const PageNation = ({
@@ -47,7 +45,7 @@ const PageNation = ({
             : movePage("f")
         }
       >
-        Front
+        JavaScript
       </FrontBackButton>
       <FrontBackButton
         onClick={() =>
@@ -56,7 +54,7 @@ const PageNation = ({
             : movePage("b")
         }
       >
-        Back
+        Java
       </FrontBackButton>
     </PageNationLayout>
   );
@@ -106,7 +104,7 @@ const PageNationNum = styled.button`
 `;
 
 const FrontBackButton = styled.button`
-  width: 5vw;
+  width: 6vw;
   min-width: 42px;
   height: 2vw;
   min-height: 22px;
@@ -123,13 +121,13 @@ const FrontBackButton = styled.button`
   font-size: calc(0.1em + 1.2vw);
   font-weight: 500;
   color: white;
-  opacity: 0.6;
+  opacity: 1;
   cursor: pointer;
   .runButton {
     margin: -0.1vh 11vw -2vh 0px;
   }
   &:hover {
-    opacity: 1;
+    font-size: calc(0.1em + 1.3vw);
   }
   &:focus {
     opacity: 1;

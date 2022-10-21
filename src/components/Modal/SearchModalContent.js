@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled, { keyframes } from "styled-components";
-import { Logo, mainFirst } from "../../static";
+import { mainFirst } from "../../static";
 import { LikeAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";

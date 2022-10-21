@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useInfiniteQuery } from "react-query";
+
 import styled, { keyframes } from "styled-components";
 import {
-  RoadmapContent,
   Header,
-  ModalWide,
-  AddContentModal,
   RoadmapGuide,
   SearchModal,
   MyRoadmapContent,
   MyCommunityContent,
 } from "../components";
-import { CommunityContentAPI, ContentAPI, RoadmapAPI } from "../shared/api";
+
 import { GreateHall } from "../static";
 import { useNavigate } from "react-router-dom";
-import { useInView } from "react-intersection-observer";
 import { GrSearchAdvanced } from "react-icons/gr";
 import { getAccessToken } from "../shared/storage";
 import { PageTitle } from "../elem";
@@ -57,7 +53,7 @@ const Mypage = () => {
             <CategoryStyled
               onClick={() => {
                 setChoseCategory(2);
-                setCommunity();
+                setCommunity(false);
               }}
             >
               좋아요 로드맵자료

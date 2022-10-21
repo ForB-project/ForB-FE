@@ -60,7 +60,6 @@ const CommunityContentList = forwardRef((props, ref) => {
           <button
             id="deleteButton"
             onClick={() => {
-              console.log();
               deleteAction.mutate(props.data.id);
             }}
           >
@@ -104,7 +103,7 @@ const iconhover = keyframes`
 const ContentStyled = styled.div`
   display: grid;
   width: 70%;
-  height: 13vh;
+  height: 12vh;
   grid-template-columns: 30% 60% 10%;
   border: 1px solid white;
   border-radius: 10px;
@@ -192,9 +191,11 @@ const StackStyled = styled.div`
   .ContentDesc {
     font-size: 1rem;
     word-break: normal;
-
     width: 30vw;
-    height: 50px;
-    overflow: hidden;
+    height: 60%;
+    overflow: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;

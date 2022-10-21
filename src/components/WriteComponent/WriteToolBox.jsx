@@ -6,7 +6,6 @@ import { MdFormatStrikethrough, MdCode } from "react-icons/md";
 import { IoMdQuote, IoMdImage } from "react-icons/io";
 import { useState } from "react";
 import { useEffect } from "react";
-import { CommunityContentAPI } from "../../shared/api";
 
 const WriteToolBox = ({ setImage, setHeader, setTextStyle, setAttachment }) => {
   const [imageURL, setImageURL] = useState(null);

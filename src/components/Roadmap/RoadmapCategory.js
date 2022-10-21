@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { RoadmapAPI } from "../../shared/api";
-import { useQuery } from "react-query";
+
 const RoadmapCategory = props => {
   return (
     <StackStyled

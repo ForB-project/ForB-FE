@@ -6,9 +6,8 @@ import { useQuery, useQueryClient } from "react-query";
 import * as S from "./styeld";
 import Pagenation from "./Pagenation";
 
-const BodyCommunity = ({ title, author, stack }) => {
+const BodyCommunity = () => {
   const [pageParam, setPageParam] = useState(1);
-  const [queryData, setQueryData] = useState(null);
   const [activeSearch, setActiveSearch] = useState(false);
   // 데이터 가져오기
   const getAllCommunity = async pageParam => {
@@ -21,11 +20,6 @@ const BodyCommunity = ({ title, author, stack }) => {
     () => getAllCommunity(pageParam),
     {
       keepPreviousData: true,
-      // onSuccess: res => {
-      //   if (!activeSearch) {
-      //     setQueryData(res.postList);
-      //   }
-      // },
     }
   );
 
@@ -56,13 +50,6 @@ const BodyCommunity = ({ title, author, stack }) => {
     {
       keepPreviousData: true,
       refetchOnWindowFocus: false,
-
-      // onSuccess: res => {
-      //   if (activeSearch) {
-      //
-      //     setQueryData(res);
-      //   }
-      // },
     }
   );
 

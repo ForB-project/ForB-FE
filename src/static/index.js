@@ -1,4 +1,3 @@
-import Logo from "./image/ForB_1.png";
 import hogwart_logo from "./image/hogwart_logo.png";
 import MainBackImg from "./image/mainbackimg.png";
 import FEvsBE from "./image/frontback.png";
@@ -48,7 +47,6 @@ export {
   DoteG,
   DoteH,
   Mainimg,
-  Logo,
   hogwart_logo,
   MainBackImg,
   FEvsBE,

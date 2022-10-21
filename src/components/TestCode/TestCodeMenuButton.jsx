@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
 import { getRefreshToken, getUserName } from "../../shared/storage";
 import { NavLink } from "react-router-dom";
-import { MenuOutlined } from "@ant-design/icons";
+
 const MenuButton = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [haveToken, setHaveToken] = useState(false);
@@ -71,14 +71,14 @@ const MenuButton = () => {
 export default MenuButton;
 
 const HeaderSyled = styled.div`
-  position: fixed; 
+  position: fixed;
   right: 19.3%;
   top: 15%;
-    border: 4px dashed black;
+  border: 4px dashed black;
   border-radius: 8px;
   background-color: #10141b;
   width: 2.5vw;
-  height: 2vh; 
+  height: 2vh;
   padding: 6px 12px;
   display: flex;
   justify-content: center;
@@ -90,8 +90,7 @@ const HeaderSyled = styled.div`
   opacity: 0.8;
   transition: 0.1s;
   &:hover {
-    opacity: 1; 
-   
+    opacity: 1;
   }
 `;
 
@@ -106,7 +105,7 @@ const MenuStyled = styled.div`
   box-shadow: 6px 0px 10px 10px black;
   z-index: 20;
   transition: 0.5s;
-  ${(props) =>
+  ${props =>
     props.menuActive === true
       ? css`
           right: 0%;
@@ -119,7 +118,7 @@ const MenuStyled = styled.div`
           .closeButton {
             cursor: pointer;
             right: 18.2%;
-            top:0.8%;
+            top: 0.8%;
             font-size: 1.5rem;
           }
         `

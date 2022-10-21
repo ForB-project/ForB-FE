@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
 const Pagenation = props => {
@@ -7,7 +7,6 @@ const Pagenation = props => {
       ? parseInt(props.postCount / 6)
       : parseInt(props.postCount / 6) + 1;
 
-  //   const [numberList, setNumberList] = useState([]);
   const [numberList, setnumberList] = useState([1, 2, 3]);
   const [page, setPage] = useState(1);
   const rowsPerPage = 5;

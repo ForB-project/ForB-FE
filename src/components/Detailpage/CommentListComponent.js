@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CommentAPI, MessageAPI } from "../../shared/api";
-import { getUserName, setAccessToken } from "../../shared/storage";
+import { getUserName } from "../../shared/storage";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import useInput from "../../hooks/useInput";
 import Modal from "../Modal/Modal";
@@ -260,7 +260,7 @@ const DeleteContentStyled = styled.div`
   align-items: flex-start;
   text-align: left;
   padding-top: 15px;
-  font-size: 3vmin;
+  font-size: 2.5vmin;
   color: black;
   div {
     margin-bottom: 15px;
@@ -272,7 +272,6 @@ const DetailCommentStyled = styled.div`
   grid-template-rows: 15% 85%;
   width: 75%;
   min-height: 10vh;
-  /* border: 1px solid black; */
   margin: 5vh auto 10vh auto;
   .CommentAddBox {
     display: grid;

@@ -2,17 +2,14 @@ import { React, useEffect, useState } from "react";
 import styled from "styled-components";
 import { DoteS, DoteR, DoteG, DoteH } from "../../static";
 import MarkdownPreview from "@uiw/react-markdown-preview";
-import { _getResult } from "../../redux/modules/ResultSlice";
-import { useParams } from "react-router-dom";
+
 import { useQuery } from "react-query";
 import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
-  // const param = useParams();
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
-
     return res.data?.data[0];
   };
 
@@ -38,7 +35,6 @@ const BodyResult = () => {
     }
     return result;
   };
-  console.log(resultData?.title);
   const title = resultData?.title;
 
   return (
@@ -78,7 +74,6 @@ const BodyResult = () => {
 export default BodyResult;
 
 const BodyStyled = styled.div`
-  /* border: 1px solid black; */
   position: relative;
   border-radius: 50px;
   background-color: black;

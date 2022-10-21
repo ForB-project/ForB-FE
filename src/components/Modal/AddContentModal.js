@@ -5,8 +5,8 @@ import { AiOutlinePicture } from "react-icons/ai";
 import { Inputplaceholer } from "../../elem";
 import { RoadmapAPI } from "../../shared/api";
 import useInput from "../../hooks/useInput";
-import { Logo } from "../../static/index";
 import { emailCheck } from "../../shared/regExp";
+
 const AddContentModal = props => {
   const [attachment, setAttachment] = useState(null); //파일 미리보기
   const [fileZero, setFileZero] = useState(null); //files의 첫번째 파일보낼때씀
@@ -45,7 +45,6 @@ const AddContentModal = props => {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(AddContent, {
     onSuccess: res => {
-      console.log(res);
       queryClient.invalidateQueries(["contentList", choseCategory]);
       closeModal();
     },

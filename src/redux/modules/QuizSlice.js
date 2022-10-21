@@ -125,24 +125,11 @@ export const __quizResult = createAsyncThunk(
   }
 );
 
-// export const __getResult = createAsyncThunk(
-//   "GETRESULT",
-//   async (payload, thunkAPI) => {
-//     console.log(payload);
-//     const { data } = await axios.get(`http://3.38.209.226/api/test/result`);
-//     return thunkAPI.fulfillWithValue(data);
-//   }
-// );
-
 export const QuizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {},
-  extraReducers: {
-    // [__getResult.fulfilled]: (state, action) => {
-    //   state.result = action.payload;
-    // },
-  },
+  extraReducers: {},
 });
 export const { getQuizList } = QuizSlice.actions;
 export default QuizSlice.reducer;
