@@ -4,9 +4,12 @@ import { MessageAPI } from "../../shared/api";
 import Modal from "../Modal/Modal";
 import styled from "styled-components";
 import * as S from "./styeld";
+import { useDispatch } from "react-redux";
+import {__chatList} from "../../redux/modules/ChatSlice";
 
 const ContentCommunity = props => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [closeModal, setCloseModal] = useState(false);
   const joinroom = async memberId => {
     const res = await MessageAPI.joinroom(memberId);
@@ -41,6 +44,7 @@ const ContentCommunity = props => {
             id="deleteButton"
             onClick={() => {
               joinroom(props.data.memberId);
+              dispatch(__chatList());
               navigate(`/message`);
             }}
           >

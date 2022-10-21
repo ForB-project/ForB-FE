@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as StompJs from "@stomp/stompjs";
-import styled, { css } from "styled-components";
-import { useSelector } from "react-redux";
+import styled, {css} from "styled-components";
+import { useSelector,useDispatch } from "react-redux";
+import {__chatMessage} from "../../redux/modules/ChatSlice";
 
 // const ROOM_SEQ = 1;
 const token = localStorage.getItem("access_token");
 
 const MessageFunction = () => {
+  const dispatch= useDispatch();
   const client = useRef({});
   const scrollRef = useRef(0);
   const inputFocus = useRef(null);
   const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const roomNum = useSelector(state => state.chat.roomNum.room_Id);
+  const roomNum = useSelector((state)=>state.chat.roomNum.room_Id);
+  const reduxChatMessage =  useSelector((state)=>state.chat.chatMessage);
 
-  useEffect(() => {
-    connect();
-    return () => disconnect();
-  }, [roomNum]);
+  
 
   const connect = () => {
     client.current = new StompJs.Client({
@@ -25,8 +25,10 @@ const MessageFunction = () => {
       connectHeaders: {
         Authorization: token.slice(7),
       },
-      debug: function (str) {},
-      reconnectDelay: 50000,
+      debug: function (str) {
+        console.log(str);
+      },
+      reconnectDelay: 25000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       onConnect: () => {
@@ -46,8 +48,8 @@ const MessageFunction = () => {
   const subscribe = () => {
     client.current.subscribe(
       `/sub/chat/room/${roomNum}`,
-      ({ body }) => {
-        setChatMessages(_chatMessages => [..._chatMessages, JSON.parse(body)]);
+      () => {
+        dispatch(__chatMessage(roomNum));
       },
       {
         Authorization: token.slice(7),
@@ -69,8 +71,14 @@ const MessageFunction = () => {
     inputFocus.current.focus();
     setMessage("");
   };
+  
+useEffect(() => {
+    connect();
+    dispatch(__chatMessage(roomNum));
+    return () => disconnect();
+  }, [roomNum]);
 
-  useEffect(() => {
+ useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   });
 
@@ -80,21 +88,16 @@ const MessageFunction = () => {
     }
   };
 
-  console.log(chatMessages);
-  console.log(roomNum);
-
+  console.log(reduxChatMessage,'reduxChatMessage');
+  console.log(chatMessages, "chatMessages");
   return (
     <MessageInnerLayout>
       <MessageViewLayout ref={scrollRef}>
-        {chatMessages && chatMessages.length > 0 && (
-          <div>
-            {chatMessages.find(list => list.roomId === roomNum)
-              ? chatMessages.map((_chatMessage, index) => (
-                  <Message key={index}>{_chatMessage.message}</Message>
-                ))
-              : null}
-          </div>
-        )}
+          {reduxChatMessage.length
+            ? reduxChatMessage.map((_chatMessage, index) => (
+                <Message className="myMessage" key={index}>{_chatMessage.message}</Message>
+              ))
+            : null}
       </MessageViewLayout>
       <MessageInputLayout>
         <MessageTextArea
@@ -124,7 +127,9 @@ const MessageViewLayout = styled.div`
   min-height: 420px;
   margin: 0px auto 5px auto;
   display: flex;
-  justify-content: end;
+  flex-direction: column;
+  align-items: end;
+  justify-content: start;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 0px;
@@ -132,11 +137,14 @@ const MessageViewLayout = styled.div`
 `;
 
 const Message = styled.p`
-  margin: 2px;
-  padding: 1px 5px;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
+max-width: 100px;
+margin: 2px;
+padding: 1px 5px;
+background-color: white;
+border: none;
+border-radius: 5px;
+white-space:pre-wrap;
+word-break: break-all;
 `;
 
 const MessageInputLayout = styled.div`

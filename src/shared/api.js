@@ -117,4 +117,5 @@ export const QuizResultAPI = {
 };
 export const MessageAPI = {
   joinroom: targetMemberId => api.get(`/api/roadmap/${targetMemberId}/chat`),
+  deleteList: ListId => api.delete(`/api/chat/${ListId}`),
 };

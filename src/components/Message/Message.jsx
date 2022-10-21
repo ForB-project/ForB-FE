@@ -10,6 +10,7 @@ import {MessageFunction,MessageHeader,MessageList} from "../index";
 const Message = () => {
   const navigate =  useNavigate();
   const chatList = useSelector((state) => state.chat.chatList);
+  const roomNum = useSelector((state) => state.chat.roomNum.room_Id);
 
   return (
     <MessageBackLayout>
@@ -24,11 +25,13 @@ const Message = () => {
         </Header>
         <MessageInLayout>
           <MessageList />
-          {chatList===[]? null : (
+          {chatList.length && roomNum!==1 ? (
             <MessageFunctionLayout>
               <MessageHeader />
               <MessageFunction />
             </MessageFunctionLayout>
+          ) : (
+            <MessageNoneLayout>{"!채팅방을 추가해주세요! \n \n채팅은 게시판에서 원하는 상대를 \n클릭해 시작 할 수 있습니다!"}</MessageNoneLayout>
           )}
         </MessageInLayout>
       </MessageWindowLayout>
@@ -101,5 +104,16 @@ const MessageInLayout = styled.div`
 const MessageFunctionLayout = styled.div`
 width: 65vw;
 border: 2px solid black;
+`;
+
+const MessageNoneLayout = styled.div`
+width: 65vw;
+border: 2px solid black;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+color: white;
+white-space: pre-line;
 `;
 

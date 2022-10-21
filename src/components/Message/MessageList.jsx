@@ -1,29 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery,useQueryClient } from "react-query";
+import {api} from "../../shared/api";
 import {useDispatch, useSelector} from "react-redux"
 import styled, {css} from "styled-components";
+import {useNavigate} from "react-router-dom";
 import {profile} from "../../static/index";
 
-import {moveRoom,__chatList} from "../../redux/modules/ChatSlice";
+import {moveRoom,addRoom,__chatMessage} from "../../redux/modules/ChatSlice";
+
 
 const MessageList = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [chat_list, setChatList] = useState([]);
   const chatList = useSelector((state)=>state.chat.chatList);
+  const roomNum = useSelector((state) => state.chat.roomNum);
+
+  const queryClient = useQueryClient();
+  const queryGetApi = () =>{
+    return api.get(`/api/chat/Lists`);
+  }
+
+  const queryList = useQuery('chat_list',queryGetApi,{
+    onSuccess:(data) => {
+      console.log('쿼리 됨','MessageList query');
+      setChatList(data.data.data);
+      dispatch(addRoom(data.data.data));
+      console.log(chatList,"쿼리내부chatList");
+    }
+  });
   
+  useEffect(()=>{
+    queryClient.invalidateQueries('chat_list');
+    if(!localStorage.getItem("access_token")){
+      window.confirm('로그인이 필요합니다');
+      navigate('/');
+    }
+  },[chatList,chat_list]);
+
+  if (queryList.isLoading) {
+    return null;
+  }
+  
+  //redux로 관리 되는 roomid 변경
   const changeNum = (num)=>{
     dispatch(moveRoom(num));
   }
-
-  useEffect(()=>{
-    dispatch(__chatList());
-    console.log('렌더링 됨');
-  },[])
-
-  console.log(chatList);
+  
+  console.log(roomNum);
+  console.log(chatList,'쿼리외부chat_list');
   return (
     <MessageListLayout>
-      <MessageListHeader>{`${localStorage.getItem(
-        "username"
-      )}`}</MessageListHeader>
+      <MessageListHeader>
+        {localStorage.getItem("username") || null}
+      </MessageListHeader>
       {chatList.map((list) => (
         <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
           <ProfileImageBox />
