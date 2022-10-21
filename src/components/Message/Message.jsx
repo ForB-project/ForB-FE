@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { GreateHall } from "../../static/index";
 
 import { MessageFunction, MessageHeader, MessageList } from "../index";

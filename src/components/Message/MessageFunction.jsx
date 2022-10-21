@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as StompJs from "@stomp/stompjs";
-import SockJS from 'sockjs-client';
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
 import {__chatMessage} from "../../redux/modules/ChatSlice";
 
-// const ROOM_SEQ = 1;
+
 const token = localStorage.getItem("access_token");
-const sockJs = new SockJS('http://3.38.209.226/stomp');
-// "ws://3.38.209.226/stomp"
-// StompJs.over(sockJs)
 
 const MessageFunction = () => {
   const dispatch = useDispatch();
@@ -18,7 +14,6 @@ const MessageFunction = () => {
   const scrollRef = useRef(0);
   const inputFocus = useRef(null);
 
-  const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   const roomNum = useSelector(state => state.chat.roomNum.room_Id);
@@ -26,8 +21,7 @@ const MessageFunction = () => {
 
   const connect = () => {
     client.current = new StompJs.Client({
-      // brokerURL: process.env.REACT_APP_BROKER_URL,  웹소켓 서버로 직접 접속
-      brokerURL: sockJs  , // 웹소켓 서버로 직접 접속
+      brokerURL: process.env.REACT_APP_BROKER_URL, // 웹소켓 서버로 직접 접속
       connectHeaders: {
         Authorization: token?.slice(7),
       },

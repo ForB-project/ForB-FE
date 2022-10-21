@@ -6,14 +6,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { profile } from "../../static/index";
 
-import { moveRoom, addRoom, __chatList } from "../../redux/modules/ChatSlice";
+import { moveRoom, addRoom } from "../../redux/modules/ChatSlice";
 
 const MessageList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [chat_list, setChatList] = useState([]);
   const chatList = useSelector(state => state.chat.chatList);
-  const roomNum = useSelector(state => state.chat.roomNum);
 
   const queryClient = useQueryClient();
   const queryGetApi = () => {
