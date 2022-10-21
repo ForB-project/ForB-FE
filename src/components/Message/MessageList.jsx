@@ -45,8 +45,8 @@ const MessageList = () => {
   //redux로 관리 되는 roomid 변경
   const changeNum = (num)=>{
     dispatch(moveRoom(num));
-    dispatch(__chatMessage(num));
   }
+  
   console.log(roomNum);
   console.log(chatList,'쿼리외부chat_list');
   return (

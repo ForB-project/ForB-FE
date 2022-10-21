@@ -93,13 +93,11 @@ useEffect(() => {
   return (
     <MessageInnerLayout>
       <MessageViewLayout ref={scrollRef}>
-        <div>
           {reduxChatMessage.length
             ? reduxChatMessage.map((_chatMessage, index) => (
-                <Message key={index}>{_chatMessage.message}</Message>
+                <Message className="myMessage" key={index}>{_chatMessage.message}</Message>
               ))
             : null}
-        </div>
       </MessageViewLayout>
       <MessageInputLayout>
         <MessageTextArea
@@ -130,7 +128,9 @@ const MessageViewLayout = styled.div`
   min-height: 420px;
   margin: 0px auto 5px auto;
   display: flex;
-  justify-content: end;
+  flex-direction: column;
+  align-items: end;
+  justify-content: start;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 0px;
@@ -138,11 +138,14 @@ const MessageViewLayout = styled.div`
 `;
 
 const Message = styled.p`
+max-width: 100px;
 margin: 2px;
 padding: 1px 5px;
 background-color: white;
 border: none;
 border-radius: 5px;
+white-space:pre-wrap;
+word-break: break-all;
 `;
 
 const MessageInputLayout = styled.div`
