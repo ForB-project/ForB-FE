@@ -84,7 +84,7 @@ const BodyStyled = styled.div`
   background-color: black;
   opacity: 0.95;
   transition: 0.5s;
-  margin-top: 2vh;
+  margin-top: 5vh;
   margin-left: auto;
   margin-right: auto;
   width: 70vw;

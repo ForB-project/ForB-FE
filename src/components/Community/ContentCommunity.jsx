@@ -5,7 +5,8 @@ import Modal from "../Modal/Modal";
 import styled from "styled-components";
 import * as S from "./styeld";
 import { useDispatch } from "react-redux";
-import {__chatList} from "../../redux/modules/ChatSlice";
+import { __chatList } from "../../redux/modules/ChatSlice";
+import { getUserName } from "../../shared/storage";
 
 const ContentCommunity = props => {
   const navigate = useNavigate();
@@ -27,7 +28,11 @@ const ContentCommunity = props => {
         </S.Title>
         <S.Author
           onClick={() => {
-            setCloseModal(!closeModal);
+            if (getUserName() === props.data.nickname) {
+              window.alert("자기 자신에게는 메세지를 보낼 수 없습니다");
+            } else {
+              setCloseModal(!closeModal);
+            }
           }}
         >
           {props.data.nickname}

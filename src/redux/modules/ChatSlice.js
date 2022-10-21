@@ -4,7 +4,7 @@ import { api } from "../../shared/api";
 const initialState = {
   chatList: [],
   chatMessage: [],
-  roomNum: { room_Id: 1 },
+  roomNum: { room_Id: 0 },
 };
 
 export const __chatList = createAsyncThunk(
@@ -27,8 +27,8 @@ export const __chatMessage = createAsyncThunk(
 
 export const __chatListDelete = createAsyncThunk(
   "DELETECHAT",
-    async (payload, thunkAPI) => { 
-    const { data } =  await api.delete(`/api/chat/${payload.room_Id}`);
+  async (payload, thunkAPI) => {
+    const { data } = await api.delete(`/api/chat/${payload.room_Id}`);
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -41,13 +41,13 @@ export const ChatSlice = createSlice({
       state.roomNum = { ...state.roomNum, room_Id: action.payload };
     },
     addRoom: (state, action) => {
-      state.chatList =  action.payload ;
+      state.chatList = action.payload;
     },
   },
   extraReducers: {
     [__chatList.fulfilled]: (state, action) => {
       state.chatList = action.payload.data;
-      if (!action.payload.data &&state.roomNum.roomId!==1) {
+      if (!action.payload.data && state.roomNum.roomId !== 1) {
         state.roomNum = {
           ...state.roomNum,
           room_Id: action.payload.data[0].roomId,
@@ -59,5 +59,5 @@ export const ChatSlice = createSlice({
     },
   },
 });
-export const  {moveRoom,addRoom}  = ChatSlice.actions;
+export const { moveRoom, addRoom } = ChatSlice.actions;
 export default ChatSlice.reducer;

@@ -20,7 +20,9 @@ export default PageTitle;
 
 const UpperStyled = styled.div`
   /* border: 1px solid red; */
-
+  position: absolute;
+  top: 3%;
+  left: 3%;
   height: 5vh;
   font-family: "neodgm";
 `;
