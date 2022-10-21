@@ -69,8 +69,8 @@ export default MessageList;
 const MessageListLayout = styled.div`
   width: 20vw;
   min-width: 242px;
-  height: 61.3vh;
-  min-height: 550px;
+  height: 69.5vh;
+  min-height: 621px;
   border: 2px solid black;
   overflow: auto;
   &::-webkit-scrollbar {

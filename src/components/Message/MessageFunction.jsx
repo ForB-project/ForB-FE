@@ -123,8 +123,8 @@ const MessageInnerLayout = styled.div`
 `;
 
 const MessageViewLayout = styled.div`
-  height: 45vh;
-  min-height: 420px;
+  height: 55vh;
+  min-height: 490px;
   margin: 0px auto 5px auto;
   display: flex;
   flex-direction: column;

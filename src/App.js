@@ -52,7 +52,6 @@ function App() {
               <Route path="/message" element={<MessagePage />} />
               <Route path="/write" element={<WritePage />} />
               <Route path="/edit/:id" element={<EditPage />} />
-              <Route path="/socket" element={<SocketPage />} />
             </Routes>
           </Desktop>
         </Layout>

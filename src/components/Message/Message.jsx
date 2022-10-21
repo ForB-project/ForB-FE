@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import {useNavigate} from "react-router-dom"
 import { GreateHall,hogwart_logo } from "../../static/index";
-import {MenuButton} from "../index";
 
 import {MessageFunction,MessageHeader,MessageList} from "../index";
 
@@ -14,15 +13,14 @@ const Message = () => {
 
   return (
     <MessageBackLayout>
-      <MessageWindowLayout>
-        <Header>
+      <HeaderLay>
           <img
             className="Logo"
             src={hogwart_logo}
             onClick={() => navigate("/")}
           />
-          <MenuButton className="menu" />
-        </Header>
+        </HeaderLay>
+      <MessageWindowLayout>
         <MessageInLayout>
           <MessageList />
           {chatList.length && roomNum!==1 ? (
@@ -42,32 +40,32 @@ const Message = () => {
 export default Message;
 
 const MessageBackLayout = styled.div`
-  width: 85vw;
-  min-width: 950px;
-  height: 90vh;
-  min-height: 750px;
+  width: 96vw;
   border: 20px solid black;
   border-radius: 30px;
   background-image: url(${GreateHall});
   background-size: cover;
-  margin: auto;
+  margin:0px auto;
+  padding: 1.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: -0;
 `;
 
-const Header = styled.div`
-  width: 59.95vw;
+const HeaderLay = styled.div`
+  width: 85vw;
   min-width: 774px;
-  height: 8vh;
+  height: 10vh;
   min-height: 70px;
+  margin:0px 0px -40px 0px;
   .Logo {
-    width: 4vw;
-    min-width: 65px;
-    height: 6.5vh;
-    min-height: 60px;
+    width: 6vw;
+    min-width: 80px;
+    height: 9.5vh;
+    min-height: 80px;
     margin: 5px;
+    position:fixed;
+    z-index:5;
     cursor: pointer;
   }
 `;
@@ -94,8 +92,8 @@ const MessageWindowLayout = styled.div`
 `;
 
 const MessageInLayout = styled.div`
-  height: 61.7vh;
-  min-height: 554px;
+  height: 70vh;
+  min-height: 625px;
   display: flex;
   justify-content: center;
   flex-direction: row;

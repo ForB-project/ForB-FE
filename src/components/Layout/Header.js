@@ -43,13 +43,13 @@ const Header = () => {
     <>
       <React.Fragment>
         {!menuActive && (
-          <HeaderSyled
+          <HeaderStyled
             onClick={() => {
               setMenuActive(true);
             }}
           >
             MENU
-          </HeaderSyled>
+          </HeaderStyled>
         )}
         <MenuStyled menuActive={menuActive}>
           <span
@@ -89,6 +89,9 @@ const Header = () => {
                 </p>
                 <p>
                   <NavLink to="/community">게시판</NavLink>
+                </p>
+                <p>
+                  <NavLink to="/message">메세지</NavLink>
                 </p>
                 <div
                   className="logoutButton"
@@ -164,7 +167,7 @@ const DeleteContentStyled = styled.div`
   font-size: 4.5vmin;
   font-weight: 800;
 `;
-const HeaderSyled = styled.div`
+const HeaderStyled = styled.div`
   position: fixed;
   right: 5%;
   top: 5%;
