@@ -77,7 +77,7 @@ const MessageFunction = () => {
 useEffect(() => {
     connect();
     dispatch(__chatMessage(roomNum));
-    console.log(reduxChatMessage,'MF_effectin');
+    console.log(reduxChatMessage,'MF_effect_in');
     return () => disconnect();
   }, [roomNum]);
 

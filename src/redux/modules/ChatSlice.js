@@ -4,7 +4,7 @@ import { api } from "../../shared/api";
 const initialState = {
   chatList: [],
   chatMessage: [],
-  roomNum: { room_Id: 1 },
+  roomNum: { room_Id: 0 },
 };
 
 export const __chatList = createAsyncThunk(
