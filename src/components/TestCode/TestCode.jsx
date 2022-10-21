@@ -9,6 +9,7 @@ import {
   addPracCode,
   addBackPracCode,
 } from "../../redux/modules/TestCodeSlice";
+import { PageTitle } from "../../elem";
 
 const TestCode = () => {
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ const TestCode = () => {
   return (
     <CodeBackLayout>
       <Header />
+      <PageTitle>코드체험</PageTitle>
       <CodeWindow>
         <CodeInputLayout>
           <CodeExample>{exampleCode[codeIndex].exampleCode}</CodeExample>

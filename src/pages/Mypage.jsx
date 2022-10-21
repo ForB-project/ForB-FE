@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { GrSearchAdvanced } from "react-icons/gr";
 import { getAccessToken } from "../shared/storage";
+import { PageTitle } from "../elem";
 const Mypage = () => {
   const navigate = useNavigate();
   const [closeSearch, setCloseSearch] = useState(false);
@@ -39,6 +40,7 @@ const Mypage = () => {
         <SearchModal closeSearch={() => setCloseSearch(!closeSearch)} />
       )}
       <ContainerStyled>
+        <PageTitle>마이페이지</PageTitle>
         <div className="hr">
           <RoadmapGuide />
         </div>
