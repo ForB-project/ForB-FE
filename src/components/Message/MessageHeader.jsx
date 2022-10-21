@@ -8,13 +8,14 @@ import { AiFillDelete } from "react-icons/ai";
 
 import { MessageAPI } from "../../shared/api";
 
-import {__chatListDelete,moveRoom} from "../../redux/modules/ChatSlice";
+import {moveRoom} from "../../redux/modules/ChatSlice";
  
 const MessageHeader = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const [chat_list, setChatList] = useState([]);
-  const chatList = useSelector((state) => state.chat.chatList);
+
+  const reduxChatMessage =  useSelector((state)=>state.chat.chatMessage);
   const roomNum = useSelector((state) => state.chat.roomNum);
 
   const queryGetApi = async() => {
@@ -59,7 +60,7 @@ const MessageHeader = () => {
     <MessageHeaderLayout>
       <ProfileImageBox />
       <ProfileNameBox>
-        {chat_list.length &&
+        {chat_list.length && reduxChatMessage!==null &&
         chat_list.find((list) => list.roomId === roomNum.room_Id)
           ? chat_list.find((list) => list.roomId === roomNum.room_Id).subMember
           : null}

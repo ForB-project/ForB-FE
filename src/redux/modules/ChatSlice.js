@@ -17,7 +17,7 @@ export const __chatList = createAsyncThunk(
 );
 
 export const __chatMessage = createAsyncThunk(
-  "CHATLIST",
+  "CHATMESSAGE",
   async (payload, thunkAPI) => {
     const { data } = await api.get(`/api/chat/${payload}`);
     console.log(data);
@@ -38,20 +38,16 @@ export const ChatSlice = createSlice({
   initialState,
   reducers: {
     moveRoom: (state, action) => {
-      //     state.roomNum = state.result.map((list) =>
-      //      list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.codePrac } : list
       state.roomNum = { ...state.roomNum, room_Id: action.payload };
     },
     addRoom: (state, action) => {
-      //     state.roomNum = state.result.map((list) =>
-      //      list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.codePrac } : list
       state.chatList =  action.payload ;
     },
   },
   extraReducers: {
     [__chatList.fulfilled]: (state, action) => {
       state.chatList = action.payload.data;
-      if (state.roomNum.roomId!==1) {
+      if (!action.payload.data &&state.roomNum.roomId!==1) {
         state.roomNum = {
           ...state.roomNum,
           room_Id: action.payload.data[0].roomId,

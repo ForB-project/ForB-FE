@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useQuery,useQueryClient } from "react-query";
 import {api} from "../../shared/api";
 import {useDispatch, useSelector} from "react-redux"
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import {profile} from "../../static/index";
 
-import {moveRoom,addRoom,__chatMessage} from "../../redux/modules/ChatSlice";
+import {moveRoom,addRoom,__chatList} from "../../redux/modules/ChatSlice";
 
 
 const MessageList = () => {
@@ -23,10 +23,8 @@ const MessageList = () => {
 
   const queryList = useQuery('chat_list',queryGetApi,{
     onSuccess:(data) => {
-      console.log('쿼리 됨','MessageList query');
       setChatList(data.data.data);
       dispatch(addRoom(data.data.data));
-      console.log(chatList,"쿼리내부chatList");
     }
   });
   
@@ -48,18 +46,18 @@ const MessageList = () => {
   }
   
   console.log(roomNum);
-  console.log(chatList,'쿼리외부chat_list');
+  console.log(chatList,'chat_list');
   return (
     <MessageListLayout>
       <MessageListHeader>
         {localStorage.getItem("username") || null}
       </MessageListHeader>
-      {chatList.map((list) => (
+      {chatList.map((list) => list.subMember!==list.pubMember?
         <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
           <ProfileImageBox />
           <ProfileNameBox>{list.subMember}</ProfileNameBox>
-        </ChatList>
-      ))}
+        </ChatList>:null
+      )}
     </MessageListLayout>
   );
 };
