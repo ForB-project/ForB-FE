@@ -17,7 +17,7 @@ const initialState = {
   frontCode: [
     {
       id: 2,
-      exampleCode:  `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
+      exampleCode: `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
     },
     {
       id: 3,
@@ -37,28 +37,20 @@ const initialState = {
     },
   ],
   result: [
-    { id: 0, answer: "코드를 입력해볼까요?", pracCode:""},
-    { id: 1, answer: "코드를 입력해볼까요?", pracCode:""},
-    { id: 2, answer: "코드를 입력해볼까요?", pracCode:""},
-    { id: 3, answer: "코드를 입력해볼까요?", pracCode:""},
-    { id: 4, answer: "코드를 입력해볼까요?", pracCode:""},
-    { id: 5, answer: "코드를 입력해볼까요?", pracCode:""},
+    { id: 0, answer: "코드를 입력해볼까요?", pracCode: "" },
+    { id: 1, answer: "코드를 입력해볼까요?", pracCode: "" },
+    { id: 2, answer: "코드를 입력해볼까요?", pracCode: "" },
+    { id: 3, answer: "코드를 입력해볼까요?", pracCode: "" },
+    { id: 4, answer: "코드를 입력해볼까요?", pracCode: "" },
+    { id: 5, answer: "코드를 입력해볼까요?", pracCode: "" },
   ],
 };
 
-// export const __getLectureList = createAsyncThunk(
-//   "GET_LECTURE_LIST",
-//   async (payload, thunkAPI) => {
-//     const { data } = await instance.get(`api/lecture`);
-//     return thunkAPI.fulfillWithValue(data);
-//   }
-// );
-
 export const __sendPracCode1 = createAsyncThunk(
   "QUIZRESULT1",
-  async (payload, thunkAPI) => { 
-      const { data } = await api.post(`/api/firstCode`, payload);
-      return thunkAPI.fulfillWithValue(data);
+  async (payload, thunkAPI) => {
+    const { data } = await api.post(`/api/firstCode`, payload);
+    return thunkAPI.fulfillWithValue(data);
   }
 );
 
@@ -83,38 +75,53 @@ export const TestCodeSlice = createSlice({
   initialState,
   reducers: {
     addPracCode: (state, action) => {
-      state.result = state.result.map((list) =>
-       list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.codePrac } : list
-     );
+      state.result = state.result.map(list =>
+        list.id === action.payload.id
+          ? {
+              ...list,
+              pracCode: action.payload.codePrac,
+              answer: action.payload.codePrac,
+            }
+          : list
+      );
     },
     addFrontPracCode: (state, action) => {
-      state.result = state.result.map((list) =>
-       list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac , answer: action.payload.answer} : list
-     );
+      state.result = state.result.map(list =>
+        list.id === action.payload.id
+          ? {
+              ...list,
+              pracCode: action.payload.codePrac,
+              answer: action.payload.answer,
+            }
+          : list
+      );
     },
     addBackPracCode: (state, action) => {
-      state.result = state.result.map((list) =>
-       list.id === action.payload.id ? { ...list,pracCode: action.payload.codePrac} : list
-     );
+      state.result = state.result.map(list =>
+        list.id === action.payload.id
+          ? { ...list, pracCode: action.payload.codePrac }
+          : list
+      );
     },
   },
   extraReducers: {
     [__sendPracCode1.fulfilled]: (state, action) => {
-      state.result = state.result.map((list) =>
-       list.id === 4 ? { ...list, answer: action.payload.data } : list
-     );
+      state.result = state.result.map(list =>
+        list.id === 4 ? { ...list, answer: action.payload.data } : list
+      );
     },
     [__sendPracCode2.fulfilled]: (state, action) => {
-      state.result = state.result.map((list) =>
-       list.id === 5? { ...list, answer: action.payload.data } : list
-     );
+      state.result = state.result.map(list =>
+        list.id === 5 ? { ...list, answer: action.payload.data } : list
+      );
     },
     [__sendPracCode3.fulfilled]: (state, action) => {
-      state.result = state.result.map((list) =>
-       list.id === 3 ? { ...list, answer: action.payload.data } : list
-     );
+      state.result = state.result.map(list =>
+        list.id === 3 ? { ...list, answer: action.payload.data } : list
+      );
     },
   },
 });
-export const { addPracCode,addBackPracCode,addFrontPracCode } = TestCodeSlice.actions;
+export const { addPracCode, addBackPracCode, addFrontPracCode } =
+  TestCodeSlice.actions;
 export default TestCodeSlice.reducer;

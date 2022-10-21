@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { Logo, mainFirst } from "../../static";
+import { mainFirst } from "../../static";
 import { LikeAPI, ContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
@@ -45,8 +45,22 @@ const RoadmapContent = forwardRef((props, ref) => {
         />
 
         <StackStyled>
-          <span className="ContentTitle">{props.data.title}</span>
-          <p className="ContentDesc">{props.data.desc}</p>
+          <span
+            className="ContentTitle"
+            onClick={() => {
+              ContentHref();
+            }}
+          >
+            {props.data.title}
+          </span>
+          <p
+            className="ContentDesc"
+            onClick={() => {
+              ContentHref();
+            }}
+          >
+            {props.data.desc}
+          </p>
         </StackStyled>
         {props.querykey === 1 ? (
           <div className="DeleteButton">
@@ -87,7 +101,6 @@ const RoadmapContent = forwardRef((props, ref) => {
           <button
             id="deleteButton"
             onClick={() => {
-              console.log();
               deleteAction.mutate(props.data.id);
             }}
           >

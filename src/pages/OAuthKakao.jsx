@@ -58,7 +58,7 @@ const ContainerStyled = styled.div`
   font-size: 10vmin;
   font-family: "neodgm", monospace;
   font-style: normal;
-  /* word-break: keep-all; */
+
   background-color: white;
   background-size: cover;
 `;

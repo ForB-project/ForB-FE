@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import { useDispatch, useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
-
 import { TestCodeView, Header, PageNation } from "../index";
 import {
   addPracCode,
@@ -36,24 +34,6 @@ const TestCode = () => {
   };
 
   const movePage = page => {
-    // switch (page) {
-    //   case "h":
-    //     setExampleCode(testCodeList);
-    //     dispatch(addBackPracCode(resultPracCode));
-    //     break;a
-    //   case "f":
-    //     setExampleCode(frontCodeList);
-    //     break;
-    //   case "b":
-    //     if (
-    //       exampleCode[codeNumber].id === 4 ||
-    //       exampleCode[codeNumber].id === 5
-    //     )
-    //       return null;
-    //     setExampleCode(backCodeList);
-    //     dispatch(addPracCode(resultPracCode));
-    //     break;
-    // }
     if (page === "h") {
       setExampleCode(testCodeList);
       dispatch(addBackPracCode(resultPracCode));
@@ -157,6 +137,7 @@ const CodeExample = styled.div`
   justify-content: center;
   padding-top: 10px;
   white-space: pre-wrap;
+  font-size: 2vmin;
 `;
 
 const CodePractice = styled.textarea`
@@ -166,7 +147,7 @@ const CodePractice = styled.textarea`
   border: 6px dashed black;
   background-color: #10141b;
   margin: auto;
-  font-size: 20px;
+  font-size: 2vmin;
   font-weight: 700;
   color: white;
   resize: none;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const EditTextArea = ({
@@ -28,12 +28,6 @@ const EditTextArea = ({
   }, []);
 
   useEffect(() => {
-    if (image) {
-      insertImg();
-    }
-  }, [image]);
-
-  useEffect(() => {
     if (header) {
       insertHeader();
     }
@@ -46,21 +40,6 @@ const EditTextArea = ({
 
   const textArea = document.querySelector(".autoResize");
 
-  const insertImg = () => {
-    const textArea = document.querySelector(".autoResize");
-    let textValue = textArea.value;
-    let cursorPosition = textArea.selectionStart;
-    const beforeCursor = textValue.substring(0, cursorPosition);
-    const afterCursor = textValue.substring(
-      textArea.selectionEnd,
-      textValue.length
-    );
-    const addImg = image[image.length - 1];
-    if (image.length > 0) {
-      textArea.value = beforeCursor + "![](" + addImg + ")" + afterCursor;
-    }
-    textArea.focus();
-  };
   const insertHeader = () => {
     const textArea = document.querySelector(".autoResize");
     let textValue = textArea.value;
@@ -122,7 +101,6 @@ const EditTextArea = ({
       textArea.value =
         beforeCursor + textStyle + selectedCursor + textStyle + afterCursor;
     }
-    console.log(selectedCursor);
     setTextStyle("");
   };
   return (
@@ -133,7 +111,6 @@ const EditTextArea = ({
       onKeyDown={autoTextAreaReize}
       value={content}
       onChange={onChange}
-      // ref={textRef}
     ></StyledTextArea>
   );
 };

@@ -1,9 +1,9 @@
-import React, { forwardRef, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import { Logo, mainFirst } from "../../static";
-import { LikeAPI, ContentAPI } from "../../shared/api";
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
-import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
+import React, { useEffect } from "react";
+import styled from "styled-components";
+
+import { ContentAPI } from "../../shared/api";
+import { useInfiniteQuery } from "react-query";
+
 import RoadmapContent from "../Roadmap/RoadmapContent";
 import { useInView } from "react-intersection-observer";
 
@@ -13,7 +13,7 @@ const MyRoadmapContent = props => {
   //Content 불러오는 부분
   const getContent = async (Id, pageParam) => {
     const res = await ContentAPI.getMyPage(Id, pageParam);
-    console.log(res);
+
     return {
       result: res.data.data,
       nextPage: pageParam + 1,
@@ -43,6 +43,10 @@ const MyRoadmapContent = props => {
   }, [inView]);
   return (
     <React.Fragment>
+      <RecommendStyled>
+        로드맵 자료를 올리거나 좋아요를 눌러 마이페이지를 채워 보세요!
+      </RecommendStyled>
+
       {mypageInfiniteQuery.data?.pages.map((x, idx) => {
         return (
           <React.Fragment key={idx}>
@@ -74,3 +78,9 @@ const MyRoadmapContent = props => {
 };
 
 export default MyRoadmapContent;
+
+const RecommendStyled = styled.div`
+  font-size: 2.5vmin;
+  filter: drop-shadow(-2px 0 0 black) drop-shadow(2px 0 0 black)
+    drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
+`;

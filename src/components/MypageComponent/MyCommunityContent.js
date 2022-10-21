@@ -1,11 +1,10 @@
-import React, { forwardRef, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
-import { Logo, mainFirst } from "../../static";
-import { LikeAPI, ContentAPI, CommunityContentAPI } from "../../shared/api";
-import { useInfiniteQuery, useMutation, useQueryClient } from "react-query";
-import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { CommunityContentAPI } from "../../shared/api";
+import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import CommunityContentList from "./CommunityContentList";
+
 const MyCommunityContent = props => {
   const [ref, inView] = useInView();
   // 나의 게시판 글 가져오기
@@ -24,7 +23,6 @@ const MyCommunityContent = props => {
     {
       getNextPageParam: (lastPage, pages) => {
         //hasNextPage 대용
-        // console.log(lastPage);
         if (!lastPage.isLast) {
           return lastPage.nextPage;
         } else {
@@ -50,7 +48,6 @@ const MyCommunityContent = props => {
     {
       getNextPageParam: (lastPage, pages) => {
         //hasNextPage 대용
-        // console.log(lastPage);
         if (!lastPage.isLast) {
           return lastPage.nextPage;
         } else {
@@ -70,6 +67,9 @@ const MyCommunityContent = props => {
   }, [inView]);
   return (
     <React.Fragment>
+      <RecommendStyled>
+        게시판에서 글을 올리거나 좋아요를 눌러 마이페이지를 채워 보세요!
+      </RecommendStyled>
       {(props.likeContent
         ? myLikeCommunityQuery
         : myCommunityQuery
@@ -106,3 +106,9 @@ const MyCommunityContent = props => {
 };
 
 export default MyCommunityContent;
+
+const RecommendStyled = styled.div`
+  font-size: 2.5vmin;
+  filter: drop-shadow(-2px 0 0 black) drop-shadow(2px 0 0 black)
+    drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
+`;

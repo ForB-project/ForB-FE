@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-  /* border: 1px dashed black; */
-
   border-radius: 30px;
   background-color: black;
   opacity: 0.95;
@@ -21,7 +19,6 @@ export const Body = styled.div`
 `;
 
 export const Line = styled.div`
-  /* border: 1px dashed purple; */
   display: flex;
   justify-content: space-around;
   margin-top: 3vh;
@@ -40,8 +37,6 @@ export const Line = styled.div`
   }
 `;
 export const Title = styled.div`
-  /* border: 1px dashed yellow; */
-
   border-radius: 5px;
   background-color: #10141b;
 
@@ -54,8 +49,6 @@ export const Title = styled.div`
   text-align: left;
 `;
 export const Author = styled.div`
-  /* border: 1px dashed pink; */
-
   border-radius: 5px;
   background-color: #10141b;
 
@@ -64,8 +57,6 @@ export const Author = styled.div`
   height: 3vh;
 `;
 export const Date = styled.div`
-  /* border: 1px dashed aqua; */
-
   border-radius: 5px;
   background-color: #10141b;
 

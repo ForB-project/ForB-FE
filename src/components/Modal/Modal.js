@@ -26,9 +26,7 @@ function Modal(props) {
     </ModalStyled>
   );
 }
-// // const [closeModal, setCloseModal] = useState(false);
-// {closeModal && (
-//   <Modal closeModal={() => setCloseModal(!closeModal)}>
+
 export default Modal;
 
 const ModalStyled = styled.div`

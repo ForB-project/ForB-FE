@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Modal, MainLoginModal, LogoutButton, Header } from "../components";
-import { Mainimg, hogwart_logo, Logo } from "../static";
+import { Mainimg, hogwart_logo } from "../static";
 import { useNavigate } from "react-router-dom";
 import {
   getRefreshToken,

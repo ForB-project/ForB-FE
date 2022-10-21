@@ -11,7 +11,7 @@ export const __chatList = createAsyncThunk(
   "CHATLIST",
   async (payload, thunkAPI) => {
     const { data } = await api.get(`/api/chat/Lists`);
-    console.log(data);
+
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -20,7 +20,6 @@ export const __chatMessage = createAsyncThunk(
   "CHATMESSAGE",
   async (payload, thunkAPI) => {
     const { data } = await api.get(`/api/chat/${payload}`);
-    console.log(data);
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -47,12 +46,6 @@ export const ChatSlice = createSlice({
   extraReducers: {
     [__chatList.fulfilled]: (state, action) => {
       state.chatList = action.payload.data;
-      // if (!action.payload.data && state.roomNum.roomId !== 1) {
-      //   state.roomNum = {
-      //     ...state.roomNum,
-      //     room_Id: action.payload.data[0].roomId,
-      //   };
-      // }
     },
     [__chatMessage.fulfilled]: (state, action) => {
       state.chatMessage = action.payload.data;

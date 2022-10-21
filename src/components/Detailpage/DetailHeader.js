@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { CommentAPI } from "../../shared/api";
-import { setAccessToken } from "../../shared/storage";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import useInput from "../../hooks/useInput";
 import { getUserName } from "../../shared/storage";
 import Modal from "../Modal/Modal";
+
 const DetailHeader = props => {
   const [closeModal, setCloseModal] = useState(false);
   const author = props.CommunityQuery?.data?.nickname;
@@ -79,8 +76,8 @@ const DeleteContentStyled = styled.div`
   align-items: flex-start;
   text-align: left;
   padding-top: 35px;
-  font-size: 3vmin;
-  color: white;
+  font-size: 2.5vmin;
+  color: black;
   div {
     margin-bottom: 15px;
   }

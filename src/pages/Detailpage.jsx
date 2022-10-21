@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { CommentAPI, CommunityContentAPI } from "../shared/api";
-import {
-  setAccessToken,
-  setRefreshToken,
-  setUserName,
-} from "../shared/storage";
-
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import useInput from "../hooks/useInput";
+import { useParams } from "react-router-dom";
+import { CommunityContentAPI } from "../shared/api";
+import { useQuery } from "react-query";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 import {
   CommentListComponent,

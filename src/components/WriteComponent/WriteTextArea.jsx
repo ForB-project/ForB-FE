@@ -19,11 +19,6 @@ const WriteTextArea = ({
       textArea.style.height = `${height + 15}px`;
     }
   };
-  useEffect(() => {
-    if (image) {
-      insertImg();
-    }
-  }, [image]);
 
   useEffect(() => {
     if (header) {
@@ -38,21 +33,6 @@ const WriteTextArea = ({
 
   const textArea = document.querySelector(".autoResize");
 
-  const insertImg = () => {
-    const textArea = document.querySelector(".autoResize");
-    let textValue = textArea.value;
-    let cursorPosition = textArea.selectionStart;
-    const beforeCursor = textValue.substring(0, cursorPosition);
-    const afterCursor = textValue.substring(
-      textArea.selectionEnd,
-      textValue.length
-    );
-    const addImg = image[image.length - 1];
-    if (image.length > 0) {
-      textArea.value = beforeCursor + "![](" + addImg + ")" + afterCursor;
-    }
-    textArea.focus();
-  };
   const insertHeader = () => {
     const textArea = document.querySelector(".autoResize");
     let textValue = textArea.value;

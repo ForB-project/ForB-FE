@@ -2,16 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { GreateHall, hogwart_logo } from "../../static/index";
+import { GreateHall } from "../../static/index";
 
 import { MessageFunction, MessageHeader, MessageList } from "../index";
 import { PageTitle } from "../../elem";
 
 const Message = () => {
-  const navigate = useNavigate();
   const chatList = useSelector(state => state.chat.chatList);
   const roomNum = useSelector(state => state.chat.roomNum.room_Id);
-  console.log(roomNum);
 
   return (
     <MessageBackLayout>

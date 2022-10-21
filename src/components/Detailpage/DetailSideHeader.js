@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
-import { CommentAPI, CommunityContentAPI } from "../../shared/api";
+import { useParams } from "react-router-dom";
+import { CommunityContentAPI } from "../../shared/api";
 
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
-import useInput from "../../hooks/useInput";
+import { useMutation, useQueryClient } from "react-query";
+import { FaHeart } from "react-icons/fa";
 
 const DetailSideHeader = props => {
   const param = useParams();

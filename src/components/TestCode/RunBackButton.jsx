@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-
 import {
   __sendPracCode1,
   __sendPracCode2,
 } from "../../redux/modules/TestCodeSlice";
-import {addBackPracCode} from "../../redux/modules/TestCodeSlice";
+import { addBackPracCode } from "../../redux/modules/TestCodeSlice";
 
-const RunBackButton = ({
-  exampleCode,
-  codePrac,
-  codeIndex,
-}) => {
+const RunBackButton = ({ exampleCode, codePrac, codeIndex }) => {
   const dispatch = useDispatch();
   const [backResult, setBackResult] = useState(null);
 
   const runBackCode = () => {
-    if(codePrac==='') return;
+    if (codePrac === "") return;
     const regex = /[^0-9]/g;
     if (exampleCode[codeIndex].id === 4) {
       const sendCodeInt = codePrac.split(/=|;/)[1].trim();
@@ -29,7 +24,7 @@ const RunBackButton = ({
         inputInt2: Number(sendCodeIf),
       });
     } else if (exampleCode[codeIndex].id === 5) {
-      const sendCodeInt = codePrac.split(';');
+      const sendCodeInt = codePrac.split(";");
       const firstInt = sendCodeInt[1].replace(regex, "");
       const secondInt = sendCodeInt[3].replace(regex, "");
       setBackResult({
@@ -39,31 +34,28 @@ const RunBackButton = ({
       });
     }
   };
-  
+
   useEffect(() => {
-    const result = {id:exampleCode[codeIndex].id, codePrac}
-    if (exampleCode[codeIndex].id === 4 && backResult!==null) {
+    const result = { id: exampleCode[codeIndex].id, codePrac };
+    if (exampleCode[codeIndex].id === 4 && backResult !== null) {
       dispatch(__sendPracCode1(backResult));
       dispatch(addBackPracCode(result));
-    } else if (exampleCode[codeIndex].id === 5 && backResult!==null ) {
+    } else if (exampleCode[codeIndex].id === 5 && backResult !== null) {
       dispatch(__sendPracCode2(backResult));
       dispatch(addBackPracCode(result));
     }
   }, [backResult]);
 
   return (
-        <RunBackCode
-          className="runButton"
-          onClick={() => runBackCode()}
-        >
-          run
-        </RunBackCode>
+    <RunBackCode className="runButton" onClick={() => runBackCode()}>
+      ▶︎ RUN
+    </RunBackCode>
   );
 };
 export default RunBackButton;
 
 const RunBackCode = styled.button`
-  width: 5vw;
+  width: 6vw;
   min-width: 42px;
   height: 2vw;
   min-height: 22px;
@@ -72,6 +64,7 @@ const RunBackCode = styled.button`
   margin-bottom: -2vh;
   border: 2px dashed black;
   display: flex;
+
   align-items: center;
   justify-content: center;
   background-color: #10141b;
@@ -80,12 +73,12 @@ const RunBackCode = styled.button`
   font-size: calc(0.1em + 1.2vw);
   font-weight: 500;
   color: white;
-  opacity: 0.6;
+  opacity: 1;
   cursor: pointer;
   .runButton {
     margin: -0.1vh 11vw -2vh 0px;
   }
   &:hover {
-    opacity: 1;
+    font-size: calc(0.1em + 1.3vw);
   }
 `;

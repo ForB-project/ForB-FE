@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import {
@@ -62,14 +62,14 @@ const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
 
   return (
     <RunFrontCode className="runButton" onClick={() => runFrontCode()}>
-      run
+      ▶︎ RUN
     </RunFrontCode>
   );
 };
 export default RunFrontButton;
 
 const RunFrontCode = styled.button`
-  width: 5vw;
+  width: 6vw;
   min-width: 42px;
   height: 2vw;
   min-height: 22px;
@@ -86,12 +86,12 @@ const RunFrontCode = styled.button`
   font-size: calc(0.1em + 1.2vw);
   font-weight: 500;
   color: white;
-  opacity: 0.6;
+  opacity: 1;
   cursor: pointer;
   .runButton {
     margin: -0.1vh 11vw -2vh 0px;
   }
   &:hover {
-    opacity: 1;
+    font-size: calc(0.1em + 1.3vw);
   }
 `;

@@ -35,7 +35,7 @@ const LogoutButton = props => {
       </LogoutButtonStlyed>
       {closeModal && (
         <Modal closeModal={() => setCloseModal(!closeModal)}>
-          <DeleteContentStyled> {`  로그아웃하기`}</DeleteContentStyled>
+          <DeleteContentStyled> 로그아웃하기</DeleteContentStyled>
           <button
             id="deleteButton"
             onClick={() => {
@@ -60,7 +60,7 @@ const DeleteContentStyled = styled.div`
   align-items: center;
   font-family: "neodgm";
   padding-top: 40px;
-  font-size: 4.5vmin;
+  font-size: 4vmin;
   font-weight: 800;
 `;
 const LogoutButtonStlyed = styled.div`

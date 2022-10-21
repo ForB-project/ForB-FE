@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import WriteModal from "../Modal/WriteModal";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styeld";
 
@@ -22,7 +20,6 @@ const LowerCommunity = () => {
           >
             글쓰기
           </S.WriteButton>
-          {/* {modalOpen && <WriteModal setModalOpen={setModalOpen} />} */}
         </S.Center>
       </S.Lower>
     </>

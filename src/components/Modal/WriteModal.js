@@ -61,7 +61,6 @@ const WriteModalStyled = styled.div`
   left: 20%;
   font-family: "neodgm";
 
-  /* border: 4px solid black; */
   border-radius: 20px;
   background-color: #888888;
 
@@ -89,7 +88,6 @@ const WriteModalStyled = styled.div`
 `;
 const TitleBoxStyled = styled.div``;
 const TitleInput = styled.input`
-  /* border: 4px solid black; */
   border: none;
   border-radius: 10px;
 
@@ -101,7 +99,6 @@ const TitleInput = styled.input`
   font-family: "neodgm";
 `;
 const ContentInput = styled.textarea`
-  /* border: 4px solid black; */
   border: none;
   border-radius: 20px;
 
@@ -118,10 +115,9 @@ const ContentBoxStyled = styled.div``;
 
 const WriteButtonBoxStyled = styled.div`
   border-radius: 10px;
-  /* border: 4px solid black; */
+
   border: none;
   background-color: #10141b;
-  /* float: right; */
 
   margin: 1vw;
   display: inline-block;
