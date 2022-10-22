@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useSelector,useDispatch } from "react-redux";
 import {__chatMessage} from "../../redux/modules/ChatSlice";
 
-
 const token = localStorage.getItem("access_token");
 
 const MessageFunction = () => {

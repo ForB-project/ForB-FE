@@ -18,7 +18,7 @@ const MessageHeader = () => {
   const reduxChatMessage = useSelector(state => state.chat.chatMessage);
   const roomNum = useSelector(state => state.chat.roomNum);
 
-  const selectChat = reduxChatMessage.find(list => list.roomId === roomNum.room_Id);
+  const selectChat = chat_list.find(list => list.roomId === roomNum.room_Id);
 
   // (get메소드) 페이지 접속시 채팅 리스트 조회
   const queryGetApi = async () => {
