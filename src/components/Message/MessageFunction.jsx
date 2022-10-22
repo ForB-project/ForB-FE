@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as StompJs from "@stomp/stompjs";
 import styled from "styled-components";
-import { useSelector,useDispatch } from "react-redux";
-import {__chatMessage} from "../../redux/modules/ChatSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { __chatMessage } from "../../redux/modules/ChatSlice";
 
 const token = localStorage.getItem("access_token");
 
@@ -17,7 +17,7 @@ const MessageFunction = () => {
 
   const roomNum = useSelector(state => state.chat.roomNum.room_Id);
   const reduxChatMessage = useSelector(state => state.chat.chatMessage);
-  
+
   // roomid와 비교해서 연결
   const connect = () => {
     client.current = new StompJs.Client({
@@ -51,12 +51,12 @@ const MessageFunction = () => {
         dispatch(__chatMessage(roomNum));
       },
       {
-        Authorization: token.slice(7),
+        Authorization: token?.slice(7),
       }
     );
   };
-  
-  //메시지 전송 
+
+  //메시지 전송
   const publish = message => {
     if (!client.current.connected || !message) {
       return;
@@ -65,7 +65,7 @@ const MessageFunction = () => {
       destination: "/pub/chat/message",
       body: JSON.stringify({ roomId: roomNum, message }),
       headers: {
-        Authorization: token.slice(7),
+        Authorization: token?.slice(7),
       },
     });
     inputFocus.current.focus();
