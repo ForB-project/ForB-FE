@@ -17,7 +17,7 @@ const RunFrontButton = ({ exampleCode, codePrac, codeIndex }) => {
     if (exampleCode[codeIndex].id === 2) {
       const firstAnswer = codePrac.split(/=|;/)[1].trim();
       const forIf = codePrac.replace(regex, "");
-      const secondAnswer = forIf.slice(firstAnswer.length, forIf.length);
+      const secondAnswer = forIf?.slice(firstAnswer.length, forIf.length);
       if (firstAnswer >= secondAnswer) {
         setFrontResult({
           ...frontResult,
