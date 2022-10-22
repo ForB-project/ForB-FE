@@ -20,12 +20,7 @@ const QuizWindow = () => {
     setQuizId(quizId + 1);
     setForbCount(answer);
   };
-  //마지막 질문 답변시 결과 페이지로 네비게이션 함수
-  const moveResult = answer => {
-    navigate("/result");
-    setForbCount(answer);
-  };
-
+  
   //프론트&백 결과 함수
   const resultFrontBack = answer => {
     if (answer / 100 > answer % 100) {
@@ -111,16 +106,6 @@ const moving = keyframes`
   }
   100%{
     margin-top: 0px;
-  }
-`;
-
-const disappear = keyframes`
-0%{
-  opacity: 1;
-}
-
-  100%{
-    opacity: 0;
   }
 `;
 

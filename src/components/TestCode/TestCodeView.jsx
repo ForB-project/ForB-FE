@@ -32,8 +32,7 @@ export default TestCodeView;
 const CodeViewLayout = styled.div`
   width: 45vw;
   height: 66.3vh;
-  min-height: 300px;
-  margin: auto;
+  min-height: 325px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +41,7 @@ const CodeViewLayout = styled.div`
 const CodeView = styled.div`
   width: 28vw;
   height: 63.4vh;
+  min-height: 304px;
   border: 8px dashed black;
   background-color: #10141b;
   display: flex;

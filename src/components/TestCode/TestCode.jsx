@@ -128,6 +128,7 @@ const CodeInputLayout = styled.div`
 
 const CodeExample = styled.div`
   width: 28vw;
+  min-width: 263px;
   height: 30vh;
   min-height: 140px;
   border: 6px dashed black;
@@ -137,11 +138,12 @@ const CodeExample = styled.div`
   justify-content: center;
   padding-top: 10px;
   white-space: pre-wrap;
-  font-size: 2vmin;
+  font-size: calc(0.5em + 0.4vw);
 `;
 
 const CodePractice = styled.textarea`
   width: 28vw;
+  min-width: 259px;
   height: 30vh;
   min-height: 140px;
   border: 6px dashed black;

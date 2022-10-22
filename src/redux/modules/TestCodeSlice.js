@@ -1,4 +1,4 @@
-import { createSlice, current, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../shared/api";
 
 const initialState = {
@@ -17,23 +17,23 @@ const initialState = {
   frontCode: [
     {
       id: 2,
-      exampleCode: `   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
+      exampleCode: `      *조건을 원하는 대로 입력해보세요!* \n               (JavaScript)\n --------------------------------------------\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
     },
     {
       id: 3,
-      exampleCode: `   *주의*  treeHit 초깃값은 0으로 고정,\n   ()안에 숫자 값은 20이하로 적용시켜주세요!\n --------------------------------------------\n\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
+      exampleCode: `   *주의*  treeHit 초깃값은 0으로 고정,\n   ()안에 숫자 값은 20이하로 적용시켜주세요!\n   (JavaScript)\n --------------------------------------------\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
     },
   ],
   backCode: [
     {
       id: 4,
       exampleCode:
-        '      *조건을 원하는 대로 입력해보세요!* \n --------------------------------------------\n\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
+        '      *조건을 원하는 대로 입력해보세요!* \n                   (Java)\n --------------------------------------------\n\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
     },
     {
       id: 5,
       exampleCode:
-        '   *주의*  treeHit 초깃값은 0으로 고정,\n   ()안에 숫자 값은 20이하로 적용시켜주세요!\n --------------------------------------------\n\n\n int treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     System.out.println("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n         System.out.println("나무 넘어갑니다.");\n  }\n }',
+        '   *주의*  treeHit 초깃값은 0으로 고정,\n   ()안에 숫자 값은 20이하로 적용시켜주세요!\n   (Java)\n --------------------------------------------\n\n\n int treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     System.out.println("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n         System.out.println("나무 넘어갑니다.");\n  }\n }',
     },
   ],
   result: [

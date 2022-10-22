@@ -29,6 +29,7 @@ const PageNation = ({
         <PageNationNum onClick={() => moveNum(0)}>1</PageNationNum>
         <PageNationNum onClick={() => moveNum(1)}>2</PageNationNum>
       </PageNationNumLayout>
+      <MoveButtonLayout>
       <FrontBackButton
         onClick={() =>
           exampleCode[codeIndex].id === 0 || exampleCode[codeIndex].id === 1
@@ -56,6 +57,7 @@ const PageNation = ({
       >
         Java
       </FrontBackButton>
+      </MoveButtonLayout>
     </PageNationLayout>
   );
 };
@@ -69,11 +71,11 @@ const PageNationLayout = styled.div`
 `;
 
 const PageNationNumLayout = styled.div`
-  width: 5vw;
-  min-width: 42px;
+  width: 3.5vw;
+  min-width: 50px;
   height: 2vw;
   min-height: 22px;
-  margin: -0.1vh 11vw -2vh auto;
+  margin: -0.1vh 0px -2vh auto;
   border: 2px dashed black;
   border-radius: 10px;
   display: flex;
@@ -90,7 +92,7 @@ const PageNationNum = styled.button`
   border: none;
   font-family: "neodgm", monospace;
   font-style: normal;
-  font-size: calc(0.1em + 1.2vw);
+  font-size: calc(0.2em + 0.8vw);
   font-weight: 500;
   opacity: 0.6;
   color: white;
@@ -98,14 +100,16 @@ const PageNationNum = styled.button`
   &:hover {
     opacity: 1;
   }
-  &:active {
-    opacity: 1;
-  }
+`;
+
+const MoveButtonLayout = styled.div`
+width: 29vw;
+min-width: 180px;
+display: flex;
+justify-content: end;
 `;
 
 const FrontBackButton = styled.button`
-  width: 6vw;
-  min-width: 42px;
   height: 2vw;
   min-height: 22px;
   margin: 0.5vw 0.2vw 0px 0.5vw;
@@ -128,8 +132,5 @@ const FrontBackButton = styled.button`
   }
   &:hover {
     font-size: calc(0.1em + 1.3vw);
-  }
-  &:focus {
-    opacity: 1;
   }
 `;

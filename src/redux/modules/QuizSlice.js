@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { api } from "../../shared/api";
 
 import {
@@ -8,9 +7,7 @@ import {
   broom1,
   broom2,
   scroll,
-  dragonImagine,
   dragonCastle2,
-  fancyMagic2,
   Brige,
   Team,
 } from "../../static/index";
