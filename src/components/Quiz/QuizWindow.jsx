@@ -156,7 +156,7 @@ const QuizSelect = styled.div`
 `;
 
 const QuizButton = styled.button`
-  width: 22vh;
+  width: 22.2vh;
   max-height: 34vh;
   height: calc(25em + 3vmin);
   margin: auto;

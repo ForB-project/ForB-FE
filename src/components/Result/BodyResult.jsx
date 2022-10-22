@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import styled from "styled-components";
-import { DoteS, DoteR, DoteG, DoteH } from "../../static";
+import { DoteS, DoteR, DoteG, DoteH,DoteRNone,DoteGNone, DoteHNone,DoteSNone } from "../../static";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
 import { useQuery } from "react-query";
@@ -17,20 +17,22 @@ const BodyResult = () => {
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
 
+  console.log(resultData);
+
   const selectImg = () => {
     let result = "";
     switch (resultData?.stackType) {
       case "S":
-        result = DoteS;
+        result = {backImage:DoteS, badge:DoteSNone};
         break;
       case "R":
-        result = DoteR;
+        result = {backImage:DoteR, badge:DoteRNone};
         break;
       case "G":
-        result = DoteG;
+        result = {backImage:DoteG, badge:DoteGNone};
         break;
       case "H":
-        result = DoteH;
+        result = {backImage:DoteH, badge:DoteHNone};
         break;
     }
     return result;
@@ -38,9 +40,14 @@ const BodyResult = () => {
   const title = resultData?.title;
 
   return (
-    <BodyStyled backImg={selectImg()}>
+    <BodyStyled backImg={selectImg().backImage}>
       <div className="BackImg"></div>
       <ContentsStyled>
+        <TitleLayout>
+          <Dormitory>{resultData?.title1}
+          </Dormitory>
+          <img src={selectImg().badge} />
+        </TitleLayout>
         <Topstyled>
           <MarkdownPreview
             style={{
@@ -50,7 +57,7 @@ const BodyResult = () => {
               backgroundColor: "transparent",
               color: "white",
             }}
-            source={title}
+            source={resultData?.title2}
           />
         </Topstyled>
         <Bodystyled>
@@ -73,18 +80,36 @@ const BodyResult = () => {
 
 export default BodyResult;
 
+const TitleLayout = styled.div`
+width: 50vw;
+min-width:850px;
+height: 100px;
+display: flex;
+align-items: center;
+margin-top:70px;
+img{
+  width: 4.5vw;
+}
+`;
+
+const Dormitory = styled.h1`
+font-size: calc(2.0em + 2.5vmin);
+line-height: "1.8rem",
+`;
+
 const BodyStyled = styled.div`
   position: relative;
   border-radius: 50px;
   background-color: black;
   opacity: 0.95;
   transition: 0.5s;
-  margin-top: 5vh;
+  margin-top: 6vh;
   margin-left: auto;
   margin-right: auto;
   width: 70vw;
+  min-width: 1050px;
   height: 70vh;
-  text-align: center;
+  min-height: 600px;
   .BackImg {
     position: absolute;
     top: 0;
@@ -100,7 +125,6 @@ const BodyStyled = styled.div`
 
 const ContentsStyled = styled.div`
   color: white;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,12 +133,14 @@ const ContentsStyled = styled.div`
     drop-shadow(0 -2px 0 black) drop-shadow(0 2px 0 black);
 `;
 const Topstyled = styled.div`
-  margin-top: 5%;
+  margin-top: 4%;
+  word-break: keep-all;
+  white-space: pre-wrap;
 `;
 
 const Bodystyled = styled.div`
   margin-top: 3%;
-  width: 80%;
+  width: 65%;
   word-break: keep-all;
   white-space: pre-line;
   text-align: left;
@@ -124,10 +150,11 @@ const Bodystyled = styled.div`
 
 const Footerstyled = styled.div`
   margin-top: 4%;
-  width: 80%;
+  width: 75%;
+  min-width:850px;
   word-break: keep-all;
   white-space: pre-line;
-  text-align: left;
+  text-align: center;
   font-size: 2.5vmin;
   line-height: 1.5rem;
   font-weight: 900;
