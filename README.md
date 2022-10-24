@@ -16,9 +16,11 @@ Final project Team 6
 ✔️ 간단한 질문을 제공하고 사용자의 답변에따라 `F/B 성향`을 파악하고 추천해드립니다. <br><br>
 <img width="400" height="250" src="https://user-images.githubusercontent.com/107379879/197470231-ff901e1b-fcb9-4c52-bfc5-585530c611b9.png">
 
-✔️ 테스트가 끝난 후에는 간단한 `체험코딩`을 진행해볼 수 있고 <br>
+✔️ 테스트가 끝난 후에는 간단한 `체험코딩`을 진행해볼 수 있고 <br><br>
+<img width="400" height="250" src="https://user-images.githubusercontent.com/107379879/197475606-6db61024-3d9d-4e6b-99be-d4f46bd3adab.png">
 
-✔️ 제공되는 간단한 `로드맵`으로 앞으로 공부할 내용을 확인 할 수 있습니다. <br>
+✔️ 제공되는 간단한 `로드맵`으로 앞으로 공부할 내용을 확인 할 수 있습니다. <br><br>
+<img width="400" height="250" src="https://user-images.githubusercontent.com/107379879/197476090-7407eb89-bfcd-4b0f-8936-d8e8c7e7a79a.png">
 
 <br><br>
 
