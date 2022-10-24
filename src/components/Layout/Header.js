@@ -91,7 +91,7 @@ const Header = () => {
                   <NavLink to="/community">게시판</NavLink>
                 </p>
                 <p>
-                  <NavLink to="/message">메세지</NavLink>
+                  <NavLink to="/message">메시지</NavLink>
                 </p>
                 <div
                   className="logoutButton"
