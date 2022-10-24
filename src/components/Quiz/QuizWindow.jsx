@@ -44,16 +44,13 @@ const QuizWindow = () => {
 
   return (
     <QuizWindowLayout>
-      <QuizContent>
-        {result.find(result => result === "B")
-          ? list[quizId].quizTitle
-          : list[quizId].quizTitle}
-      </QuizContent>
+      <QuizContent>{list[quizId]?.quizTitle}</QuizContent>
       <QuizSelect>
         <QuizButton
+        className="leftButton"
           onClick={() =>
-            result.find(result => result === "F") ||
-            result.find(result => result === "B")
+            result.find((result) => result === "F") ||
+            result.find((result) => result === "B")
               ? quizId === 7 || quizId === 10
                 ? resultTendency(forbCount + 100)
                 : forFrontBack(forbCount + 100)
@@ -62,16 +59,15 @@ const QuizWindow = () => {
               : forFrontBack(forbCount + 100)
           }
         >
-          {result.find(result => result === "B")
+          {result.find((result) => result === "B")
             ? list[quizId].answerFront
             : list[quizId].answerFront}
         </QuizButton>
         <QuizImage quizId={quizId} />
         <QuizButton
-          className="leftButton"
+          className="rightButton"
           onClick={() =>
-            result.find(result => result === "F") ||
-            result.find(result => result === "B")
+            result.find((result) => result === "F" || result === "B")
               ? quizId === 7 || quizId === 10
                 ? resultTendency(forbCount + 1)
                 : forFrontBack(forbCount + 1)
@@ -80,7 +76,7 @@ const QuizWindow = () => {
               : forFrontBack(forbCount + 1)
           }
         >
-          {result.find(result => result === "B")
+          {result.find((result) => result === "B")
             ? list[quizId].answerBack
             : list[quizId].answerBack}
         </QuizButton>
@@ -119,7 +115,8 @@ const QuizWindowLayout = styled.div`
 `;
 
 const QuizContent = styled.div`
-  width: 60vw;
+  width: 55vw;
+  min-width:650px;
   height: 10vh;
   background-color: #10141b;
   border-radius: 50px;
@@ -128,12 +125,14 @@ const QuizContent = styled.div`
   padding: 0px 5px;
   justify-content: center;
   align-items: center;
+  text-align: center;
   white-space: pre-wrap;
   box-shadow: 1px 5px 5px 1px black;
 `;
 
 const QuizSelect = styled.div`
   width: 60vw;
+  min-width: 650px;
   height: 35vh;
   display: flex;
   margin: auto;

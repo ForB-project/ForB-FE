@@ -26,7 +26,7 @@ const MessageFunction = () => {
         Authorization: token?.slice(7),
       },
       debug: function (str) {},
-      reconnectDelay: 25000,
+      reconnectDelay: 1000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       onConnect: () => {

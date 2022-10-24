@@ -16,7 +16,8 @@ const QuizImage = ({quizId}) => {
 export default QuizImage;
 
 const QuizImageLayout = styled.div`
-  width: 23vw;
+  width: 22.8vw;
+  min-width: 219px;
   height: 27vh;
   background-color: #10141b;
   margin: auto;

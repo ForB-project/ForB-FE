@@ -107,7 +107,7 @@ const BodyStyled = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 70vw;
-  min-width: 1050px;
+  min-width: 1120px;
   height: 70vh;
   min-height: 600px;
   .BackImg {
