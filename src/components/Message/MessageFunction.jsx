@@ -44,8 +44,8 @@ const MessageFunction = () => {
   };
 
   //메시지 저장 및 채팅방 구독
-  const subscribe = () => {
-    client.current.subscribe(
+  const subscribe = async () => {
+    await client.current.subscribe(
       `/sub/chat/room/${roomNum}`,
       () => {
         dispatch(__chatMessage(roomNum));
