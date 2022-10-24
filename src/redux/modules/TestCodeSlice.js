@@ -28,7 +28,7 @@ const initialState = {
     {
       id: 4,
       exampleCode:
-        '      *조건을 원하는 대로 입력해보세요!* \n                   (Java)\n --------------------------------------------\n\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
+        '      *조건을 원하는 대로 입력해보세요!* \n                   (Java)\n --------------------------------------------\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
     },
     {
       id: 5,
