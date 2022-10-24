@@ -49,4 +49,5 @@ const CodeView = styled.div`
   justify-content: center;
   flex-direction: column;
   white-space: pre-line;
+  overflow: auto;
 `;
