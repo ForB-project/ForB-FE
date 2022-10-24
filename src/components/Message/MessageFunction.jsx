@@ -3,12 +3,12 @@ import * as StompJs from "@stomp/stompjs";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { __chatMessage } from "../../redux/modules/ChatSlice";
+import { getAccessToken } from "../../shared/storage";
 
-const token = localStorage.getItem("access_token");
 
 const MessageFunction = () => {
   const dispatch = useDispatch();
-
+  const token = getAccessToken();
   const client = useRef({});
   const scrollRef = useRef(0);
   const inputFocus = useRef(null);
