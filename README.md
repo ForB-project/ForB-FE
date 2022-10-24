@@ -38,7 +38,7 @@ Final project Team 6
 |Front-end|Front-end|
 
 <br>
-## ⚙️ 기술 스택 
+<h2>⚙️ 기술 스택 </h2>
 <br>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/React-blue?style=flat-square&logo=react&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Axios-navy?style=flat-square&logo=axios&logoColor=white"/>
