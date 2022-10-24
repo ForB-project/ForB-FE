@@ -54,9 +54,9 @@ const CodeView = styled.div`
     width: 10px;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #2f3542;
+    background-color: grey;
   }
   ::-webkit-scrollbar-track {
-    background-color: grey;
+    background-color: #2f3542;
   }
 `;
