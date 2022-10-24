@@ -30,7 +30,15 @@ const MessageFunction = () => {
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       onConnect: () => {
-        subscribe();
+       client.current.subscribe(
+      `/sub/chat/room/${roomNum}`,
+      () => {
+        dispatch(__chatMessage(roomNum));
+      },
+      {
+        Authorization: token?.slice(7),
+      }
+    );
       },
       onStompError: frame => {
         console.error(frame);
@@ -43,18 +51,6 @@ const MessageFunction = () => {
     client.current.deactivate();
   };
 
-  //메시지 저장 및 채팅방 구독
-  const subscribe = async () => {
-    await client.current.subscribe(
-      `/sub/chat/room/${roomNum}`,
-      () => {
-        dispatch(__chatMessage(roomNum));
-      },
-      {
-        Authorization: token?.slice(7),
-      }
-    );
-  };
 
   //메시지 전송
   const publish = message => {
