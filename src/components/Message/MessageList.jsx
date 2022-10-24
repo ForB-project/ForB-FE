@@ -22,7 +22,6 @@ const MessageList = () => {
   const queryList = useQuery("chat_list", queryGetApi, {
     onSuccess: data => {
       dispatch(addRoom(data.data.data));
-      queryClient.invalidateQueries("chat_list");
     },
   });
 
