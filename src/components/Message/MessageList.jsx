@@ -22,6 +22,7 @@ const MessageList = () => {
   const queryList = useQuery("chat_list", queryGetApi, {
     onSuccess: data => {
       dispatch(addRoom(data.data.data));
+      queryClient.invalidateQueries("chat_list");
     },
   });
 
@@ -31,7 +32,7 @@ const MessageList = () => {
       window.confirm("로그인이 필요합니다");
       navigate("/");
     }
-    queryClient.invalidateQueries("chat_list");  
+    queryClient.invalidateQueries("chat_list");
   }, [chatList]);
 
   if (queryList.isLoading) {
