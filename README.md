@@ -1,4 +1,4 @@
-<h1>  ForB 🐣 </h1>
+<h1>  ForB 🦉 </h1>
 
 Final project Team 6
 
@@ -6,33 +6,48 @@ Final project Team 6
 
 <br>
 개발을 처음 배우려고 할 때, 누구나 하는 고민
-
 <br>
 
 <h3> 'Front-end와 Back-end중 내게 잘어울리고, 더 잘 할 수 있는건 뭘까?' 🤔 </h3>
 
 <br>
+그러한 고민을 덜어주기 위해 저희가 직접 만들었습니다.
 
-✔️ 간단한 질문을 제공하고 사용자의 답변에따라 `F/B 성향`을 파악하고 추천해드립니다. <br><br>
-<img width="400" height="250" src="https://user-images.githubusercontent.com/107379879/197470231-ff901e1b-fcb9-4c52-bfc5-585530c611b9.png">
+<br>
+내 개발 성향부터 개발 공부를 위한 초석을 다지기 쉽게 로드맵과 커뮤니티를 통해 소통하면서
 
-✔️ 테스트가 끝난 후에는 간단한 `체험코딩`을 진행해볼 수 있고 <br><br>
-<img width="400" height="250" src="https://user-images.githubusercontent.com/107379879/197475606-6db61024-3d9d-4e6b-99be-d4f46bd3adab.png">
+<br>
+자신의 실력을 기를 수 있게 해주는 서비스를 제공합니다!
 
-✔️ 제공되는 간단한 `로드맵`으로 앞으로 공부할 내용을 확인 할 수 있습니다. <br><br>
-<img width="400" height="250" src="https://user-images.githubusercontent.com/107379879/197476090-7407eb89-bfcd-4b0f-8936-d8e8c7e7a79a.png">
+<h2>❗ 주요 기능 ❗</h2>
+<br>
+✔️ 간단한 질문을 제공하고 사용자의 답변에따라 `F/B 성향`을 파악하고 추천해드립니다. <br>
 
+✔️ 테스트가 끝난 후에는 간단한 `체험코딩`을 진행해볼 수 있습니다. <br>
+
+✔️ 제공되는 간단한 `로드맵`으로 앞으로 공부할 내용을 확인 할 수 있습니다. <br>
+
+✔️ 제공 된 로드맵을 배경으로 `커뮤니티`에 속해 여러 사용자들과 소통할 수 있습니다. <br>
+
+✔️ 커뮤니티에서 좋은 컨텐츠를 제공한 유저에게 `메시지`기능으로 직접 소통할 수 있습니다. <br>
 <br><br>
-
-- 앞서 언급한 기술을 구현한 후에.. <br>
-  공부중인 다른 개발자들과 질문을 주고 받을 수 있는 `커뮤니티👨‍👩‍👧‍👦` 기능을 구현 할 예정입니다.
-
-
+## Contributors💻
+|이태권|조무제|
+|로그인, 메인페이지, 로드맵페이지, 게시판페이지, 마이페이지, 사이드바, 글작성-수정페이지, 댓글 기능,검색모달|심리(성향)테스트, 코드 연습 기능(html,js,java),채팅 기능|
+|Front-end|Front-end|
 <br><br>
+## ⚙️ 기술 스택 
+<br>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/React-blue?style=flat-square&logo=react&logoColor=white"/>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Axios-navy?style=flat-square&logo=axios&logoColor=white"/>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Redux-purple?style=flat-square&logo=redux&logoColor=white"/>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/ReactQuery-red?style=flat-square&logo=reactquery&logoColor=white"/>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/TailwindCSS-blue?style=flat-square&logo=tailwindcss&logoColor=white"/>
+<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/AWS-232f3e?style=flat-square&logo=amazon&logoColor=white"/>
 
 ### S.A📑
 
-[w8 Team 6 Notion](https://www.notion.so/F-or-B-8ef2e74bb1184d23a83c67eaab82fb36)
+[Team 6 Notion](https://www.notion.so/F-or-B-8ef2e74bb1184d23a83c67eaab82fb36)
 
 <br>
 
@@ -63,5 +78,3 @@ Final project Team 6
 ---
 
 Sparta Innovation Camp in Seoul
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
