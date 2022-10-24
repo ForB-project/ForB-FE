@@ -33,18 +33,18 @@ Final project Team 6
 <br><br>
 ## Contributors💻
 |이태권|조무제|
-|------|-----|
+|-----|-----|
 |로그인, 메인페이지, 로드맵페이지, 게시판페이지, 마이페이지, 사이드바, 글작성-수정페이지, 댓글 기능,검색모달|심리(성향)테스트, 코드 연습 기능(html,js,java),채팅 기능|
 |Front-end|Front-end|
-<br><br>
+
+<br>
 ## ⚙️ 기술 스택 
 <br>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/React-blue?style=flat-square&logo=react&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Axios-navy?style=flat-square&logo=axios&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Redux-purple?style=flat-square&logo=redux&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/ReactQuery-red?style=flat-square&logo=reactquery&logoColor=white"/>
-<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/TailwindCSS-blue?style=flat-square&logo=tailwindcss&logoColor=white"/>
-<img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/AWS-232f3e?style=flat-square&logo=amazon&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 
 ### S.A📑
 
