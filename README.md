@@ -14,6 +14,7 @@ Final project Team 6
 <br>
 
 ✔️ 간단한 질문을 제공하고 사용자의 답변에따라 `F/B 성향`을 파악하고 추천해드립니다. <br>
+![image](https://user-images.githubusercontent.com/107379879/197470231-ff901e1b-fcb9-4c52-bfc5-585530c611b9.png)
 
 ✔️ 테스트가 끝난 후에는 간단한 `체험코딩`을 진행해볼 수 있고 <br>
 
