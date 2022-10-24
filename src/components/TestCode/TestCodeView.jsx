@@ -7,17 +7,17 @@ const TestCodeView = ({ codePrac, exampleCode, codeIndex }) => {
   //보안 문제로 인해 dompurify패키지 사용했습니다.
   const sanitizer = dompurify.sanitize;
 
-  const result = useSelector(state => state.testCode.result);
+  const result = useSelector((state) => state.testCode.result);
 
   return (
     <CodeViewLayout>
-      {result.find(list => list.id === exampleCode[codeIndex].id).pracCode ===
+      {result.find((list) => list.id === exampleCode[codeIndex].id).pracCode ===
         "" && codePrac === "" ? (
         <CodeView>코드를 입력해볼까요?</CodeView>
       ) : exampleCode[codeIndex].id >= 2 ? (
         <CodeView
           dangerouslySetInnerHTML={{
-            __html: result.find(list => list.id === exampleCode[codeIndex].id)
+            __html: result.find((list) => list.id === exampleCode[codeIndex].id)
               .answer,
           }}
         />
@@ -50,4 +50,13 @@ const CodeView = styled.div`
   flex-direction: column;
   white-space: pre-line;
   overflow: auto;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: grey;
+  }
 `;
