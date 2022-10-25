@@ -10,7 +10,7 @@ const initialState = {
 export const __chatList = createAsyncThunk(
   "CHATLIST",
   async (payload, thunkAPI) => {
-    const { data } = await api.get(`/api/chat/Lists`);
+    const { data } = await api.get(`/api/chat/list`);
 
     return thunkAPI.fulfillWithValue(data);
   }
