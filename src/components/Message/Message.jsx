@@ -49,24 +49,6 @@ const MessageBackLayout = styled.div`
   align-items: center;
 `;
 
-const HeaderLay = styled.div`
-  width: 85vw;
-  min-width: 774px;
-  height: 10vh;
-  min-height: 70px;
-  margin: 0px 0px -40px 0px;
-  .Logo {
-    width: 6vw;
-    min-width: 80px;
-    height: 9.5vh;
-    min-height: 80px;
-    margin: 5px;
-    position: fixed;
-    z-index: 5;
-    cursor: pointer;
-  }
-`;
-
 const MessageWindowLayout = styled.div`
   width: 60vw;
   min-width: 774px;

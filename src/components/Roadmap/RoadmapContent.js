@@ -36,7 +36,9 @@ const RoadmapContent = forwardRef((props, ref) => {
 
   return (
     <>
-      <ContentStyled>
+      <ContentStyled onClick={() => {
+            ContentHref();
+          }}>
         <ContentImgStyled
           thumbnail={thumbnail}
           onClick={() => {
