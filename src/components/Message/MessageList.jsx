@@ -16,7 +16,7 @@ const MessageList = () => {
   // (get메소드) 페이지 접속시 채팅 리스트 조회
   const queryClient = useQueryClient();
   const queryGetApi = () => {
-    return api.get(`/api/chat/Lists`);
+    return api.get(`/api/chat/list`);
   };
 
   const queryList = useQuery("chat_list", queryGetApi, {
