@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { api } from "../../shared/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,6 @@ const MessageList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const chatList = useSelector(state => state.chat.chatList);
-  const [chat_list, setChatList] = useState([]);
 
   // (get메소드) 페이지 접속시 채팅 리스트 조회
   const queryClient = useQueryClient();
@@ -23,9 +22,18 @@ const MessageList = () => {
   const queryList = useQuery("chat_list", queryGetApi, {
     onSuccess: data => {
       dispatch(addRoom(data.data.data));
-      setChatList(data.data.data);
     },
   });
+
+  useEffect(() => {
+   
+  }, []);
+
+  useEffect(()=>{
+     queryClient.prefetchQuery(["CommnunityContent"], () =>
+    queryGetApi()
+      );
+  },[])
 
   // 페이지 접속시 로그인 여부 확인 후 query를 통한 업데이트
   useEffect(() => {
@@ -34,7 +42,7 @@ const MessageList = () => {
       navigate("/");
     }
     queryClient.invalidateQueries("chat_list");
-  }, [chatList,chat_list]);
+  }, [chatList]);
 
   if (queryList.isLoading) {
     return null;
@@ -50,7 +58,7 @@ const MessageList = () => {
       <MessageListHeader>
         {localStorage.getItem("username") || null}
       </MessageListHeader>
-      {chat_list.map(list =>
+      {chatList.map(list =>
         list.subMember !== list.pubMember ? (
           list.pubMember === localStorage.getItem("username") ? (
             <ChatList key={list.roomId} onClick={() => changeNum(list.roomId)}>
