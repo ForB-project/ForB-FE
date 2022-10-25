@@ -24,11 +24,7 @@ const MessageList = () => {
       dispatch(addRoom(data.data.data));
     },
   });
-
-  useEffect(() => {
-   
-  }, []);
-
+  
   useEffect(()=>{
      queryClient.prefetchQuery(["CommnunityContent"], () =>
     queryGetApi()
