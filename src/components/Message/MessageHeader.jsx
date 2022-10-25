@@ -65,7 +65,7 @@ const MessageHeader = () => {
       <ProfileNameBox>
         {chat_list.length &&
         reduxChatMessage !== null &&
-        chat_list.find(list => list.roomId === roomNum.room_Id)
+        selectChat
           ? selectChat.pubMember === localStorage.getItem("username")
             ? selectChat.subMember
             : selectChat.pubMember

@@ -59,7 +59,7 @@ const initialState = {
     },
     {
       id: 6,
-      quizTitle: "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야하는데, ",
+      quizTitle: "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야 하는데, ",
       answerFront: "최전방에서 \n학생들을 이끌며 \n용에게 맞선다.",
       answerBack: "최전방에서 \n싸우기보다는 \n뒤에서 \n보조에 힘을 다한다.",
       forbCount: 0,
@@ -68,7 +68,7 @@ const initialState = {
     {
       id: 7,
       quizTitle:
-        "마법 팀대항전이 곧 열린다. \n조를 구해야 참가 할 수 있는데 이때 당신은? ",
+        "마법 팀 대항전이 곧 열린다. \n조를 구해야 참가할 수 있는데 이때 당신은? ",
       answerFront: "원하는 학생 \n혹은 \n믿을 수 있는 \n학생을 찾아 나선다.",
       answerBack: "원했던 조가 아니라도 협동을 위해 발 벗고 나선다.",
       forbCount: 0,
@@ -76,7 +76,7 @@ const initialState = {
     },
     {
       id: 8,
-      quizTitle: "팀대항전 중에 끊어진 다리를 건너야한다. 이때 당신은?",
+      quizTitle: "팀 대항전 중에 끊어진 다리를 건너야 한다. 이때 당신은?",
       answerFront:
         "자신이 \n먼저 넘어가서 \n팀원들이 \n넘어 올 수 있게 \n도와준다.",
       answerBack: "의견을 \n내기보다는 \n보조 하는데 \n힘을 다한다.",
@@ -85,7 +85,7 @@ const initialState = {
     },
     {
       id: 9,
-      quizTitle: "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야하는데,",
+      quizTitle: "용이 학교에 쳐들어 왔다! 당장 용을 물리쳐야 하는데,",
       answerFront: "꼭 물리쳐야 하나..? \n유인해서 \n피해를 최소화 하자!  ",
       answerBack: "죽이지 않고, \n내 것으로 \n만들어야겠다.",
       forbCount: 0,
@@ -94,7 +94,7 @@ const initialState = {
     {
       id: 10,
       quizTitle:
-        "마법 팀대항전이 곧 열린다. \n조를 구해야 참가 할 수 있는데 이때 당신은? ",
+        "마법 팀 대항전이 곧 열린다. \n조를 구해야 참가할 수 있는데 이때 당신은? ",
       answerFront: "친분과 관계 없이 \n실력이 가장 좋은 사람들과 함께 한다.",
       answerBack: "자신과 \n친분이 있거나 \n믿을 수 있는 \n사람과 함께 한다.",
       forbCount: 0,
@@ -102,7 +102,7 @@ const initialState = {
     },
     {
       id: 11,
-      quizTitle: "팀대항전 중에 끊어진 다리를 건너야한다. 이때 당신은?",
+      quizTitle: "팀 대항전 중에 끊어진 다리를 건너야 한다. 이때 당신은?",
       answerFront: "다리를 \n건너지 않고 \n다른 방법을 \n찾아본다.",
       answerBack: "누군가 \n희생하게 돼도 \n상관하지 않고 \n다리를 건너는 것이\n 최우선이다.",
       forbCount: 0,
