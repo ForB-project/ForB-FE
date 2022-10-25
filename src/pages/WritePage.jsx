@@ -18,7 +18,9 @@ const WritePage = () => {
   const formData = new FormData();
   const onSubmitHandler = async e => {
     e.preventDefault();
-
+    if (!title) {
+      window.alert("제목을 적어주세요");
+    } else {
     const data = {
       title: title,
       content: markdown,
@@ -40,6 +42,7 @@ const WritePage = () => {
       window.alert(
         "오류가 발생했습니다 일단 내용을 복사하고 새로고침해주세요!"
       );
+    }
     }
   };
   const onClearPhot = () => {
