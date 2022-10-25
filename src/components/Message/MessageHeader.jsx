@@ -22,7 +22,7 @@ const MessageHeader = () => {
 
   // (get메소드) 페이지 접속시 채팅 리스트 조회
   const queryGetApi = async () => {
-    return await api.get(`/api/chat/Lists`);
+    return await api.get(`/api/chat/list`);
   };
 
   const queryList = useQuery("chat_list", queryGetApi, {
@@ -65,7 +65,7 @@ const MessageHeader = () => {
       <ProfileNameBox>
         {chat_list.length &&
         reduxChatMessage !== null &&
-        selectChat
+        chat_list.find(list => list.roomId === roomNum.room_Id)
           ? selectChat.pubMember === localStorage.getItem("username")
             ? selectChat.subMember
             : selectChat.pubMember
