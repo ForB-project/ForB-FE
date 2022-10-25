@@ -208,8 +208,7 @@ const ContentImgStyled = styled.div`
   border-radius: 10px;
   width: 200px;
   height: 100px;
-  background-image: url(${props =>
-    props.thumbnail ? props.thumbnail : mainFirst});
+  background-image: url(${props =>props.thumbnail ? props.thumbnail : mainFirst});
   background-size: cover;
 `;
 const StackStyled = styled.div`
