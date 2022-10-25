@@ -20,6 +20,7 @@ const BodyCommunity = () => {
     () => getAllCommunity(pageParam),
     {
       keepPreviousData: true,
+      refetchInterval: 1000,
     }
   );
 
