@@ -32,8 +32,15 @@ const CommunityContentList = forwardRef((props, ref) => {
         />
 
         <StackStyled>
-          <span className="ContentTitle">{props.data.title}</span>
-          <p className="ContentDesc">{props.data.content}</p>
+          <span className="ContentTitle"  
+            onClick={() => {
+            navigate(`/community/${props.navigate}`);
+          }}
+            >{props.data.title}</span>
+          <p className="ContentDesc"
+            onClick={() => {
+            navigate(`/community/${props.navigate}`);
+          }}>{props.data.content}</p>
         </StackStyled>
 
         <div className="DeleteButton">
