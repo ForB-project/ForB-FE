@@ -44,21 +44,15 @@ const RoadmapContent = forwardRef((props, ref) => {
           }}
         />
 
-        <StackStyled>
-          <span
-            className="ContentTitle"
-            onClick={() => {
+        <StackStyled onClick={() => {
               ContentHref();
-            }}
-          >
+            }}>
+          <span
+            className="ContentTitle" >
             {props.data.title}
           </span>
           <p
-            className="ContentDesc"
-            onClick={() => {
-              ContentHref();
-            }}
-          >
+            className="ContentDesc" >
             {props.data.desc}
           </p>
         </StackStyled>
