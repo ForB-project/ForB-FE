@@ -16,7 +16,7 @@ const BodyResult = () => {
     return res.data?.data[0];
   };
 
-  const postResult2 = async ()=> {
+  const postResult2 = async () => {
     const res = await QuizResultAPI.repostResult();
     console.log(res,'postResult2');
     return res.data?.data[0];
@@ -33,9 +33,9 @@ const BodyResult = () => {
 
   useEffect(()=>{
     postResult(data);
-    queryClient.prefetchQuery(["QuizResult"], () =>
-    postResult(data)
-      );
+    // queryClient.prefetchQuery(["QuizResult"], () =>
+    // postResult(data)
+    //   );
     console.log(resultData,'useEffect');
   },[])
 
