@@ -18,7 +18,7 @@ const BodyResult = () => {
   const resultData = resultQuery?.data;
 
   useEffect(()=>{
-    BodyResult();
+    postResult();
   },[])
 
   const selectImg = () => {
