@@ -30,7 +30,7 @@ const BodyResult = () => {
   const selectImg = () => {
     let result = "";
     switch (
-      localStorage.getItem("access_token") && localStorage.getItem("answer")
+      localStorage.getItem("access_token") && !localStorage.getItem("answer")
         ? savedResultData?.stackType
         : resultData?.stackType
     ) {
