@@ -30,7 +30,7 @@ const BodyResult = () => {
     let result = "";
     switch (
       localStorage.getItem("access_token")
-        ? savedResultData.stackType
+        ? savedResultData?.stackType
         : resultData?.stackType
     ) {
       case "S":
