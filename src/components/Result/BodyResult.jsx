@@ -12,23 +12,24 @@ const BodyResult = () => {
 
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
+    console.log(res,'postResult1');
     return res.data?.data[0];
   };
 
   const postResult2 = async ()=> {
     const res = await QuizResultAPI.repostResult();
-    console.log(res);
+    console.log(res,'postResult2');
     return res.data?.data[0];
   };
 
   const data = getQuizResult();
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
-  console.log(resultData);
+  console.log(resultData,'resultData1');
 
   const resultQuery2 = useQuery("QuizResult2", () => postResult2());
   const resultData2 = resultQuery2?.data;
-  console.log(resultData2);
+  console.log(resultData2,'resultData2');
 
   useEffect(()=>{
     postResult(data);
