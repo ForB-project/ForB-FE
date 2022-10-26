@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect } from "react";
 import styled from "styled-components";
 import { DoteS, DoteR, DoteG, DoteH,DoteRNone,DoteGNone, DoteHNone,DoteSNone } from "../../static";
 import MarkdownPreview from "@uiw/react-markdown-preview";
@@ -8,56 +8,46 @@ import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
-  const queryClient = useQueryClient();
-
+  //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴 
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
-    console.log(res,'postResult1');
     return res.data?.data[0];
   };
-
-  const postResult2 = async () => {
+  //로그인이 돼 있는 조건에서 결과값 받아옴
+  const getResult = async () => {
     const res = await QuizResultAPI.repostResult();
-    console.log(res,'postResult2');
     return res.data?.data[0];
   };
 
   const data = getQuizResult();
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
-  console.log(resultData,'resultData1');
 
-  const resultQuery2 = useQuery("QuizResult2", () => postResult2());
-  const resultData2 = resultQuery2?.data;
-  console.log(resultData2,'resultData2');
-
-  useEffect(()=>{
-    postResult(data);
-    // queryClient.prefetchQuery(["QuizResult"], () =>
-    // postResult(data)
-    //   );
-    console.log(resultData,'useEffect');
-  },[])
+  const savedResultQuery = useQuery("SavedQuizResult", () => getResult());
+  const savedResultData = savedResultQuery?.data;
 
   const selectImg = () => {
     let result = "";
-    switch (resultData?.stackType) {
+    switch (
+      localStorage.getItem("access_token")
+        ? savedResultData.stackType
+        : resultData?.stackType
+    ) {
       case "S":
-        result = {backImage:DoteS, badge:DoteSNone};
+        result = { backImage: DoteS, badge: DoteSNone };
         break;
       case "R":
-        result = {backImage:DoteR, badge:DoteRNone};
+        result = { backImage: DoteR, badge: DoteRNone };
         break;
       case "G":
-        result = {backImage:DoteG, badge:DoteGNone};
+        result = { backImage: DoteG, badge: DoteGNone };
         break;
       case "H":
-        result = {backImage:DoteH, badge:DoteHNone};
+        result = { backImage: DoteH, badge: DoteHNone };
         break;
     }
     return result;
   };
-  const title = resultData?.title;
 
   return (
     <BodyStyled backImg={selectImg().backImage}>
