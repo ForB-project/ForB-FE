@@ -8,6 +8,7 @@ import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
+  const queryClient = useQueryClient();
   //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴 
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
@@ -46,8 +47,18 @@ const BodyResult = () => {
         result = { backImage: DoteH, badge: DoteHNone };
         break;
     }
+    console.log(savedResultData?.stackType,'savedResultData');
+    console.log(resultData?.stackType,'resultData?');
+    console.log(result);
     return result;
   };
+
+  useEffect(()=>{
+    queryClient.prefetchQuery(["SavedQuizResult"], () =>
+    getResult()
+      );
+    console.log(savedResultData,'useEffect savedResultData');
+  },[]);
 
   return (
     <BodyStyled backImg={selectImg().backImage}>
