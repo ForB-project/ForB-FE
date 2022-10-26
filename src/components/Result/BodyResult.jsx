@@ -1,14 +1,13 @@
-import { React, useEffect } from "react";
+import { React} from "react";
 import styled from "styled-components";
 import { DoteS, DoteR, DoteG, DoteH,DoteRNone,DoteGNone, DoteHNone,DoteSNone } from "../../static";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
-import { useQuery,useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
-  const queryClient = useQueryClient();
   //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴 
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
@@ -47,26 +46,21 @@ const BodyResult = () => {
         result = { backImage: DoteH, badge: DoteHNone };
         break;
     }
-    console.log(savedResultData?.stackType,'savedResultData');
-    console.log(resultData?.stackType,'resultData?');
-    console.log(result);
     return result;
   };
 
-  useEffect(()=>{
-    queryClient.prefetchQuery(["SavedQuizResult"], () =>
-    getResult()
-      );
-    console.log(savedResultData,'useEffect savedResultData');
-  },[]);
+  const resultDes = 
+  localStorage.getItem("access_token") && 
+  !localStorage.getItem("answer")
+  ? savedResultData
+  : resultData;
 
   return (
     <BodyStyled backImg={selectImg().backImage}>
       <div className="BackImg"></div>
       <ContentsStyled>
         <TitleLayout>
-          <Dormitory>{resultData?.title1}
-          </Dormitory>
+          <Dormitory>{resultDes?.title1}</Dormitory>
           <img src={selectImg().badge} />
         </TitleLayout>
         <Topstyled>
@@ -78,7 +72,7 @@ const BodyResult = () => {
               backgroundColor: "transparent",
               color: "white",
             }}
-            source={resultData?.title2}
+            source={resultDes?.title2}
           />
         </Topstyled>
         <Bodystyled>
@@ -90,10 +84,10 @@ const BodyResult = () => {
               backgroundColor: "transparent",
               color: "white",
             }}
-            source={resultData?.description1}
+            source={resultDes?.description1}
           />
         </Bodystyled>
-        <Footerstyled>{resultData?.description2}</Footerstyled>
+        <Footerstyled>{resultDes?.description2}</Footerstyled>
       </ContentsStyled>
     </BodyStyled>
   );
