@@ -15,10 +15,20 @@ const BodyResult = () => {
     return res.data?.data[0];
   };
 
+  const postResult2 = async ()=> {
+    const res = await QuizResultAPI.repostResult();
+    console.log(res);
+    return res.data?.data[0];
+  };
+
   const data = getQuizResult();
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
   console.log(resultData);
+
+  const resultQuery2 = useQuery("QuizResult2", () => postResult2());
+  const resultData2 = resultQuery2?.data;
+  console.log(resultData2);
 
   useEffect(()=>{
     postResult(data);
