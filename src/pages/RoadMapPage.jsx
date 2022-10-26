@@ -18,8 +18,8 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { GrSearchAdvanced } from "react-icons/gr";
 import { getAccessToken } from "../shared/storage";
-import { QuizResultAPI } from "../../shared/api";
-import { getQuizResult } from "../../shared/storage";
+import { QuizResultAPI } from "../shared/api";
+import { getQuizResult } from "../shared/storage";
 
   
 const RoadMap = () => {
