@@ -39,7 +39,7 @@ const QuizWindow = () => {
     result.push(answer);
     dispatch(__quizResult(result));
     setQuizResult(result);
-    navigate("/result");
+    setTimeout(()=>{navigate("/result")},2000);
   };
 
   return (
