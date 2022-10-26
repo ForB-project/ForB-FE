@@ -51,6 +51,9 @@ export const Title = styled.div`
 export const Author = styled.div`
   border-radius: 5px;
   background-color: #10141b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   width: 10vw;
   margin-left: 1vw;
