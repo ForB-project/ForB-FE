@@ -31,6 +31,9 @@ const BodyResult = () => {
     switch (
       localStorage.getItem("access_token") && !localStorage.getItem("answer")
         ? savedResultData?.stackType
+        : !localStorage.getItem("access_token") &&
+          !localStorage.getItem("answer")
+        ? null
         : resultData?.stackType
     ) {
       case "S":
@@ -46,6 +49,8 @@ const BodyResult = () => {
         result = { backImage: DoteH, badge: DoteHNone };
         break;
     }
+    console.log(savedResultData);
+    console.log(resultData);
     return result;
   };
 
