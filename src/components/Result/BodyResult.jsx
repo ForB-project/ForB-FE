@@ -17,7 +17,9 @@ const BodyResult = () => {
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
 
-  console.log(resultData);
+  useEffect(()=>{
+    BodyResult();
+  },[])
 
   const selectImg = () => {
     let result = "";

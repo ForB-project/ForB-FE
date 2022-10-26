@@ -18,6 +18,10 @@ import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { GrSearchAdvanced } from "react-icons/gr";
 import { getAccessToken } from "../shared/storage";
+import { QuizResultAPI } from "../../shared/api";
+import { getQuizResult } from "../../shared/storage";
+
+  
 const RoadMap = () => {
   const navigate = useNavigate();
   const [ref, inView] = useInView();
@@ -34,7 +38,7 @@ const RoadMap = () => {
 
   //StackId 이용해서 category불러오는 부분
   const [choseStack, setChoseStack] = useState(1);
-  const getCategory = async StackId => {
+  const getCategory = async (StackId) => {
     return await RoadmapAPI.getCategory(StackId);
   };
   const categoryList = useQuery(
@@ -79,12 +83,29 @@ const RoadMap = () => {
   );
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
 
+  const postResult = async (data) => {
+    const res = await QuizResultAPI.postResult(data);
+    return res.data?.data[0];
+  };
+
+  const data = getQuizResult();
+  const resultQuery = useQuery("QuizResult", () => postResult(data));
+  const resultData = resultQuery?.data;
+
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
     if (!getAccessToken()) {
       navigate("/");
     }
+    //테스트 결과에 따른 로드맵 FE,BE 출력
+    postResult();
+    setCurrentStack(
+      resultData?.stackType === "S" || resultData?.stackType === "R"
+        ? !CurrentStack
+        : null
+    );
   }, [getAccessToken()]);
+
   // inView일때 다음 페이지 가져오기
   useEffect(() => {
     if (inView) {
