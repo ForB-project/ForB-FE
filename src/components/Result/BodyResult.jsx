@@ -1,6 +1,15 @@
-import { React} from "react";
+import { React } from "react";
 import styled from "styled-components";
-import { DoteS, DoteR, DoteG, DoteH,DoteRNone,DoteGNone, DoteHNone,DoteSNone } from "../../static";
+import {
+  DoteS,
+  DoteR,
+  DoteG,
+  DoteH,
+  DoteRNone,
+  DoteGNone,
+  DoteHNone,
+  DoteSNone,
+} from "../../static";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
 import { useQuery } from "react-query";
@@ -8,8 +17,8 @@ import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
-  //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴 
-  const postResult = async data => {
+  //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴
+  const postResult = async (data) => {
     const res = await QuizResultAPI.postResult(data);
     return res.data?.data[0];
   };
@@ -54,11 +63,12 @@ const BodyResult = () => {
     return result;
   };
 
-  const resultDes = 
-  localStorage.getItem("access_token") && 
-  !localStorage.getItem("answer")
-  ? savedResultData
-  : resultData;
+  const resultDes =
+    localStorage.getItem("access_token") && !localStorage.getItem("answer")
+      ? savedResultData
+      : !localStorage.getItem("access_token") && !localStorage.getItem("answer")
+      ? null
+      : resultData;
 
   return (
     <BodyStyled backImg={selectImg().backImage}>
@@ -101,20 +111,20 @@ const BodyResult = () => {
 export default BodyResult;
 
 const TitleLayout = styled.div`
-width: 50vw;
-min-width:850px;
-height: 100px;
-display: flex;
-align-items: center;
-margin-top:70px;
-img{
-  width: 4.5vw;
-}
+  width: 50vw;
+  min-width: 850px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+  img {
+    width: 4.5vw;
+  }
 `;
 
 const Dormitory = styled.h1`
-font-size: calc(2.0em + 2.5vmin);
-line-height: "1.8rem",
+  font-size: calc(2em + 2.5vmin);
+  line-height: "1.8rem";
 `;
 
 const BodyStyled = styled.div`
@@ -138,7 +148,7 @@ const BodyStyled = styled.div`
     height: 100%;
     z-index: -1;
     opacity: 0.6;
-    background-image: url(${props => props.backImg});
+    background-image: url(${(props) => props.backImg});
     background-size: cover;
   }
 `;
@@ -171,7 +181,7 @@ const Bodystyled = styled.div`
 const Footerstyled = styled.div`
   margin-top: 4%;
   width: 75%;
-  min-width:850px;
+  min-width: 850px;
   word-break: keep-all;
   white-space: pre-line;
   text-align: center;
