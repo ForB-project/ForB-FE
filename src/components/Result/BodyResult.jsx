@@ -30,8 +30,10 @@ const BodyResult = () => {
   const selectImg = () => {
     let result = "";
     switch (
-      localStorage.getItem("access_token")
-        ? savedResultData?.stackType
+      localStorage.getItem("access_token") && savedResultData?.stackType !== "S"
+        ? savedResultData?.stackType === resultData?.stackType
+          ? savedResultData?.stackType
+          : resultData?.stackType
         : resultData?.stackType
     ) {
       case "S":
