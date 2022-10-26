@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { DoteS, DoteR, DoteG, DoteH,DoteRNone,DoteGNone, DoteHNone,DoteSNone } from "../../static";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
-import { useQuery } from "react-query";
+import { useQuery,useQueryClient } from "react-query";
 import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
+  const queryClient = useQueryClient();
+
   const postResult = async data => {
     const res = await QuizResultAPI.postResult(data);
     return res.data?.data[0];
@@ -19,7 +21,10 @@ const BodyResult = () => {
   console.log(resultData);
 
   useEffect(()=>{
-    postResult();
+    postResult(data);
+    queryClient.prefetchQuery(["QuizResult"], () =>
+    postResult(data)
+      );
     console.log(resultData,'useEffect');
   },[])
 
