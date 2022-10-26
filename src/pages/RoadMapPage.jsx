@@ -92,6 +92,8 @@ const RoadMap = () => {
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
 
+  console.log(resultData);
+
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
     if (!getAccessToken()) {
