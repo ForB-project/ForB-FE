@@ -1,4 +1,5 @@
 import { React } from "react";
+import { useSelector} from "react-redux";
 import styled from "styled-components";
 import {
   DoteS,
@@ -14,25 +15,15 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 
 import { useQuery } from "react-query";
 import { QuizResultAPI } from "../../shared/api";
-import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
+  const testResult = useSelector(state => state.quiz.testResult);
   
-  //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴
-  const postResult = async (data) => {
-    const res = await QuizResultAPI.postResult(data);
-    return res.data?.data[0];
-  };
   //로그인이 돼 있는 조건에서 결과값 받아옴
   const getResult = async () => {
     const res = await QuizResultAPI.repostResult();
     return res.data?.data[0];
   };
-
-  const data = getQuizResult();
-
-  const resultQuery = useQuery("QuizResult", () => postResult(data));
-  const resultData = resultQuery?.data;
 
   const savedResultQuery = useQuery("SavedQuizResult", () => getResult());
   const savedResultData = savedResultQuery?.data;
@@ -45,7 +36,7 @@ const BodyResult = () => {
         : !localStorage.getItem("access_token") &&
           !localStorage.getItem("answer")
         ? null
-        : resultData?.stackType
+        : !testResult[0]? savedResultData?.stackType: testResult[0]?.stackType
     ) {
       case "S":
         result = { backImage: DoteS, badge: DoteSNone };
@@ -60,8 +51,7 @@ const BodyResult = () => {
         result = { backImage: DoteH, badge: DoteHNone };
         break;
     }
-    console.log(savedResultData);
-    console.log(resultData);
+ 
     return result;
   };
 
@@ -70,7 +60,11 @@ const BodyResult = () => {
       ? savedResultData
       : !localStorage.getItem("access_token") && !localStorage.getItem("answer")
       ? null
-      : resultData;
+      : !testResult[0]
+      ? savedResultData
+      : testResult[0];
+
+ 
 
   return (
     <BodyStyled backImg={selectImg().backImage}>

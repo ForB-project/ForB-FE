@@ -83,16 +83,14 @@ const RoadMap = () => {
   );
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
 
-  const postResult = async (data) => {
+  const __postResult = async (data) => {
     const res = await QuizResultAPI.postResult(data);
     return res.data?.data[0];
   };
 
   const data = getQuizResult();
-  const resultQuery = useQuery("QuizResult", () => postResult(data));
+  const resultQuery = useQuery("QuizResult", () => __postResult(data));
   const resultData = resultQuery?.data;
-
-  console.log(resultData);
 
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
@@ -100,7 +98,7 @@ const RoadMap = () => {
       navigate("/");
     }
     //테스트 결과에 따른 로드맵 FE,BE 출력
-    postResult();
+    __postResult();
     setCurrentStack(
       resultData?.stackType === "S" || resultData?.stackType === "R"
         ? !CurrentStack

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { hogwart_logo } from "../../static/index";
-import { MenuButton } from "../index";
 
 const TestCodeHeader = () => {
   const navigate = useNavigate();
@@ -11,7 +10,6 @@ const TestCodeHeader = () => {
     <CodeHeader>
       <img className="Logo" src={hogwart_logo} onClick={() => navigate("/")} />
       <CodeButtonLayout>
-        <MenuButton />
       </CodeButtonLayout>
     </CodeHeader>
   );

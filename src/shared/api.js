@@ -2,13 +2,12 @@ import axios from "axios";
 import {
   getRefreshToken,
   getAccessToken,
-  setResult,
   removeAccessToken,
   removeQuizResult,
   removeRefreshToken,
   removeUserName,
 } from "./storage";
-import { useNavigate } from "react-router-dom";
+
 const BASE_URL = process.env.REACT_APP_API;
 
 const ClearStorage = () => {

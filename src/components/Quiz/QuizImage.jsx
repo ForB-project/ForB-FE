@@ -9,7 +9,6 @@ const QuizImage = ({quizId}) => {
       <img className="centerImage" src={list[quizId].image}/>
     </QuizImageLayout>
   );
-  
 };
 
 export default QuizImage;
