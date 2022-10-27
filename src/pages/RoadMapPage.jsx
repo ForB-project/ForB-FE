@@ -99,7 +99,7 @@ const RoadMap = () => {
       navigate("/");
     }
     //테스트 결과에 따른 로드맵 FE,BE 시작
-    queryClient.prefetchQuery(["CommnunityContent"], () =>
+    queryClient.prefetchQuery(["QuizResult"], () =>
     __getResult()
       );
     setCurrentStack(
