@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useInfiniteQuery } from "react-query";
+import { useQuery, useInfiniteQuery,queryClient } from "react-query";
 import styled, { keyframes } from "styled-components";
 import {
   RoadmapStack,
@@ -98,6 +98,7 @@ const RoadMap = () => {
       navigate("/");
     }
     //테스트 결과에 따른 로드맵 FE,BE 출력
+    queryClient.invalidateQueries("QuizResult");
     setCurrentStack(
       resultData?.stackType === "S" || resultData?.stackType === "R"
         ? !CurrentStack
