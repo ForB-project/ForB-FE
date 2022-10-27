@@ -83,8 +83,8 @@ const RoadMap = () => {
   );
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
 
-  const __postResult = async (data) => {
-    const res = await QuizResultAPI.postResult(data);
+  const __postResult = async () => {
+    const res = await QuizResultAPI.repostResult();
     return res.data?.data[0];
   };
 
@@ -98,7 +98,6 @@ const RoadMap = () => {
       navigate("/");
     }
     //테스트 결과에 따른 로드맵 FE,BE 출력
-    __postResult();
     setCurrentStack(
       resultData?.stackType === "S" || resultData?.stackType === "R"
         ? !CurrentStack
