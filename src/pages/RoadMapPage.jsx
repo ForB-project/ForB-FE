@@ -104,6 +104,7 @@ const RoadMap = () => {
         ? !CurrentStack
         : null
     );
+    console.log(resultData,'resultData in useEffect');
   }, [getAccessToken()]);
 
   // inView일때 다음 페이지 가져오기
