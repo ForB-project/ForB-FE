@@ -116,9 +116,7 @@ export const __quizResult = createAsyncThunk(
   "QUIZRESULT",
   async (payload, thunkAPI) => {
     const result = { type: payload[0], answerSum: payload[1] };
-    console.log(result,'result in QuizSlice');
     const { data } = await api.post(`/api/test/result`, result);
-    console.log(data.data,'data in QuizSlice');
     return thunkAPI.fulfillWithValue(data);
   }
 );
@@ -128,7 +126,6 @@ export const QuizSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {[__quizResult.fulfilled]: (state, action) => {
-    console.log(action.payload.data);
     state.testResult = action.payload.data;
   },},
 });

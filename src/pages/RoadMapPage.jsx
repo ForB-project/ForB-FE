@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useInfiniteQuery,useQueryClient } from "react-query";
+import { useQuery, useInfiniteQuery, useQueryClient } from "react-query";
 import styled, { keyframes } from "styled-components";
 import {
   RoadmapStack,
@@ -84,13 +84,13 @@ const RoadMap = () => {
   );
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
 
-  const __postResult = async () => {
+  //프론트,백 엔드 결과에 따른 로드맵 시작 설정을 위한 React-Query
+  const __getResult = async () => {
     const res = await QuizResultAPI.repostResult();
     return res.data?.data[0];
   };
-
   const data = getQuizResult();
-  const resultQuery = useQuery("QuizResult", () => __postResult(data));
+  const resultQuery = useQuery("QuizResult", () => __getResult(data));
   const resultData = resultQuery?.data;
 
   //로그인 안돼있으면 홈페이지로
@@ -98,8 +98,10 @@ const RoadMap = () => {
     if (!getAccessToken()) {
       navigate("/");
     }
-    //테스트 결과에 따른 로드맵 FE,BE 출력
-    queryClient.invalidateQueries("QuizResult");
+    //테스트 결과에 따른 로드맵 FE,BE 시작
+    queryClient.prefetchQuery(["CommnunityContent"], () =>
+    __getResult()
+      );
     setCurrentStack(
       resultData?.stackType === "S" || resultData?.stackType === "R"
         ? !CurrentStack
