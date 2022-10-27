@@ -136,6 +136,7 @@ const CodeExample = styled.div`
   margin: auto;
   display: flex;
   justify-content: center;
+  text-align: center;
   padding-top: 10px;
   white-space: pre-wrap;
   font-size: calc(0.5em + 0.4vw);
