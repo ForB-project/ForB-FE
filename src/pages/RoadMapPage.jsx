@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useInfiniteQuery,queryClient } from "react-query";
+import { useQuery, useInfiniteQuery,useQueryClient } from "react-query";
 import styled, { keyframes } from "styled-components";
 import {
   RoadmapStack,
@@ -23,6 +23,7 @@ import { getQuizResult } from "../shared/storage";
 
   
 const RoadMap = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [ref, inView] = useInView();
   const [closeModal, setCloseModal] = useState(false);
