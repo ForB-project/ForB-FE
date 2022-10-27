@@ -11,17 +11,17 @@ const initialState = {
     {
       id: 1,
       exampleCode:
-        '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!\n --------------------------------------------\n\n\n<div \n  style="width:200px; \n  height:200px; \n  border:1px solid red; \n  background-color:black;">\n\n 이건 inline style이라는 거에요!\n 궁금하다면 직접 공부해볼까요? \n\n</div>',
+        '   *직접 쳐보면 뭐가 다른지 알 수 있어요!!*\n --------------------------------------------\n\n\n<div \n  style="width:200px; \n  height:200px; \n  border:1px solid red; \n  background-color:black;">\n\n 이건 inline style이라는 거에요!\n 궁금하다면 직접 공부해볼까요? \n\n</div>',
     },
   ],
   frontCode: [
     {
       id: 2,
-      exampleCode: `             *보안상의 문제로* \n       *숫자값만 변경,적용 가능해요!*\n                      (JavaScript)\n --------------------------------------------\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
+      exampleCode: `             *보안상의 문제로* \n       *숫자값만 변경,적용 가능해요!*\n               (JavaScript)\n --------------------------------------------\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
     },
     {
       id: 3,
-      exampleCode: `           *주의*  treeHit 초깃값은 0으로 고정,\n        ()안에 숫자 값은 20이하로 적용시켜주세요!\n               (JavaScript)\n      --------------------------------------------\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
+      exampleCode: `           *주의*  treeHit 초깃값은 0으로 고정,\n        ()안에 숫자 값은 20이하로 적용시켜주세요!\n                     (JavaScript)\n      --------------------------------------------\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
     },
   ],
   backCode: [
