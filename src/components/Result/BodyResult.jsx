@@ -17,6 +17,7 @@ import { QuizResultAPI } from "../../shared/api";
 import { getQuizResult } from "../../shared/storage";
 
 const BodyResult = () => {
+  
   //비로그인,로그인시에 결과값을 post메소드로 저장 및 받아옴
   const postResult = async (data) => {
     const res = await QuizResultAPI.postResult(data);
@@ -29,6 +30,7 @@ const BodyResult = () => {
   };
 
   const data = getQuizResult();
+
   const resultQuery = useQuery("QuizResult", () => postResult(data));
   const resultData = resultQuery?.data;
 
