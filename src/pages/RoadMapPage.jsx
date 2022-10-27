@@ -99,9 +99,7 @@ const RoadMap = () => {
       navigate("/");
     }
     //테스트 결과에 따른 로드맵 FE,BE 시작
-    queryClient.prefetchQuery(["SavedQuizResult"], () =>
-    getResult()
-      );
+    getResult();
     setCurrentStack(
       savedResultData?.stackType === "S" || savedResultData?.stackType === "R"
         ? !CurrentStack
