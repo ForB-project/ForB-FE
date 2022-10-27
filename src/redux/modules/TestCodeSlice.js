@@ -17,7 +17,7 @@ const initialState = {
   frontCode: [
     {
       id: 2,
-      exampleCode: `      *조건을 원하는 대로 입력해보세요!* \n               (JavaScript)\n --------------------------------------------\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
+      exampleCode: `             *보안상의 문제로* \n         *숫자값만 변경,적용 가능해요!*\n               (JavaScript)\n --------------------------------------------\n\n\n var money = 2000;\n\n if (money>=3000) {\n      console.log("택시를 타고 가라");\n} else{\n     console.log("걸어가라");\n}`,
     },
     {
       id: 3,
