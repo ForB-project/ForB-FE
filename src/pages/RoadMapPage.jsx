@@ -85,13 +85,13 @@ const RoadMap = () => {
   const contentHeader = infiniteQuery?.data?.pages[0]?.result[0];
 
   //프론트,백 엔드 결과에 따른 로드맵 시작 설정을 위한 React-Query
-  const __getResult = async () => {
+  const getResult = async () => {
     const res = await QuizResultAPI.repostResult();
     return res.data?.data[0];
   };
-  const data = getQuizResult();
-  const resultQuery = useQuery("QuizResult", () => __getResult(data));
-  const resultData = resultQuery?.data;
+
+  const savedResultQuery = useQuery("SavedQuizResult", () => getResult());
+  const savedResultData = savedResultQuery?.data;
 
   //로그인 안돼있으면 홈페이지로
   useEffect(() => {
@@ -99,15 +99,12 @@ const RoadMap = () => {
       navigate("/");
     }
     //테스트 결과에 따른 로드맵 FE,BE 시작
-    queryClient.prefetchQuery(["QuizResult"], () =>
-    __getResult()
-      );
     setCurrentStack(
-      resultData?.stackType === "S" || resultData?.stackType === "R"
+      savedResultData?.stackType === "S" || savedResultData?.stackType === "R"
         ? !CurrentStack
         : null
     );
-    console.log(resultData,'resultData in useEffect');
+    console.log(savedResultData,'resultData in useEffect');
   }, [getAccessToken()]);
 
   // inView일때 다음 페이지 가져오기
