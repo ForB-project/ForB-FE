@@ -73,12 +73,15 @@ const RunBackCode = styled.button`
   font-size: calc(0.1em + 1.2vw);
   font-weight: 500;
   color: white;
-  opacity: 1;
+  opacity: 0.8;
   cursor: pointer;
   .runButton {
     margin: -0.1vh 11vw -2vh 0px;
   }
   &:hover {
-    font-size: calc(0.1em + 1.3vw);
+    opacity: 1;
+  }
+  &:focus{
+    opacity: 1;
   }
 `;

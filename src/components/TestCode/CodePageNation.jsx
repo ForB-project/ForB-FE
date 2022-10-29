@@ -100,6 +100,9 @@ const PageNationNum = styled.button`
   &:hover {
     opacity: 1;
   }
+  &:focus{
+    opacity: 1;
+  }
 `;
 
 const MoveButtonLayout = styled.div`
