@@ -79,9 +79,6 @@ const RunBackCode = styled.button`
     margin: -0.1vh 11vw -2vh 0px;
   }
   &:hover {
-    opacity: 1;
-  }
-  &:focus{
-    opacity: 1;
+    font-size: calc(0.1em + 1.3vw);
   }
 `;
