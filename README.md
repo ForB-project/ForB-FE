@@ -46,6 +46,8 @@ Final project Team 6
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/ReactQuery-red?style=flat-square&logo=reactquery&logoColor=white"/>
 <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 
+### 시연영상 보러가기
+<a herf="https://youtu.be/5fmzHbIjn8M">시연영상</a>
 ### S.A📑
 
 [Team 6 Notion](https://www.notion.so/F-or-B-8ef2e74bb1184d23a83c67eaab82fb36)
