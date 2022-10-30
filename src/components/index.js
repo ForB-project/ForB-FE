@@ -30,7 +30,9 @@ import CommentListComponent from "./Detailpage/CommentListComponent";
 import DetailHeader from "./Detailpage/DetailHeader";
 import DetailSideHeader from "./Detailpage/DetailSideHeader";
 import MobileView from "./Layout/MobileView";
+import MypageBody from "./MypageComponent/MypageBody";
 export {
+  MypageBody,
   MobileView,
   DetailSideHeader,
   DetailHeader,
