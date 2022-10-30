@@ -47,7 +47,7 @@ Final project Team 6
 <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 
 ### 시연영상 보러가기
-<a herf="https://youtu.be/5fmzHbIjn8M">시연영상</a>
+[시연영상](https://youtu.be/5fmzHbIjn8M)
 ### S.A📑
 
 [Team 6 Notion](https://www.notion.so/F-or-B-8ef2e74bb1184d23a83c67eaab82fb36)
