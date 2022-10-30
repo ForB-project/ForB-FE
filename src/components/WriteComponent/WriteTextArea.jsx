@@ -72,15 +72,6 @@ const WriteTextArea = ({
     if (textStyle !== "```" && selectedCursor === "") {
       textArea.value =
         beforeCursor + textStyle + textMessage + textStyle + afterCursor;
-    } else if (textStyle === "```" && selectedCursor) {
-      textArea.value =
-        beforeCursor +
-        textStyle +
-        "\n" +
-        selectedCursor +
-        "\n" +
-        textStyle +
-        afterCursor;
     } else if (textStyle === "```" && selectedCursor === "") {
       textArea.value =
         beforeCursor +

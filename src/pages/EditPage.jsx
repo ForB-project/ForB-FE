@@ -21,14 +21,17 @@ const EditPage = () => {
   const formData = new FormData();
   const preImg = detail?.postImage;
   const preContent = detail?.content;
+  //게시글 데이터 가져오기
   useEffect(() => {
     getCommunityContent(contentId);
   }, []);
+  // 토큰 없으면 홈으로
   useEffect(() => {
     if (!getAccessToken()) {
       navigate("/");
     }
   }, [getAccessToken()]);
+  //가져온 데이터 뷰에 그리기
   useEffect(() => {
     if (preContent) {
       setMarkdown(preContent);
