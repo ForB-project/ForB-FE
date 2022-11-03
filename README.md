@@ -1,3 +1,4 @@
+<div align="center">
 <h1>  ForB 🦉 </h1>
 
 Final project Team 6
@@ -40,6 +41,7 @@ Final project Team 6
 <br>
 <h2>⚙️ 기술 스택 </h2>
 <br>
+
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/React-blue?style=flat-square&logo=react&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Axios-navy?style=flat-square&logo=axios&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Redux-purple?style=flat-square&logo=redux&logoColor=white"/>
@@ -79,5 +81,6 @@ Final project Team 6
 <br><br>
 
 ---
+</div>
 
 Sparta Innovation Camp in Seoul
