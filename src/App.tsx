@@ -19,21 +19,16 @@ import {
   EditPage,
 } from "./pages";
 
-function App() {
+function App(): JSX.Element {
   const queryClient = new QueryClient();
-  const Desktop = ({ children }) => {
-    const isDesktop = useMediaQuery({ minWidth: 920 });
-    return isDesktop ? children : null;
-  };
-  const Mobile = ({ children }) => {
-    const isMobile = useMediaQuery({ maxWidth: 919 });
-    return isMobile ? children : null;
-  };
+  const Desktop: boolean = useMediaQuery({ minWidth: 920 });
+  const Mobile: boolean = useMediaQuery({ maxWidth: 919 });
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <Layout>
-          <Desktop>
+          {Desktop ? (
             <Routes>
               <Route path="/" element={<Mainpage />} />
               <Route path="/roadmap" element={<RoadMap />} />
@@ -52,13 +47,13 @@ function App() {
               <Route path="/write" element={<WritePage />} />
               <Route path="/edit/:id" element={<EditPage />} />
             </Routes>
-          </Desktop>
+          ) : (
+            ""
+          )}
         </Layout>
         <ReactQueryDevtools />
       </QueryClientProvider>
-      <Mobile>
-        <MobileView />
-      </Mobile>
+      {Mobile ? <MobileView /> : ""}
     </>
   );
 }

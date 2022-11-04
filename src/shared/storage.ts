@@ -1,4 +1,4 @@
-export const setAccessToken = Token => {
+export const setAccessToken = (Token: string) => {
   return localStorage.setItem("access_token", Token);
 };
 
@@ -9,7 +9,7 @@ export const removeAccessToken = () => {
   return localStorage.removeItem("access_token");
 };
 
-export const setRefreshToken = Token => {
+export const setRefreshToken = (Token: string) => {
   return localStorage.setItem("refresh_token", Token);
 };
 
@@ -21,7 +21,7 @@ export const removeRefreshToken = () => {
   return localStorage.removeItem("refresh_token");
 };
 
-export const setUserName = Token => {
+export const setUserName = (Token: string) => {
   return localStorage.setItem("username", Token);
 };
 
@@ -38,7 +38,7 @@ export const getExpiration = () => {
 export const removeExpiration = () => {
   return localStorage.removeItem("expiration");
 };
-export const setQuizResult = result => {
+export const setQuizResult = (result: string[]) => {
   const type = result[0];
   const answer = result[1];
   return (
@@ -49,7 +49,7 @@ export const setQuizResult = result => {
 export const getQuizResult = () => {
   const answer = localStorage.getItem("answer");
   const type = localStorage.getItem("type");
-  const data = { type: type, answerSum: Number(answer)};
+  const data = { type: type, answerSum: Number(answer) };
   return data;
 };
 export const removeQuizResult = () => {

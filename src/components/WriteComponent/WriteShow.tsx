@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
-const WriteShow = ({ markdown, attachment, onClearPhot, preImg }) => {
+const WriteShow = ({ markdown, attachment, onClearPhot }) => {
   document.documentElement.setAttribute("data-color-mode", "light");
 
   return (

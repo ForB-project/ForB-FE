@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
-const RoadmapCategory = props => {
+interface Iprops {
+  data: { id: number; title: string; category: string };
+  setChoseCategory: (x: { id: number; title: string }) => void;
+}
+const RoadmapCategory = (props: Iprops) => {
   return (
     <StackStyled
       onClick={() => {

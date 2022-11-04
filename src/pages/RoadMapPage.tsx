@@ -21,7 +21,6 @@ import { getAccessToken } from "../shared/storage";
 import { QuizResultAPI } from "../shared/api";
 import { getQuizResult } from "../shared/storage";
 
-  
 const RoadMap = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ const RoadMap = () => {
 
   //StackId 이용해서 category불러오는 부분
   const [choseStack, setChoseStack] = useState(1);
-  const getCategory = async (StackId) => {
+  const getCategory = async (StackId: number) => {
     return await RoadmapAPI.getCategory(StackId);
   };
   const categoryList = useQuery(
@@ -56,7 +55,14 @@ const RoadMap = () => {
     title: "html",
   });
 
-  const getContent = async (data, pageParam, getSort) => {
+  const getContent = async (
+    data: {
+      id: number;
+      title: string;
+    },
+    pageParam: number,
+    getSort: string
+  ) => {
     const res = await RoadmapAPI.getContent(data, pageParam, getSort);
 
     return {
@@ -100,11 +106,12 @@ const RoadMap = () => {
     }
     //테스트 결과에 따른 로드맵 FE,BE 시작
     getResult();
-    setCurrentStack(
-      savedResultData?.stackType === "S" || savedResultData?.stackType === "R"
-        ? !CurrentStack
-        : null
-    );
+    if (
+      savedResultData?.stackType === "S" ||
+      savedResultData?.stackType === "R"
+    ) {
+      setCurrentStack(!CurrentStack);
+    }
   }, [getAccessToken()]);
 
   // inView일때 다음 페이지 가져오기
@@ -138,14 +145,16 @@ const RoadMap = () => {
           {CurrentStack ? "FE 로드맵으로 전환" : "BE 로드맵으로 전환"}
         </button>
         <div className="header">
-          {(CurrentStack ? BackStack : FrontStack)?.map((x, idx) => {
-            return (
-              <React.Fragment key={idx}>
-                <RoadmapStack data={x} setChoseStack={setChoseStack} />
-                <p>{`=>`}</p>
-              </React.Fragment>
-            );
-          })}
+          {(CurrentStack ? BackStack : FrontStack)?.map(
+            (x: { id: number; title: string }, idx: number) => {
+              return (
+                <React.Fragment key={idx}>
+                  <RoadmapStack data={x} setChoseStack={setChoseStack} />
+                  <p>{`=>`}</p>
+                </React.Fragment>
+              );
+            }
+          )}
           <div>다음 배울 거는?</div>
         </div>
         <div className="hr">
@@ -153,16 +162,18 @@ const RoadMap = () => {
         </div>
         <BodyStyled>
           <div className="category">
-            {CurrentCategory?.map((x, idx) => {
-              return (
-                <React.Fragment key={x.id}>
-                  <RoadmapCategory
-                    data={x}
-                    setChoseCategory={setChoseCategory}
-                  />
-                </React.Fragment>
-              );
-            })}
+            {CurrentCategory?.map(
+              (x: { id: number; title: string; category: string }) => {
+                return (
+                  <React.Fragment key={x.id}>
+                    <RoadmapCategory
+                      data={x}
+                      setChoseCategory={setChoseCategory}
+                    />
+                  </React.Fragment>
+                );
+              }
+            )}
           </div>
           <ContentContainerStyled>
             <button
@@ -186,7 +197,7 @@ const RoadMap = () => {
               {infiniteQuery.data?.pages.map((x, idx) => {
                 return (
                   <React.Fragment key={idx}>
-                    {x?.result[0]?.contentList.map((y, keys) => {
+                    {x?.result[0]?.contentList.map((y, keys: number) => {
                       if (keys % 7 === 6) {
                         return (
                           <RoadmapContent

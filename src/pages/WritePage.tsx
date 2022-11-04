@@ -16,33 +16,32 @@ const WritePage = () => {
   const [image, setImage] = useState(null);
 
   const formData = new FormData();
-  const onSubmitHandler = async e => {
-    e.preventDefault();
+  const onSubmitHandler = async () => {
     if (!title) {
       window.alert("제목을 적어주세요");
     } else {
-    const data = {
-      title: title,
-      content: markdown,
-    };
-    const blob = new Blob([JSON.stringify(data)], {
-      type: "application/json",
-    });
-    formData.append("data", blob);
-    if (image === null) {
-      formData.delete("image");
-    } else {
-      formData.append("image", image);
-    }
-    const res = await CommunityContentAPI.postCommunityContent(formData);
+      const data = {
+        title: title,
+        content: markdown,
+      };
+      const blob = new Blob([JSON.stringify(data)], {
+        type: "application/json",
+      });
+      formData.append("data", blob);
+      if (image === null) {
+        formData.delete("image");
+      } else {
+        formData.append("image", image);
+      }
+      const res = await CommunityContentAPI.postCommunityContent(formData);
 
-    if (res.data.success) {
-      navigate(`/community/${res.data.data.id}`);
-    } else if (!res.data.success) {
-      window.alert(
-        "오류가 발생했습니다 일단 내용을 복사하고 새로고침해주세요!"
-      );
-    }
+      if (res.data.success) {
+        navigate(`/community/${res.data.data.id}`);
+      } else if (!res.data.success) {
+        window.alert(
+          "오류가 발생했습니다 일단 내용을 복사하고 새로고침해주세요!"
+        );
+      }
     }
   };
   const onClearPhot = () => {

@@ -5,7 +5,21 @@ import { LikeAPI, ContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
 import Modal from "../Modal/Modal";
-const RoadmapContent = forwardRef((props, ref) => {
+interface Iprops {
+  data: {
+    thumbnail: string;
+    link: string;
+    title: string;
+    desc: string;
+    id: number;
+    heartCnt: number;
+    heartCheck: boolean;
+  };
+  querykey: { id: number; title?: string };
+  mypagekey: number;
+}
+type Ref = HTMLDivElement;
+const RoadmapContent = forwardRef<Ref, Iprops>((props, ref) => {
   const [closeModal, setCloseModal] = useState(false);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
@@ -13,7 +27,7 @@ const RoadmapContent = forwardRef((props, ref) => {
     window.open(props.data.link, "_blank");
   }
 
-  const contentLike = async contentId => {
+  const contentLike = async (contentId: number) => {
     const res = await LikeAPI.togglelike(contentId);
 
     return res;
@@ -24,7 +38,7 @@ const RoadmapContent = forwardRef((props, ref) => {
     },
   });
 
-  const DeleteContent = async contentId => {
+  const DeleteContent = async (contentId: number) => {
     const res = await ContentAPI.deleteContent(contentId);
     return res;
   };
@@ -44,19 +58,15 @@ const RoadmapContent = forwardRef((props, ref) => {
           }}
         />
 
-        <StackStyled onClick={() => {
-              ContentHref();
-            }}>
-          <span
-            className="ContentTitle" >
-            {props.data.title}
-          </span>
-          <p
-            className="ContentDesc" >
-            {props.data.desc}
-          </p>
+        <StackStyled
+          onClick={() => {
+            ContentHref();
+          }}
+        >
+          <span className="ContentTitle">{props.data.title}</span>
+          <p className="ContentDesc">{props.data.desc}</p>
         </StackStyled>
-        {props.querykey === 1 ? (
+        {props.mypagekey === 1 ? (
           <div className="DeleteButton">
             <div
               className="DeleteBack"
@@ -197,12 +207,13 @@ const ContentStyled = styled.div`
   }
 `;
 
-const ContentImgStyled = styled.div`
+const ContentImgStyled = styled.div<{ thumbnail: string }>`
   grid-column-start: 1;
   border-radius: 10px;
   width: 200px;
   height: 100px;
-  background-image: url(${props =>props.thumbnail ? props.thumbnail : mainFirst});
+  background-image: url(${props =>
+    props.thumbnail ? props.thumbnail : mainFirst});
   background-size: cover;
 `;
 const StackStyled = styled.div`

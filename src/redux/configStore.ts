@@ -4,9 +4,7 @@ import testCode from "./modules/TestCodeSlice";
 import chat from "./modules/ChatSlice";
 
 const store = configureStore({
-  reducer: {quiz,testCode,chat,
-    devTools: process.env.NODE_ENV !== "production"
-  },
+  reducer: { quiz, testCode, chat },
 });
 
 export default store;

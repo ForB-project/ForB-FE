@@ -13,7 +13,7 @@ import {
 
 const Detailpage = () => {
   const param = useParams();
-  const contentId = parseInt(param.id);
+  const contentId = parseInt(param?.id);
   //본문 내용 가져오기
   const getCommunityContent = async id => {
     const res = await CommunityContentAPI.getCommunityContent(id);

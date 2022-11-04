@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-const RoadmapStack = props => {
+interface Iprops {
+  data: { id: number; title: string };
+  setChoseStack: (x: number) => void;
+}
+const RoadmapStack = (props: Iprops) => {
   return (
     <StackStyled
       onClick={() => {

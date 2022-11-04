@@ -10,10 +10,10 @@ import {
 } from "../shared/storage";
 
 const Mainpage = () => {
-  const [closeModal, setCloseModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(getRefreshToken());
+  const [closeModal, setCloseModal] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<string | null>(getRefreshToken());
   const navigate = useNavigate();
-  const expiration = getExpiration();
+  const expiration: string | null = getExpiration();
   useEffect(() => {
     if (expiration) {
       removeExpiration();
@@ -24,7 +24,7 @@ const Mainpage = () => {
     <WrapStyled>
       <Header />
       <ContainerStyled>
-        <img className="Logo" src={hogwart_logo} />
+        <img className="Logo" src={hogwart_logo} alt="NoImage" />
         <p className="Introduce"> 프론트 or 백 </p>
         <p className="Desc">
           개발을 시작하기전에 간단하게

@@ -56,7 +56,7 @@ const MyRoadmapContent = props => {
                   <RoadmapContent
                     ref={ref}
                     key={y.id}
-                    querykey={props.querykey}
+                    mypagekey={props.querykey}
                     data={y}
                   />
                 );
@@ -64,7 +64,7 @@ const MyRoadmapContent = props => {
                 return (
                   <RoadmapContent
                     key={y.id}
-                    querykey={props.querykey}
+                    mypagekey={props.querykey}
                     data={y}
                   />
                 );
