@@ -16,7 +16,7 @@ const removeStorage = () => {
   removeQuizResult();
 };
 
-const LogoutButton = props => {
+const LogoutButton = () => {
   const logout = async () => {
     await AccountAPI.logout().then(res => {
       removeStorage();

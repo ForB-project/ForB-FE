@@ -1,17 +1,25 @@
 import React, { forwardRef } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-
+interface Iprops {
+  setImage: (x: File | null) => void;
+  image: File | null;
+  setTextStyle: (x: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  header: string | null;
+  setHeader: (x: string | null) => void;
+  textStyle: string;
+}
 const WriteTextArea = ({
-  image,
   onChange,
   header,
   setHeader,
   textStyle,
   setTextStyle,
-}) => {
-  const autoTextAreaReize = e => {
-    const textArea = document.querySelector(".autoResize");
+}: Iprops) => {
+  const autoTextAreaReize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const textArea: HTMLTextAreaElement | null =
+      document.querySelector(".autoResize");
 
     if (textArea) {
       textArea.style.height = "auto";
@@ -34,45 +42,55 @@ const WriteTextArea = ({
   const textArea = document.querySelector(".autoResize");
 
   const insertHeader = () => {
-    const textArea = document.querySelector(".autoResize");
-    let textValue = textArea.value;
-    let cursorPosition = textArea.selectionStart;
-    const beforeCursor = textValue.substring(0, cursorPosition);
+    const textArea: HTMLTextAreaElement | null =
+      document.querySelector(".autoResize");
+    let textValue = textArea?.value;
+    let cursorPosition = textArea?.selectionStart;
+    const beforeCursor = textValue?.substring(0, cursorPosition);
     const arr = [...beforeCursor];
     const currentRow = arr.lastIndexOf("\n") + 1;
-    const rowLength = cursorPosition - currentRow;
-    const beforeRow = textValue.substring(0, cursorPosition - rowLength);
-    const rowText = textValue.substring(currentRow);
-    const afterCursor = textValue.substring(
-      textArea.selectionEnd,
+    const rowLength = cursorPosition! - currentRow;
+    const beforeRow = textValue?.substring(0, cursorPosition! - rowLength);
+    const rowText = textValue?.substring(currentRow);
+    const afterCursor = textValue?.substring(
+      textArea?.selectionEnd!,
       textValue.length
     );
-    textArea.focus();
-    textArea.value = beforeRow + header + rowText + afterCursor;
+    textArea?.focus();
+    textArea.current.value = beforeRow! + header! + rowText! + afterCursor!;
     setHeader("");
   };
 
   const insertTextStyle = () => {
-    const textArea = document.querySelector(".autoResize");
-    let textValue = textArea.value;
-    let cursorStartPosition = textArea.selectionStart;
-    let cursorEndPosition = textArea.selectionEnd;
-    const beforeCursor = textValue.substring(0, cursorStartPosition);
-    const selectedCursor = textValue.substring(
-      cursorStartPosition,
+    const textArea: HTMLTextAreaElement | null =
+      document.querySelector(".autoResize");
+    let textValue = textArea?.value;
+    let cursorStartPosition = textArea?.selectionStart;
+    let cursorEndPosition = textArea?.selectionEnd;
+    const beforeCursor = textValue?.substring(0, cursorStartPosition!);
+    const selectedCursor = textValue?.substring(
+      cursorStartPosition!,
       cursorEndPosition
     );
-    const afterCursor = textValue.substring(
-      textArea.selectionEnd,
+    const afterCursor = textValue?.substring(
+      textArea?.selectionEnd!,
       textValue.length
     );
     const textMessage = "텍스트";
     const codeMessage = "코드를 입력하세요";
-    textArea.focus();
-    if (textStyle !== "```" && selectedCursor === "") {
+    textArea?.focus();
+    if (
+      textStyle !== "```" &&
+      selectedCursor === "" &&
+      typeof textArea === "string"
+    ) {
       textArea.value =
         beforeCursor + textStyle + textMessage + textStyle + afterCursor;
-    } else if (textStyle === "```" && selectedCursor === "") {
+    } else if (
+      textStyle === "```" &&
+      selectedCursor === "" &&
+      typeof textArea === "string"
+    ) {
       textArea.value =
         beforeCursor +
         textStyle +

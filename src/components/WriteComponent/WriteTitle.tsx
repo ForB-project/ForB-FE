@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import WriteToolBox from "./WriteToolBox";
-
+interface Iprops {
+  setImage: (x: File | null) => void;
+  setHeader: (x: string) => void;
+  setTextStyle: (x: string) => void;
+  setAttachment: (result: string | null) => void;
+  setTitle: (x: string) => void;
+}
 const WriteTitle = ({
   setTitle,
   setImage,
-  setTag,
+
   setAttachment,
   setHeader,
   setTextStyle,
-}) => {
+}: Iprops) => {
   return (
     <StyledDiv>
       <div>

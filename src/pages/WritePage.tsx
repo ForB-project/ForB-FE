@@ -11,9 +11,9 @@ import { GreateHall } from "../static/index";
 const WritePage = () => {
   const navigate = useNavigate();
   const [markdown, setMarkdown] = useState("");
-  const [attachment, setAttachment] = useState(null);
+  const [attachment, setAttachment] = useState<string | null>(null);
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>(null);
 
   const formData = new FormData();
   const onSubmitHandler = async () => {
@@ -48,11 +48,11 @@ const WritePage = () => {
     setAttachment(null);
     setImage(null);
   };
-  useEffect(() => {
-    if (!getAccessToken()) {
-      navigate("/");
-    }
-  }, [getAccessToken()]);
+  // useEffect(() => {
+  //   if (!getAccessToken()) {
+  //     navigate("/");
+  //   }
+  // }, [getAccessToken()]);
   return (
     <Layout>
       <StyledDiv>

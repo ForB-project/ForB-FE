@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { hogwart_logo } from "../static/index";
 
-const PageTitle = ({ children }) => {
+const PageTitle = ({ children }: { children: any }) => {
   const navigate = useNavigate();
 
   return (

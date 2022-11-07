@@ -16,7 +16,7 @@ interface Iprops {
     heartCheck: boolean;
   };
   querykey: { id: number; title?: string };
-  mypagekey: number;
+  mypagekey?: number;
 }
 type Ref = HTMLDivElement;
 const RoadmapContent = forwardRef<Ref, Iprops>((props, ref) => {
@@ -206,8 +206,11 @@ const ContentStyled = styled.div`
     }
   }
 `;
-
-const ContentImgStyled = styled.div<{ thumbnail: string }>`
+interface ContentImg {
+  thumbnail?: string;
+  mainFirst?: string;
+}
+const ContentImgStyled = styled.div<ContentImg>`
   grid-column-start: 1;
   border-radius: 10px;
   width: 200px;

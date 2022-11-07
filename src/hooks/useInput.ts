@@ -1,11 +1,17 @@
 import React, { useState, useCallback } from "react";
-function useInput(initialForm) {
+interface initialForm {
+  [key: string]: string | number;
+}
+function useInput(initialForm: initialForm) {
   const [inputs, setinputs] = useState(initialForm);
   // change
-  const onChange = useCallback(e => {
-    const { name, value } = e.target;
-    setinputs(prev => ({ ...prev, [name]: value }));
-  }, []);
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setinputs(prev => ({ ...prev, [name]: value }));
+    },
+    []
+  );
   // reset
   const reset = useCallback(() => setinputs(initialForm), [initialForm]);
 

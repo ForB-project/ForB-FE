@@ -6,27 +6,36 @@ import { MdFormatStrikethrough, MdCode } from "react-icons/md";
 import { IoMdQuote, IoMdImage } from "react-icons/io";
 import { useState } from "react";
 import { useEffect } from "react";
-
-const WriteToolBox = ({ setImage, setHeader, setTextStyle, setAttachment }) => {
-  const [imageURL, setImageURL] = useState(null);
+interface Iprops {
+  setImage: (x: File | null) => void;
+  setHeader: (x: string) => void;
+  setTextStyle: (x: string) => void;
+  setAttachment: (x: string) => void;
+}
+const WriteToolBox = ({
+  setImage,
+  setHeader,
+  setTextStyle,
+  setAttachment,
+}: Iprops) => {
+  const [imageURL, setImageURL] = useState<File | null>(null);
   useEffect(() => {
     setImage(imageURL);
   }, [imageURL]);
-  const upLoadImg = useRef();
+  const upLoadImg = useRef<HTMLInputElement>(null);
   const openFile = () => {
-    upLoadImg.current.click();
+    if (upLoadImg.current) {
+      upLoadImg.current.click();
+    }
   };
-  const onChange = e => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files) {
       const img = e.target.files[0];
       setImageURL(img);
       const reader = new FileReader();
-      reader.onloadend = finishedEvent => {
-        const {
-          currentTarget: { result },
-        } = finishedEvent;
-        setAttachment(result);
+      reader.onload = () => {
+        setAttachment(reader.result as string); //https://youngble.tistory.com/73
       };
       reader.readAsDataURL(img);
     }

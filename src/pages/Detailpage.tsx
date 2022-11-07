@@ -13,9 +13,9 @@ import {
 
 const Detailpage = () => {
   const param = useParams();
-  const contentId = parseInt(param?.id);
+  const contentId = parseInt(param?.id!);
   //본문 내용 가져오기
-  const getCommunityContent = async id => {
+  const getCommunityContent = async (id: number) => {
     const res = await CommunityContentAPI.getCommunityContent(id);
 
     return res.data?.data;
@@ -28,7 +28,7 @@ const Detailpage = () => {
   );
   const createdAt = CommunityQuery?.data?.createdAt;
   // 본문 삭제
-  const DeleteCommunityContent = async id => {
+  const DeleteCommunityContent = async (id: number) => {
     return CommunityContentAPI.deleteCommunityContent(id);
   };
   //좋아요

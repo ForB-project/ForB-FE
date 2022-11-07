@@ -12,15 +12,17 @@ const OAuthKakao = () => {
   const navigate = useNavigate();
   const pathname = localStorage.getItem("pathname");
   const handleSubmit = async () => {
-    const res = await AccountAPI.kakaoLogin(code);
-    setAccessToken(res.headers["authorization"]);
-    setRefreshToken(res.headers["refresh-token"]);
-    setUserName(res.data.data.nickname);
-    if (pathname) {
-      navigate(pathname);
-      localStorage.removeItem("pathname");
-    } else {
-      navigate("/");
+    if (code && typeof code === "string") {
+      const res = await AccountAPI.kakaoLogin(code);
+      setAccessToken(res.headers["authorization"]);
+      setRefreshToken(res.headers["refresh-token"]);
+      setUserName(res.data.data.nickname);
+      if (pathname) {
+        navigate(pathname);
+        localStorage.removeItem("pathname");
+      } else {
+        navigate("/");
+      }
     }
   };
   React.useEffect(() => {

@@ -11,7 +11,7 @@ const MyRoadmapContent = props => {
   const [ref, inView] = useInView();
 
   //Content 불러오는 부분
-  const getContent = async (Id, pageParam) => {
+  const getContent = async (Id: number, pageParam: number) => {
     const res = await ContentAPI.getMyPage(Id, pageParam);
 
     return {
@@ -50,7 +50,7 @@ const MyRoadmapContent = props => {
       {mypageInfiniteQuery.data?.pages.map((x, idx) => {
         return (
           <React.Fragment key={idx}>
-            {x?.result.map((y, keys) => {
+            {x?.result.map((y, keys: number) => {
               if (keys % 7 === 6) {
                 return (
                   <RoadmapContent

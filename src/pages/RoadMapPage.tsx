@@ -20,7 +20,17 @@ import { GrSearchAdvanced } from "react-icons/gr";
 import { getAccessToken } from "../shared/storage";
 import { QuizResultAPI } from "../shared/api";
 import { getQuizResult } from "../shared/storage";
-
+interface Iprops {
+  thumbnail: string;
+  link: string;
+  title: string;
+  desc: string;
+  id: number;
+  heartCnt: number;
+  heartCheck: boolean;
+  querykey: { id: number; title?: string };
+}
+type Ref = HTMLDivElement;
 const RoadMap = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -197,26 +207,28 @@ const RoadMap = () => {
               {infiniteQuery.data?.pages.map((x, idx) => {
                 return (
                   <React.Fragment key={idx}>
-                    {x?.result[0]?.contentList.map((y, keys: number) => {
-                      if (keys % 7 === 6) {
-                        return (
-                          <RoadmapContent
-                            ref={ref}
-                            key={y.id}
-                            querykey={choseCategory}
-                            data={y}
-                          />
-                        );
-                      } else {
-                        return (
-                          <RoadmapContent
-                            key={y.id}
-                            querykey={choseCategory}
-                            data={y}
-                          />
-                        );
+                    {x?.result[0]?.contentList.map(
+                      (y: Iprops, keys: number) => {
+                        if (keys % 7 === 6) {
+                          return (
+                            <RoadmapContent
+                              ref={ref}
+                              key={y.id}
+                              querykey={choseCategory}
+                              data={y}
+                            />
+                          );
+                        } else {
+                          return (
+                            <RoadmapContent
+                              key={y.id}
+                              querykey={choseCategory}
+                              data={y}
+                            />
+                          );
+                        }
                       }
-                    })}
+                    )}
                   </React.Fragment>
                 );
               })}

@@ -2,9 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import MarkdownPreview from "@uiw/react-markdown-preview";
 
-const WriteShow = ({ markdown, attachment, onClearPhot }) => {
-  document.documentElement.setAttribute("data-color-mode", "light");
+interface IProps {
+  markdown: string;
+  attachment: string | null;
+  onClearPhot: () => void;
+  preImg?: string;
+}
 
+const WriteShow = ({ markdown, attachment, onClearPhot, preImg }: IProps) => {
   return (
     <StyledDiv>
       <StyledInnerDiv>
@@ -26,7 +31,7 @@ const WriteShow = ({ markdown, attachment, onClearPhot }) => {
               fontSize: "25px",
               color: "#999998",
               backgroundColor: "#000000",
-              Height: "100%",
+              height: "100%",
               overflow: "auto",
             }}
             source={markdown}

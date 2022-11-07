@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-const RoadmapGuide = props => {
+const RoadmapGuide = () => {
   const [tipNum, setTipNum] = useState(1);
   const [currentTip, setCurrentTip] = useState({
     id: 1,
@@ -25,7 +25,7 @@ const RoadmapGuide = props => {
 
   const nextTip = () => {
     let currenttip = tips.find(x => x.id === tipNum);
-    setCurrentTip(currenttip);
+    setCurrentTip(currenttip!);
   };
   useEffect(() => {
     let timer = setTimeout(() => {

@@ -1,7 +1,18 @@
+import { type } from "os";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-const Inputplaceholer = React.forwardRef((props, ref) => {
-  const InputRef = useRef(null);
+interface Iprops {
+  name?: string;
+  type?: string;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  text?: string;
+  defaultValue?: string;
+  disabled?: boolean;
+}
+type Ref = HTMLInputElement;
+const Inputplaceholer = React.forwardRef<Ref, Iprops>((props, ref) => {
   return (
     <WrapStyled>
       <StyledDiv>
@@ -20,7 +31,6 @@ const Inputplaceholer = React.forwardRef((props, ref) => {
   );
 });
 export default Inputplaceholer;
-// export default forwardRef(Inputplaceholer); 에러 발생으로 주석처리
 
 const IdInput = styled.input`
   margin: 20px 0 0 0;

@@ -1,6 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-const RoadmapContentHeader = props => {
+interface Iprops {
+  closeModal: boolean;
+  setCloseModal: (x: boolean) => void;
+  contentHeader: { title: string; category: string };
+  getSort: string;
+  setSort: (x: string) => void;
+}
+const RoadmapContentHeader = (props: Iprops) => {
   return (
     <ContentHeaderStyled>
       {props.contentHeader?.title} {">"} {props.contentHeader?.category}

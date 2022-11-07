@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const WriteFooter = ({ onSubmit }) => {
+const WriteFooter = ({ onSubmit }: { onSubmit: () => void }) => {
   const navigate = useNavigate();
   return (
     <StyledDiv>
@@ -47,7 +47,11 @@ const StyledInnerDiv = styled.div`
   margin-left: 40px;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{
+  display?: string;
+  bg?: string;
+  hovercolor?: string;
+}>`
   display: ${props => props.display};
   align-items: center;
   margin: 20px;

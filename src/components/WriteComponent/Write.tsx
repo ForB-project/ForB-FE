@@ -4,12 +4,21 @@ import styled from "styled-components";
 import WriteFooter from "./WriteFooter";
 import WriteTextArea from "./WriteTextArea";
 import WriteTitle from "./WriteTitle";
-
-const Write = props => {
-  const handleChange = e => {
+interface Iprops {
+  setMarkdown: (x: string) => void;
+  onSubmit: () => void;
+  setTitle: (x: string) => void;
+  setImage: (x: File | null) => void;
+  setAttachment: (result: string | null) => void;
+  image: File | null;
+  setContent?: (x: string) => void;
+  handleChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+const Write = (props: Iprops) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     props.setMarkdown(e.target.value);
   };
-  const [header, setHeader] = useState("");
+  const [header, setHeader] = useState<string | null>(null);
   const [textStyle, setTextStyle] = useState("");
 
   return (
@@ -27,7 +36,6 @@ const Write = props => {
         <div>
           <WriteTextArea
             onChange={handleChange}
-            setContent={props.setContent}
             setImage={props.setImage}
             image={props.image}
             header={header}

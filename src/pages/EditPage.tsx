@@ -5,25 +5,33 @@ import { CommunityContentAPI } from "../shared/api";
 import { Edit, WriteShow } from "../components";
 import { getAccessToken } from "../shared/storage";
 import { GreateHall } from "../static/index";
+
+interface Detail {
+  postImage?: string;
+  content?: string;
+  title?: string;
+}
 const EditPage = () => {
   const navigate = useNavigate();
-  const param = useParams();
-  const contentId = parseInt(param.id);
-  const [detail, setDetail] = useState(null);
-  const [attachment, setAttachment] = useState(null);
-  const getCommunityContent = async id => {
-    const res = await CommunityContentAPI.getCommunityContent(id);
+  const { id } = useParams<{ id?: string }>();
+  const contentId = parseInt(id!);
+  const [detail, setDetail] = useState<Detail>();
+  const [attachment, setAttachment] = useState<string | null>(null);
+  const getCommunityContent = async (ID: number) => {
+    const res = await CommunityContentAPI.getCommunityContent(ID);
 
     setDetail(res.data?.data);
   };
   const [markdown, setMarkdown] = useState("로딩중");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<File | null>();
   const formData = new FormData();
   const preImg = detail?.postImage;
   const preContent = detail?.content;
   //게시글 데이터 가져오기
   useEffect(() => {
-    getCommunityContent(contentId);
+    if (typeof contentId === "number") {
+      getCommunityContent(contentId);
+    }
   }, []);
   // 토큰 없으면 홈으로
   useEffect(() => {
@@ -50,7 +58,7 @@ const EditPage = () => {
     if (image === null) {
       formData.delete("image");
     } else {
-      formData.append("image", image);
+      formData.append("image", image!);
     }
     const res = await CommunityContentAPI.petchCommunityContent(
       contentId,
@@ -64,10 +72,10 @@ const EditPage = () => {
     }
   };
 
-  const editTitle = title => {
+  const editTitle = (title: string) => {
     setDetail(prev => ({ ...prev, title }));
   };
-  const editContent = content => {
+  const editContent = (content: string) => {
     setDetail(prev => ({ ...prev, content }));
   };
 
