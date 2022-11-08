@@ -6,12 +6,18 @@ import { useMutation, useQueryClient } from "react-query";
 import { FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
-const CommunityContentList = forwardRef((props, ref) => {
+interface Icontentlist {
+  data: { postImage: string; title: string; content: string; id: number };
+  navigate: number;
+  likeContent: boolean;
+}
+type Ref = HTMLDivElement;
+const CommunityContentList = forwardRef<Ref, Icontentlist>((props, ref) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const thumbnail = props.data.postImage;
   const [closeModal, setCloseModal] = useState(false);
-  const DeleteContent = async contentId => {
+  const DeleteContent = async (contentId: number) => {
     const res = await CommunityContentAPI.deleteCommunityContent(contentId);
     return res;
   };
@@ -32,15 +38,22 @@ const CommunityContentList = forwardRef((props, ref) => {
         />
 
         <StackStyled>
-          <span className="ContentTitle"  
+          <span
+            className="ContentTitle"
             onClick={() => {
-            navigate(`/community/${props.navigate}`);
-          }}
-            >{props.data.title}</span>
-          <p className="ContentDesc"
+              navigate(`/community/${props.navigate}`);
+            }}
+          >
+            {props.data.title}
+          </span>
+          <p
+            className="ContentDesc"
             onClick={() => {
-            navigate(`/community/${props.navigate}`);
-          }}>{props.data.content}</p>
+              navigate(`/community/${props.navigate}`);
+            }}
+          >
+            {props.data.content}
+          </p>
         </StackStyled>
 
         <div className="DeleteButton">
@@ -169,7 +182,7 @@ const ContentStyled = styled.div`
   }
 `;
 
-const ContentImgStyled = styled.div`
+const ContentImgStyled = styled.div<{ thumbnail: string }>`
   grid-column-start: 1;
   border-radius: 10px;
   width: 100%;

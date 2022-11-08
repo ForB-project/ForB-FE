@@ -6,8 +6,19 @@ import { useInfiniteQuery } from "react-query";
 
 import RoadmapContent from "../Roadmap/RoadmapContent";
 import { useInView } from "react-intersection-observer";
-
-const MyRoadmapContent = props => {
+interface Imyroadmap {
+  querykey: number;
+}
+interface IData {
+  thumbnail: string;
+  link: string;
+  title: string;
+  desc: string;
+  id: number;
+  heartCnt: number;
+  heartCheck: boolean;
+}
+const MyRoadmapContent = (props: Imyroadmap) => {
   const [ref, inView] = useInView();
 
   //Content 불러오는 부분
@@ -50,7 +61,7 @@ const MyRoadmapContent = props => {
       {mypageInfiniteQuery.data?.pages.map((x, idx) => {
         return (
           <React.Fragment key={idx}>
-            {x?.result.map((y, keys: number) => {
+            {x?.result.map((y: IData, keys: number) => {
               if (keys % 7 === 6) {
                 return (
                   <RoadmapContent

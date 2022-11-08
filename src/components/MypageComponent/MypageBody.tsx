@@ -3,7 +3,11 @@ import styled, { keyframes } from "styled-components";
 import { GrSearchAdvanced } from "react-icons/gr";
 import MyCommunityContent from "./MyCommunityContent";
 import MyRoadmapContent from "./MyRoadmapContent";
-const MypageBody = props => {
+interface Imypagebody {
+  setCloseSearch: (x: boolean) => void;
+  closeSearch: boolean;
+}
+const MypageBody = (props: Imypagebody) => {
   const [getCommunity, setCommunity] = useState(false);
   const [choseCategory, setChoseCategory] = useState(1);
   const [likeContent, setLikeContent] = useState(false);

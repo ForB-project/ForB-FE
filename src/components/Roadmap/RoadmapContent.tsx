@@ -5,7 +5,7 @@ import { LikeAPI, ContentAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart, FaTrashAlt } from "react-icons/fa";
 import Modal from "../Modal/Modal";
-interface Iprops {
+interface Iroadmapcontent {
   data: {
     thumbnail: string;
     link: string;
@@ -15,11 +15,11 @@ interface Iprops {
     heartCnt: number;
     heartCheck: boolean;
   };
-  querykey: { id: number; title?: string };
+  querykey?: { id: number; title?: string };
   mypagekey?: number;
 }
 type Ref = HTMLDivElement;
-const RoadmapContent = forwardRef<Ref, Iprops>((props, ref) => {
+const RoadmapContent = forwardRef<Ref, Iroadmapcontent>((props, ref) => {
   const [closeModal, setCloseModal] = useState(false);
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;

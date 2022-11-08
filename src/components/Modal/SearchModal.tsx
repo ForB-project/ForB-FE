@@ -4,7 +4,16 @@ import { ContentAPI } from "../../shared/api";
 import SearchModalContent from "./SearchModalContent";
 import { useQuery } from "react-query";
 import { useGetDataAfterClick } from "../../hooks/useGetDataAfterClick";
-function SearchModal(props) {
+
+interface Idata {
+  thumbnail: string;
+  link: string;
+  heartCheck: boolean;
+  id: number;
+  title: string;
+  desc: string;
+}
+function SearchModal(props: { closeSearch: () => void }) {
   function closeSearch() {
     props.closeSearch();
   }
@@ -21,9 +30,9 @@ function SearchModal(props) {
       window.scrollTo(0, parseInt(scrollY) * -1);
     };
   }, []);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const keyword = inputRef.current?.value;
-  const getContentList = useGetDataAfterClick(keyword);
+  const getContentList = useGetDataAfterClick(keyword!);
   const SearchList = getContentList.data?.data?.data;
   //검색결과 컨텐츠 가져오기
   const getContent = () => {
@@ -47,7 +56,7 @@ function SearchModal(props) {
           </button>
         </div>
         <div className="ContentBody">
-          {SearchList?.map(x => {
+          {SearchList?.map((x: Idata) => {
             return <SearchModalContent key={x.id} data={x} keyword={keyword} />;
           })}
         </div>

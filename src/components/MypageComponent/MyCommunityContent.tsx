@@ -4,11 +4,19 @@ import { CommunityContentAPI } from "../../shared/api";
 import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import CommunityContentList from "./CommunityContentList";
-
-const MyCommunityContent = props => {
+interface Imycommunitycotent {
+  likeContent: boolean;
+}
+interface Idata {
+  postImage: string;
+  title: string;
+  content: string;
+  id: number;
+}
+const MyCommunityContent = (props: Imycommunitycotent) => {
   const [ref, inView] = useInView();
   // 나의 게시판 글 가져오기
-  const getmyCommunity = async pageParam => {
+  const getmyCommunity = async (pageParam: number) => {
     const res = await CommunityContentAPI.getmyCommunity(pageParam);
     return {
       result: res.data.data,
@@ -33,7 +41,7 @@ const MyCommunityContent = props => {
   );
 
   //좋아요누른 게시글 가져오기
-  const getLikemyCommunity = async pageParam => {
+  const getLikemyCommunity = async (pageParam: number) => {
     const res = await CommunityContentAPI.getLikeCommunity(pageParam);
     return {
       result: res.data.data,
@@ -76,7 +84,7 @@ const MyCommunityContent = props => {
       ).data?.pages.map((x, idx) => {
         return (
           <React.Fragment key={idx}>
-            {x?.result.map((y, keys) => {
+            {x?.result.map((y: Idata, keys: number) => {
               if (keys % 7 === 6) {
                 return (
                   <CommunityContentList

@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
-function Modal(props) {
+function Modal(props: {
+  closeModal: () => void;
+  children: any;
+  wide?: string;
+}) {
   function closeModal() {
     props.closeModal();
   }
@@ -19,7 +23,10 @@ function Modal(props) {
   }, []);
 
   return (
-    <ModalStyled onClick={closeModal} wide={props.wide}>
+    <ModalStyled
+      onClick={closeModal}
+      wide={props.wide === "string" ? props.wide : ""}
+    >
       <div className="modalBody" onClick={e => e.stopPropagation()}>
         {props.children}
       </div>
@@ -29,7 +36,7 @@ function Modal(props) {
 
 export default Modal;
 
-const ModalStyled = styled.div`
+const ModalStyled = styled.div<{ wide: string }>`
   position: fixed;
   top: 0;
   left: 0;

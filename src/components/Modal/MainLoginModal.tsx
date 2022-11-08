@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import LoginFunction from "./LoginFunction";
 import React from "react";
-const MainLoginModal = props => {
+const MainLoginModal = (props: { closeModal: () => void }) => {
   //해당 사이트로 로그인 하고 인가코드 받아오기
   const GoogleClientId = process.env.REACT_APP_GOOGLE_ID;
   const KakaoId = process.env.REACT_APP_KAKAO_ID;

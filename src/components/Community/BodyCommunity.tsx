@@ -10,7 +10,7 @@ const BodyCommunity = () => {
   const [pageParam, setPageParam] = useState(1);
   const [activeSearch, setActiveSearch] = useState(false);
   // 데이터 가져오기
-  const getAllCommunity = async pageParam => {
+  const getAllCommunity = async (pageParam: number) => {
     const res = await CommunityContentAPI.getAllContent(pageParam);
     return res.data.data;
   };
@@ -35,9 +35,9 @@ const BodyCommunity = () => {
   }, [pageParam, queryClient]);
   //검색해서 데이터 가져오기
 
-  const SearchRef = useRef(null);
+  const SearchRef = useRef<HTMLInputElement>(null);
   const keyword = SearchRef.current?.value;
-  const searchData = async (keyword, pageParam) => {
+  const searchData = async (keyword: string, pageParam: number) => {
     if (keyword === "") {
       return null;
     } else {
@@ -47,7 +47,7 @@ const BodyCommunity = () => {
   };
   const SearchQuery = useQuery(
     ["SearchContent", pageParam, keyword],
-    () => searchData(keyword, pageParam),
+    () => searchData(keyword!, pageParam),
     {
       keepPreviousData: true,
       refetchOnWindowFocus: false,
@@ -120,7 +120,7 @@ const BodyCommunity = () => {
 
 export default BodyCommunity;
 
-const SearchBox = styled.div`
+const SearchBox = styled.div<{ activeSearch: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,19 +147,20 @@ const SearchBox = styled.div`
       justify-content: center;
       align-items: center;
       height: 100%;
-      
+
       &:hover {
         cursor: pointer;
         font-size: 3vmin;
       }
     }
   }
-  .openSearch{
+  .openSearch {
     font-size: 2vmin;
     color: gray;
     &:hover {
-        cursor: pointer;
-        font-size: 2.2vmin;
-        color: white;
+      cursor: pointer;
+      font-size: 2.2vmin;
+      color: white;
+    }
   }
 `;

@@ -4,14 +4,26 @@ import { mainFirst } from "../../static";
 import { LikeAPI } from "../../shared/api";
 import { useMutation, useQueryClient } from "react-query";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-const SearchModalContent = forwardRef((props, ref) => {
+interface Isearchmodal {
+  data: {
+    thumbnail: string;
+    link: string;
+    heartCheck: boolean;
+    id: number;
+    title: string;
+    desc: string;
+  };
+  keyword?: string;
+}
+type Ref = HTMLDivElement;
+const SearchModalContent = forwardRef<Ref, Isearchmodal>((props, ref) => {
   const queryClient = useQueryClient();
   const thumbnail = props.data.thumbnail;
   function ContentHref() {
     window.open(props.data.link, "_blank");
   }
   const keyword = props.keyword;
-  const contentLike = async contentId => {
+  const contentLike = async (contentId: number) => {
     const res = await LikeAPI.togglelike(contentId);
 
     return res;
@@ -109,7 +121,7 @@ const ContentStyled = styled.div`
   }
 `;
 
-const ContentImgStyled = styled.div`
+const ContentImgStyled = styled.div<{ thumbnail: string }>`
   grid-column-start: 1;
   border-radius: 10px;
   width: 200px;

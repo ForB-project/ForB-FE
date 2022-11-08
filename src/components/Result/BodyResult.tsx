@@ -1,5 +1,5 @@
-import { React } from "react";
-import { useSelector} from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   DoteS,
@@ -15,10 +15,10 @@ import MarkdownPreview from "@uiw/react-markdown-preview";
 
 import { useQuery } from "react-query";
 import { QuizResultAPI } from "../../shared/api";
-
+import type { AppDispatch, RootState } from "../../redux/configStore";
 const BodyResult = () => {
-  const testResult = useSelector(state => state.quiz.testResult);
-  
+  const testResult = useSelector((state: RootState) => state.quiz.testResult);
+
   //로그인이 돼 있는 조건에서 결과값 받아옴
   const getResult = async () => {
     const res = await QuizResultAPI.repostResult();
@@ -29,14 +29,19 @@ const BodyResult = () => {
   const savedResultData = savedResultQuery?.data;
 
   const selectImg = () => {
-    let result = "";
+    let result: { backImage: string; badge: string } = {
+      backImage: "",
+      badge: "",
+    };
     switch (
       localStorage.getItem("access_token") && !localStorage.getItem("answer")
         ? savedResultData?.stackType
         : !localStorage.getItem("access_token") &&
           !localStorage.getItem("answer")
         ? null
-        : !testResult[0]? savedResultData?.stackType: testResult[0]?.stackType
+        : !testResult[0]
+        ? savedResultData?.stackType
+        : testResult[0]?.stackType
     ) {
       case "S":
         result = { backImage: DoteS, badge: DoteSNone };
@@ -51,7 +56,7 @@ const BodyResult = () => {
         result = { backImage: DoteH, badge: DoteHNone };
         break;
     }
- 
+
     return result;
   };
 
@@ -63,8 +68,6 @@ const BodyResult = () => {
       : !testResult[0]
       ? savedResultData
       : testResult[0];
-
- 
 
   return (
     <BodyStyled backImg={selectImg().backImage}>
@@ -123,7 +126,7 @@ const Dormitory = styled.h1`
   line-height: "1.8rem";
 `;
 
-const BodyStyled = styled.div`
+const BodyStyled = styled.div<{ backImg: string }>`
   position: relative;
   border-radius: 50px;
   background-color: black;
@@ -144,7 +147,7 @@ const BodyStyled = styled.div`
     height: 100%;
     z-index: -1;
     opacity: 0.6;
-    background-image: url(${(props) => props.backImg});
+    background-image: url(${props => props.backImg});
     background-size: cover;
   }
 `;

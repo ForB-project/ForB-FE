@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-function ModalWide(props) {
+function ModalWide(props: { closeModal: () => void; children: any }) {
   function closeModal() {
     props.closeModal();
   }

@@ -6,7 +6,11 @@ import { Inputplaceholer } from "../../elem";
 import { RoadmapAPI } from "../../shared/api";
 import useInput from "../../hooks/useInput";
 import { emailCheck } from "../../shared/regExp";
-
+interface Iuseinput {
+  desc: string;
+  title: string;
+  link: string;
+}
 const AddContentModal = props => {
   const [attachment, setAttachment] = useState(null); //파일 미리보기
   const [fileZero, setFileZero] = useState(null); //files의 첫번째 파일보낼때씀
@@ -147,7 +151,7 @@ const AddContentModal = props => {
       </BoxStyled>
 
       <FileInputStyled id="file" type="file" onChange={onFileChange} />
-    </>
+    </|null>
   );
 };
 
