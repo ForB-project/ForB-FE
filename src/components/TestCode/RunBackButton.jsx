@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {
-  __sendPracCode1,
-  __sendPracCode2,
+  __sendJavaPracCode1,
+  __sendJavaPracCode2,
+  save_JavaScript_Java_PracCode
 } from "../../redux/modules/TestCodeSlice";
-import { addBackPracCode } from "../../redux/modules/TestCodeSlice";
 
 const RunBackButton = ({ exampleCode, codePrac, codeIndex }) => {
   const dispatch = useDispatch();
@@ -38,11 +38,11 @@ const RunBackButton = ({ exampleCode, codePrac, codeIndex }) => {
   useEffect(() => {
     const result = { id: exampleCode[codeIndex].id, codePrac };
     if (exampleCode[codeIndex].id === 4 && backResult !== null) {
-      dispatch(__sendPracCode1(backResult));
-      dispatch(addBackPracCode(result));
+      dispatch(__sendJavaPracCode1(backResult));
+      dispatch(save_JavaScript_Java_PracCode(result));
     } else if (exampleCode[codeIndex].id === 5 && backResult !== null) {
-      dispatch(__sendPracCode2(backResult));
-      dispatch(addBackPracCode(result));
+      dispatch(__sendJavaPracCode2(backResult));
+      dispatch(save_JavaScript_Java_PracCode(result));
     }
   }, [backResult]);
 

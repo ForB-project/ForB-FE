@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { RunBackButton, RunFrontButton } from "../index";
 
@@ -9,6 +10,11 @@ const PageNation = ({
   codePrac,
   codeIndex,
 }) => {
+  const [toggle, setToggle] = useState(true);
+
+  ontoggle= () => {
+    setToggle(!toggle);
+  };
   return (
     <PageNationLayout>
       {exampleCode[0].id <= 1 ? null : exampleCode[0].id >= 4 ? (
@@ -26,37 +32,50 @@ const PageNation = ({
       )}
 
       <PageNationNumLayout>
-        <PageNationNum onClick={() => moveNum(0)}>1</PageNationNum>
-        <PageNationNum onClick={() => moveNum(1)}>2</PageNationNum>
+        <PageNationNum
+          toggle={codeIndex === 0 ? toggle : null}
+          onClick={() => moveNum(0)}
+        >
+          1
+        </PageNationNum>
+        <PageNationNum
+          toggle={codeIndex === 1 ? toggle : null}
+          onClick={() => moveNum(1)}
+        >
+          2
+        </PageNationNum>
       </PageNationNumLayout>
       <MoveButtonLayout>
-      <FrontBackButton
-        onClick={() =>
-          exampleCode[codeIndex].id === 0 || exampleCode[codeIndex].id === 1
-            ? null
-            : movePage("h")
-        }
-      >
-        HTML
-      </FrontBackButton>
-      <FrontBackButton
-        onClick={() =>
-          exampleCode[codeIndex].id === 2 || exampleCode[codeIndex].id === 3
-            ? null
-            : movePage("f")
-        }
-      >
-        JavaScript
-      </FrontBackButton>
-      <FrontBackButton
-        onClick={() =>
-          exampleCode[codeIndex].id === 4 || exampleCode[codeIndex].id === 5
-            ? null
-            : movePage("b")
-        }
-      >
-        Java
-      </FrontBackButton>
+        <FrontBackButton
+          toggle={exampleCode[codeIndex].id <= 1 ? toggle : null}
+          onClick={() =>
+            exampleCode[codeIndex].id <= 1
+              ? null
+              : movePage("h")
+          }
+        >
+          HTML
+        </FrontBackButton>
+        <FrontBackButton
+        toggle={exampleCode[codeIndex].id === 2 || exampleCode[codeIndex].id === 3 ? toggle : null}
+          onClick={() =>
+            exampleCode[codeIndex].id === 2 || exampleCode[codeIndex].id === 3
+              ? null
+              : movePage("f")
+          }
+        >
+          JavaScript
+        </FrontBackButton>
+        <FrontBackButton
+        toggle={exampleCode[codeIndex].id >= 4 ? toggle : null}
+          onClick={() =>
+            exampleCode[codeIndex].id >= 4
+              ? null
+              : movePage("b")
+          }
+        >
+          Java
+        </FrontBackButton>
       </MoveButtonLayout>
     </PageNationLayout>
   );
@@ -94,7 +113,7 @@ const PageNationNum = styled.button`
   font-style: normal;
   font-size: calc(0.2em + 0.8vw);
   font-weight: 500;
-  opacity: 0.6;
+  opacity: ${(props) => (props.toggle ? 1 : 0.6)};
   color: white;
   cursor: pointer;
   &:hover {
@@ -103,6 +122,7 @@ const PageNationNum = styled.button`
   &:focus{
     opacity: 1;
   }
+ 
 `;
 
 const MoveButtonLayout = styled.div`
@@ -128,7 +148,7 @@ const FrontBackButton = styled.button`
   font-size: calc(0.1em + 1.2vw);
   font-weight: 500;
   color: white;
-  opacity: 0.8;
+  opacity: ${(props) => (props.toggle ? 1 : 0.8)};
   cursor: pointer;
   .runButton {
     margin: -0.1vh 11vw -2vh 0px;

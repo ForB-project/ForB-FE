@@ -21,32 +21,32 @@ const initialState = {
     },
     {
       id: 3,
-      exampleCode: `           *주의*  treeHit 초깃값은 0으로 고정,\n        ()안에 숫자 값은 20이하로 적용시켜주세요!\n                     (JavaScript)\n      --------------------------------------------\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
+      exampleCode: `          *주의*  treeHit 초깃값은 0으로 고정,\n        ()안에 숫자 값은 20이하로 적용시켜주세요!\n                     (JavaScript)\n      --------------------------------------------\n\n let treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     console.log("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n          console.log("나무 넘어갑니다.");\n  }\n }`,
     },
   ],
   backCode: [
     {
       id: 4,
       exampleCode:
-        '             *보안상의 문제로* \n       *숫자값만 변경,적용 가능해요!*\n                    (Java)\n --------------------------------------------\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
+        '             *보안상의 문제로* \n       *숫자값만 변경,적용 가능해요!*\n                  (Java)\n --------------------------------------------\n\n\n int money = 2000;\n\n if (money>=3000) {\n      System.out.println("택시를 타고 가라");\n} else{\n     System.out.println("걸어가라");\n}',
     },
     {
       id: 5,
       exampleCode:
-        '           *주의*  treeHit 초깃값은 0으로 고정,\n        ()안에 숫자 값은 20이하로 적용시켜주세요!\n                        (Java)\n      --------------------------------------------\n\n\n int treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     System.out.println("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n         System.out.println("나무 넘어갑니다.");\n  }\n }',
+        '          *주의*  treeHit 초깃값은 0으로 고정,\n        ()안에 숫자 값은 20이하로 적용시켜주세요!\n                        (Java)\n      --------------------------------------------\n\n\n int treeHit = 0;\n while (treeHit <10) {\n     treeHit++;\n     System.out.println("나무를 "+ treeHit + "번 찍었습니다.");\n     if (treeHit == 10) {\n         System.out.println("나무 넘어갑니다.");\n  }\n }',
     },
   ],
   result: [
-    { id: 0, answer: "코드를 입력해볼까요?", pracCode: "" },
-    { id: 1, answer: "코드를 입력해볼까요?", pracCode: "" },
-    { id: 2, answer: "코드를 입력해볼까요?", pracCode: "" },
-    { id: 3, answer: "코드를 입력해볼까요?", pracCode: "" },
-    { id: 4, answer: "코드를 입력해볼까요?", pracCode: "" },
-    { id: 5, answer: "코드를 입력해볼까요?", pracCode: "" },
+    { id: 0 ,pracCode: "", answer: "코드를 입력해볼까요?" },
+    { id: 1 ,pracCode: "", answer: "코드를 입력해볼까요?" },
+    { id: 2 ,pracCode: "", answer: "코드를 입력해볼까요?" },
+    { id: 3 ,pracCode: "", answer: "코드를 입력해볼까요?" },
+    { id: 4 ,pracCode: "", answer: "코드를 입력해볼까요?" },
+    { id: 5 ,pracCode: "", answer: "코드를 입력해볼까요?" },
   ],
 };
 
-export const __sendPracCode1 = createAsyncThunk(
+export const __sendJavaPracCode1 = createAsyncThunk(
   "QUIZRESULT1",
   async (payload, thunkAPI) => {
     const { data } = await api.post(`/api/firstCode`, payload);
@@ -54,7 +54,7 @@ export const __sendPracCode1 = createAsyncThunk(
   }
 );
 
-export const __sendPracCode2 = createAsyncThunk(
+export const __sendJavaPracCode2 = createAsyncThunk(
   "QUIZRESULT2",
   async (payload, thunkAPI) => {
     const { data } = await api.post(`/api/secondCode`, payload);
@@ -62,7 +62,7 @@ export const __sendPracCode2 = createAsyncThunk(
   }
 );
 
-export const __sendPracCode3 = createAsyncThunk(
+export const __sendJavaScriptPracCode3 = createAsyncThunk(
   "QUIZRESULT3",
   async (payload, thunkAPI) => {
     const { data } = await api.post(`/api/secondCode`, payload);
@@ -74,7 +74,7 @@ export const TestCodeSlice = createSlice({
   name: "testCode",
   initialState,
   reducers: {
-    addPracCode: (state, action) => {
+    saveHTMLPracCode: (state, action) => {
       state.result = state.result.map(list =>
         list.id === action.payload.id
           ? {
@@ -85,10 +85,12 @@ export const TestCodeSlice = createSlice({
           : list
       );
     },
-    addFrontPracCode: (state, action) => {
+    save_JavaScript_Java_PracCode: (state, action) => {
       state.result = state.result.map(list =>
         list.id === action.payload.id
-          ? {
+          ?action.payload.id >=4?
+          { ...list, pracCode: action.payload.codePrac }:
+           {
               ...list,
               pracCode: action.payload.codePrac,
               answer: action.payload.answer,
@@ -96,32 +98,25 @@ export const TestCodeSlice = createSlice({
           : list
       );
     },
-    addBackPracCode: (state, action) => {
-      state.result = state.result.map(list =>
-        list.id === action.payload.id
-          ? { ...list, pracCode: action.payload.codePrac }
-          : list
-      );
-    },
   },
   extraReducers: {
-    [__sendPracCode1.fulfilled]: (state, action) => {
+    [__sendJavaPracCode1.fulfilled]: (state, action) => {
       state.result = state.result.map(list =>
         list.id === 4 ? { ...list, answer: action.payload.data } : list
       );
     },
-    [__sendPracCode2.fulfilled]: (state, action) => {
+    [__sendJavaPracCode2.fulfilled]: (state, action) => {
       state.result = state.result.map(list =>
         list.id === 5 ? { ...list, answer: action.payload.data } : list
       );
     },
-    [__sendPracCode3.fulfilled]: (state, action) => {
+    [__sendJavaScriptPracCode3.fulfilled]: (state, action) => {
       state.result = state.result.map(list =>
         list.id === 3 ? { ...list, answer: action.payload.data } : list
       );
     },
   },
 });
-export const { addPracCode, addBackPracCode, addFrontPracCode } =
+export const { saveHTMLPracCode, save_JavaScript_Java_PracCode } =
   TestCodeSlice.actions;
 export default TestCodeSlice.reducer;

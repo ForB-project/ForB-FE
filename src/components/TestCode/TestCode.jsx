@@ -4,17 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { GreateHall } from "../../static/index";
 import { TestCodeView, Header, PageNation } from "../index";
 import {
-  addPracCode,
-  addBackPracCode,
+  saveHTMLPracCode,
+  save_JavaScript_Java_PracCode
 } from "../../redux/modules/TestCodeSlice";
 import { PageTitle } from "../../elem";
 
 const TestCode = () => {
   const dispatch = useDispatch();
+
   const testCodeList = useSelector(state => state.testCode.testCode);
-  const frontCodeList = useSelector(state => state.testCode.frontCode);
-  const backCodeList = useSelector(state => state.testCode.backCode);
+  const javaScriptCodeList = useSelector(state => state.testCode.frontCode);
+  const javaCodeList = useSelector(state => state.testCode.backCode);
   const result = useSelector(state => state.testCode.result);
+  
   const [codeIndex, setCodeIndex] = useState(0);
   const [exampleCode, setExampleCode] = useState(testCodeList);
   const [codePrac, setCodePrac] = useState("");
@@ -23,33 +25,36 @@ const TestCode = () => {
     codePrac,
   };
 
+  // 페이지 네이션 기능
   const moveNum = codeIndex => {
     setCodeIndex(codeIndex);
     // 사용자가 쓴 예제코드, 출력 저장 용도
     if (exampleCode[codeIndex].id >= 2) {
-      dispatch(addBackPracCode(resultPracCode));
+      dispatch(save_JavaScript_Java_PracCode(resultPracCode));
     } else {
-      dispatch(addPracCode(resultPracCode));
+      dispatch(saveHTMLPracCode(resultPracCode));
     }
   };
 
-  const movePage = page => {
+  // 체험 코드 유형 변경 기능
+  const movePage = (page) => {
     if (page === "h") {
       setExampleCode(testCodeList);
-      dispatch(addBackPracCode(resultPracCode));
-    } else if (page === "f") {
-      if (exampleCode[codeIndex].id <= 1) {
-        dispatch(addPracCode(resultPracCode));
-      }
-      setExampleCode(frontCodeList);
-    } else if (page === "b") {
-      if (exampleCode[codeIndex].id <= 1) {
-        dispatch(addPracCode(resultPracCode));
-      }
-      setExampleCode(backCodeList);
+    }
+    else if (page === "f") {
+      setExampleCode(javaScriptCodeList);
+    }
+    else if (page === "b") {
+      setExampleCode(javaCodeList);
+    }
+    if (exampleCode[codeIndex].id <= 1) {
+      dispatch(saveHTMLPracCode(resultPracCode));
+    } else {
+      dispatch(save_JavaScript_Java_PracCode(resultPracCode));
     }
     setCodeIndex(0);
   };
+
   // 사용자가 쓴 예제코드, 출력 저장 용도
   useEffect(() => {
     setCodePrac(
